@@ -1,0 +1,38 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "feafb98891d94f775ae21c28365197b2",
+    "packages": [
+        {
+            "name": "WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress",
+                "reference": "origin/master"
+            },
+            "type": "library",
+            "time": "2014-05-08 05:16:36"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "webdevstudios/custom-metaboxes-and-fields-for-wordpress": 20
+    },
+    "prefer-stable": false,
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}

@@ -1,0 +1,19 @@
+{
+	 "repositories": [
+		  {
+			   "type": "package",
+			   "package": {
+					"name": "WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress",
+					"version": "dev-master",
+					"source": {
+						"url": "https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress",
+						"type": "git",
+						"reference": "origin/master"
+					}
+			   }
+		  }
+	 ],
+	 "require": {
+		  "WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress": "dev-master"
+	 }
+}

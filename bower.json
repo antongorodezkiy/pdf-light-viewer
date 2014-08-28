@@ -1,0 +1,11 @@
+{
+    "name": "pdf-light-viewer",
+    "author": "E.Kozachek",
+    "version": "1.0.0",
+    "dependencies": {
+        "BttrLazyLoading": "latest",
+        "fontawesome": "latest",
+        "yahoo-pure": "yahoo/pure",
+        "turn.js": "latest"
+    }
+}
