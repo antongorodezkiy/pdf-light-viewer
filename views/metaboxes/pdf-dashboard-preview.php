@@ -1,46 +1,11 @@
-<div id="magazine">
-	<?php foreach($pages as $page) { ?>
-		<div style="background-image:url(<?php echo $pdf_upload_dir_url.'/'.$page;?>);"></div>
+<div class="js-pdf-light-viewer-preview pdf-light-viewer-preview">
+	<?php foreach($pages as $page) {
+		$size = getimagesize($pdf_upload_dir_url.'/'.$page);
+		//die('<pre>'.(__FILE__).':'.(__LINE__).'<hr />'.print_r($size,true).'</pre>');
+		?>
+		<div
+			class="js-pdf-light-viewer-lazy-loading"
+			data-original="<?php echo $pdf_upload_dir_url.'/'.$page;?>"
+			style="background-image:url('<?php echo plugins_url('img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>');"></div>
 	<?php } ?>
 </div>
-
-<style type="text/css">
-#magazine{
-	width:1152px;
-	height:752px;
-}
-#magazine .turn-page{
-	background-color:#ccc;
-	background-size:100% 100%;
-}
-</style>
-
-<script type="text/javascript">
-
-(function($){
-	$(window).ready(function() {
-		$('#magazine').turn({
-							display: 'double',
-							acceleration: true,
-							gradients: !$.isTouch,
-							elevation:50,
-							when: {
-								turned: function(e, page) {
-									/*console.log('Current view: ', $(this).turn('view'));*/
-								}
-							}
-						});
-	});
-	
-	
-	$(window).bind('keydown', function(e){
-		
-		if (e.keyCode==37)
-			$('#magazine').turn('previous');
-		else if (e.keyCode==39)
-			$('#magazine').turn('next');
-			
-	});
-})(jQuery);
-
-</script>

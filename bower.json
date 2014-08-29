@@ -3,7 +3,7 @@
     "author": "E.Kozachek",
     "version": "1.0.0",
     "dependencies": {
-        "BttrLazyLoading": "latest",
+        "tuupola-jquery_lazyload": "tuupola/jquery_lazyload",
         "fontawesome": "latest",
         "yahoo-pure": "yahoo/pure",
         "turn.js": "latest"

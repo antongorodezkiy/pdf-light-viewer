@@ -22,17 +22,18 @@ class PdfLightViewer_AssetsController {
 				plugins_url('bower_components/fontawesome/css/font-awesome.min.css',  PDF_LIGHT_VIEWER_FILE)
 			);
 			
-			wp_enqueue_style(
-				'bttrlazyloading',
-				plugins_url('bower_components/BttrLazyLoading/dist/bttrlazyloading.css',  PDF_LIGHT_VIEWER_FILE )
-			);
-			
 			wp_enqueue_style('admin.'.PDF_LIGHT_VIEWER_PLUGIN, plugins_url('css/admin.css',  PDF_LIGHT_VIEWER_FILE ), array('purecss.grids'));
 		
 		// scripts
 			wp_enqueue_script(
-				'bttrlazyloading',
-				plugins_url('bower_components/BttrLazyLoading/dist/jquery.bttrlazyloading.min.js', PDF_LIGHT_VIEWER_FILE),
+				'jquery.scrollstop',
+				plugins_url('bower_components/tuupola-jquery_lazyload/jquery.scrollstop.min.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			wp_enqueue_script(
+				'jquery.lazyload',
+				plugins_url('bower_components/tuupola-jquery_lazyload/jquery.lazyload.min.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
 			
@@ -45,7 +46,7 @@ class PdfLightViewer_AssetsController {
 			wp_enqueue_script(
 				'pdf-light-viewer-admin',
 				plugins_url('js/admin.js', PDF_LIGHT_VIEWER_FILE),
-				array('jquery', 'jquery-ui-widget', 'bttrlazyloading', 'turn.js')
+				array('jquery', 'jquery-ui-widget', 'jquery.lazyload', 'turn.js')
 			);
 			
 			// javascript settings

@@ -1,197 +1,3 @@
-/*======================================================================
-  Selectric
-======================================================================*/
-
-.pdf-light-viewer .selectricWrapper {
-  position: relative;
-  margin: 0 0 10px;
-  width: 300px;
-  cursor: pointer;
-}
-
-.pdf-light-viewer .selectricResponsive {
-  width: 100%;
-}
-
-.pdf-light-viewer .selectric {
-  border: 1px solid #DDD;
-  background: #F8F8F8;
-  position: relative;
-  border-radius: 2px;
-}
-
-.pdf-light-viewer .selectric .label {
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  margin: 0 30px 0 0;
-  padding: 6px;
-  font-size: 12px;
-  line-height: 18px;
-  color: #444;
-  min-height: 18px;
-}
-
-.pdf-light-viewer .selectric .button {
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 30px;
-  height: 30px;
-  color: #BBB;
-  text-align: center;
-  font: 0/0 a;
-  /* IE Fix */
-  *font: 20px/30px Lucida Sans Unicode, Arial Unicode MS, Arial;
-}
-
-.pdf-light-viewer .selectric .button:after {
-  content: " ";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  width: 0;
-  height: 0;
-  border: 4px solid transparent;
-  border-top-color: #BBB;
-  border-bottom: none;
-}
-
-.pdf-light-viewer .selectricHover .selectric {
-  border-color: #CCC;
-}
-
-.pdf-light-viewer .selectricHover .selectric .button {
-  color: #888;
-}
-
-.pdf-light-viewer .selectricHover .selectric .button:after {
-  border-top-color: #888;
-}
-
-.pdf-light-viewer .selectricOpen {
-  z-index: 9999;
-}
-
-.pdf-light-viewer .selectricOpen .selectric {
-  border-color: #CCC;
-  background: #F0F0F0;
-  z-index: 9999;
-}
-
-.pdf-light-viewer .selectricOpen .selectricItems {
-  display: block;
-}
-
-.pdf-light-viewer .selectricDisabled {
-  filter: alpha(opacity=50);
-  opacity: 0.5;
-  cursor: default;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.pdf-light-viewer .selectricHideSelect {
-  position: relative;
-  overflow: hidden;
-  width: 0;
-  height: 0;
-}
-
-.pdf-light-viewer .selectricHideSelect select {
-  position: absolute;
-  left: -100%;
-  display: none;
-}
-
-.pdf-light-viewer .selectricInput {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 1px !important;
-  height: 1px !important;
-  outline: none !important;
-  border: none !important;
-  *font: 0/0 a !important;
-  background: none !important;
-}
-
-.pdf-light-viewer .selectricTempShow {
-  position: absolute !important;
-  visibility: hidden !important;
-  display: block !important;
-}
-
-/* Items box */
-
-.pdf-light-viewer .selectricItems {
-  display: none;
-  position: absolute;
-  overflow: auto;
-  top: 100%;
-  left: 0;
-  background: #F9F9F9;
-  border: 1px solid #CCC;
-  z-index: 9998;
-  -webkit-box-shadow: 0 0 10px -6px;
-  box-shadow: 0 0 10px -6px;
-}
-
-.pdf-light-viewer .selectricItems ul,
-.pdf-light-viewer .selectricItems li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 12px;
-  line-height: 20px;
-  min-height: 20px;
-}
-
-.pdf-light-viewer .selectricItems li {
-  display: block;
-  padding: 5px;
-  border-top: 1px solid #FFF;
-  border-bottom: 1px solid #EEE;
-  color: #666;
-  cursor: pointer;
-}
-
-.pdf-light-viewer .selectricItems li.selected {
-  background: #EFEFEF;
-  color: #444;
-  border-top-color: #E0E0E0;
-}
-
-.pdf-light-viewer .selectricItems li:hover {
-  background: #F0F0F0;
-  color: #444;
-}
-
-.pdf-light-viewer .selectricItems li.disabled {
-  background: #F5F5F5;
-  color: #BBB;
-  border-top-color: #FAFAFA;
-  cursor: default;
-}
-
-
-/*======================================================================
-  /Selectric
-======================================================================*/
-
-
-
 /* ADMIN CSS */
 
 .pdf-light-viewer .clear {
@@ -264,36 +70,11 @@
 	
 }
 
-.pdf-light-viewer-select .tagit-label {
-	overflow: hidden;
-	display: block;
-	height: 17px;
-	max-width: 92%;
-	float: left;
-}
-
-.pdf-light-viewer-select .tagit-close {
-	float: right;
-	cursor: pointer;
-}
-
-.pdf-light-viewer-select .tagit-close .text-icon {
-	display: none;
-}
-
 .pdf-light-viewer-select input {
 	display: block;
 	width: 99.5%;
 }
 
-.pdf-light-viewer-select .tagit-new {
-	margin: 0;
-	float: none;
-	display: block;
-	clear: both;
-	height: 26px;
-	max-width: 100%;
-}
 
 .pdf-light-viewer .icons {
     background: url('../img/icons-sprite.png') no-repeat top left;
@@ -340,10 +121,6 @@
 .pdf-light-viewer textarea {
 	min-height: 100px;
 	resize: vertical;
-}
-
-.pdf-light-viewer .half {
-	margin: left;
 }
 
 .pdf-light-viewer .tip {
@@ -412,39 +189,12 @@
 		margin-right: 12px;
 	}
 
-.pdf-light-viewer .pdf-light-viewer-preview-img {
-	background: url('../img/preview-icons.png') no-repeat top left;
-	display: inline-block;
-	vertical-align: middle;
-	display: inline-block;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
+
+.pdf-light-viewer-preview {
+	width:1152px;
+	height:752px;
 }
-
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-carousel{ background-position: 0 0; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-columns-1{ background-position: 0 -110px; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-columns-2{ background-position: 0 -220px; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-columns-3{ background-position: 0 -330px; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-columns-4{ background-position: 0 -440px; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-columns-6{ background-position: 0 -550px; width: 120px; height: 60px; }
-
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-slider{ background-position: 0 -660px; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-slideshow{ background-position: 0 -770px; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-static{ background-position: 0 -880px; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-ticker{ background-position: 0 -990px; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-vertical_slider{ background-position: 0 -1100px; width: 120px; height: 60px; } 
-.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-layout-vertical_slideshow{ background-position: 0 -1210px; width: 120px; height: 60px; } 
-
-
-	.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-ordering-random:before {
-		content: "\f074";
-	}
-
-	.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-ordering-newest_first:before {
-		content: "\f161";
-	}
-	
-	.pdf-light-viewer .pdf-light-viewer-preview-img.preview-icon-ordering-oldest_first:before {
-		content: "\f160";
-	}
+.pdf-light-viewer-preview .turn-page {
+	background-color:#ccc;
+	background-size:100% 100%;
+}
