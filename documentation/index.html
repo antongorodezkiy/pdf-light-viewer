@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>WordPress Linked Articles Plugin Documentation</title>
+	<title>WordPress PDF Light Viewer Plugin Documentation</title>
 
 	<link rel="stylesheet" href="css/pure.css" />
 	<link rel="stylesheet" href="css/prism.css" />
@@ -27,7 +27,7 @@
 		<div id="menu">
 			<div class="pure-menu pure-menu-open">
 				<a class="logo" href="http://linked-articles.demo.teamlead.pw/">
-					<span>Linked Articles</span>
+					<span>PDF Light Viewer</span>
 					<span>Documentation</span>
 				</a>
 	
@@ -79,38 +79,27 @@
 	
 		<div id="main" class="doc-section">
 			<div class="header">
-				<h1>WordPress Linked Articles Plugin Documentation</h1>
+				<div class="logo-header"></div>
+				<h1>WordPress PDF Light Viewer Plugin Documentation</h1>
 				<h2>What did you get?</h2>
 			</div>
 	
 			<div class="content">
 				<h4 class="content-subhead">About</h4>
 				<p>
-					Thank you for purchasing the WordPress Linked Articles plugin.
+					Thank you for usign the WordPress PDF Light Viewer Plugin.
 				</p>
-				<p>This plugin allows you to easily link your articles/pages/posts and custom posts into unnamed groups.</p>
-				<p>You can manually control all connected posts for your WordPress blog, website or shop. You'll easily create sections of "Similar posts", "Post like this", "See also.." and others.</p>
-				<p>You do not need to create the hundreds unused tags no more, which would be used only twice or trice.</p>
-				<p>Search for article title, click on the found articles to group them. Then show linked articles automatically or manually anywhere in your theme.</p>
+				<p>This plugin gives you an ability to embed PDF files to your Wordpress sites.</p>
+				<p>You could add unlimited amount of PDF of any size without performance issues.</p>
+				<p>Added PDF could be embedded as flipbooks on frontend.</p>
 				
 				<h4 class="content-subhead">Features</h4>
 				<ul>
-					<li>13 layouts including sliders.</li>
-					<li>8 appear animations.</li>
-					<li>11 templates included.</li>
-					<li>Fully responsive.</li>
-					<li>Bootstrap compatible.</li>
-					<li>Highly customizable.</li>
-					<li>Compatible with all themes.</li>
-					<li>Works with WordPress Multisite.</li>
-					<li>Search by Custom Fields.</li>
-					<li>Optionally allows post editors to override output settings.</li>
-					<li>Easy to use shortcodes wizard.</li>
-					<li>Works with Custom Post Types.</li>
-					<li>Compatible with WooCommerce.</li>
-					<li>Sidebar Linked Articles Widget.</li>
+					<li>unlimited PDF files.</li>
+					<li>unlimited PDF file size without site performance issues.</li>
+					<li>Responsive design.</li>
+					<li>Developer-friendly.</li>
 					<li>Fully translatable to any language using .po files.</li>
-					<li>Regular new features!</li>
 				</ul>
 				
 				<h4 class="content-subhead">What next?</h4>
@@ -135,7 +124,7 @@
 				<ol>
 					<li><s>Get the package</s> Ok, you got the plugin package :)</li>
 					<li>Upload plugin package with WordPress <code>http://yoursite.com/wp-admin/plugin-install.php?tab=upload</code> or WordPress Multisite <code>http://yoursite.com/wp-admin/network/plugin-install.php?tab=upload</code></li>
-					<li>Activate <code>WordPress Linked Articles Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
+					<li>Activate <code>WordPress PDF Light Viewer Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li>That's all! You can start from <a href="#quick">Quick start guide</a></li>
 					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code> to <a href="#setup">Set Up</a> the plugin.</li>
 				</ol>
@@ -144,7 +133,7 @@
 				<ol>
 					<li>Upload plugin package through the cPanel File Manager to the <code>/wp-content/plugins/</code></li>
 					<li>Extract plugin package contents to the <code>/wp-content/plugins/</code> folder</li>
-					<li>Activate <code>WordPress Linked Articles Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
+					<li>Activate <code>WordPress PDF Light Viewer Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li>That's all! You can start from <a href="#quick">Quick start guide</a></li>
 					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code> to <a href="#setup">Set Up</a> the plugin.</li>
 				</ol>
@@ -153,7 +142,7 @@
 				<ol>
 					<li>Unpack the plugin package with any archiving tool, which supports <a href="http://en.wikipedia.org/wiki/Zip_%28file_format%29" target="_blank">ZIP file format</a></li>
 					<li>Upload files folder to the <code>/wp-content/plugins/</code> to the server with any FTP client application, for example <a href="https://filezilla-project.org/" target="_blank">FileZilla</a></li>
-					<li>Activate <code>WordPress Linked Articles Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
+					<li>Activate <code>WordPress PDF Light Viewer Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li>That's all! You can start from <a href="#quick">Quick start guide</a></li>
 					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code> to <a href="#setup">Set Up</a> the plugin.</li>
 				</ol>
@@ -164,27 +153,274 @@
 				
 				<h4 class="content-subhead">Plugin file structure</h4>
 				<pre>
+├── bower_components
+│   ├── BttrLazyLoading
+│   │   ├── bower.json
+│   │   └── dist
+│   │       ├── bttrlazyloading.css
+│   │       ├── bttrlazyloading.min.css
+│   │       ├── jquery.bttrlazyloading.js
+│   │       └── jquery.bttrlazyloading.min.js
+│   ├── fontawesome
+│   │   ├── bower.json
+│   │   ├── css
+│   │   │   ├── font-awesome.css
+│   │   │   └── font-awesome.min.css
+│   │   ├── fonts
+│   │   │   ├── FontAwesome.otf
+│   │   │   ├── fontawesome-webfont.eot
+│   │   │   ├── fontawesome-webfont.svg
+│   │   │   ├── fontawesome-webfont.ttf
+│   │   │   └── fontawesome-webfont.woff
+│   │   ├── less
+│   │   │   ├── bordered-pulled.less
+│   │   │   ├── core.less
+│   │   │   ├── extras.less
+│   │   │   ├── fixed-width.less
+│   │   │   ├── font-awesome.less
+│   │   │   ├── icons.less
+│   │   │   ├── larger.less
+│   │   │   ├── list.less
+│   │   │   ├── mixins.less
+│   │   │   ├── path.less
+│   │   │   ├── rotated-flipped.less
+│   │   │   ├── spinning.less
+│   │   │   ├── stacked.less
+│   │   │   └── variables.less
+│   │   └── scss
+│   │       ├── _bordered-pulled.scss
+│   │       ├── _core.scss
+│   │       ├── _extras.scss
+│   │       ├── _fixed-width.scss
+│   │       ├── font-awesome.scss
+│   │       ├── _icons.scss
+│   │       ├── _larger.scss
+│   │       ├── _list.scss
+│   │       ├── _mixins.scss
+│   │       ├── _path.scss
+│   │       ├── _rotated-flipped.scss
+│   │       ├── _spinning.scss
+│   │       ├── _stacked.scss
+│   │       └── _variables.scss
+│   ├── jquery
+│   │   ├── bower.json
+│   │   ├── dist
+│   │   │   ├── jquery.js
+│   │   │   ├── jquery.min.js
+│   │   │   └── jquery.min.map
+│   │   ├── MIT-LICENSE.txt
+│   │   └── src
+│   │       ├── ajax
+│   │       │   ├── jsonp.js
+│   │       │   ├── load.js
+│   │       │   ├── parseJSON.js
+│   │       │   ├── parseXML.js
+│   │       │   ├── script.js
+│   │       │   ├── var
+│   │       │   │   ├── nonce.js
+│   │       │   │   └── rquery.js
+│   │       │   └── xhr.js
+│   │       ├── ajax.js
+│   │       ├── attributes
+│   │       │   ├── attr.js
+│   │       │   ├── classes.js
+│   │       │   ├── prop.js
+│   │       │   ├── support.js
+│   │       │   └── val.js
+│   │       ├── attributes.js
+│   │       ├── callbacks.js
+│   │       ├── core
+│   │       │   ├── access.js
+│   │       │   ├── init.js
+│   │       │   ├── parseHTML.js
+│   │       │   ├── ready.js
+│   │       │   └── var
+│   │       │       └── rsingleTag.js
+│   │       ├── core.js
+│   │       ├── css
+│   │       │   ├── addGetHookIf.js
+│   │       │   ├── curCSS.js
+│   │       │   ├── defaultDisplay.js
+│   │       │   ├── hiddenVisibleSelectors.js
+│   │       │   ├── support.js
+│   │       │   ├── swap.js
+│   │       │   └── var
+│   │       │       ├── cssExpand.js
+│   │       │       ├── getStyles.js
+│   │       │       ├── isHidden.js
+│   │       │       ├── rmargin.js
+│   │       │       └── rnumnonpx.js
+│   │       ├── css.js
+│   │       ├── data
+│   │       │   ├── accepts.js
+│   │       │   ├── Data.js
+│   │       │   └── var
+│   │       │       ├── data_priv.js
+│   │       │       └── data_user.js
+│   │       ├── data.js
+│   │       ├── deferred.js
+│   │       ├── deprecated.js
+│   │       ├── dimensions.js
+│   │       ├── effects
+│   │       │   ├── animatedSelector.js
+│   │       │   └── Tween.js
+│   │       ├── effects.js
+│   │       ├── event
+│   │       │   ├── alias.js
+│   │       │   └── support.js
+│   │       ├── event.js
+│   │       ├── exports
+│   │       │   ├── amd.js
+│   │       │   └── global.js
+│   │       ├── intro.js
+│   │       ├── jquery.js
+│   │       ├── manipulation
+│   │       │   ├── _evalUrl.js
+│   │       │   ├── support.js
+│   │       │   └── var
+│   │       │       └── rcheckableType.js
+│   │       ├── manipulation.js
+│   │       ├── offset.js
+│   │       ├── outro.js
+│   │       ├── queue
+│   │       │   └── delay.js
+│   │       ├── queue.js
+│   │       ├── selector.js
+│   │       ├── selector-native.js
+│   │       ├── selector-sizzle.js
+│   │       ├── serialize.js
+│   │       ├── sizzle
+│   │       │   └── dist
+│   │       │       ├── sizzle.js
+│   │       │       ├── sizzle.min.js
+│   │       │       └── sizzle.min.map
+│   │       ├── traversing
+│   │       │   ├── findFilter.js
+│   │       │   └── var
+│   │       │       └── rneedsContext.js
+│   │       ├── traversing.js
+│   │       ├── var
+│   │       │   ├── arr.js
+│   │       │   ├── class2type.js
+│   │       │   ├── concat.js
+│   │       │   ├── hasOwn.js
+│   │       │   ├── indexOf.js
+│   │       │   ├── pnum.js
+│   │       │   ├── push.js
+│   │       │   ├── rnotwhite.js
+│   │       │   ├── slice.js
+│   │       │   ├── strundefined.js
+│   │       │   ├── support.js
+│   │       │   └── toString.js
+│   │       └── wrap.js
+│   ├── turn.js
+│   │   ├── changelog.txt
+│   │   ├── demos
+│   │   │   ├── bible
+│   │   │   │   ├── index.html
+│   │   │   │   └── loader.gif
+│   │   │   ├── magazine
+│   │   │   │   ├── index.html
+│   │   │   │   └── pages
+│   │   │   │       ├── 01.jpg
+│   │   │   │       ├── 02.jpg
+│   │   │   │       ├── 03.jpg
+│   │   │   │       ├── 04.jpg
+│   │   │   │       ├── 05.jpg
+│   │   │   │       └── 06.jpg
+│   │   │   └── magazine_single
+│   │   │       ├── index.html
+│   │   │       └── pages
+│   │   │           ├── 01.jpg
+│   │   │           ├── 02.jpg
+│   │   │           ├── 03.jpg
+│   │   │           ├── 04.jpg
+│   │   │           ├── 05.jpg
+│   │   │           └── 06.jpg
+│   │   ├── license.txt
+│   │   ├── readme.md
+│   │   ├── turn.js
+│   │   └── turn.min.js
+│   ├── tuupola-jquery_lazyload
+│   │   ├── bower.json
+│   │   ├── img
+│   │   │   ├── bmw_m1_hood.jpg
+│   │   │   ├── bmw_m1_side.jpg
+│   │   │   ├── bmw_m3_gt.jpg
+│   │   │   ├── corvette_pitstop.jpg
+│   │   │   ├── grey.gif
+│   │   │   ├── transparent.gif
+│   │   │   ├── viper_1.jpg
+│   │   │   ├── viper_corner.jpg
+│   │   │   └── white.gif
+│   │   ├── jquery.lazyload.js
+│   │   ├── jquery.lazyload.min.js
+│   │   ├── jquery.scrollstop.js
+│   │   └── jquery.scrollstop.min.js
+│   └── yahoo-pure
+│       ├── bower.json
+│       ├── CONTRIBUTING.md
+│       ├── Gruntfile.js
+│       ├── HISTORY.md
+│       ├── LICENSE.md
+│       ├── package.json
+│       ├── README.md
+│       ├── src
+│       │   ├── base
+│       │   │   └── css
+│       │   │       └── base.css
+│       │   ├── buttons
+│       │   │   ├── css
+│       │   │   │   ├── buttons-core.css
+│       │   │   │   └── buttons.css
+│       │   │   └── tests
+│       │   │       └── manual
+│       │   │           └── button.html
+│       │   ├── forms
+│       │   │   ├── css
+│       │   │   │   ├── forms.css
+│       │   │   │   └── forms-r.css
+│       │   │   └── tests
+│       │   │       └── manual
+│       │   │           └── forms.html
+│       │   ├── grids
+│       │   │   ├── css
+│       │   │   │   └── grids-core.css
+│       │   │   ├── README.md
+│       │   │   └── tests
+│       │   │       └── manual
+│       │   │           └── responsive.html
+│       │   ├── menus
+│       │   │   ├── css
+│       │   │   │   ├── menus-core.css
+│       │   │   │   ├── menus.css
+│       │   │   │   ├── menus-paginator.css
+│       │   │   │   └── menus-r.css
+│       │   │   └── tests
+│       │   │       └── manual
+│       │   │           └── menus.html
+│       │   └── tables
+│       │       ├── css
+│       │       │   └── tables.css
+│       │       └── tests
+│       │           └── manual
+│       │               └── tables.html
+│       └── tasks
+│           ├── bower_install.js
+│           ├── bower_json.js
+│           ├── license.js
+│           └── suppress.js
+├── bower.json
+├── composer.json
+├── composer.lock
 ├── controllers
 │   ├── AdminController.php
 │   ├── AssetsController.php
-│   ├── FrontController.php
+│   ├── PdfController.php
 │   └── Plugin.php
 ├── css
 │   ├── admin.css
-│   ├── animate-animo.css
-│   ├── font-awesome.css
-│   ├── fonts
-│   │   ├── FontAwesome.otf
-│   │   ├── fontawesome-webfont.eot
-│   │   ├── fontawesome-webfont.svg
-│   │   ├── fontawesome-webfont.ttf
-│   │   └── fontawesome-webfont.woff
-│   ├── frontend.css
-│   ├── jquery.bxslider.css
-│   ├── pure.forms.css
-│   ├── pure.grids.css
-│   ├── tipsy.css
-│   └── wp-linked-articles-widget.css
+│   └── frontend.css
 ├── documentation
 │   ├── css
 │   │   ├── prism.css
@@ -195,17 +431,8 @@
 │   │   ├── bright_squares.png
 │   │   ├── logo100.png
 │   │   ├── logo48.png
-│   │   ├── preview-animations
-│   │   │   ├── appear-animation-barrier.gif
-│   │   │   ├── appear-animation-bursting-bubbles.gif
-│   │   │   ├── appear-animation-magnet.gif
-│   │   │   ├── appear-animation-melted-candy.gif
-│   │   │   ├── appear-animation-rain.gif
-│   │   │   ├── appear-animation-signboard.gif
-│   │   │   ├── appear-animation-wind-from-east.gif
-│   │   │   └── appear-animation-wind-from-west.gif
-│   │   ├── preview-icons.png
 │   │   └── screenshots
+│   │       ├── installation_cpanel.jpeg
 │   │       ├── linked-article-added.jpg
 │   │       ├── linked-articles-adding-widget.jpg
 │   │       ├── linked-articles-editor-button.jpg
@@ -225,59 +452,75 @@
 │       ├── prism.js
 │       └── scripts.js
 ├── img
-│   ├── bright_squares.png
-│   ├── bx_loader.gif
-│   ├── controls.png
-│   ├── icon24.png
-│   ├── loading.gif
-│   ├── logo100.png
-│   ├── logo24.png
-│   ├── logo48.png
-│   ├── logo.png
-│   ├── preview-icons.png
-│   └── x.png
+│   ├── lightpaperfibers.png
+│   └── pdf.png
 ├── js
-│   ├── animo.js
-│   ├── editor_plugins.js
-│   ├── jquery.appear.js
-│   ├── jquery.bxslider.js
-│   ├── jquery.selectric.js
-│   ├── jquery.tipsy.js
-│   ├── jquery.tmpl.js
-│   ├── tag-it.js
-│   ├── wp-linked-articles-admin.js
-│   └── wp-linked-articles-frontend.js
-├── languages
-│   ├── en_US
-│   │   ├── wp-linked-articles-en_US.mo
-│   │   └── wp-linked-articles-en_US.po
-│   └── ru_RU
-│       ├── wp-linked-articles-ru_RU.mo
-│       └── wp-linked-articles-ru_RU.po
+│   └── admin.js
+├── libraries
+│   └── directory_helper.php
 ├── LICENSE
 ├── models
-│   └── Model.php
-├── README.md
-├── templates
-│   ├── automatic-archive-linked-articles.php
-│   ├── content-linked-article.php
-│   ├── content-linked-article-slider.php
-│   ├── content-linked-article-slideshow.php
-│   ├── content-linked-article-static-1.php
-│   ├── content-linked-article-static-2.php
-│   ├── content-linked-article-ticker.php
-│   ├── content-linked-article-vertical_slider.php
-│   ├── content-linked-article-vertical_slideshow.php
-│   ├── shortcode-archive-linked-articles.php
-│   └── widget-linked-articles.php
-├── views
-│   ├── admin.php
-│   ├── admin-shortcode-wizard.php
-│   ├── settings.php
-│   └── widget-settings.php
-├── widgets
-│   └── wp-linked-articles-widget.php
-├── wp-linked-articles.php
+│   └── PdfModel.php
+├── pdf-light-viewer.php
+├── vendor
+│   ├── autoload.php
+│   ├── composer
+│   │   ├── autoload_classmap.php
+│   │   ├── autoload_namespaces.php
+│   │   ├── autoload_psr4.php
+│   │   ├── autoload_real.php
+│   │   ├── ClassLoader.php
+│   │   └── installed.json
+│   └── WebDevStudios
+│       └── Custom-Metaboxes-and-Fields-for-WordPress
+│           ├── CONTRIBUTING.md
+│           ├── example-functions.php
+│           ├── Gruntfile.js
+│           ├── helpers
+│           │   ├── cmb_Meta_Box_ajax.php
+│           │   ├── cmb_Meta_Box_field.php
+│           │   ├── cmb_Meta_Box_Sanitize.php
+│           │   ├── cmb_Meta_Box_Show_Filters.php
+│           │   └── cmb_Meta_Box_types.php
+│           ├── images
+│           │   ├── ico-delete.png
+│           │   ├── ui-bg_flat_0_aaaaaa_40x100.png
+│           │   ├── ui-bg_flat_75_ffffff_40x100.png
+│           │   ├── ui-bg_glass_55_fbf9ee_1x400.png
+│           │   ├── ui-bg_glass_65_ffffff_1x400.png
+│           │   ├── ui-bg_glass_75_dadada_1x400.png
+│           │   ├── ui-bg_glass_75_e6e6e6_1x400.png
+│           │   ├── ui-bg_glass_95_fef1ec_1x400.png
+│           │   ├── ui-bg_highlight-soft_75_cccccc_1x100.png
+│           │   ├── ui-icons_222222_256x240.png
+│           │   ├── ui-icons_2e83ff_256x240.png
+│           │   ├── ui-icons_454545_256x240.png
+│           │   ├── ui-icons_888888_256x240.png
+│           │   └── ui-icons_cd0a0a_256x240.png
+│           ├── init.php
+│           ├── js
+│           │   ├── cmb.js
+│           │   ├── cmb.min.js
+│           │   ├── jquery.datePicker.min.js
+│           │   └── jquery.timePicker.min.js
+│           ├── package.json
+│           ├── phpunit.xml
+│           ├── readme.md
+│           ├── style.css
+│           ├── style.min.css
+│           └── tests
+│               ├── bin
+│               │   └── install-wp-tests.sh
+│               ├── phpunit
+│               │   ├── includes
+│               │   │   └── bootstrap.php
+│               │   └── tests
+│               │       └── CMB_Core_Test.php
+│               └── README.md
+└── views
+    ├── metaboxes
+    │   └── pdf-dashboard-preview.php
+    └── settings.php
 
 				</pre>
 				
@@ -298,7 +541,7 @@
 			<div class="content">
 				
 				<p>First of all you need to turn on Automatic Mode in the plugins settings.</p>
-				<p>You can find WordPress Linked Articles Plugin settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code></p>
+				<p>You can find WordPress PDF Light Viewer Plugin settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code></p>
 				<p><img src="img/screenshots/settings-automatic-mode.jpg" alt="Automatic mode" /></p>
 				
 				<p>Check the setting and click <code>Save</code> button. Let's use it now.</p>
@@ -307,43 +550,7 @@
 				<h4 class="content-subhead">For Awesome Blog</h4>
 				
 				<p>Ok, you already have a lot of cool posts about fitness for example. It's time to show most relevant posts for them.</p>
-				<p>Open post editing page of one of the fitness posts, which you want to link among themselves. This is no matter which post of the whole set do you open.</p>
-				<p>On the post editing page find the Linked Articles adding widget</p>
 				<p><img src="img/screenshots/linked-articles-adding-widget.jpg" alt="Linked Articles Widget" /></p>
-				<br />
-				
-				<p>You don't have any linked articles yet. It's time to add them!</p>
-				<p>Type the part of the title of the post, which you want to add. Found posts were shown as a dropdown.</p>
-				<p>Navigate list by the keyboard or select by mouse. Selected article will be linked after post saving. Pick as more articles as you need. Remove articles, which are not needed anymore, by clicking <code>X</code> to the right of the titles.</p>
-				<p><img src="img/screenshots/linked-articles-widget-search-results-dropdown.jpg" alt="Linked Articles Search Results" /></p>
-				<br />
-				
-				
-				<h4 class="content-subhead">For Great Shop</h4>
-				
-				<p>Ok, you have a WooCommerce shop and a lot of cool digital products for example. And you want to add <code>Similar products</code> section to the products page.</p>
-				<p>The process is similar to adding linked posts.</p>
-				<p>After adding linked products return to the Linked Articles adding widget on the post editing page.</p>
-				<p>Check the box <code>Override settings for this product</code>. The available settings will expand.</p>
-				<p><img src="img/screenshots/linked-article-added.jpg" alt="Linked Article Added" /></p>
-				<p>Change the <code>label</code> to the <code>Similar products</code>. Explanation of other settings you can find in the <a href="#advanced">Advanced Usage</a> section.</p>
-				<br />
-				
-				
-				<h4 class="content-subhead">For Perfect Pages</h4>
-				
-				<p>Ok, you have the cool page about surfing for example. And you also have some posts about beaches and surfboards. let's assume, that you have already link some of them.</p>
-				<p>Open editing page of your Surfing page, navigate page contents and fine the best place, maybe the place where you mentioned beaches, where you surf.</p>
-				<p>Place cursor there and click the button of the <code>Editor Linked Articles Shortcodes Wizard</code></p>
-				<p><img src="img/screenshots/linked-articles-editor-button.jpg" alt="Categories grouping wizard" /></p>
-				<p>Shortcode wizard popup will be opened. Search the post title of the linked posts in the <code>Post</code> field and then click <code>Insert</code> - linked articles shortcode will be placed.</p>
-				<p><img src="img/screenshots/linked-articles-editor-shortcode-wizard.jpg" alt="Categories grouping wizard" /></p>
-				<p>You can place another shortcode for surfboards in different place of page content.</p>
-				<p>Save the page and preview your Perfect Page.</p>
-				
-				<h4 class="content-subhead">What next?</h4>
-				<p>Check <a href="#setup">Set Up</a> section to know more about plugin global settings.</p>
-				<p>Check <a href="#setup">Advanced Usage</a> section to know more how to use the plugin in your theme or extend some of plugin's parts.</p>
 				
 			</div>
 		</div>
@@ -362,7 +569,7 @@
 	
 			<div class="content">
 				<p>
-					You can find WordPress Linked Articles Plugin settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code>
+					You can find WordPress PDF Light Viewer Plugin settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code>
 				</p>
 				<p>You can enable this plugin in two ways:</p>
 				<ol>
@@ -374,45 +581,12 @@
 	
 				<p>Automatic way is when you go to the settings page and turn on the automatic adding linked articles to the post content on a single post page.</p>
 				<p><img src="img/screenshots/settings-automatic-mode.jpg" alt="Automatic mode" /></p>
-				<p>
-					For automatic mode you also can change ordering mode,
-					posts limit to be shown on the single post page,
-					layout and layout columns for linked articles output,
-					appearing animation for static layouts
-					and time_span options to limit posts by time span.
-				</p>
 				<p>You can also disable automatic mode styles to replace them with your own and change the label.</p>
 				<blockquote>
 					Please see explanation of these settings in the "Are you developer?" section.
 				</blockquote>
 				
-				<div class="content-subhead">Manual</div>
 				
-				<p>
-					Or you could use it as shortcode <code>[wp-linked-articles]</code>.
-					More information about shortcode below on <a href="#advanced">Advanced Usage</a> section
-					and more information <a href="http://codex.wordpress.org/Shortcode_API">about WordPress Shortcode on WordPress.org</a>.
-				</p>
-				
-				<div class="content-subhead">Other settings</div>
-				
-				<p><img src="img/screenshots/other-settings.jpg" alt="Other settings" /></p>
-				<p>You can control post types, on which you want to show linked articles.</p>
-				<p>
-					By default we search in articles titles only.
-					If you want to search in article's content as well, please enable option below:
-				</p>
-				<p>
-					By default linked articles widget search is restricted to post type of the current post.
-					Setting "Allow cross post type linking"
-					will give you an ability to search and link articles with different post types.
-				</p>
-				<br />
-				<p>
-					You can control linked articles for any particular article/post/page
-					at the post editing page in dashboard. This setting could be found at the post editor page.
-				</p>
-				<p><img src="img/screenshots/linked-articles-adding-widget.jpg" alt="Linked Articles Widget" /></p>
 				
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#use">Usage</a> section to know more about use cases.</p>
@@ -431,99 +605,34 @@
 			</div>
 	
 			<div class="content">
-				<div class="content-subhead">Adding linked articles</div>
+				<div class="content-subhead">Adding PDF file</div>
 	
 				<p>
-					After you set up post types, for which plugin will be activated,
-					you can go to the wordpress post editor.
-					There you'll see widget of Linked Articles similar to this one:
+					You can go to PDFs menu item to see the list of imported PDF files.
 				</p>
-				<p><img src="img/screenshots/linked-articles-adding-widget.jpg" alt="Linked Articles Widget" /></p>
-				<p>
-					If you'll need to customize output for this certain post, you can override plugin settings.
-				</p>
-				
-				<p>
-					Start type the title (or the part of content,
-					if you've turned on the setting "Search linked articles in content text")
-					of the article which you want to link with the current one,
-					then wait for search results dropdown.
-				</p>
-				<p><img src="img/screenshots/linked-articles-widget-search-results-dropdown.jpg" alt="Linked Articles Search Results" /></p>
-				
-				<p>You'll see the list of posts, matched your search criteria. </p>
-				
-				
-				<p>If the article, which you selected not grouped, it would be added to the list.</p>
-				<p><img src="img/screenshots/linked-article-added.jpg" alt="Linked Article Added" /></p>
-				
-				<p>
-					If the article, which you selected was already grouped with some other articles,
-					then you'll see the wizard.
-				</p>
-				<p><img src="img/screenshots/linked-articles-widget-linking-wizard.jpg" alt="Linked Articles Linking Wizard" /></p>
-				
-				<p>The wizard will allow you two options:</p>
-				<ul>
-					<li>Merging groups of articles
-						<ul>
-							<li>if the current article have no group, then it will be added to the group of selected article.</li>
-							<li>if the current article have own group, then both groups will be merged into one group.</li>
-						</ul>
-					</li>
-					<li>
-						Moving article - in this case selected article will be moved from it's group,
-						and will be added to the new group with the current article.
-					</li>
-				</ul>
-				
-				<blockquote>
-					Changes to linked articles wouldn't be applied until you save your post.
-					So feel free tp remove wrongly added linked articles and add another.
-				</blockquote>
-				
-				<p>After articles were linked, you can unlink article by clikcing "Unlink this article" button on the post edit page</p>
-				<p><img src="img/screenshots/unlink-this-article.jpg" alt="Unlink this article" /></p>
-				
-				<div class="content-subhead">Mass Grouping linked articles</div>
-				
-				<blockquote>
-					This operation cannot be undone, so please be careful.
-				</blockquote>
-				
-				<p>
-					You can group all or only not grouped articles from your categories.
-					To group articles open the settings page, find "Categories Grouping".
-				</p>
-				<p><img src="img/screenshots/settings-categories-grouping.jpg" alt="Categories grouping" /></p>
+				<p><img src="img/screenshots/pdf-files-in-menu.jpg" alt="PDF Files list in menu" /></p>
 					
-				<p>Choose needed category and wait until wizard appears.</p>
-				<p><img src="img/screenshots/settings-categories-grouping-wizard.jpg" alt="Categories grouping wizard" /></p>
-				
-				<p>Wizard will allow you two options:</p>
-				<ul>
-					<li>if there were some linked articles in category, then you could link all</li>
-					<li>or link only not linked articles</li>
-				</ul>
-				
-				
-				<div class="content-subhead">Linked articles shortcodes</div>
 				<p>
-					You can add linked articles anywhere in your post. You can compose it manually or you can use a wizard for this.
+					If you just installed the plugin the list will be empty. Go ahead and import first PDF document.
 				</p>
-				<p><img src="img/screenshots/linked-articles-editor-button.jpg" alt="Categories grouping wizard" /></p>
-				
 				<p>
-					Change options and click "Insert". You can select only one post for widget.
+					You can specify the name of the file. It's for internal use only, it wouldn't be shown on the site automatically.
 				</p>
-				<p><img src="img/screenshots/linked-articles-editor-shortcode-wizard.jpg" alt="Categories grouping wizard" /></p>
+				<p>Then choose a file and click <code>Publish</code> to start the import.</p>
+				<p><img src="img/screenshots/importing-pdf.jpg" alt="Importing PDF" /></p>		
 				
+				<blockquote>
+					Please note, import of large PDF files (50 pages or more) will take some time. We moved the importing process to the background, so you could continue to do other things on the site if needed.
+				</blockquote>
 				
-				<div class="content-subhead">Linked articles sidebar widget</div>
+				<p>The importing time depends on the server. Anyway, you'll be notified by Wordpress dashboard notification after the end of the import.</p>
+				<p><img src="img/screenshots/import-notification.jpg" alt="Importing PDF" /></p>
+				
+				<div class="content-subhead">Shortcodes</div>
 				<p>
-					You can add linked articles to sidebar. Linked articles added to the sidebar wouldn't be actually linked. But will be shown all linked articles of all posts, which you'll select. Widget has the same options as shortcode.
+					You can add PDF files anywhere in your post or page. You can copy them from PDFs list page or compose them manually.
 				</p>
-				<p><img src="img/screenshots/linked-articles-sidebar-widget.jpg" alt="Categories grouping wizard" /></p>
+				<p><img src="img/screenshots/pdf-list-page.jpg" alt="PDF List Page" /></p>
 				
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#advanced">Advanced Usage</a> section to get full control on the plugin functionality and look and feel.</p>
@@ -558,211 +667,54 @@
 				
 				<div class="content-subhead">Code control</div>
 				<p>
-					You can override any of plugins classes:
-					<code>WPMemesEditor_Plugin</code>, <code>WPMemesEditor_Assets</code>, <code>WPMemesEditor_Frontend</code>,
-					somewhere before the <code>after_setup_theme</code> action.
+					You can override any of plugins classes somewhere before the <code>after_setup_theme</code> action:
 				</p>
+				<ul>
+					<li>
+						<code>PdfLightViewer_Plugin</code> - some main functions
+					</li>
+					<li>
+						<code>PdfLightViewer_AssetsController</code> - css and js assets including
+					</li>
+					<li>
+						<code>PdfLightViewer_AdminController</code> - admin functions
+					</li>
+					<li>
+						<code>PdfLightViewer_FrontController</code> - frontend functions
+					</li>
+					<li>
+						<code>PdfLightViewer_PdfController</code> - custom PDF post type and related functions
+					</li>
+				</ul>
 				
 				<div class="content-subhead">Templates control</div>
 				
 				<p>
-					You can create <code>automatic-archive-linked-articles.php</code>,
-					<code>shortcode-archive-linked-articles.php</code>,
-					<code>widget-linked-articles-view.php</code> in your theme
-					or copy from <code>templates</code> folder to your theme folder
-					to override all linked articles template block under the post on the single page.
-				</p>
-				<p>
-					Fallback template for non-existent files is <code>automatic-archive-linked-articles.php</code>
-				</p>
-
-				<p>
-					You can also create templates for each article item of each layout and layout column pair for static and carousel layouts:
-					<code>content-linked-article-{layout name}-{layout-columns}.php</code>;
-					and templates for each other layout:
-					<code>content-linked-article-{layout name}.php</code>
-				</p>
-				<p>
-					You can copy all plugin files from the <code>templates</code> plugin folder
-					to your theme folder to override linked article template for each article.
-				</p>
-				<p>
-					Fallback template for non-existent files is <code>content-linked-article.php</code>
+					You can create <code>shortcode-pdf-light-viewer.php</code> in your theme
+					or copy it from <code>templates</code> folder to your theme folder
+					to override all default plugin template for frontend.
 				</p>
 				
 				<div class="content-subhead">Plugin Output</div>
 				<p>
-					Shortcode <code>[wp-linked-articles]</code>
-					as well as <code>linkedArticlesFrontController::disaply_linked_articles($atts = array())</code>
+					Shortcode <code>[pdf-light-viewer]</code>
+					as well as <code>PdfLightViewer_FrontController::disaply_pdf_book($atts = array())</code>
 					has following parameters:</p>
 				</p>
 				<ul>
 					<li>
-						<code>post_id</code> (optional),
-						if you wouldn't specify this parameter, the global post variable will be used.
+						<code>id</code> (required), this is ID of the PDF post, you can
 					</li>
 					<li>
-						<p>
-							<code>ordering</code> (optional),
-							this option is shortcut for <code>order</code> and <code>orderby</code> options.</p>
-						<p>Default value will be fetched from plugin's settings.
-							You can override this parameter by custom order and orderby parameters.</p>
-						<p>Allowed options are:</p>
-						<ul>
-							<li><code>random</code> - orderby=rand, order is empty</li>
-							<li><code>newest_first</code> - orderby=post_date, order=desc</li>
-							<li><code>oldest_first</code> - orderby=post_date, order=asc</li>
-						</ul>
-					</li>
-					<li>
-						<code>order</code> (optional),
-						is the <a href="http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters">WP_Query order field</a>.
-						Default value will be fetched from plugin's settings.
-					</li>
-					<li>
-						<code>orderby</code> (optional),
-						is the <a href="http://codex.wordpress.org/Class_Reference/WP_Query#Order_.26_Orderby_Parameters">WP_Query orderby field</a>.
-						Default value will be fetched from plugin's settings.
-					</li>
-					<li>
-						<code>posts_per_page</code> (optional),
-						is the <a href="http://codex.wordpress.org/Class_Reference/WP_Query#Pagination_Parameters">WP_Query posts_per_page field</a>.
-						Default value will be fetched from plugin's settings.
-						Use -1 or leave empty to get all.
-					</li>
-					<li>
-						<p>
-							<code>layout</code> (optional),
-							layout for linked articles output.</p>
-						<p>Default value will be fetched from plugin's settings. Leave empty to use <code>static</code>.</p>
-						<p>Allowed options are:</p>
-						<ul>
-							<li><span class="preview-icon layout-static"></span> <code>static</code> - simple responsive HTML view</li>
-							<li><span class="preview-icon layout-slider"></span> <code>slider</code> - horizontal responsive slider with controls</li>
-							<li><span class="preview-icon layout-vertical_slider"></span> <code>vertical_slider</code> - vertical responsive slider with controls</li>
-							<li><span class="preview-icon layout-slideshow"></span> <code>slideshow</code> - horizontal responsive slider with controls and autoplay</li>
-							<li><span class="preview-icon layout-vertical_slideshow"></span> <code>slideshow</code> - vertical responsive slider with controls and autoplay</li>
-							<li><span class="preview-icon layout-carousel"></span> <code>carousel</code> - responsive carousel with controls, number of items per slide  is controled by <code>posts_per_page</code> option</li>
-							<li><span class="preview-icon layout-ticker"></span> <code>ticker</code> - responsive ticker</li>
-						</ul>
-					</li>
-					<li>
-						<p><code>layout_columns</code> (optional),
-							layout columns for linked articles output (including Bootstrap columns or Pure.css columns).</p>
-						<p>Default value will be fetched from plugin's settings.</p>
-						<p>Allowed options are:</p>
-						<ul>
-							<li><span class="preview-icon layout-columns-1"></span> <code>1</code></li>
-							<li><span class="preview-icon layout-columns-2"></span> <code>2</code></li>
-							<li><span class="preview-icon layout-columns-3"></span> <code>3</code></li>
-							<li><span class="preview-icon layout-columns-4"></span> <code>4</code></li>
-							<li><span class="preview-icon layout-columns-6"></span> <code>6</code></li>
-						</ul>
-					</li>
-					<li>
-						<code>label</code> (optional).
-						Default is "Linked Articles" for your localization.
-					</li>
-					<li>
-						<code>appear_animation</code> (optional).
-						<p>Default value will be fetched from plugin's settings. Leave empty to use without animation.</p>
-						<p>Allowed options are:</p>
-						<ul>
-							<li class="appear-animation-preview">
-								<img src="img/preview-animations/appear-animation-bursting-bubbles.gif" alt="" />
-								<span>bursting_bubbles</span>
-							</li>
-							<li class="appear-animation-preview">
-								<img src="img/preview-animations/appear-animation-wind-from-west.gif" alt="" />
-								<span>wind_from_west</span>
-							</li>
-							<li class="appear-animation-preview">
-								<img src="img/preview-animations/appear-animation-wind-from-east.gif" alt="" />
-								<span>wind_from_east</span>
-							</li>
-							<li class="appear-animation-preview">
-								<img src="img/preview-animations/appear-animation-magnet.gif" alt="" />
-								<span>magnet</span>
-							</li>
-							<li class="appear-animation-preview">
-								<img src="img/preview-animations/appear-animation-rain.gif" alt="" />
-								<span>rain</span>
-							</li>
-							<li class="appear-animation-preview">
-								<img src="img/preview-animations/appear-animation-melted-candy.gif" alt="" />
-								<span>melted_candy</span>
-							</li>
-							<li class="appear-animation-preview">
-								<img src="img/preview-animations/appear-animation-signboard.gif" alt="" />
-								<span>signboard</span>
-							</li>
-							<li class="appear-animation-preview">
-								<img src="img/preview-animations/appear-animation-barrier.gif" alt="" />
-								<span>barrier</span>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<p><code>time_span</code> (optional),
-							this option will limit linked articles by certain time span.
-							</p>
-						<p>Default value will be fetched from plugin's settings. Leave empty to use without time span.</p>
-						<p>Allowed options are:</p>
-						<ul>
-							<li><code>today</code></li>
-							<li><code>this_week</code></li>
-							<li><code>this_month</code></li>
-							<li><code>this_year</code></li>
-							<li><code>post_day</code></li>
-							<li><code>post_week</code></li>
-							<li><code>post_month</code></li>
-							<li><code>post_year</code></li>
-						</ul>
-					</li>
-					<li>
-						<code>include_the_post</code> (optional).
-						If this option is specified and set to "true",
-						then the article with <code>post_id</code> will be included to the linked articles.
+						<code>template</code> (optional), you can specify template name to override default. Template name can be any, that accepted by <a href="http://codex.wordpress.org/Function_Reference/get_template_part" target="_blank">get_template_part()</a> function.
 					</li>
 				</ul>
 				
 				<p>
-					You could call class method <code>linkedArticlesFrontController::disaply_linked_articles($atts = array())</code>
-					directly instead of using shortcode <code>[wp-linked-articles]</code>.
+					You could call class method <code>PdfLightViewer_FrontController::disaply_pdf_book($atts = array())</code>
+					directly instead of using shortcode <code>[pdf-light-viewer]</code>.
 				</p>
-				
-				<p>
-					You could manually get linked articles by using following code.
-				</p>
-<pre><code class="language-php">
-$connected_post_ids = linkedArticlesModel::getConnectedPostsIds($post->ID);
-if(!empty($connected_post_ids)) {
-	
-	// the query
-	$query = new WP_Query(array(
-	   'post_type' => get_post_types(array(
-			'capability_type' => 'post',
-			'public' => true
-		)),
-	   'post__in' =>  $connected_post_ids,
-	   'orderby' => 'post__in'
-	));
-	
-	// the loop
-	if ( $query->have_posts() ) {
-		foreach ($query->posts as $post) {
-			$query->the_post();				
-			echo $post->post_title;
-		}
-	} else {
-		// no posts found
-	}
-	
-	// restore original post data
-	wp_reset_postdata();
-}
-</code></pre>
-				
+								
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#support">Support</a> section to get in touch with our support team.</p>
 			</div>
@@ -781,13 +733,12 @@ if(!empty($connected_post_ids)) {
 			</div>
 	
 			<div class="content">
-				<p>Once again, thank you so much for purchasing our plugin. We would be glad to help you in any questions related to this plugin.</p>
+				<p>Once again, thank you so much for getting our plugin. We would be glad to help you in any questions related to this plugin.</p>
 				<p>
-					We want to make your plugin usage as much easier as we could. That's why our plugin already contains the feedback form, which will send us your server info among your message.
+					We want to make your plugin usage as much easier as we could.
 				</p>
-				<p>You can find feedback form on the plugin settings page.</p>
-				<p>However, if you want, you can contact us, you can do it by email: <a href="mailto:support@teamlead.pw">support@teamlead.pw</a></p>
-				<p>or on CodeCanyon: <a href="http://codecanyon.net/item/wordpress-linked-articles-plugin/8002244">http://codecanyon.net/item/wordpress-linked-articles-plugin/8002244</a></p>
+				<p>If you want, you can contact us, you can do it by email: <a href="mailto:support@teamlead.pw">support@teamlead.pw</a> or through the support forum at http://support.wp.teamlead.pw (coming soon)</p>
+				<p>Find us on CodeCanyon: <a href="http://codecanyon.net/user/antongorodezkiy/portfolio">http://codecanyon.net/user/antongorodezkiy/portfolio</a></p>
 			</div>
 		</div>
 		
@@ -805,31 +756,16 @@ if(!empty($connected_post_ids)) {
 							Icons &copy; <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome&nbsp;<span class="fa fa-external-link-square"></span></a>
 						</li>
 						<li>
-							Article Icon &copy; <a href="http://www.visual-blast.com" target="_blank">Visual-Blast Magazine&nbsp;<span class="fa fa-external-link-square"></span></a>
-						</li>
-						<li>
-							Link Icon &copy; <a href="http://icons8.com/" target="_blank">Visual Pharm&nbsp;<span class="fa fa-external-link-square"></span></a>
+							Logo Icons &copy; <a href="https://www.iconfinder.com/Re66y" target="_blank">Gregor Cresnar&nbsp;<span class="fa fa-external-link-square"></span></a>
 						</li>
 						<li>
 							CSS Framework &copy; <a href="http://purecss.io/" target="_blank">Pure.css&nbsp;<span class="fa fa-external-link-square"></span></a>
 						</li>
 						<li>
-							Slider &copy; <a href="http://bxslider.com/" target="_blank">bxSlider&nbsp;<span class="fa fa-external-link-square"></span></a>
+							Flipbook &copy; <a href="http://www.turnjs.com/" target="_blank">Turn.js&nbsp;<span class="fa fa-external-link-square"></span></a>
 						</li>
 						<li>
-							Autocomplete &copy; <a href="http://aehlke.github.io/tag-it/" target="_blank">Tag-it!&nbsp;<span class="fa fa-external-link-square"></span></a>
-						</li>
-						<li>
-							Tooltips &copy; <a href="http://onehackoranother.com/projects/jquery/tipsy/" target="_blank">tipsy&nbsp;<span class="fa fa-external-link-square"></span></a>
-						</li>
-						<li>
-							Animations &copy <a href="http://labs.bigroomstudios.com/libraries/animo-js" target="_blank">Animo.js&nbsp;<span class="fa fa-external-link-square"></span></a>
-						</li>
-						<li>
-							Appear event &copy; <a href="https://github.com/morr/jquery.appear" target="_blank">jQuery.appear&nbsp;<span class="fa fa-external-link-square"></span></a>
-						</li>
-						<li>
-							Selectboxes &copy; <a href="http://lcdsantos.github.io/jQuery-Selectric/" target="_blank">jQuery Selectric&nbsp;<span class="fa fa-external-link-square"></span></a>
+							Lazy Load &copy; <a href="http://www.appelsiini.net/projects/lazyload" target="_blank">Lazy Load Plugin for jQuery&nbsp;<span class="fa fa-external-link-square"></span></a>
 						</li>
 					</ul>
 				</blockquote>

@@ -23,22 +23,18 @@
 				autoCenter: true,
 				when: {
 					turned: function(e, page) {
-						/*console.log('Current view: ', $(this).turn('view'));*/
+						if (typeof(page) == "undefined" || page == "undefined") {
+							return;
+						}
+						
+						if (typeof(loaded_pdf_pages[page]) == "undefined") {
+							$(".js-pdf-light-viewer-lazy-loading").lazyload({
+								effect : "fadeIn"
+							});
+							loaded_pdf_pages[page] = page;
+						}
 					}
 				}
-			}).bind("turned", function(event, page, view) {
-				
-				if (typeof(page) == "undefined" || page == "undefined") {
-					return;
-				}
-				
-				if (typeof(loaded_pdf_pages[page]) == "undefined") {
-					$(".js-pdf-light-viewer-lazy-loading").lazyload({
-						effect : "fadeIn"
-					});
-					loaded_pdf_pages[page] = page;
-				}
-				console.log(loaded_pdf_pages);
 			});
 
 		

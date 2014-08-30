@@ -57,7 +57,10 @@ function wp_pdf_light_viewer_init() {
 	
 	// assets
 		if (is_admin()) {
-			add_action('admin_head', array('PdfLightViewer_AssetsController', 'admin_head'));
+			add_action('admin_enqueue_scripts', array('PdfLightViewer_AssetsController', 'admin_head'));
+		}
+		else {
+			add_action('wp_enqueue_scripts', array('PdfLightViewer_AssetsController', 'frontend_head'));
 		}
 	
 	//ADMIN

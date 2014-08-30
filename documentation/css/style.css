@@ -1,6 +1,6 @@
 body {
     color: #555;
-    background-image: url('../img/bright_squares.png');
+    background-image: url('../img/fabric_of_squares_gray.png');
     background-repeat: repeat;
 }
 
@@ -156,7 +156,7 @@ appears on the left side of the page.
     */
     #menu .pure-menu-selected,
     #menu .pure-menu-heading {
-        background: #0080FF;
+        background: #FE876D;
     }
         /*
         This styles a link within a selected menu item `<li>`.
@@ -229,11 +229,11 @@ small screens.
         }
 
 a {
-    color: #0080FF;
+    color: #FE876D;
 }
 
 blockquote {
-    border-left: 3px solid #0080FF;
+    border-left: 3px solid #FE876D;
     padding: 10px 0 10px 15px;
 }
 
@@ -241,9 +241,14 @@ blockquote {
     text-align: center;
     padding: 125px 0 15px;
     background: url('../img/logo100.png') no-repeat 50% 15px;
-    color: #0080FF;
+    color: #FE876D;
     text-transform: uppercase;
     font-size: 18px;
+}
+
+.logo-header {
+	background: url('../img/logo.png') no-repeat center;
+	height: 200px;
 }
 
 	#menu .logo span {
