@@ -87,7 +87,7 @@ class PdfLightViewer_FrontController {
 		$linked_articles_config = array();
 		
 		// template
-			if (isset($atts['template'])) {
+			if (isset($atts['template']) && $atts['template']) {
 				$linked_articles_config['template'] = $atts['template'];
 			}
 			else {

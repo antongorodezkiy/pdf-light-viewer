@@ -56,16 +56,11 @@ class PdfLightViewer_AssetsController {
 				plugins_url('js/turn.js/hash.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
+
 			
 			wp_enqueue_script(
-				'scissor.turn.js',
-				plugins_url('js/turn.js/scissor.min.js', PDF_LIGHT_VIEWER_FILE),
-				array('jquery')
-			);
-			
-			wp_enqueue_script(
-				'zoom.turn.js',
-				plugins_url('js/turn.js/zoom.min.js', PDF_LIGHT_VIEWER_FILE),
+				'jquery.fullscreen.js',
+				plugins_url('bower_components/kayahr-jquery-fullscreen-plugin/jquery.fullscreen-min.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
 			
@@ -89,20 +84,20 @@ class PdfLightViewer_AssetsController {
 			
 			
 			wp_enqueue_script(
-				'pdf-light-viewer-admin',
-				plugins_url('js/admin.js', PDF_LIGHT_VIEWER_FILE),
+				'pdf-light-viewer-magazine',
+				plugins_url('js/magazine.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery', 'jquery.lazyload', 'turn.js')
 			);
 			
 			// javascript settings
-				wp_localize_script('pdf-light-viewer-admin', 'PdfLightViewer', array(
+				/*wp_localize_script('pdf-light-viewer-admin', 'PdfLightViewer', array(
 					'url' => array(
 						'ajaxurl' => admin_url('admin-ajax.php')
 					),
 					'lang' => array(
-						/*'Type a few letters from article title...' => __('Type a few letters from article title...', PDF_LIGHT_VIEWER_PLUGIN),*/
+						//'Type a few letters from article title...' => __('Type a few letters from article title...', PDF_LIGHT_VIEWER_PLUGIN),
 					)
-				));
+				));*/
 			
 	}
 	
@@ -144,14 +139,8 @@ class PdfLightViewer_AssetsController {
 			);
 			
 			wp_enqueue_script(
-				'scissor.turn.js',
-				plugins_url('js/turn.js/scissor.min.js', PDF_LIGHT_VIEWER_FILE),
-				array('jquery')
-			);
-			
-			wp_enqueue_script(
-				'zoom.turn.js',
-				plugins_url('js/turn.js/zoom.min.js', PDF_LIGHT_VIEWER_FILE),
+				'jquery.fullscreen.js',
+				plugins_url('bower_components/kayahr-jquery-fullscreen-plugin/jquery.fullscreen-min.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
 			
@@ -174,21 +163,22 @@ class PdfLightViewer_AssetsController {
 				array('jquery')
 			);
 			
+			
 			wp_enqueue_script(
-				'pdf-light-viewer-frontend',
-				plugins_url('js/frontend.js', PDF_LIGHT_VIEWER_FILE),
-				array('jquery.lazyload', 'turn.js')
+				'pdf-light-viewer-magazine',
+				plugins_url('js/magazine.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery', 'jquery.lazyload', 'turn.js')
 			);
 			
 			// javascript settings
-				wp_localize_script('pdf-light-viewer-frontend', 'PdfLightViewer', array(
+			/*	wp_localize_script('pdf-light-viewer-frontend', 'PdfLightViewer', array(
 					'url' => array(
 						'ajaxurl' => admin_url('admin-ajax.php')
 					),
 					'lang' => array(
-						/*'Type a few letters from article title...' => __('Type a few letters from article title...', PDF_LIGHT_VIEWER_PLUGIN),*/
+						//'Type a few letters from article title...' => __('Type a few letters from article title...', PDF_LIGHT_VIEWER_PLUGIN),
 					)
-				));
+				));*/
 	}
 
 	

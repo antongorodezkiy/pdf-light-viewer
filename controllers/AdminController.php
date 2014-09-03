@@ -4,16 +4,46 @@ class PdfLightViewer_AdminController {
 	
 	// show message
 		public static function showMessage($message, $errormsg = false) {
-			if ($errormsg) {
-				echo '<div id="message" class="error">';
+			
+			if (!session_id()) {
+				session_start();
 			}
-			else {
-				echo '<div id="message" class="updated fade">';
+			
+			if (!isset($_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'])) {
+				$_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'] = array();
 			}
-			echo "<p><strong>$message</strong></p></div>";
+			
+			$_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'][] = array(
+				'text' => $message,
+				'error' => $errormsg
+			);
 		} 
 
-	
+		public static function showAdminNotifications() {
+			if (!session_id()) {
+				session_start();
+			}
+			
+			if (isset($_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'])) {
+				foreach($_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'] as $key => $notice) {
+					
+					if ($notice['error']) {
+						$css_class = 'error';
+					}
+					else {
+						$css_class = 'updated';
+					}
+					
+					echo '<div class="'.$css_class.'"><p>'.$notice['text'].'</p></div>';
+				}
+				$_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'] = array();
+			}
+		}
+		
+	// ajax
+		public static function registerAjaxHandlers() {
+			
+		}
 
 	// settings
 		public static function registerMenuPage() {

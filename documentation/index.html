@@ -95,11 +95,15 @@
 				
 				<h4 class="content-subhead">Features</h4>
 				<ul>
-					<li>unlimited PDF files.</li>
-					<li>unlimited PDF file size without site performance issues.</li>
-					<li>Responsive design.</li>
+					<li>Unlimited PDF files.</li>
+					<li>Unlimited PDF file size without site performance issues.</li>
+					<li>Turn.js flipbook integrated.</li>
+					<li>Dashboard flipbook preview.</li>
+					<li>Slider thumbnails navigation integrated.</li>
+					<li>Lazy loading pages integrated.</li>
 					<li>s2member compatible.</li>
 					<li>Developer-friendly.</li>
+					<li>Well-documented.</li>
 					<li>Fully translatable to any language using .po files.</li>
 				</ul>
 				
@@ -127,7 +131,7 @@
 					<li>Upload plugin package with WordPress <code>http://yoursite.com/wp-admin/plugin-install.php?tab=upload</code> or WordPress Multisite <code>http://yoursite.com/wp-admin/network/plugin-install.php?tab=upload</code></li>
 					<li>Activate <code>WordPress PDF Light Viewer Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li>That's all! You can start from <a href="#quick">Quick start guide</a></li>
-					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code> to <a href="#setup">Set Up</a> the plugin.</li>
+					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=pdf-light-viewer</code> to <a href="#setup">Set Up</a> the plugin.</li>
 				</ol>
 				
 				<h4>cPanel installation</h4>
@@ -136,7 +140,7 @@
 					<li>Extract plugin package contents to the <code>/wp-content/plugins/</code> folder</li>
 					<li>Activate <code>WordPress PDF Light Viewer Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li>That's all! You can start from <a href="#quick">Quick start guide</a></li>
-					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code> to <a href="#setup">Set Up</a> the plugin.</li>
+					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=pdf-light-viewer</code> to <a href="#setup">Set Up</a> the plugin.</li>
 				</ol>
 				
 				<h4>FTP installation</h4>
@@ -145,7 +149,7 @@
 					<li>Upload files folder to the <code>/wp-content/plugins/</code> to the server with any FTP client application, for example <a href="https://filezilla-project.org/" target="_blank">FileZilla</a></li>
 					<li>Activate <code>WordPress PDF Light Viewer Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li>That's all! You can start from <a href="#quick">Quick start guide</a></li>
-					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code> to <a href="#setup">Set Up</a> the plugin.</li>
+					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=pdf-light-viewer</code> to <a href="#setup">Set Up</a> the plugin.</li>
 				</ol>
 				
 				<blockquote>
@@ -155,13 +159,17 @@
 				<h4 class="content-subhead">Plugin file structure</h4>
 				<pre>
 ├── bower_components
-│   ├── BttrLazyLoading
+│   ├── bxslider-4
 │   │   ├── bower.json
-│   │   └── dist
-│   │       ├── bttrlazyloading.css
-│   │       ├── bttrlazyloading.min.css
-│   │       ├── jquery.bttrlazyloading.js
-│   │       └── jquery.bttrlazyloading.min.js
+│   │   ├── images
+│   │   │   ├── bx_loader.gif
+│   │   │   └── controls.png
+│   │   ├── jquery.bxslider.css
+│   │   ├── jquery.bxslider.js
+│   │   ├── jquery.bxslider.min.js
+│   │   └── plugins
+│   │       ├── jquery.easing.1.3.js
+│   │       └── jquery.fitvids.js
 │   ├── fontawesome
 │   │   ├── bower.json
 │   │   ├── css
@@ -314,35 +322,7 @@
 │   │       │   ├── support.js
 │   │       │   └── toString.js
 │   │       └── wrap.js
-│   ├── turn.js
-│   │   ├── changelog.txt
-│   │   ├── demos
-│   │   │   ├── bible
-│   │   │   │   ├── index.html
-│   │   │   │   └── loader.gif
-│   │   │   ├── magazine
-│   │   │   │   ├── index.html
-│   │   │   │   └── pages
-│   │   │   │       ├── 01.jpg
-│   │   │   │       ├── 02.jpg
-│   │   │   │       ├── 03.jpg
-│   │   │   │       ├── 04.jpg
-│   │   │   │       ├── 05.jpg
-│   │   │   │       └── 06.jpg
-│   │   │   └── magazine_single
-│   │   │       ├── index.html
-│   │   │       └── pages
-│   │   │           ├── 01.jpg
-│   │   │           ├── 02.jpg
-│   │   │           ├── 03.jpg
-│   │   │           ├── 04.jpg
-│   │   │           ├── 05.jpg
-│   │   │           └── 06.jpg
-│   │   ├── license.txt
-│   │   ├── readme.md
-│   │   ├── turn.js
-│   │   └── turn.min.js
-│   ├── tuupola-jquery_lazyload
+│   ├── jquery.lazyload
 │   │   ├── bower.json
 │   │   ├── img
 │   │   │   ├── bmw_m1_hood.jpg
@@ -358,94 +338,95 @@
 │   │   ├── jquery.lazyload.min.js
 │   │   ├── jquery.scrollstop.js
 │   │   └── jquery.scrollstop.min.js
-│   └── yahoo-pure
+│   ├── kayahr-jquery-fullscreen-plugin
+│   │   ├── build.xml
+│   │   ├── demo
+│   │   │   ├── iframe.html
+│   │   │   └── index.html
+│   │   ├── externs
+│   │   │   ├── jquery.fullscreen.js
+│   │   │   └── jquery.js
+│   │   ├── fullscreen.jquery.json
+│   │   ├── jquery.fullscreen.js
+│   │   ├── jquery.fullscreen-min.js
+│   │   ├── lib
+│   │   │   └── compiler.jar
+│   │   ├── LICENSE.txt
+│   │   └── README.md
+│   └── pure
+│       ├── base-context.css
+│       ├── base-context-min.css
+│       ├── base.css
+│       ├── base-min.css
 │       ├── bower.json
-│       ├── CONTRIBUTING.md
-│       ├── Gruntfile.js
+│       ├── buttons-core.css
+│       ├── buttons-core-min.css
+│       ├── buttons.css
+│       ├── buttons-min.css
+│       ├── forms.css
+│       ├── forms-min.css
+│       ├── forms-nr.css
+│       ├── forms-nr-min.css
+│       ├── grids-core.css
+│       ├── grids-core-min.css
+│       ├── grids.css
+│       ├── grids-min.css
+│       ├── grids-responsive.css
+│       ├── grids-responsive-min.css
+│       ├── grids-responsive-old-ie.css
+│       ├── grids-responsive-old-ie-min.css
+│       ├── grids-units.css
+│       ├── grids-units-min.css
 │       ├── HISTORY.md
 │       ├── LICENSE.md
-│       ├── package.json
+│       ├── menus-core.css
+│       ├── menus-core-min.css
+│       ├── menus.css
+│       ├── menus-min.css
+│       ├── menus-nr.css
+│       ├── menus-nr-min.css
+│       ├── menus-paginator.css
+│       ├── menus-paginator-min.css
+│       ├── pure.css
+│       ├── pure-min.css
+│       ├── pure-nr.css
+│       ├── pure-nr-min.css
 │       ├── README.md
-│       ├── src
-│       │   ├── base
-│       │   │   └── css
-│       │   │       └── base.css
-│       │   ├── buttons
-│       │   │   ├── css
-│       │   │   │   ├── buttons-core.css
-│       │   │   │   └── buttons.css
-│       │   │   └── tests
-│       │   │       └── manual
-│       │   │           └── button.html
-│       │   ├── forms
-│       │   │   ├── css
-│       │   │   │   ├── forms.css
-│       │   │   │   └── forms-r.css
-│       │   │   └── tests
-│       │   │       └── manual
-│       │   │           └── forms.html
-│       │   ├── grids
-│       │   │   ├── css
-│       │   │   │   └── grids-core.css
-│       │   │   ├── README.md
-│       │   │   └── tests
-│       │   │       └── manual
-│       │   │           └── responsive.html
-│       │   ├── menus
-│       │   │   ├── css
-│       │   │   │   ├── menus-core.css
-│       │   │   │   ├── menus.css
-│       │   │   │   ├── menus-paginator.css
-│       │   │   │   └── menus-r.css
-│       │   │   └── tests
-│       │   │       └── manual
-│       │   │           └── menus.html
-│       │   └── tables
-│       │       ├── css
-│       │       │   └── tables.css
-│       │       └── tests
-│       │           └── manual
-│       │               └── tables.html
-│       └── tasks
-│           ├── bower_install.js
-│           ├── bower_json.js
-│           ├── license.js
-│           └── suppress.js
+│       ├── tables.css
+│       └── tables-min.css
 ├── bower.json
 ├── composer.json
 ├── composer.lock
 ├── controllers
 │   ├── AdminController.php
 │   ├── AssetsController.php
+│   ├── FrontController.php
 │   ├── PdfController.php
 │   └── Plugin.php
 ├── css
 │   ├── admin.css
-│   └── frontend.css
+│   ├── frontend.css
+│   └── magazine.css
 ├── documentation
 │   ├── css
 │   │   ├── prism.css
 │   │   ├── pure.css
 │   │   └── style.css
 │   ├── img
-│   │   ├── bright_squares_@2X.png
-│   │   ├── bright_squares.png
+│   │   ├── fabric_of_squares_gray_@2X.png
+│   │   ├── fabric_of_squares_gray.png
 │   │   ├── logo100.png
-│   │   ├── logo48.png
+│   │   ├── logo.png
 │   │   └── screenshots
-│   │       ├── installation_cpanel.jpeg
-│   │       ├── linked-article-added.jpg
-│   │       ├── linked-articles-adding-widget.jpg
-│   │       ├── linked-articles-editor-button.jpg
-│   │       ├── linked-articles-editor-shortcode-wizard.jpg
-│   │       ├── linked-articles-sidebar-widget.jpg
-│   │       ├── linked-articles-widget-linking-wizard.jpg
-│   │       ├── linked-articles-widget-search-results-dropdown.jpg
-│   │       ├── other-settings.jpg
-│   │       ├── settings-automatic-mode.jpg
-│   │       ├── settings-categories-grouping.jpg
-│   │       ├── settings-categories-grouping-wizard.jpg
-│   │       └── unlink-this-article.jpg
+│   │       ├── activation-error-notification.jpeg
+│   │       ├── activation-notifications.jpeg
+│   │       ├── importing-pdf.jpeg
+│   │       ├── import-progress.jpeg
+│   │       ├── import-scheduled.jpeg
+│   │       ├── pdf-files-in-menu.jpeg
+│   │       ├── pdf-list-page.jpeg
+│   │       ├── pdf-preview.jpeg
+│   │       └── settings-requirements-are-not-met.jpeg
 │   ├── index.html
 │   └── js
 │       ├── jquery.js
@@ -453,16 +434,34 @@
 │       ├── prism.js
 │       └── scripts.js
 ├── img
+│   ├── arrows.png
+│   ├── fabric_of_squares_gray_@2X.png
+│   ├── fabric_of_squares_gray.png
 │   ├── lightpaperfibers.png
-│   └── pdf.png
+│   ├── loader.gif
+│   ├── logo100.png
+│   ├── logo.png
+│   ├── pdf.png
+│   ├── zoom-icons-editable.png
+│   ├── zoom-icons.png
+│   └── zoom.png
 ├── js
-│   └── admin.js
+│   ├── admin.js
+│   ├── frontend.js
+│   ├── magazine.js
+│   └── turn.js
+│       ├── hash.js
+│       ├── scissor.min.js
+│       ├── turn.html4.min.js
+│       ├── turn.min.js
+│       ├── zoom.js
+│       └── zoom.min.js
 ├── libraries
 │   └── directory_helper.php
 ├── LICENSE
-├── models
-│   └── PdfModel.php
 ├── pdf-light-viewer.php
+├── templates
+│   └── shortcode-pdf-light-viewer.php
 ├── vendor
 │   ├── autoload.php
 │   ├── composer
@@ -519,8 +518,6 @@
 │               │       └── CMB_Core_Test.php
 │               └── README.md
 └── views
-    ├── metaboxes
-    │   └── pdf-dashboard-preview.php
     └── settings.php
 
 				</pre>
@@ -541,18 +538,30 @@
 	
 			<div class="content">
 				
-				<p>First of all you need to turn on Automatic Mode in the plugins settings.</p>
-				<p>You can find WordPress PDF Light Viewer Plugin settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code></p>
-				<p><img src="img/screenshots/settings-automatic-mode.jpg" alt="Automatic mode" /></p>
+				<p>First of all you need to check plugin requirements.</p>
 				
-				<p>Check the setting and click <code>Save</code> button. Let's use it now.</p>
-				<br />
+				<h4 class="content-subhead">Requirements</h4>
 				
-				<h4 class="content-subhead">For Awesome Blog</h4>
+				<ul>
+					<li>PHP is 5.3 or higher</li>
+					<li>Imagick support</li>
+					<li>Writable upload folder <code>wp-content/uploads/pdf-light-viewer</code></li>
+				</ul>
 				
-				<p>Ok, you already have a lot of cool posts about fitness for example. It's time to show most relevant posts for them.</p>
-				<p><img src="img/screenshots/linked-articles-adding-widget.jpg" alt="Linked Articles Widget" /></p>
+				<p>After activation plugin will create new post type for PDF files. You'll see pointer notification near it's menu item.</p>
+				<p><img src="img/screenshots/activation-notifications.jpeg" alt="Activation notifications" /></p>
 				
+				<p>Also right after activation, plugin will check requirements and will notify you about checking results. If requirements are met, notification will show up and disappear.</p>
+				<p>But if some requirements are not met, you'll see constant error notification. Follow the link in the notification to see details on the settings page.</p>
+				<p><img src="img/screenshots/activation-error-notification.jpeg" alt="Error notification" /></p>
+				
+				<p>You can find WordPress PDF Light Viewer Plugin settings page by following url address like this one <code>http://yoursite.com/wp-admin/options-general.php?page=pdf-light-viewer</code></p>
+				<p>If some requirement is not met, you will see it on settings page:</p>
+				<p><img src="img/screenshots/settings-requirements-are-not-met.jpeg" alt="Requirements are not met" /></p>
+				
+				<h4 class="content-subhead">What next?</h4>
+				<p>Check <a href="#setup">Set Up</a> section to know more about plugin global settings.</p>
+
 			</div>
 		</div>
 		
@@ -570,24 +579,9 @@
 	
 			<div class="content">
 				<p>
-					You can find WordPress PDF Light Viewer Plugin settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=wp-linked-articles</code>
+					You can find WordPress PDF Light Viewer Plugin settings, requirements and documentation on the page <code>http://yoursite.com/wp-admin/options-general.php?page=pdf-light-viewer</code>
 				</p>
-				<p>You can enable this plugin in two ways:</p>
-				<ol>
-					<li>Automatic</li>
-					<li>Manual</li>
-				</ol>
-				
-				<h4 class="content-subhead">Automatic</h4>
-	
-				<p>Automatic way is when you go to the settings page and turn on the automatic adding linked articles to the post content on a single post page.</p>
-				<p><img src="img/screenshots/settings-automatic-mode.jpg" alt="Automatic mode" /></p>
-				<p>You can also disable automatic mode styles to replace them with your own and change the label.</p>
-				<blockquote>
-					Please see explanation of these settings in the "Are you developer?" section.
-				</blockquote>
-				
-				
+				<p>Currently the plugin doesn't have global settings, so if everything ok with requirements, go ahead and use it.</p>
 				
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#use">Usage</a> section to know more about use cases.</p>
@@ -606,34 +600,77 @@
 			</div>
 	
 			<div class="content">
-				<div class="content-subhead">Adding PDF file</div>
-	
-				<p>
-					You can go to PDFs menu item to see the list of imported PDF files.
-				</p>
-				<p><img src="img/screenshots/pdf-files-in-menu.jpg" alt="PDF Files list in menu" /></p>
+				<div class="content-subhead">Importing PDF file</div>
+		
+					<p>You can go to PDFs menu item to see the list of imported PDF files.</p>
+					<p><img src="img/screenshots/pdf-files-in-menu.jpeg" alt="PDF Files in menu" /></p>
+						
+					<p>If you just installed the plugin the list will be empty. Go ahead and import first PDF document by clicking <code>Import PDF</code> button.</p>
+					<p>Importing of PDF is similar to the creating regular WordPress post or page but there are some differences.</p>
+					<p><img src="img/screenshots/importing-pdf.jpeg" alt="Importing PDF" /></p>		
 					
-				<p>
-					If you just installed the plugin the list will be empty. Go ahead and import first PDF document.
-				</p>
-				<p>
-					You can specify the name of the file. It's for internal use only, it wouldn't be shown on the site automatically.
-				</p>
-				<p>Then choose a file and click <code>Publish</code> to start the import.</p>
-				<p><img src="img/screenshots/importing-pdf.jpg" alt="Importing PDF" /></p>		
+					<p>You can specify the title for the PDF. It's for internal use only, it wouldn't be shown on the site automatically.</p>
+					<p>You're available to change some importing options such as:</p>
+					<ul>
+						<li>
+							JPEG compression quality
+						</li>
+						<li>
+							JPEG resolution
+						</li>
+					</ul>
+					<p>Changing these options will affect importing process.</p>
+					<p>To import PDF file choose the file from the Media Library and check the checkbox <code>Enable import</code></p>
+					
+					<p>Click <code>Publish</code> to start the 	import.</p>
+					
+					<p><img src="img/screenshots/import-scheduled.jpeg" alt="Import scheduled" /></p>		
 				
-				<blockquote>
-					Please note, import of large PDF files (50 pages or more) will take some time. We moved the importing process to the background, so you could continue to do other things on the site if needed.
-				</blockquote>
+					<p>We moved the import process to the background, so you could continue to do other things on the site if needed.</p>
+					
+					<blockquote>
+						<p>Anyway, please note, that import of large PDF files (50 pages and more) will take some time.</p>
+					</blockquote>
+					
+					<blockquote>
+						<p>Also, please note, that import of large PDF files will take some server resources (memory usage, CPU time, etc.). Usage of these resources depends on PDF file size, number of pages, initial PDF resolution, etc.</p>
+						<p>Please, use carefully.</p>
+					</blockquote>
+					
+					<p>The importing time depends on the server. Anyway, you can check import progress on the PDF list page.</p>
+					<p><img src="img/screenshots/import-progress.jpeg" alt="PDF List Page" /></p>
+					
+					<p>After importing first page will be set as featured image of the PDF file.</p>
+					
+				<div class="content-subhead">Re-importing PDF file</div>
 				
-				<p>The importing time depends on the server. Anyway, you'll be notified by Wordpress dashboard notification after the end of the import.</p>
-				<p><img src="img/screenshots/import-notification.jpg" alt="Importing PDF" /></p>
+					<p>To re-import PDF file, choose the new file from the Media Library and check the checkbox <code>Enable import</code></p>
+					
+					<p>Click <code>Update</code> to start the import.</p>
+					
+					<blockquote>
+						<p>Please note, that all previously imported pages of this document will be deleted from the disk. This operation cannot be undone.</p>
+					</blockquote>
+				
+				<div class="content-subhead">Updating PDF file</div>
+				
+					<p>If you just need to change the name of the PDF file, you leave the option <code>Enable import</code> unchecked. Without checking this checkbox import wouldn't be triggered.</p>
+				
+				<div class="content-subhead">Changing permissions</div>
+				
+					<p>In the <code>Permissions</code> section you can add limits for different user roles for this file.</p>
+					<p>If you'll choose <code>Anonymous</code> user role and set limit to 3, then on the Front of the site anonymous users will see only first 3 pages of the PDF file.</p>
+				
+				<div class="content-subhead">Preview</div>
+				
+					<p>After importing file you could preview your file exactly how it will be shown with help of shortcode on the frontend.</p>
+					<p><img src="img/screenshots/pdf-preview.jpeg" alt="PDF List Page" /></p>
 				
 				<div class="content-subhead">Shortcodes</div>
-				<p>
-					You can add PDF files anywhere in your post or page. You can copy them from PDFs list page or compose them manually.
-				</p>
-				<p><img src="img/screenshots/pdf-list-page.jpg" alt="PDF List Page" /></p>
+					<p>
+						After importing you can add PDF files with shortcodes anywhere in your post or page. You can copy shortcodes from PDFs list page or compose them manually.
+					</p>
+					<p><img src="img/screenshots/pdf-list-page.jpeg" alt="PDF List Page" /></p>
 				
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#advanced">Advanced Usage</a> section to get full control on the plugin functionality and look and feel.</p>
@@ -739,7 +776,8 @@
 					We want to make your plugin usage as much easier as we could.
 				</p>
 				<p>If you want, you can contact us, you can do it by email: <a href="mailto:support@teamlead.pw">support@teamlead.pw</a> or through the support forum at http://support.wp.teamlead.pw (coming soon)</p>
-				<p>Find us on CodeCanyon: <a href="http://codecanyon.net/user/antongorodezkiy/portfolio">http://codecanyon.net/user/antongorodezkiy/portfolio</a></p>
+				<p>This plugin is free and we will appreciate any donations from our grateful users - <a href="http://pdf-light-viewer.wp.teamlead.pw/">Donate</a>.</p>
+				<p>Also please find us on CodeCanyon: <a href="http://codecanyon.net/user/antongorodezkiy/portfolio">http://codecanyon.net/user/antongorodezkiy/portfolio</a></p>
 			</div>
 		</div>
 		
@@ -767,6 +805,12 @@
 						</li>
 						<li>
 							Lazy Load &copy; <a href="http://www.appelsiini.net/projects/lazyload" target="_blank">Lazy Load Plugin for jQuery&nbsp;<span class="fa fa-external-link-square"></span></a>
+						</li>
+						<li>
+							Slider &copy; <a href="http://bxslider.com/" target="_blank">bxSlider&nbsp;<span class="fa fa-external-link-square"></span></a>
+						</li>
+						<li>
+							Fullscreen &copy; <a href="https://github.com/kayahr/jquery-fullscreen-plugin/" target="_blank">jQuery Fullscreen Plugin&nbsp;<span class="fa fa-external-link-square"></span></a>
 						</li>
 					</ul>
 				</blockquote>

@@ -7,6 +7,7 @@
         "fontawesome": "latest",
         "pure": "0.5.0",
         "bxslider-4": "latest",
-        "jquery-zoom": "latest"
+        "jquery-zoom": "latest",
+        "kayahr-jquery-fullscreen-plugin": "kayahr/jquery-fullscreen-plugin"
     }
 }

@@ -15,9 +15,8 @@ class PdfLightViewer_Plugin {
 	
 	public static function activation() {
 		self::createUploadDirectory();
-		add_action('admin_notices', array('PdfLightViewer_AdminController','showActivationMessages'));
-		add_action('admin_enqueue_scripts', array('PdfLightViewer_AdminController','showActivationPointers'));
-		
+		update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notifications-viewed', false);
+		update_option(PDF_LIGHT_VIEWER_PLUGIN.'-pointers-viewed', false);
 	}
 
 	// plugin actions
@@ -154,7 +153,7 @@ class PdfLightViewer_Plugin {
 	
 	// plugin requirements
 		public static function requirements($boolean = false) {
-			$upload_dir_message = __('Upload folder',PDF_LIGHT_VIEWER_PLUGIN).': '.PdfLightViewer_Plugin::getUploadDirectory();
+			$upload_dir_message = __('Upload folder',PDF_LIGHT_VIEWER_PLUGIN).': <code>'.PdfLightViewer_Plugin::getUploadDirectory().'</code>';
 			$requirements = array(
 				array(
 					'name' => 'PHP',
@@ -226,5 +225,22 @@ class PdfLightViewer_Plugin {
 			
 			return $attach_id;
 		}
+		
+		
+	public static function run() {
+		$requirements_met = PdfLightViewer_Plugin::requirements(true);
+		if (
+			(!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notifications-viewed') && $requirements_met)
+			|| !$requirements_met
+		) {
+			add_action('admin_notices', array('PdfLightViewer_AdminController','showActivationMessages'));
+		}
+		update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notifications-viewed', true);
+		
+		if (!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-pointers-viewed')) {
+			add_action('admin_enqueue_scripts', array('PdfLightViewer_AdminController','showActivationPointers'));
+		}
+		update_option(PDF_LIGHT_VIEWER_PLUGIN.'-pointers-viewed', true);
+	}
 
 }

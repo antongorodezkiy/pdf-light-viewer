@@ -25,6 +25,8 @@ class PdfLightViewer_PdfController {
 			10,
 			5
 		);
+		
+		add_action('deleted_post', array(__CLASS__, 'deleted_post'));
 	}
 	
 	public static function register() {
@@ -268,15 +270,8 @@ class PdfLightViewer_PdfController {
 				
 				$pdf_upload_dir = PdfLightViewer_Plugin::createUploadDirectory($post_id);
 				
-				$directory_map = directory_map($pdf_upload_dir);
-				foreach($directory_map as $file) {
-					unlink($pdf_upload_dir.'/'.$file);
-				}
-				
-				$directory_map = directory_map($pdf_upload_dir.'-thumbs');
-				foreach($directory_map as $file) {
-					unlink($pdf_upload_dir.'-thumbs/'.$file);
-				}
+				// delete all files
+				self::delete_pages_by_pdf_id($post_id, $pdf_upload_dir);
 				
 				if (class_exists('Imagick')) {
 					// plan async scheduled task
@@ -295,14 +290,14 @@ class PdfLightViewer_PdfController {
 					update_post_meta($post_id,'_pdf-light-viewer-import-status', __('Import scheduled',PDF_LIGHT_VIEWER_PLUGIN));
 					update_post_meta($post_id,'_pdf-light-viewer-import-progress',0);
 					
-					/*PdfLightViewer_AdminController::showMessage(
+					PdfLightViewer_AdminController::showMessage(
 						sprintf(__('PDF import scheduled.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
-					, false);*/
+					, false);
 				}
 				else {
-					/*PdfLightViewer_AdminController::showMessage(
+					PdfLightViewer_AdminController::showMessage(
 						sprintf(__('Imagick not found, please check other requirements on <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
-					, true);*/
+					, true);
 				}
 			}
 		}
@@ -322,6 +317,7 @@ class PdfLightViewer_PdfController {
 		$im->setResolution($jpeg_resolution, $jpeg_resolution);
 		$im->readImage($pdf_file_path);
 		$i = 0;
+		$pages_number = $im->getNumberImages();
 		
 		foreach($im as $_img) {
 			
@@ -356,11 +352,32 @@ class PdfLightViewer_PdfController {
 				PdfLightViewer_Plugin::set_featured_image($post_id, $file, 'pdf-'.$post_id.'-page-'.$page_number.'.jpg');
 			}
 			
-			$percent = (($i-1)/count($im))*100;
+			$percent = ($i/$pages_number)*100;
 			update_post_meta($post_id,'_pdf-light-viewer-import-progress',$percent);
 		}
 		$im->destroy();
 		update_post_meta($post_id,'_pdf-light-viewer-import-status', __('Import finished',PDF_LIGHT_VIEWER_PLUGIN));
 	}
 	
+	
+	public static function delete_pages_by_pdf_id($post_id, $pdf_upload_dir) {
+				
+		$directory_map = directory_map($pdf_upload_dir);
+		foreach($directory_map as $file) {
+			unlink($pdf_upload_dir.'/'.$file);
+		}
+			   
+		$directory_map = directory_map($pdf_upload_dir.'-thumbs');
+		foreach($directory_map as $file) {
+			unlink($pdf_upload_dir.'-thumbs/'.$file);
+		}
+	}
+	
+	
+	public static function deleted_post($post_id) {
+		$pdf_upload_dir = PdfLightViewer_Plugin::createUploadDirectory($post_id);
+		self::delete_pages_by_pdf_id($post_id);
+		unlink($pdf_upload_dir);
+		unlink($pdf_upload_dir.'-thumbs/');
+	}
 }

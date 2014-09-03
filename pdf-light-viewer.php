@@ -2,7 +2,7 @@
 /*
 	Plugin Name: PDF Light Viewer Plugin
 	Plugin URI: http://pdf-light-viewer.wp.teamlead.pw/
-	Description: Wordpress plugin to embed normal, large and very large pdf documents to the wordpress site.
+	Description: Wordpress plugin to embed normal, large and very large pdf documents to the wordpress site as flipbooks with thumbnail navigation.
 	Version: 1.0.0
 	Author: E. Kozachek
 	Author URI: http://eduard.kozachek.net/
@@ -25,8 +25,10 @@ if (!class_exists('PdfLightViewer_Plugin')) {
 	
 // plugin actions
 	add_filter('plugin_action_links', array('PdfLightViewer_Plugin','registerPluginActions'), 10, 2);
-
+	
 function wp_pdf_light_viewer_init() {
+	
+	PdfLightViewer_Plugin::run();
 	
 	// third party
 		include_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/autoload.php');
@@ -40,11 +42,7 @@ function wp_pdf_light_viewer_init() {
 		
 		include_once(PDF_LIGHT_VIEWER_APPPATH.'/libraries/directory_helper.php');
 	
-	// 
-	if (!class_exists('PdfLightViewer_PdfModel')) {
-		include_once(PDF_LIGHT_VIEWER_APPPATH.'/models/PdfModel.php');
-	}
-	
+	// 	
 	if (!class_exists('PdfLightViewer_AssetsController')) {
 		include_once(PDF_LIGHT_VIEWER_APPPATH.'/controllers/AssetsController.php');
 	}
@@ -82,7 +80,13 @@ function wp_pdf_light_viewer_init() {
 			add_action('admin_init', array('PdfLightViewer_AdminController','settingsInit'));
 			
 		// admin page
-			add_action( 'admin_menu', array('PdfLightViewer_AdminController','registerMenuPage'));
+			add_action('admin_menu', array('PdfLightViewer_AdminController','registerMenuPage'));
+			
+		// admin ajax
+			add_action('admin_init', array('PdfLightViewer_AdminController','registerAjaxHandlers'));
+			
+		// notifications init
+			add_action('admin_notices', array('PdfLightViewer_AdminController','showAdminNotifications'));
 	}
 }
 add_action('after_setup_theme','wp_pdf_light_viewer_init');

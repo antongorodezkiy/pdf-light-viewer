@@ -1,10 +1,10 @@
 /* ADMIN CSS */
 
-.pdf-light-viewer .clear {
+.pdf-light-viewer-admin-settings .clear {
 	clear: both;
 }
 
-.pdf-light-viewer .pdf-light-viewer-bl {
+.pdf-light-viewer-admin-settings .pdf-light-viewer-bl {
 	background: url("../img/fabric_of_squares_gray.png");
 	
 	border-radius: 0px 6px 6px 6px;
@@ -12,11 +12,11 @@
 	margin: 15px 10px;
 }
 
-	.pdf-light-viewer .pdf-light-viewer-bl .in {
+	.pdf-light-viewer-admin-settings .pdf-light-viewer-bl .in {
 		padding: 15px 30px;
 	}
 	
-	.pdf-light-viewer .pdf-light-viewer-bl .hdr {
+	.pdf-light-viewer-admin-settings .pdf-light-viewer-bl .hdr {
 		padding: 3px 30px;
 		height:40px;
 		line-height:38px;
@@ -26,30 +26,30 @@
 		margin: 0;
 	}
 	
-	.pdf-light-viewer .pdf-light-viewer-bl .hdr h3,
-	.pdf-light-viewer .pdf-light-viewer-bl .hdr h3 a {
+	.pdf-light-viewer-admin-settings .pdf-light-viewer-bl .hdr h3,
+	.pdf-light-viewer-admin-settings .pdf-light-viewer-bl .hdr h3 a {
 		color: #fff;
 		font-size: 18px;
 		font-family: sans-serif;
 		margin: 0;
 	}
 	
-.pdf-light-viewer .hidden {
+.pdf-light-viewer-admin-settings .hidden {
 	display: hidden;
 }
 
-.pdf-light-viewer label {
+.pdf-light-viewer-admin-settings label {
 	line-height: 30px;
 }
 
-.pdf-light-viewer .nobutton {
+.pdf-light-viewer-admin-settings .nobutton {
 	background: none;
 	border: none;
 	padding: 0;
 }
 
-.pdf-light-viewer h2,
-.pdf-light-viewer h3 {
+.pdf-light-viewer-admin-settings h2,
+.pdf-light-viewer-admin-settings h3 {
 	margin-bottom: 0;
 	line-height:38px;
 	font-weight: normal;
@@ -72,13 +72,13 @@
 }
 
 
-.pdf-light-viewer .pdf-light-viewer-iframe {
+.pdf-light-viewer-admin-settings .pdf-light-viewer-iframe {
 	width: 100%;
 	height: 450px;
 }
 
 
-.pdf-light-viewer code {
+.pdf-light-viewer-admin-settings code {
     background: #DEDDD8;
     box-shadow: 0 0 2px rgba(0,0,0,0.3) inset;
     border-radius: 3px;
@@ -88,16 +88,16 @@
     display: inline-block;
 }
 
-.pdf-light-viewer a {
+.pdf-light-viewer-admin-settings a {
     color: #FE876D;
 }
 
-.pdf-light-viewer blockquote {
+.pdf-light-viewer-admin-settings blockquote {
     border-left: 3px solid #FE876D;
     padding: 10px 0 10px 15px;
 }
 
-.pdf-light-viewer .logo {
+.pdf-light-viewer-admin-settings .logo {
     text-align: center;
     padding: 230px 0 15px;
     background: url('../img/logo.png') no-repeat 50% 15px;
@@ -107,12 +107,12 @@
 	display: block;
 }
 
-.pdf-light-viewer textarea {
+.pdf-light-viewer-admin-settings textarea {
 	min-height: 100px;
 	resize: vertical;
 }
 
-.pdf-light-viewer .tip {
+.pdf-light-viewer-admin-settings .tip {
 	text-decoration: none;
 	border-bottom: 1px dotted #FE876D;
 }
@@ -154,7 +154,7 @@
 }
 
 
-.pdf-light-viewer .select-with-previews {
+.pdf-light-viewer-admin-settings .select-with-previews {
 	display: inline-block;
 	vertical-align: middle;
 	zoom: 1;
@@ -162,27 +162,22 @@
 	margin: 0;
 }
 
-.pdf-light-viewer .select-with-previews.widefat {
+.pdf-light-viewer-admin-settings .select-with-previews.widefat {
 	display: block;
 	width: auto;
 }
 
-.pdf-light-viewer legend {
+.pdf-light-viewer-admin-settings legend {
 	font-size: 18px;
 	color: #666;
 	border-bottom: 1px solid #999;
 	margin-top: 30px;
 }
 
-	.pdf-light-viewer legend .fa {
+	.pdf-light-viewer-admin-settings legend .fa {
 		margin-right: 12px;
 	}
 
-
-.pdf-light-viewer-preview .turn-page {
-	background-color:#ccc;
-	background-size:100% 100%;
-}
 
 .pdf-light-viewer-requirement-success {
 	color: YellowGreen;

@@ -9,6 +9,7 @@
 		<div class="pdf-light-viewer js-pdf-light-viewer">
 			
 			<div class="pdf-light-viewer-magazine-viewport">
+				<div class="js-pdf-light-viewer-fullscreen zoom-icon zoom-icon-in"></div>
 				<div class="pdf-light-viewer-magazine-viewport-container">	
 					<div class="js-pdf-light-viewer-magazine pdf-light-viewer-magazine">
 						<?php foreach($pdf_light_viewer_config['pages'] as $page) {
@@ -30,7 +31,7 @@
 			</div>
 			<!-- Thumbnails -->
 			<?php if (!empty($pdf_light_viewer_config['thumbs'])) { ?>
-				<div class="thumbnails">
+				<div class="pdf-light-viewer-magazine-thumbnails js-pdf-light-viewer-magazine-thumbnails">
 					
 						<ul>
 							<li class="i slide">

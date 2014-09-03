@@ -1,6 +1,6 @@
 <?php if (!defined('WPINC')) die(); ?>
 
-<div class="pdf-light-viewer js-pdf-light-viewer-admin-settings">
+<div class="pdf-light-viewer-admin-settings js-pdf-light-viewer-admin-settings">
 	
 		<div class="pure-g">
 			<div class="pure-u-lg-2-3 pure-u-md-1-1 pure-u-sm-1-1 pure-u-xs-1-1">
@@ -38,6 +38,12 @@
 							</p>
 							<p>
 								Lazy Load &copy; <a href="http://www.appelsiini.net/projects/lazyload" target="_blank">Lazy Load Plugin for jQuery&nbsp;<span class="fa fa-external-link-square"></span></a>
+							</p>
+							<p>
+								Slider &copy; <a href="http://bxslider.com/" target="_blank">bxSlider&nbsp;<span class="fa fa-external-link-square"></span></a>
+							</p>
+							<p>
+								Fullscreen &copy; <a href="https://github.com/kayahr/jquery-fullscreen-plugin/" target="_blank">jQuery Fullscreen Plugin&nbsp;<span class="fa fa-external-link-square"></span></a>
 							</p>
 						</blockquote>
 					</div>
