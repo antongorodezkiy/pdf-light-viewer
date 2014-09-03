@@ -2,14 +2,28 @@
 
 class PdfLightViewer_Plugin {
 	
+	public static function getData($key = '') {
+		$plugin = get_plugin_data(PDF_LIGHT_VIEWER_FILE, false, true);
+		
+		if ($key && isset($plugin[$key])) {
+			return $plugin[$key];
+		}
+		else {
+			return $plugin;
+		}
+	}
+	
 	public static function activation() {
 		self::createUploadDirectory();
+		add_action('admin_notices', array('PdfLightViewer_AdminController','showActivationMessages'));
+		add_action('admin_enqueue_scripts', array('PdfLightViewer_AdminController','showActivationPointers'));
+		
 	}
 
 	// plugin actions
 		public static function registerPluginActions($links, $file) {
 			if (stristr($file, PDF_LIGHT_VIEWER_PLUGIN)) {
-				$settings_link = '<a href="options-general.php?page='.PDF_LIGHT_VIEWER_PLUGIN.'">' . __('Settings', PDF_LIGHT_VIEWER_PLUGIN) . '</a>';
+				$settings_link = '<a href="'.self::getSettingsUrl().'">' . __('Settings', PDF_LIGHT_VIEWER_PLUGIN) . '</a>';
 				$docs_link = '<a href="'.self::getDocsUrl().'">' . __('Docs', PDF_LIGHT_VIEWER_PLUGIN) . '</a>';
 				$links = array_merge(array($settings_link, $docs_link), $links);
 			}
@@ -20,6 +34,14 @@ class PdfLightViewer_Plugin {
 	// register post types
 		public static function registerPostTypes() {			
 			PdfLightViewer_PdfController::init();
+		}
+		
+	// register shortcodes
+		public static function registerShortcodes() {
+			add_shortcode(
+				'pdf-light-viewer',
+				array('PdfLightViewer_FrontController', 'disaply_pdf_book')
+			);
 		}
 		
 	public static function getActivePlugins() {
@@ -61,6 +83,10 @@ class PdfLightViewer_Plugin {
 		return $documentation_url;
 	}
 	
+	public function getSettingsUrl() {
+		return admin_url('options-general.php?page='.PDF_LIGHT_VIEWER_PLUGIN);
+	}
+	
 	public function createUploadDirectory($id = '') {
 		$wp_upload_dir = wp_upload_dir();
 		$basedir = $wp_upload_dir['basedir'];
@@ -77,22 +103,41 @@ class PdfLightViewer_Plugin {
 				mkdir($pdf_upload_dir);
 			}
 			
-			return $pdf_upload_dir;
+			$pdf_thumbs_upload_dir = $main_upload_dir.'/'.$id.'-thumbs';
+			if (!file_exists($pdf_thumbs_upload_dir)) {
+				mkdir($pdf_thumbs_upload_dir);
+			}
+			
+			if (file_exists($pdf_upload_dir)) {
+				return $pdf_upload_dir;
+			}
+			else {
+				return false;
+			}
 		}
 		
-		return $main_upload_dir;
+		if (file_exists($main_upload_dir)) {
+			return $main_upload_dir;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	
-	public function getUploadDirectory($id) {
+	public function getUploadDirectory($id = '') {
 		$wp_upload_dir = wp_upload_dir();
 		$basedir = $wp_upload_dir['basedir'];
 		
 		$main_upload_dir = $basedir.'/'.PDF_LIGHT_VIEWER_PLUGIN;
 
-		$pdf_upload_dir = $main_upload_dir.'/'.$id;
-
-		return $pdf_upload_dir;
+		if ($id) {
+			$pdf_upload_dir = $main_upload_dir.'/'.$id;
+			return $pdf_upload_dir;
+		}
+		else {
+			return $main_upload_dir;
+		}
 	}
 	
 	public function getUploadDirectoryUrl($id) {
@@ -105,5 +150,81 @@ class PdfLightViewer_Plugin {
 
 		return $pdf_upload_dir;
 	}
+	
+	
+	// plugin requirements
+		public static function requirements($boolean = false) {
+			$upload_dir_message = __('Upload folder',PDF_LIGHT_VIEWER_PLUGIN).': '.PdfLightViewer_Plugin::getUploadDirectory();
+			$requirements = array(
+				array(
+					'name' => 'PHP',
+					'status' => version_compare(PHP_VERSION, '5.3.0', '>='),
+					'success' => 'is 5.3 or higher',
+					'fail' => 'is lower than 5.3'
+				),
+				array(
+					'name' => 'Imagick',
+					'status' => (extension_loaded('imagick') || class_exists("Imagick")),
+					'success' => __('is supported',PDF_LIGHT_VIEWER_PLUGIN),
+					'fail' => __('is not supported',PDF_LIGHT_VIEWER_PLUGIN)
+				),
+				array(
+					'name' => $upload_dir_message,
+					'status' => PdfLightViewer_Plugin::createUploadDirectory(),
+					'success' => __('is writable',PDF_LIGHT_VIEWER_PLUGIN),
+					'fail' => __('is not writable',PDF_LIGHT_VIEWER_PLUGIN)
+				)
+			);
+			
+			if ($boolean) {
+				$status = true;
+				foreach($requirements as $requirement) {
+					$status = $status && $requirement['status'];
+				}
+				return $status;
+			}
+			else {
+				return $requirements;
+			}
+		}
+		
+		
+	// thumbnails
+		public static function set_featured_image($post_id, $file, $media_name) {
+			$image_data = file_get_contents($file);
+			$attach_id = self::create_media_from_data($media_name, $image_data);
+			return set_post_thumbnail($post_id, $attach_id);
+		}
+		
+		public static function create_media_from_data($filename, $image_data) {
+			
+			$upload_dir = wp_upload_dir();
+	
+			$file = $upload_dir['path'].'/'.$filename;
+			
+			file_put_contents($file, $image_data);
+			
+			$wp_filetype = wp_check_filetype($filename, null );
+			$attachment = array(
+				'post_mime_type' => $wp_filetype['type'],
+				'post_title' => sanitize_file_name($filename),
+				'post_content' => '',
+				'post_status' => 'inherit'
+			);
+			$attach_id = wp_insert_attachment($attachment, $file, 0);
+			
+			$url = wp_get_attachment_image_src($attach_id, 'full');
+			apply_filters('wp_handle_upload', array(
+				'file' => $file,
+				'url' => $url,
+				'type' => $wp_filetype['type']
+			), 'upload');
+			
+			require_once(ABSPATH.'wp-admin/includes/image.php');
+			$attach_data = wp_generate_attachment_metadata($attach_id, $file);
+			wp_update_attachment_metadata($attach_id, $attach_data);
+			
+			return $attach_id;
+		}
 
 }

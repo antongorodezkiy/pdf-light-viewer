@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "feafb98891d94f775ae21c28365197b2",
+    "hash": "b2b0111b8caf29b6de9cfda514fa2f3e",
     "packages": [
         {
             "name": "WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress",
@@ -16,6 +16,17 @@
             },
             "type": "library",
             "time": "2014-05-08 05:16:36"
+        },
+        {
+            "name": "syamilmj/Aqua-Resizer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/syamilmj/Aqua-Resizer",
+                "reference": "origin/master"
+            },
+            "type": "library",
+            "time": "2014-04-26 18:56:35"
         }
     ],
     "packages-dev": [
@@ -26,7 +37,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "webdevstudios/custom-metaboxes-and-fields-for-wordpress": 20
+        "webdevstudios/custom-metaboxes-and-fields-for-wordpress": 20,
+        "syamilmj/aqua-resizer": 20
     },
     "prefer-stable": false,
     "platform": [

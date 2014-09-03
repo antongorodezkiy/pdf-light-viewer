@@ -1,0 +1,26 @@
+[
+    {
+        "name": "WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress",
+            "reference": "origin/master"
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "syamilmj/Aqua-Resizer",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/syamilmj/Aqua-Resizer",
+            "reference": "origin/master"
+        },
+        "type": "library",
+        "installation-source": "source"
+    }
+]

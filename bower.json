@@ -3,9 +3,10 @@
     "author": "E.Kozachek",
     "version": "1.0.0",
     "dependencies": {
-        "tuupola-jquery_lazyload": "tuupola/jquery_lazyload",
+        "jquery.lazyload": "latest",
         "fontawesome": "latest",
-        "yahoo-pure": "yahoo/pure",
-        "turn.js": "latest"
+        "pure": "0.5.0",
+        "bxslider-4": "latest",
+        "jquery-zoom": "latest"
     }
 }

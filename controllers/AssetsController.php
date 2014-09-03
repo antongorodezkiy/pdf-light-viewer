@@ -6,42 +6,87 @@ class PdfLightViewer_AssetsController {
 		
 		// styles
 			wp_enqueue_style(
-				'purecss.grids',
-				plugins_url('bower_components/yahoo-pure/src/grids/css/grids-core.css',  PDF_LIGHT_VIEWER_FILE)
+				'purecss.grids.responsive',
+				plugins_url('bower_components/pure/grids-responsive-min.css',  PDF_LIGHT_VIEWER_FILE)
+			);
+			wp_enqueue_style(
+				'purecss.grids.core',
+				plugins_url('bower_components/pure/grids-core-min.css',  PDF_LIGHT_VIEWER_FILE)
 			);
 			wp_enqueue_style(
 				'purecss.forms',
-				plugins_url('bower_components/yahoo-pure/src/forms/css/forms.css',  PDF_LIGHT_VIEWER_FILE)
-			);
-			wp_enqueue_style(
-				'purecss.forms-r',
-				plugins_url('bower_components/yahoo-pure/src/forms/css/forms-r.css',  PDF_LIGHT_VIEWER_FILE)
+				plugins_url('bower_components/pure/forms-min.css',  PDF_LIGHT_VIEWER_FILE)
 			);
 			wp_enqueue_style(
 				'font-awesome',
 				plugins_url('bower_components/fontawesome/css/font-awesome.min.css',  PDF_LIGHT_VIEWER_FILE)
 			);
 			
-			wp_enqueue_style('admin.'.PDF_LIGHT_VIEWER_PLUGIN, plugins_url('css/admin.css',  PDF_LIGHT_VIEWER_FILE ), array('purecss.grids'));
+			wp_enqueue_style(
+				'jquery.bxslider.css',
+				plugins_url('bower_components/bxslider-4/jquery.bxslider.css',  PDF_LIGHT_VIEWER_FILE)
+			);
+			
+			wp_enqueue_style(
+				'magazine.'.PDF_LIGHT_VIEWER_PLUGIN,
+				plugins_url('css/magazine.css',  PDF_LIGHT_VIEWER_FILE)
+			);
+			
+			wp_enqueue_style(
+				'admin.'.PDF_LIGHT_VIEWER_PLUGIN,
+				plugins_url('css/admin.css',  PDF_LIGHT_VIEWER_FILE ),
+				array()
+			);
 		
 		// scripts
 			wp_enqueue_script(
 				'jquery.scrollstop',
-				plugins_url('bower_components/tuupola-jquery_lazyload/jquery.scrollstop.min.js', PDF_LIGHT_VIEWER_FILE),
+				plugins_url('bower_components/jquery.lazyload/jquery.scrollstop.min.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
 			
 			wp_enqueue_script(
 				'jquery.lazyload',
-				plugins_url('bower_components/tuupola-jquery_lazyload/jquery.lazyload.min.js', PDF_LIGHT_VIEWER_FILE),
+				plugins_url('bower_components/jquery.lazyload/jquery.lazyload.min.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			wp_enqueue_script(
+				'hash.turn.js',
+				plugins_url('js/turn.js/hash.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			wp_enqueue_script(
+				'scissor.turn.js',
+				plugins_url('js/turn.js/scissor.min.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			wp_enqueue_script(
+				'zoom.turn.js',
+				plugins_url('js/turn.js/zoom.min.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			wp_enqueue_script(
+				'html4.turn.js',
+				plugins_url('js/turn.js/turn.html4.min.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
 			
 			wp_enqueue_script(
 				'turn.js',
-				plugins_url('bower_components/turn.js/turn.min.js', PDF_LIGHT_VIEWER_FILE),
+				plugins_url('js/turn.js/turn.min.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
+			
+			wp_enqueue_script(
+				'jquery.bxslider.js',
+				plugins_url('bower_components/bxslider-4/jquery.bxslider.min.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
 			
 			wp_enqueue_script(
 				'pdf-light-viewer-admin',
@@ -64,24 +109,68 @@ class PdfLightViewer_AssetsController {
 	public static function frontend_head() {
 		
 		// styles
-			wp_enqueue_style('frontend.'.PDF_LIGHT_VIEWER_PLUGIN, plugins_url('css/frontend.css',  PDF_LIGHT_VIEWER_FILE ), array('purecss.grids'));
+			wp_enqueue_style(
+				'jquery.bxslider.css',
+				plugins_url('bower_components/bxslider-4/jquery.bxslider.css',  PDF_LIGHT_VIEWER_FILE)
+			);
+			
+			wp_enqueue_style(
+				'magazine.'.PDF_LIGHT_VIEWER_PLUGIN,
+				plugins_url('css/magazine.css',  PDF_LIGHT_VIEWER_FILE)
+			);
+			
+			wp_enqueue_style(
+				'frontend.'.PDF_LIGHT_VIEWER_PLUGIN,
+				plugins_url('css/frontend.css',  PDF_LIGHT_VIEWER_FILE)
+			);
 		
 		// scripts
 			wp_enqueue_script(
 				'jquery.scrollstop',
-				plugins_url('bower_components/tuupola-jquery_lazyload/jquery.scrollstop.min.js', PDF_LIGHT_VIEWER_FILE),
+				plugins_url('bower_components/jquery.lazyload/jquery.scrollstop.min.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
 			
 			wp_enqueue_script(
 				'jquery.lazyload',
-				plugins_url('bower_components/tuupola-jquery_lazyload/jquery.lazyload.min.js', PDF_LIGHT_VIEWER_FILE),
+				plugins_url('bower_components/jquery.lazyload/jquery.lazyload.min.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			wp_enqueue_script(
+				'hash.turn.js',
+				plugins_url('js/turn.js/hash.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			wp_enqueue_script(
+				'scissor.turn.js',
+				plugins_url('js/turn.js/scissor.min.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			wp_enqueue_script(
+				'zoom.turn.js',
+				plugins_url('js/turn.js/zoom.min.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			wp_enqueue_script(
+				'html4.turn.js',
+				plugins_url('js/turn.js/turn.html4.min.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
 			
 			wp_enqueue_script(
 				'turn.js',
-				plugins_url('bower_components/turn.js/turn.min.js', PDF_LIGHT_VIEWER_FILE),
+				plugins_url('js/turn.js/turn.min.js', PDF_LIGHT_VIEWER_FILE),
+				array('jquery')
+			);
+			
+			
+			wp_enqueue_script(
+				'jquery.bxslider.js',
+				plugins_url('bower_components/bxslider-4/jquery.bxslider.min.js', PDF_LIGHT_VIEWER_FILE),
 				array('jquery')
 			);
 			

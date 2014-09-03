@@ -2,62 +2,82 @@
 
 class PdfLightViewer_FrontController {
 	
-	public static function init_shortcodes() {
-		add_shortcode('pdf-light-viewer', array('PdfLightViewer_FrontController', 'disaply_pdf_book'));
-	}
-	
-	
 	public static function disaply_pdf_book($atts = array()) {
-		
-		ob_start();
-		ob_clean();
-		
-		global
-			$post,
-			$linked_articles_config;
-		
-		$original_post = $post;
-		if (isset($atts['post_id'])) {
-			$post = get_post($atts['post_id']);
+
+		global $pdf_light_viewer_config;
+	
+		if (!isset($atts['id']) || !$atts['id']) {
+			return;
 		}
+		
+		$post = get_post($atts['id']);
 		
 		if (empty($post) || !$post->ID) {
 			return;
 		}
 		
-		$linked_articles_config = self::parseDefaultsSettings($atts, $post);
+		$pdf_light_viewer_config = self::parseDefaultsSettings($atts, $post);
+	
+		$pdf_upload_dir = PdfLightViewer_Plugin::getUploadDirectory($post->ID);
+		$pdf_upload_dir_url = PdfLightViewer_Plugin::getUploadDirectoryUrl($post->ID);
 		
-		$connected_post_ids = linkedArticlesModel::getConnectedPostsIds($post->ID, $linked_articles_config['include_the_post']);
+		$pdf_light_viewer_config['pdf_upload_dir_url'] = $pdf_upload_dir_url;
+		$pages = directory_map($pdf_upload_dir);
+		sort($pages);
 		
-		if(!empty($connected_post_ids)) {
+		$thumbs = directory_map($pdf_upload_dir.'-thumbs');
+		sort($thumbs);
+		
+		// check permissions
+			$current_user = wp_get_current_user();
+			$current_user_roles = $current_user->roles;
+		
+			$pages_limits = get_post_meta($post->ID, 'pdf_light_viewer_permissions_metabox_repeat_group', true);
 			
-			// the query
-				$query_params = array(
-				   'post_type' => linkedArticlesAdminController::get_allowed_post_types(),
-				   'post__in' =>  $connected_post_ids
-				);
-				
-				$query_params = array_merge($query_params, $linked_articles_config);
+			$limit = 0;
+			if (!empty($pages_limits)) {
+				foreach($pages_limits as $pages_limit) {
+					if (empty($current_user_roles) && $pages_limit['pages_limit_user_role'] == 'anonymous') {
+						$limit = $pages_limit['pages_limit_visible_pages'];
+					}
+					else if(in_array($pages_limit['pages_limit_user_role'], $current_user_roles)) {
+						$limit = $pages_limit['pages_limit_visible_pages'];
+					}
+				}
+			}
 			
-				$linked_articles_config['query'] = new WP_Query($query_params);
+		// limit allowed pages for user role
+			$pdf_light_viewer_config['pages'] = array();
+			$pdf_light_viewer_config['thumbs'] = array();
+			if (!$limit) {
+				$pdf_light_viewer_config['pages'] = $pages;
+				$pdf_light_viewer_config['thumbs'] = $thumbs;
+			}
+			else {
+				for($page = 0; $page < $limit; $page++) {
+					$pdf_light_viewer_config['pages'][$page] = $pages[$page];
+					$pdf_light_viewer_config['thumbs'][$thumbs] = $thumbs[$page];
+				}
+			}
 			
-			// the loop
-				if (locate_template($linked_articles_config['template'].'.php') != '') {
-					get_template_part($linked_articles_config['template']);
+		
+		ob_start();
+		ob_clean();
+		
+		// the loop
+			if (locate_template($pdf_light_viewer_config['template'].'.php') != '') {
+				get_template_part($pdf_light_viewer_config['template']);
+			}
+			else {
+				if (file_exists(PDF_LIGHT_VIEWER_APPPATH.'/templates/'.$pdf_light_viewer_config['template'].'.php')) {
+					include(PDF_LIGHT_VIEWER_APPPATH.'/templates/'.$pdf_light_viewer_config['template'].'.php');
 				}
 				else {
-					if (file_exists(PDF_LIGHT_VIEWER_APPPATH.'/templates/'.$linked_articles_config['template'].'.php')) {
-						include(PDF_LIGHT_VIEWER_APPPATH.'/templates/'.$linked_articles_config['template'].'.php');
-					}
-					else {
-						include(PDF_LIGHT_VIEWER_APPPATH.'/templates/shortcode-pdf-light-viewer.php');
-					}
+					include(PDF_LIGHT_VIEWER_APPPATH.'/templates/shortcode-pdf-light-viewer.php');
 				}
-				
-			// restore original post data
-				wp_reset_postdata();
-				$post = $original_post;
-		}
+			}
+			
+	
 
 		return ob_get_clean();
 	}
@@ -79,29 +99,7 @@ class PdfLightViewer_FrontController {
 	
 	
 	public static function generate_template_item_css_classes() {
-		global
-			$linked_articles_config;
-		
-		if (!$linked_articles_config['layout_columns']) {
-			$linked_articles_config['layout_columns'] = 3;
-		}
-		
-		if (
-			$linked_articles_config['layout'] == 'slider'
-			|| $linked_articles_config['layout'] == 'vertical_slider'
-			|| $linked_articles_config['layout'] == 'slideshow'
-			|| $linked_articles_config['layout'] == 'vertical_slideshow'
-			|| $linked_articles_config['layout'] == 'carousel'
-			|| $linked_articles_config['layout'] == 'ticker'
-		) {
-			$css_classes = 'slide';
-		}
-		else {
-			$cols = $linked_articles_config['layout_columns'];
-			$bootstrap_cols = (12/$cols);
-			$css_classes = 'static-linked-article js-static-linked-article pure-u-1-'.$cols.' col-xs-12 col-sm-6 col-md-'.$bootstrap_cols.' col-lg-'.$bootstrap_cols;
-		}
-		
+		$css_classes = '';
 		return $css_classes;
 	}
 	
