@@ -158,243 +158,285 @@
 				
 				<h4 class="content-subhead">Plugin file structure</h4>
 				<pre>
-├── bower_components
-│   ├── bxslider-4
-│   │   ├── bower.json
-│   │   ├── images
-│   │   │   ├── bx_loader.gif
-│   │   │   └── controls.png
-│   │   ├── jquery.bxslider.css
-│   │   ├── jquery.bxslider.js
-│   │   ├── jquery.bxslider.min.js
-│   │   └── plugins
-│   │       ├── jquery.easing.1.3.js
-│   │       └── jquery.fitvids.js
-│   ├── fontawesome
-│   │   ├── bower.json
-│   │   ├── css
-│   │   │   ├── font-awesome.css
-│   │   │   └── font-awesome.min.css
-│   │   ├── fonts
-│   │   │   ├── FontAwesome.otf
-│   │   │   ├── fontawesome-webfont.eot
-│   │   │   ├── fontawesome-webfont.svg
-│   │   │   ├── fontawesome-webfont.ttf
-│   │   │   └── fontawesome-webfont.woff
-│   │   ├── less
-│   │   │   ├── bordered-pulled.less
-│   │   │   ├── core.less
-│   │   │   ├── extras.less
-│   │   │   ├── fixed-width.less
-│   │   │   ├── font-awesome.less
-│   │   │   ├── icons.less
-│   │   │   ├── larger.less
-│   │   │   ├── list.less
-│   │   │   ├── mixins.less
-│   │   │   ├── path.less
-│   │   │   ├── rotated-flipped.less
-│   │   │   ├── spinning.less
-│   │   │   ├── stacked.less
-│   │   │   └── variables.less
-│   │   └── scss
-│   │       ├── _bordered-pulled.scss
-│   │       ├── _core.scss
-│   │       ├── _extras.scss
-│   │       ├── _fixed-width.scss
-│   │       ├── font-awesome.scss
-│   │       ├── _icons.scss
-│   │       ├── _larger.scss
-│   │       ├── _list.scss
-│   │       ├── _mixins.scss
-│   │       ├── _path.scss
-│   │       ├── _rotated-flipped.scss
-│   │       ├── _spinning.scss
-│   │       ├── _stacked.scss
-│   │       └── _variables.scss
-│   ├── jquery
-│   │   ├── bower.json
-│   │   ├── dist
-│   │   │   ├── jquery.js
-│   │   │   ├── jquery.min.js
-│   │   │   └── jquery.min.map
-│   │   ├── MIT-LICENSE.txt
-│   │   └── src
-│   │       ├── ajax
-│   │       │   ├── jsonp.js
-│   │       │   ├── load.js
-│   │       │   ├── parseJSON.js
-│   │       │   ├── parseXML.js
-│   │       │   ├── script.js
-│   │       │   ├── var
-│   │       │   │   ├── nonce.js
-│   │       │   │   └── rquery.js
-│   │       │   └── xhr.js
-│   │       ├── ajax.js
-│   │       ├── attributes
-│   │       │   ├── attr.js
-│   │       │   ├── classes.js
-│   │       │   ├── prop.js
-│   │       │   ├── support.js
-│   │       │   └── val.js
-│   │       ├── attributes.js
-│   │       ├── callbacks.js
-│   │       ├── core
-│   │       │   ├── access.js
-│   │       │   ├── init.js
-│   │       │   ├── parseHTML.js
-│   │       │   ├── ready.js
-│   │       │   └── var
-│   │       │       └── rsingleTag.js
-│   │       ├── core.js
-│   │       ├── css
-│   │       │   ├── addGetHookIf.js
-│   │       │   ├── curCSS.js
-│   │       │   ├── defaultDisplay.js
-│   │       │   ├── hiddenVisibleSelectors.js
-│   │       │   ├── support.js
-│   │       │   ├── swap.js
-│   │       │   └── var
-│   │       │       ├── cssExpand.js
-│   │       │       ├── getStyles.js
-│   │       │       ├── isHidden.js
-│   │       │       ├── rmargin.js
-│   │       │       └── rnumnonpx.js
-│   │       ├── css.js
-│   │       ├── data
-│   │       │   ├── accepts.js
-│   │       │   ├── Data.js
-│   │       │   └── var
-│   │       │       ├── data_priv.js
-│   │       │       └── data_user.js
-│   │       ├── data.js
-│   │       ├── deferred.js
-│   │       ├── deprecated.js
-│   │       ├── dimensions.js
-│   │       ├── effects
-│   │       │   ├── animatedSelector.js
-│   │       │   └── Tween.js
-│   │       ├── effects.js
-│   │       ├── event
-│   │       │   ├── alias.js
-│   │       │   └── support.js
-│   │       ├── event.js
-│   │       ├── exports
-│   │       │   ├── amd.js
-│   │       │   └── global.js
-│   │       ├── intro.js
-│   │       ├── jquery.js
-│   │       ├── manipulation
-│   │       │   ├── _evalUrl.js
-│   │       │   ├── support.js
-│   │       │   └── var
-│   │       │       └── rcheckableType.js
-│   │       ├── manipulation.js
-│   │       ├── offset.js
-│   │       ├── outro.js
-│   │       ├── queue
-│   │       │   └── delay.js
-│   │       ├── queue.js
-│   │       ├── selector.js
-│   │       ├── selector-native.js
-│   │       ├── selector-sizzle.js
-│   │       ├── serialize.js
-│   │       ├── sizzle
-│   │       │   └── dist
-│   │       │       ├── sizzle.js
-│   │       │       ├── sizzle.min.js
-│   │       │       └── sizzle.min.map
-│   │       ├── traversing
-│   │       │   ├── findFilter.js
-│   │       │   └── var
-│   │       │       └── rneedsContext.js
-│   │       ├── traversing.js
-│   │       ├── var
-│   │       │   ├── arr.js
-│   │       │   ├── class2type.js
-│   │       │   ├── concat.js
-│   │       │   ├── hasOwn.js
-│   │       │   ├── indexOf.js
-│   │       │   ├── pnum.js
-│   │       │   ├── push.js
-│   │       │   ├── rnotwhite.js
-│   │       │   ├── slice.js
-│   │       │   ├── strundefined.js
-│   │       │   ├── support.js
-│   │       │   └── toString.js
-│   │       └── wrap.js
-│   ├── jquery.lazyload
-│   │   ├── bower.json
-│   │   ├── img
-│   │   │   ├── bmw_m1_hood.jpg
-│   │   │   ├── bmw_m1_side.jpg
-│   │   │   ├── bmw_m3_gt.jpg
-│   │   │   ├── corvette_pitstop.jpg
-│   │   │   ├── grey.gif
-│   │   │   ├── transparent.gif
-│   │   │   ├── viper_1.jpg
-│   │   │   ├── viper_corner.jpg
-│   │   │   └── white.gif
-│   │   ├── jquery.lazyload.js
-│   │   ├── jquery.lazyload.min.js
-│   │   ├── jquery.scrollstop.js
-│   │   └── jquery.scrollstop.min.js
-│   ├── kayahr-jquery-fullscreen-plugin
-│   │   ├── build.xml
-│   │   ├── demo
-│   │   │   ├── iframe.html
-│   │   │   └── index.html
-│   │   ├── externs
+├── assets
+│   ├── bower_components
+│   │   ├── bxslider-4
+│   │   │   ├── bower.json
+│   │   │   ├── images
+│   │   │   │   ├── bx_loader.gif
+│   │   │   │   └── controls.png
+│   │   │   ├── jquery.bxslider.css
+│   │   │   ├── jquery.bxslider.js
+│   │   │   ├── jquery.bxslider.min.js
+│   │   │   └── plugins
+│   │   │       ├── jquery.easing.1.3.js
+│   │   │       └── jquery.fitvids.js
+│   │   ├── fontawesome
+│   │   │   ├── bower.json
+│   │   │   ├── css
+│   │   │   │   ├── font-awesome.css
+│   │   │   │   └── font-awesome.min.css
+│   │   │   ├── fonts
+│   │   │   │   ├── FontAwesome.otf
+│   │   │   │   ├── fontawesome-webfont.eot
+│   │   │   │   ├── fontawesome-webfont.svg
+│   │   │   │   ├── fontawesome-webfont.ttf
+│   │   │   │   └── fontawesome-webfont.woff
+│   │   │   ├── less
+│   │   │   │   ├── bordered-pulled.less
+│   │   │   │   ├── core.less
+│   │   │   │   ├── extras.less
+│   │   │   │   ├── fixed-width.less
+│   │   │   │   ├── font-awesome.less
+│   │   │   │   ├── icons.less
+│   │   │   │   ├── larger.less
+│   │   │   │   ├── list.less
+│   │   │   │   ├── mixins.less
+│   │   │   │   ├── path.less
+│   │   │   │   ├── rotated-flipped.less
+│   │   │   │   ├── spinning.less
+│   │   │   │   ├── stacked.less
+│   │   │   │   └── variables.less
+│   │   │   └── scss
+│   │   │       ├── _bordered-pulled.scss
+│   │   │       ├── _core.scss
+│   │   │       ├── _extras.scss
+│   │   │       ├── _fixed-width.scss
+│   │   │       ├── font-awesome.scss
+│   │   │       ├── _icons.scss
+│   │   │       ├── _larger.scss
+│   │   │       ├── _list.scss
+│   │   │       ├── _mixins.scss
+│   │   │       ├── _path.scss
+│   │   │       ├── _rotated-flipped.scss
+│   │   │       ├── _spinning.scss
+│   │   │       ├── _stacked.scss
+│   │   │       └── _variables.scss
+│   │   ├── jquery
+│   │   │   ├── bower.json
+│   │   │   ├── dist
+│   │   │   │   ├── jquery.js
+│   │   │   │   ├── jquery.min.js
+│   │   │   │   └── jquery.min.map
+│   │   │   ├── MIT-LICENSE.txt
+│   │   │   └── src
+│   │   │       ├── ajax
+│   │   │       │   ├── jsonp.js
+│   │   │       │   ├── load.js
+│   │   │       │   ├── parseJSON.js
+│   │   │       │   ├── parseXML.js
+│   │   │       │   ├── script.js
+│   │   │       │   ├── var
+│   │   │       │   │   ├── nonce.js
+│   │   │       │   │   └── rquery.js
+│   │   │       │   └── xhr.js
+│   │   │       ├── ajax.js
+│   │   │       ├── attributes
+│   │   │       │   ├── attr.js
+│   │   │       │   ├── classes.js
+│   │   │       │   ├── prop.js
+│   │   │       │   ├── support.js
+│   │   │       │   └── val.js
+│   │   │       ├── attributes.js
+│   │   │       ├── callbacks.js
+│   │   │       ├── core
+│   │   │       │   ├── access.js
+│   │   │       │   ├── init.js
+│   │   │       │   ├── parseHTML.js
+│   │   │       │   ├── ready.js
+│   │   │       │   └── var
+│   │   │       │       └── rsingleTag.js
+│   │   │       ├── core.js
+│   │   │       ├── css
+│   │   │       │   ├── addGetHookIf.js
+│   │   │       │   ├── curCSS.js
+│   │   │       │   ├── defaultDisplay.js
+│   │   │       │   ├── hiddenVisibleSelectors.js
+│   │   │       │   ├── support.js
+│   │   │       │   ├── swap.js
+│   │   │       │   └── var
+│   │   │       │       ├── cssExpand.js
+│   │   │       │       ├── getStyles.js
+│   │   │       │       ├── isHidden.js
+│   │   │       │       ├── rmargin.js
+│   │   │       │       └── rnumnonpx.js
+│   │   │       ├── css.js
+│   │   │       ├── data
+│   │   │       │   ├── accepts.js
+│   │   │       │   ├── Data.js
+│   │   │       │   └── var
+│   │   │       │       ├── data_priv.js
+│   │   │       │       └── data_user.js
+│   │   │       ├── data.js
+│   │   │       ├── deferred.js
+│   │   │       ├── deprecated.js
+│   │   │       ├── dimensions.js
+│   │   │       ├── effects
+│   │   │       │   ├── animatedSelector.js
+│   │   │       │   └── Tween.js
+│   │   │       ├── effects.js
+│   │   │       ├── event
+│   │   │       │   ├── alias.js
+│   │   │       │   └── support.js
+│   │   │       ├── event.js
+│   │   │       ├── exports
+│   │   │       │   ├── amd.js
+│   │   │       │   └── global.js
+│   │   │       ├── intro.js
+│   │   │       ├── jquery.js
+│   │   │       ├── manipulation
+│   │   │       │   ├── _evalUrl.js
+│   │   │       │   ├── support.js
+│   │   │       │   └── var
+│   │   │       │       └── rcheckableType.js
+│   │   │       ├── manipulation.js
+│   │   │       ├── offset.js
+│   │   │       ├── outro.js
+│   │   │       ├── queue
+│   │   │       │   └── delay.js
+│   │   │       ├── queue.js
+│   │   │       ├── selector.js
+│   │   │       ├── selector-native.js
+│   │   │       ├── selector-sizzle.js
+│   │   │       ├── serialize.js
+│   │   │       ├── sizzle
+│   │   │       │   └── dist
+│   │   │       │       ├── sizzle.js
+│   │   │       │       ├── sizzle.min.js
+│   │   │       │       └── sizzle.min.map
+│   │   │       ├── traversing
+│   │   │       │   ├── findFilter.js
+│   │   │       │   └── var
+│   │   │       │       └── rneedsContext.js
+│   │   │       ├── traversing.js
+│   │   │       ├── var
+│   │   │       │   ├── arr.js
+│   │   │       │   ├── class2type.js
+│   │   │       │   ├── concat.js
+│   │   │       │   ├── hasOwn.js
+│   │   │       │   ├── indexOf.js
+│   │   │       │   ├── pnum.js
+│   │   │       │   ├── push.js
+│   │   │       │   ├── rnotwhite.js
+│   │   │       │   ├── slice.js
+│   │   │       │   ├── strundefined.js
+│   │   │       │   ├── support.js
+│   │   │       │   └── toString.js
+│   │   │       └── wrap.js
+│   │   ├── jquery.lazyload
+│   │   │   ├── bower.json
+│   │   │   ├── img
+│   │   │   │   ├── bmw_m1_hood.jpg
+│   │   │   │   ├── bmw_m1_side.jpg
+│   │   │   │   ├── bmw_m3_gt.jpg
+│   │   │   │   ├── corvette_pitstop.jpg
+│   │   │   │   ├── grey.gif
+│   │   │   │   ├── transparent.gif
+│   │   │   │   ├── viper_1.jpg
+│   │   │   │   ├── viper_corner.jpg
+│   │   │   │   └── white.gif
+│   │   │   ├── jquery.lazyload.js
+│   │   │   ├── jquery.lazyload.min.js
+│   │   │   ├── jquery.scrollstop.js
+│   │   │   └── jquery.scrollstop.min.js
+│   │   ├── jquery-zoom
+│   │   │   ├── bower.json
+│   │   │   ├── daisy.jpg
+│   │   │   ├── demo.html
+│   │   │   ├── grabbed.cur
+│   │   │   ├── grab.cur
+│   │   │   ├── icon.png
+│   │   │   ├── jquery.zoom.js
+│   │   │   ├── jquery.zoom.min.js
+│   │   │   ├── readme.md
+│   │   │   ├── roxy.jpg
+│   │   │   └── zoom.jquery.json
+│   │   ├── kayahr-jquery-fullscreen-plugin
+│   │   │   ├── build.xml
+│   │   │   ├── demo
+│   │   │   │   ├── iframe.html
+│   │   │   │   └── index.html
+│   │   │   ├── externs
+│   │   │   │   ├── jquery.fullscreen.js
+│   │   │   │   └── jquery.js
+│   │   │   ├── fullscreen.jquery.json
 │   │   │   ├── jquery.fullscreen.js
-│   │   │   └── jquery.js
-│   │   ├── fullscreen.jquery.json
-│   │   ├── jquery.fullscreen.js
-│   │   ├── jquery.fullscreen-min.js
-│   │   ├── lib
-│   │   │   └── compiler.jar
-│   │   ├── LICENSE.txt
-│   │   └── README.md
-│   └── pure
-│       ├── base-context.css
-│       ├── base-context-min.css
-│       ├── base.css
-│       ├── base-min.css
-│       ├── bower.json
-│       ├── buttons-core.css
-│       ├── buttons-core-min.css
-│       ├── buttons.css
-│       ├── buttons-min.css
-│       ├── forms.css
-│       ├── forms-min.css
-│       ├── forms-nr.css
-│       ├── forms-nr-min.css
-│       ├── grids-core.css
-│       ├── grids-core-min.css
-│       ├── grids.css
-│       ├── grids-min.css
-│       ├── grids-responsive.css
-│       ├── grids-responsive-min.css
-│       ├── grids-responsive-old-ie.css
-│       ├── grids-responsive-old-ie-min.css
-│       ├── grids-units.css
-│       ├── grids-units-min.css
-│       ├── HISTORY.md
-│       ├── LICENSE.md
-│       ├── menus-core.css
-│       ├── menus-core-min.css
-│       ├── menus.css
-│       ├── menus-min.css
-│       ├── menus-nr.css
-│       ├── menus-nr-min.css
-│       ├── menus-paginator.css
-│       ├── menus-paginator-min.css
-│       ├── pure.css
-│       ├── pure-min.css
-│       ├── pure-nr.css
-│       ├── pure-nr-min.css
-│       ├── README.md
-│       ├── tables.css
-│       └── tables-min.css
-├── bower.json
+│   │   │   ├── jquery.fullscreen-min.js
+│   │   │   ├── lib
+│   │   │   │   └── compiler.jar
+│   │   │   ├── LICENSE.txt
+│   │   │   └── README.md
+│   │   └── pure
+│   │       ├── base-context.css
+│   │       ├── base-context-min.css
+│   │       ├── base.css
+│   │       ├── base-min.css
+│   │       ├── bower.json
+│   │       ├── buttons-core.css
+│   │       ├── buttons-core-min.css
+│   │       ├── buttons.css
+│   │       ├── buttons-min.css
+│   │       ├── forms.css
+│   │       ├── forms-min.css
+│   │       ├── forms-nr.css
+│   │       ├── forms-nr-min.css
+│   │       ├── grids-core.css
+│   │       ├── grids-core-min.css
+│   │       ├── grids.css
+│   │       ├── grids-min.css
+│   │       ├── grids-responsive.css
+│   │       ├── grids-responsive-min.css
+│   │       ├── grids-responsive-old-ie.css
+│   │       ├── grids-responsive-old-ie-min.css
+│   │       ├── grids-units.css
+│   │       ├── grids-units-min.css
+│   │       ├── HISTORY.md
+│   │       ├── LICENSE.md
+│   │       ├── menus-core.css
+│   │       ├── menus-core-min.css
+│   │       ├── menus.css
+│   │       ├── menus-min.css
+│   │       ├── menus-nr.css
+│   │       ├── menus-nr-min.css
+│   │       ├── menus-paginator.css
+│   │       ├── menus-paginator-min.css
+│   │       ├── pure.css
+│   │       ├── pure-min.css
+│   │       ├── pure-nr.css
+│   │       ├── pure-nr-min.css
+│   │       ├── README.md
+│   │       ├── tables.css
+│   │       └── tables-min.css
+│   ├── bower.json
+│   ├── css
+│   │   ├── admin.css
+│   │   ├── frontend.css
+│   │   └── magazine.css
+│   ├── img
+│   │   ├── arrows.png
+│   │   ├── binding_light_@2X.png
+│   │   ├── binding_light.png
+│   │   ├── fabric_of_squares_gray_@2X.png
+│   │   ├── fabric_of_squares_gray.png
+│   │   ├── lightpaperfibers.png
+│   │   ├── loader.gif
+│   │   ├── logo100.png
+│   │   ├── logo.png
+│   │   ├── pdf.png
+│   │   ├── zoom-icons-editable.png
+│   │   ├── zoom-icons.png
+│   │   └── zoom.png
+│   └── js
+│       ├── admin.js
+│       ├── frontend.js
+│       ├── magazine.js
+│       └── turn.js
+│           ├── hash.js
+│           ├── scissor.min.js
+│           ├── turn.html4.min.js
+│           ├── turn.min.js
+│           ├── zoom.js
+│           └── zoom.min.js
 ├── composer.json
 ├── composer.lock
 ├── controllers
@@ -403,10 +445,6 @@
 │   ├── FrontController.php
 │   ├── PdfController.php
 │   └── Plugin.php
-├── css
-│   ├── admin.css
-│   ├── frontend.css
-│   └── magazine.css
 ├── documentation
 │   ├── css
 │   │   ├── prism.css
@@ -433,32 +471,18 @@
 │       ├── jquery-scrollspy.js
 │       ├── prism.js
 │       └── scripts.js
-├── img
-│   ├── arrows.png
-│   ├── fabric_of_squares_gray_@2X.png
-│   ├── fabric_of_squares_gray.png
-│   ├── lightpaperfibers.png
-│   ├── loader.gif
-│   ├── logo100.png
-│   ├── logo.png
-│   ├── pdf.png
-│   ├── zoom-icons-editable.png
-│   ├── zoom-icons.png
-│   └── zoom.png
-├── js
-│   ├── admin.js
-│   ├── frontend.js
-│   ├── magazine.js
-│   └── turn.js
-│       ├── hash.js
-│       ├── scissor.min.js
-│       ├── turn.html4.min.js
-│       ├── turn.min.js
-│       ├── zoom.js
-│       └── zoom.min.js
+├── languages
+│   ├── en_US
+│   │   ├── pdf-light-viewer-en_US.mo
+│   │   └── pdf-light-viewer-en_US.po
+│   └── ru_RU
+│       ├── pdf-light-viewer-ru_RU.mo
+│       └── pdf-light-viewer-ru_RU.po
 ├── libraries
 │   └── directory_helper.php
 ├── LICENSE
+├── models
+│   └── Model.php
 ├── pdf-light-viewer.php
 ├── templates
 │   └── shortcode-pdf-light-viewer.php
@@ -519,7 +543,6 @@
 │               └── README.md
 └── views
     └── settings.php
-
 				</pre>
 				
 				<h4 class="content-subhead">What next?</h4>
@@ -543,7 +566,7 @@
 				<h4 class="content-subhead">Requirements</h4>
 				
 				<ul>
-					<li>PHP is 5.3 or higher</li>
+					<li>PHP is 5.2 or higher</li>
 					<li>Imagick support</li>
 					<li>Writable upload folder <code>wp-content/uploads/pdf-light-viewer</code></li>
 				</ul>
@@ -581,7 +604,9 @@
 				<p>
 					You can find WordPress PDF Light Viewer Plugin settings, requirements and documentation on the page <code>http://yoursite.com/wp-admin/options-general.php?page=pdf-light-viewer</code>
 				</p>
-				<p>Currently the plugin doesn't have global settings, so if everything ok with requirements, go ahead and use it.</p>
+				<p>In settings you can hide the new PDF post type from the admin menu. This is useful, when you uploaded PDF files not often and do not want to unnecessary item to take the space of the screen.</p>
+				<p><img src="img/screenshots/settings.jpeg" alt="Settings" /></p>
+				<p>You can turn it on again at any moment.</p>
 				
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#use">Usage</a> section to know more about use cases.</p>
@@ -627,6 +652,9 @@
 					<p><img src="img/screenshots/import-scheduled.jpeg" alt="Import scheduled" /></p>		
 				
 					<p>We moved the import process to the background, so you could continue to do other things on the site if needed.</p>
+					<p>The import process doesn't use the WP Cron functionality. It's triggered by browser's background (AJAX) call. We could not rely on WP Cron functionality because some servers (we faced that problem with Hostgator) doesn't allow loopback requests.</p>
+					<p>The import process will work from any admin interface page.</p>
+					<p>It will work until you leave the admin interface and will continue when you come back.</p>
 					
 					<blockquote>
 						<p>Anyway, please note, that import of large PDF files (50 pages and more) will take some time.</p>
@@ -634,13 +662,14 @@
 					
 					<blockquote>
 						<p>Also, please note, that import of large PDF files will take some server resources (memory usage, CPU time, etc.). Usage of these resources depends on PDF file size, number of pages, initial PDF resolution, etc.</p>
+						<p>That's why we separated the import process by pages.</p>
 						<p>Please, use carefully.</p>
 					</blockquote>
 					
-					<p>The importing time depends on the server. Anyway, you can check import progress on the PDF list page.</p>
+					<p>The importing time depends on the server. Anyway, you can check import progress in notification at the top of the page, or on the PDF list page.</p>
 					<p><img src="img/screenshots/import-progress.jpeg" alt="PDF List Page" /></p>
 					
-					<p>After importing first page will be set as featured image of the PDF file.</p>
+					<p>After import, the first page will be set as featured image of the PDF file post.</p>
 					
 				<div class="content-subhead">Re-importing PDF file</div>
 				
@@ -655,6 +684,13 @@
 				<div class="content-subhead">Updating PDF file</div>
 				
 					<p>If you just need to change the name of the PDF file, you leave the option <code>Enable import</code> unchecked. Without checking this checkbox import wouldn't be triggered.</p>
+					
+				<div class="content-subhead">Deleting PDF file</div>
+				
+					<p>If you will permanently delete PDF file post, all previews will be also deleted.</p>
+					<blockquote>
+						<p>Please note, that this operation cannot be undone.</p>
+					</blockquote>
 				
 				<div class="content-subhead">Changing permissions</div>
 				
@@ -776,7 +812,7 @@
 					We want to make your plugin usage as much easier as we could.
 				</p>
 				<p>If you want, you can contact us, you can do it by email: <a href="mailto:support@teamlead.pw">support@teamlead.pw</a> or through the support forum at http://support.wp.teamlead.pw (coming soon)</p>
-				<p>This plugin is free and we will appreciate any donations from our grateful users - <a href="http://pdf-light-viewer.wp.teamlead.pw/">Donate</a>.</p>
+				<p>This plugin is free and we will appreciate any donations from you - <a href="http://pdf-light-viewer.wp.teamlead.pw/">Donate us</a>.</p>
 				<p>Also please find us on CodeCanyon: <a href="http://codecanyon.net/user/antongorodezkiy/portfolio">http://codecanyon.net/user/antongorodezkiy/portfolio</a></p>
 			</div>
 		</div>
