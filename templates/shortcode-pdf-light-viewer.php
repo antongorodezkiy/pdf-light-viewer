@@ -1,6 +1,5 @@
 <?php
 	global $pdf_light_viewer_config;
-	$pdf_upload_dir_url = $pdf_light_viewer_config['pdf_upload_dir_url'];
 	
 	$last_thumb_index = count($pdf_light_viewer_config['thumbs']) - 1;
 	
@@ -9,17 +8,29 @@
 		<div class="pdf-light-viewer js-pdf-light-viewer">
 			
 			<div class="pdf-light-viewer-magazine-viewport">
-				<div class="js-pdf-light-viewer-fullscreen zoom-icon zoom-icon-in"></div>
+				
+				<div class="pdf-light-viewer-features-top-panel">
+					<?php if ($pdf_light_viewer_config['download_allowed']) { ?>
+						<a title="<?php _e('Download',PDF_LIGHT_VIEWER_PLUGIN);?>" href="<?php echo $pdf_light_viewer_config['download_link'];?>" target="_blank">
+							<i class="fa fa-download fa-2x"></i>
+						</a>
+					<?php } ?>
+					
+					<a title="<?php _e('Fullscreen',PDF_LIGHT_VIEWER_PLUGIN);?>" href="#!" class="js-pdf-light-viewer-fullscreen">
+						<i class="fa fa-arrows-alt fa-2x"></i>
+						<i class="fa fa-compress fa-2x initially-hidden"></i>
+					</a>
+				</div>
+				
 				<div class="pdf-light-viewer-magazine-viewport-container">	
 					<div class="js-pdf-light-viewer-magazine pdf-light-viewer-magazine">
 						<?php foreach($pdf_light_viewer_config['pages'] as $page) {
-							$size = getimagesize($pdf_upload_dir_url.'/'.$page);
 							?>
-							<div style="background-image:url('<?php echo plugins_url('img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>');">
+							<div style="background-image:url('<?php echo plugins_url('assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>');">
 								<div class="gradient"></div>
 								<img
 									class="js-pdf-light-viewer-lazy-loading"
-									src="<?php echo plugins_url('img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>"
+									src="<?php echo plugins_url('assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>"
 									data-original="<?php echo $pdf_upload_dir_url.'/'.$page;?>"
 									width="100%"
 									height="100%"
@@ -30,7 +41,7 @@
 				</div>
 			</div>
 			<!-- Thumbnails -->
-			<?php if (!empty($pdf_light_viewer_config['thumbs'])) { ?>
+			<?php if (!$pdf_light_viewer_config['hide_thumbnails_navigation'] && !empty($pdf_light_viewer_config['thumbs'])) { ?>
 				<div class="pdf-light-viewer-magazine-thumbnails js-pdf-light-viewer-magazine-thumbnails">
 					
 						<ul>

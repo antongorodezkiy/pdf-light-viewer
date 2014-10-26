@@ -197,7 +197,7 @@ var PLV_Magazine = {
 			
 				$('.js-pdf-light-viewer-magazine-thumbnails li').
 					bind($.mouseEvents.over, function() {
-						$(this).addClass('thumb-hover');js-pdf-light-viewer-magazine
+						$(this).addClass('thumb-hover');
 					}).bind($.mouseEvents.out, function() {
 						$(this).removeClass('thumb-hover');
 					});
@@ -206,14 +206,15 @@ var PLV_Magazine = {
 					$('.js-pdf-light-viewer-magazine-thumbnails ul').bxSlider({
 						slideWidth: 154,
 						minSlides: 2,
-						maxSlides: 8,
+						maxSlides: 4,
 						slideMargin: 10,
 						moveSlides: 2,
 						infiniteLoop: false
 					});
 					
 				// pages zoomer
-					$(".js-pdf-light-viewer-fullscreen").click(function(){
+					$(".js-pdf-light-viewer-fullscreen").click(function(e){
+						e.preventDefault();
 						if ($(document).fullScreen()) {
 							$(".js-pdf-light-viewer").removeClass("pdf-light-viewer-fullscreen");
 							$(".js-pdf-light-viewer").fullScreen(false);

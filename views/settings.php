@@ -1,4 +1,4 @@
-<?php if (!defined('WPINC')) die(); ?>
+<?php if (!defined('WPINC')) die();?>
 
 <div class="pdf-light-viewer-admin-settings js-pdf-light-viewer-admin-settings">
 	
@@ -78,7 +78,7 @@
 											<li>
 												<span class="fa-stack pdf-light-viewer-requirement-fail">
 													<i class="fa fa-circle fa-stack-2x"></i>
-													<i class="fa fa-close fa-stack-1x fa-inverse"></i>
+													<i class="fa fa-exclamation fa-stack-1x fa-inverse"></i>
 												</span>
 												<?php echo $requirement['name'];?> <?php echo $requirement['fail'];?>
 											</li>
@@ -103,11 +103,38 @@
 					</div>
 			
 					<div class="row in">						
-						<p>
-							<blockquote>
-								<?php echo __('We do not have global plugin settings yet. You can change settings on each PDF editing page',PDF_LIGHT_VIEWER_PLUGIN)?>
-							</blockquote>
+						<legend><span class="fa fa-cogs"></span><?php _e('Main settings', PDF_LIGHT_VIEWER_PLUGIN)?></legend>
+							
+						<p class="pure-control-group">
+							<label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[show-post-type]">
+								<span class="fa-stack">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-th-list fa-stack-1x fa-inverse"></i>
+								</span>
+								<?php _e('Show PDFs in Menu', PDF_LIGHT_VIEWER_PLUGIN)?>
+								<a href="#!" class="js-tip tip" title="<?php _e('Show PDFs menu item in the left admin sidebar', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="fa fa-question-circle"></span></a>
+							</label>
+							<input
+								type="hidden"
+								name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[show-post-type]"
+								value="0"
+								/>
+							<input
+								type="checkbox"
+								name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[show-post-type]"
+								value="1"
+								<?php echo ( PdfLightViewer_AdminController::getSetting('show-post-type') ? 'checked="checked"' : '' )?>
+								/>
 						</p>
+						
+						<hr />
+					
+						<div class="row">
+							<button class="button-primary" type="submit">
+								<span class="fa fa-save"></span>
+								<?php _e('Save', WP_APN_PLUGIN)?>
+							</button>
+						</div>
 					</div>
 					
 				</form>

@@ -1,0 +1,668 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pdf-light-viewer\n"
+"POT-Creation-Date: 2014-10-25 05:05+0300\n"
+"PO-Revision-Date: 2014-10-25 05:05+0300\n"
+"Last-Translator: Eduard Kozachek <eduard@kozachek.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../..\n"
+
+#: ../../controllers/PdfController.php:50
+msgid "PDFs"
+msgstr ""
+
+#: ../../controllers/PdfController.php:51
+#: ../../controllers/PdfController.php:156
+msgid "PDF"
+msgstr ""
+
+#: ../../controllers/PdfController.php:52
+#: ../../controllers/PdfController.php:53
+msgid "Import PDF"
+msgstr ""
+
+#: ../../controllers/PdfController.php:54
+msgid "Edit"
+msgstr ""
+
+#: ../../controllers/PdfController.php:55
+msgid "Edit PDF"
+msgstr ""
+
+#: ../../controllers/PdfController.php:56
+msgid "New PDF"
+msgstr ""
+
+#: ../../controllers/PdfController.php:57
+msgid "View"
+msgstr ""
+
+#: ../../controllers/PdfController.php:58
+msgid "View PDF"
+msgstr ""
+
+#: ../../controllers/PdfController.php:59
+msgid "Search PDFs"
+msgstr ""
+
+#: ../../controllers/PdfController.php:60
+msgid "No PDFs found"
+msgstr ""
+
+#: ../../controllers/PdfController.php:62
+msgid "For PDFs"
+msgstr ""
+
+#: ../../controllers/PdfController.php:77
+#: ../../controllers/PdfController.php:98
+msgid "Preview"
+msgstr ""
+
+#: ../../controllers/PdfController.php:78
+msgid "Shortcodes"
+msgstr ""
+
+#: ../../controllers/PdfController.php:79
+msgid "Pages"
+msgstr ""
+
+#: ../../controllers/PdfController.php:80
+msgid "Import status"
+msgstr ""
+
+#: ../../controllers/PdfController.php:126
+msgid "Import scheduled"
+msgstr ""
+
+#: ../../controllers/PdfController.php:130
+msgid "Import started"
+msgstr ""
+
+#: ../../controllers/PdfController.php:134
+msgid "Import in progress"
+msgstr ""
+
+#: ../../controllers/PdfController.php:138
+msgid "Import finished"
+msgstr ""
+
+#: ../../controllers/PdfController.php:164
+msgid "Check this if you want to import or re-import PDF file"
+msgstr ""
+
+#: ../../controllers/PdfController.php:169
+msgid "JPEG compression quality"
+msgstr ""
+
+#: ../../controllers/PdfController.php:175
+msgid "JPEG resolution"
+msgstr ""
+
+#: ../../controllers/PdfController.php:181
+msgid "PDF File"
+msgstr ""
+
+#: ../../controllers/PdfController.php:182
+msgid "Choose what PDF file will be imported"
+msgstr ""
+
+#: ../../controllers/PdfController.php:192
+msgid "Output Options"
+msgstr ""
+
+#: ../../controllers/PdfController.php:199
+msgid "Allow download"
+msgstr ""
+
+#: ../../controllers/PdfController.php:200
+msgid "Check this if you want to show download button on the frontend"
+msgstr ""
+
+#: ../../controllers/PdfController.php:205
+msgid "Alternate download link"
+msgstr ""
+
+#: ../../controllers/PdfController.php:206
+msgid "If not set, will be used link from PDF File"
+msgstr ""
+
+#: ../../controllers/PdfController.php:212
+msgid "Hide thumbnail navigatin"
+msgstr ""
+
+#: ../../controllers/PdfController.php:227
+msgid "Anonymous / s2Member Level 0"
+msgstr ""
+
+#: ../../controllers/PdfController.php:236
+msgid "Permissions"
+msgstr ""
+
+#: ../../controllers/PdfController.php:245
+msgid "Pages limits for different user roles"
+msgstr ""
+
+#: ../../controllers/PdfController.php:247
+msgid "Pages Limit"
+msgstr ""
+
+#: ../../controllers/PdfController.php:248
+msgid "Add another limit"
+msgstr ""
+
+#: ../../controllers/PdfController.php:249
+msgid "Remove limit"
+msgstr ""
+
+#: ../../controllers/PdfController.php:255
+msgid "User Role"
+msgstr ""
+
+#: ../../controllers/PdfController.php:256
+msgid "Select role which you want to pages limit"
+msgstr ""
+
+#: ../../controllers/PdfController.php:263
+msgid "Visible pages"
+msgstr ""
+
+#: ../../controllers/PdfController.php:283
+msgid "PDF Preview"
+msgstr ""
+
+#: ../../controllers/PdfController.php:382
+msgid "PDF import scheduled."
+msgstr ""
+
+#: ../../controllers/PdfController.php:387
+#, php-format
+msgid ""
+"Imagick not found, please check other requirements on <a href=\"%s\">plugin "
+"settings page</a> for more information."
+msgstr ""
+
+#: ../../controllers/Plugin.php:51 ../../views/settings.php:101
+msgid "Settings"
+msgstr ""
+
+#: ../../controllers/Plugin.php:52
+msgid "Docs"
+msgstr ""
+
+#: ../../controllers/Plugin.php:182
+msgid "Upload folder"
+msgstr ""
+
+#: ../../controllers/Plugin.php:213
+msgid "is supported"
+msgstr ""
+
+#: ../../controllers/Plugin.php:214
+msgid "is not supported"
+msgstr ""
+
+#: ../../controllers/Plugin.php:219
+msgid "is writable"
+msgstr ""
+
+#: ../../controllers/Plugin.php:220
+msgid "is not writable"
+msgstr ""
+
+#: ../../controllers/Plugin.php:225
+msgid "is enabled"
+msgstr ""
+
+#: ../../controllers/Plugin.php:226
+#, php-format
+msgid ""
+"is disabled. To enable it please remove %s from your %s file or set it to %s"
+msgstr ""
+
+#: ../../controllers/Plugin.php:229
+msgid "Server loopback requests"
+msgstr ""
+
+#: ../../controllers/Plugin.php:231
+msgid "are enabled"
+msgstr ""
+
+#: ../../controllers/Plugin.php:232
+#, php-format
+msgid ""
+"are probably disabled. We think so because loopback request to the %s needed "
+"to execute WP Cron returned %s)"
+msgstr ""
+
+#: ../../controllers/AdminController.php:70
+msgid "requirements are met, happy using!"
+msgstr ""
+
+#: ../../controllers/AdminController.php:75
+#, php-format
+msgid ""
+"requirements not met, please check <a href=\"%s\">plugin settings page</a> "
+"for more information."
+msgstr ""
+
+#: ../../controllers/AdminController.php:89
+msgid ""
+"We have just created new section called PDFs in your dashboard. Use it to "
+"import and publish your cool PDF files."
+msgstr ""
+
+#: ../../templates/shortcode-pdf-light-viewer.php:14
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:706
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:768
+msgid "Download"
+msgstr ""
+
+#: ../../templates/shortcode-pdf-light-viewer.php:19
+msgid "Fullscreen"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:258
+msgid "Clear"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:259
+msgid "Default"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:260
+msgid "Select Color"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:261
+msgid "Current Color"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:288
+msgid "Select / Deselect All"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:1177
+msgid "Save"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:28
+msgid "Test Metabox"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:36
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:270
+msgid "Test Text"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:37
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:48
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:55
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:62
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:70
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:77
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:89
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:95
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:102
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:117
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:125
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:132
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:138
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:144
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:156
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:167
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:178
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:189
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:197
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:204
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:212
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:218
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:230
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:271
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:337
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:344
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:351
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:357
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:363
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:369
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:375
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:393
+msgid "field description (optional)"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:47
+msgid "Test Text Small"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:54
+msgid "Test Text Medium"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:61
+msgid "Website URL"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:69
+msgid "Test Text Email"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:76
+msgid "Test Time"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:82
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:83
+msgid "Time zone"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:88
+msgid "Test Date Picker"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:94
+msgid "Test Date Picker (UNIX timestamp)"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:101
+msgid "Test Date/Time Picker Combo (UNIX timestamp)"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:116
+msgid "Test Money"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:124
+msgid "Test Color Picker"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:131
+msgid "Test Text Area"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:137
+msgid "Test Text Area Small"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:143
+msgid "Test Text Area for Code"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:149
+msgid "Test Title Weeeee"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:150
+msgid "This is a title description"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:155
+msgid "Test Select"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:160
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:171
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:182
+msgid "Option One"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:161
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:172
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:183
+msgid "Option Two"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:162
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:173
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:184
+msgid "Option Three"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:166
+msgid "Test Radio inline"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:177
+msgid "Test Radio"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:188
+msgid "Test Taxonomy Radio"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:196
+msgid "Test Taxonomy Select"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:203
+msgid "Test Taxonomy Multi Checkbox"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:211
+msgid "Test Checkbox"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:217
+msgid "Test Multi Checkbox"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:222
+msgid "Check One"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:223
+msgid "Check Two"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:224
+msgid "Check Three"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:229
+msgid "Test wysiwyg"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:236
+msgid "Test Image"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:237
+msgid "Upload an image or enter a URL."
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:242
+msgid "Multiple Files"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:243
+msgid "Upload or add multiple images/attachments."
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:249
+msgid "oEmbed"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:250
+msgid ""
+"Enter a youtube, twitter, or instagram URL. Supports services listed at <a "
+"href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
+"Embeds</a>."
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:262
+msgid "About Page Metabox"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:283
+msgid "Repeating Field Group"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:289
+msgid "Generates reusable form entries"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:291
+msgid "Entry {#}"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:292
+msgid "Add Another Entry"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:293
+msgid "Remove Entry"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:330
+msgid "User Profile Metabox"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:336
+msgid "Extra Info"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:343
+msgid "Avatar"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:350
+msgid "Facebook URL"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:356
+msgid "Twitter URL"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:362
+msgid "Google+ URL"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:368
+msgid "Linkedin URL"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:374
+msgid "User Field"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:388
+msgid "Theme Options Metabox"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:392
+msgid "Site Background Color"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:250
+msgid "Add Row"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:306
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:706
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:768
+msgid "Remove"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:601
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:635
+msgid "No terms"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:674
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:728
+msgid "Add or Upload File"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:695
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:760
+msgid "Remove Image"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:706
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:768
+msgid "File:"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_ajax.php:47
+msgid "Please Try Again"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_ajax.php:131
+msgid "Remove Embed"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_ajax.php:134
+#, php-format
+msgid "No oEmbed Results Found for %s. View more info at"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_field.php:459
+msgid "Add Group"
+msgstr ""
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_field.php:460
+msgid "Remove Group"
+msgstr ""
+
+#: ../../views/settings.php:12
+msgid "About"
+msgstr ""
+
+#: ../../views/settings.php:57
+msgid "Plugin Requirements"
+msgstr ""
+
+#: ../../views/settings.php:108
+msgid ""
+"We do not have global plugin settings yet. You can change settings on each "
+"PDF editing page"
+msgstr ""
+
+#: ../../views/settings.php:125
+msgid "Personal Support"
+msgstr ""
+
+#: ../../views/settings.php:135
+#, php-format
+msgid "Support request, plugin: %s (time: %s)"
+msgstr ""
+
+#: ../../views/settings.php:140
+#, php-format
+msgid ""
+"To get support please contact us on address <a target=\"_blank\" href=\"%s\">"
+"%s</a>. Please also attach information below to let us know more about your "
+"server and site environment - this could be helpful to solve the issue."
+msgstr ""
+
+#: ../../views/settings.php:150
+msgid "Subject"
+msgstr ""
+
+#: ../../views/settings.php:156
+msgid "Server Info"
+msgstr ""
+
+#: ../../views/settings.php:176
+msgid "Theme"
+msgstr ""
+
+#: ../../views/settings.php:185
+msgid "from"
+msgstr ""
+
+#: ../../views/settings.php:195
+msgid "Plugins"
+msgstr ""
+
+#: ../../views/settings.php:225
+msgid "Documentation"
+msgstr ""
+
+#: ../../views/settings.php:226
+msgid "open in the separate tab"
+msgstr ""

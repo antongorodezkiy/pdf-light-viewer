@@ -2,6 +2,32 @@
 
 class PdfLightViewer_Plugin {
 	
+	private static $cached_meta = array();
+	static public function get_post_meta($post_id, $key = '', $single = false) {
+		if (!isset(self::$cached_meta[$post_id])) {
+			self::$cached_meta[$post_id] = array();
+			$meta_data = get_post_meta($post_id);
+			if (!empty($meta_data)) {
+				foreach($meta_data as $meta_key => $meta) {
+					if (is_serialized($meta[0])) {
+						$meta[0] = unserialize($meta[0]);
+					}
+					self::$cached_meta[$post_id][$meta_key] = $meta[0];
+				}
+			}
+		}
+		
+		if (!$key && isset(self::$cached_meta[$post_id])) {
+			return self::$cached_meta[$post_id];
+		}
+		else if (isset(self::$cached_meta[$post_id][$key])) {
+			return self::$cached_meta[$post_id][$key];
+		}
+		else {
+			return null;
+		}
+	}
+	
 	public static function getData($key = '') {
 		$plugin = get_plugin_data(PDF_LIGHT_VIEWER_FILE, false, true);
 		
@@ -17,6 +43,16 @@ class PdfLightViewer_Plugin {
 		self::createUploadDirectory();
 		update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notifications-viewed', false);
 		update_option(PDF_LIGHT_VIEWER_PLUGIN.'-pointers-viewed', false);
+		update_option(PDF_LIGHT_VIEWER_PLUGIN.'-show-post-type', true);
+	}
+	
+	public static function initEarlyActions() {
+		add_action(
+			'PdfLightViewer_PdfController::scheduled_pdf_import',
+			array('PdfLightViewer_PdfController','scheduled_pdf_import'),
+			10,
+			5
+		);
 	}
 
 	// plugin actions
@@ -29,6 +65,12 @@ class PdfLightViewer_Plugin {
 			return $links;
 		}
 		
+	public static function localization() {
+		load_plugin_textdomain(
+			PDF_LIGHT_VIEWER_PLUGIN,
+			false,
+			dirname(plugin_basename(PDF_LIGHT_VIEWER_FILE)).'/languages/'.get_locale().'/');
+	}
 		
 	// register post types
 		public static function registerPostTypes() {			
@@ -154,12 +196,15 @@ class PdfLightViewer_Plugin {
 	// plugin requirements
 		public static function requirements($boolean = false) {
 			$upload_dir_message = __('Upload folder',PDF_LIGHT_VIEWER_PLUGIN).': <code>'.PdfLightViewer_Plugin::getUploadDirectory().'</code>';
+			
+			$host_url = site_url();
+			
 			$requirements = array(
 				array(
 					'name' => 'PHP',
-					'status' => version_compare(PHP_VERSION, '5.3.0', '>='),
-					'success' => 'is 5.3 or higher',
-					'fail' => 'is lower than 5.3'
+					'status' => version_compare(PHP_VERSION, '5.2.0', '>='),
+					'success' => sprintf(__('is %s or higher',PDF_LIGHT_VIEWER_PLUGIN), '5.2'),
+					'fail' => sprintf(__('is lower than %s',PDF_LIGHT_VIEWER_PLUGIN), '5.2')
 				),
 				array(
 					'name' => 'Imagick',
@@ -228,7 +273,7 @@ class PdfLightViewer_Plugin {
 		
 		
 	public static function run() {
-		$requirements_met = PdfLightViewer_Plugin::requirements(true);
+		$requirements_met = self::requirements(true);
 		if (
 			(!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notifications-viewed') && $requirements_met)
 			|| !$requirements_met

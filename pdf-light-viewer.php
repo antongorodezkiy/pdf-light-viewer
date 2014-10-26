@@ -26,19 +26,26 @@ if (!class_exists('PdfLightViewer_Plugin')) {
 // plugin actions
 	add_filter('plugin_action_links', array('PdfLightViewer_Plugin','registerPluginActions'), 10, 2);
 	
+// Create Text Domain For Translations
+	add_action('plugins_loaded', array('PdfLightViewer_Plugin','localization'));
+	
+PdfLightViewer_Plugin::initEarlyActions();
+	
 function wp_pdf_light_viewer_init() {
 	
 	PdfLightViewer_Plugin::run();
 	
 	// third party
-		include_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/autoload.php');
+		if (version_compare(PHP_VERSION, '5.3.0', '>=')) {
+			include_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/autoload.php');
+		}
 		
-		function cmb_initialize_cmb_meta_boxes() {
+		function wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes() {
 			if (!class_exists('cmb_Meta_Box')) {
 				require_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php');
 			}
 		}
-		add_action('init', 'cmb_initialize_cmb_meta_boxes', 9999);
+		add_action('init', 'wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes', 9999);
 		
 		include_once(PDF_LIGHT_VIEWER_APPPATH.'/libraries/directory_helper.php');
 	
@@ -57,6 +64,10 @@ function wp_pdf_light_viewer_init() {
 	
 	if (!class_exists('PdfLightViewer_PdfController')) {
 		include_once(PDF_LIGHT_VIEWER_APPPATH.'/controllers/PdfController.php');
+	}
+	
+	if (!class_exists('PdfLightViewer_Model')) {
+		include_once(PDF_LIGHT_VIEWER_APPPATH.'/models/Model.php');
 	}
 	
 	// assets
@@ -88,5 +99,6 @@ function wp_pdf_light_viewer_init() {
 		// notifications init
 			add_action('admin_notices', array('PdfLightViewer_AdminController','showAdminNotifications'));
 	}
+	
 }
 add_action('after_setup_theme','wp_pdf_light_viewer_init');

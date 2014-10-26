@@ -17,7 +17,19 @@ class PdfLightViewer_AdminController {
 				'text' => $message,
 				'error' => $errormsg
 			);
-		} 
+		}
+		
+		public static function showDirectMessage($message, $errormsg = false) {
+			
+			if ($errormsg) {
+				$css_class = 'error';
+			}
+			else {
+				$css_class = 'updated';
+			}
+			
+			echo '<div class="'.$css_class.'"><p>'.$message.'</p></div>';
+		}
 
 		public static function showAdminNotifications() {
 			if (!session_id()) {
@@ -43,6 +55,12 @@ class PdfLightViewer_AdminController {
 	// ajax
 		public static function registerAjaxHandlers() {
 			
+			if (!PdfLightViewer_Model::$unimported) {
+				PdfLightViewer_Model::$unimported = PdfLightViewer_Model::getOneUnimported();
+			}
+			if (!empty(PdfLightViewer_Model::$unimported)) {
+				add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_ping_import', array('PdfLightViewer_PdfController','pdf_partially_import'));
+			}
 		}
 
 	// settings
@@ -56,7 +74,28 @@ class PdfLightViewer_AdminController {
 		}
 		
 		public static function settingsInit() {
-			//register_setting(PDF_LIGHT_VIEWER_PLUGIN, PDF_LIGHT_VIEWER_PLUGIN.'-add-to-post-content');
+			register_setting(PDF_LIGHT_VIEWER_PLUGIN, PDF_LIGHT_VIEWER_PLUGIN);
+		}
+
+		public static function getSettings() {
+			$config = array(
+				'show-post-type' => true
+			);	
+			return wp_parse_args(get_option(PDF_LIGHT_VIEWER_PLUGIN),$config);
+		}
+		
+		public static $cached_settings = null;
+		public static function getSetting($name) {
+			if (self::$cached_settings == null) {
+				self::$cached_settings = self::getSettings();
+			}
+			
+			if (isset(self::$cached_settings[$name])) {
+				return self::$cached_settings[$name];
+			}
+			else {
+				return null;
+			}
 		}
 		
 		
@@ -67,7 +106,7 @@ class PdfLightViewer_AdminController {
 			$plugin_title = PdfLightViewer_Plugin::getData('Title');
 			
 			if ($requirements_met) {
-				self::showMessage($plugin_title.': '.__('requirements met, happy using!',PDF_LIGHT_VIEWER_PLUGIN));
+				self::showMessage($plugin_title.': '.__('requirements are met, happy using!',PDF_LIGHT_VIEWER_PLUGIN));
 			}
 			else {
 				self::showMessage(
