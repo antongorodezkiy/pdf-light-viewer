@@ -5,7 +5,7 @@ class PdfLightViewer_AdminController {
 	// show message
 		public static function showMessage($message, $errormsg = false) {
 			
-			if (!session_id()) {
+			if (!session_id() && !headers_sent()) {
 				session_start();
 			}
 			
@@ -32,7 +32,7 @@ class PdfLightViewer_AdminController {
 		}
 
 		public static function showAdminNotifications() {
-			if (!session_id()) {
+			if (!session_id() && !headers_sent()) {
 				session_start();
 			}
 			

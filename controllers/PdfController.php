@@ -495,15 +495,23 @@ class PdfLightViewer_PdfController {
 	
 	protected static function delete_pages_by_pdf_id($post_id, $pdf_upload_dir) {
 				
+		if (!$pdf_upload_dir) {
+			return false;
+		}
+				
 		$directory_map = directory_map($pdf_upload_dir);
 		
-		foreach($directory_map as $file) {
-			unlink($pdf_upload_dir.'/'.$file);
+		if (!empty($directory_map)) {
+			foreach($directory_map as $file) {
+				unlink($pdf_upload_dir.'/'.$file);
+			}
 		}
-			   
+		
 		$directory_map = directory_map($pdf_upload_dir.'-thumbs');
-		foreach($directory_map as $file) {
-			unlink($pdf_upload_dir.'-thumbs/'.$file);
+		if (!empty($directory_map)) {
+			foreach($directory_map as $file) {
+				unlink($pdf_upload_dir.'-thumbs/'.$file);
+			}
 		}
 	}
 	

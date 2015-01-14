@@ -582,6 +582,15 @@
 				<p>If some requirement is not met, you will see it on settings page:</p>
 				<p><img src="img/screenshots/settings-requirements-are-not-met.jpeg" alt="Requirements are not met" /></p>
 				
+				<h4 class="content-subhead">If Imagick is not supported</h4>
+				
+				<blockquote>
+					<p>The Imagick library is required for PDF Light Viewer plugin to work. Not supported in current context means that the Imagick library is not installed or turned off on the server. To make plugin work you will need to install it or to turn it on.</p>
+					<p><a href="http://en.wikipedia.org/wiki/ImageMagick" target="_blank">Imagick</a> is the image manipulation library for PHP. Imagick is a server software thus it cannot be installed through the Wordpress interface or Wordpress plugins system unfortunately.</p>
+					<p>To make it work, someone, you, your server administrator or your hosting provider, should install (or enable, if it's already installed) this software on your server. If your site is maintained by some administrator, he or she already knows how to install ImageMagick and Imagick libraries. Otherwise the installation could be done through cPanel in some cases and you could try to install it.</p>
+					<p>Sometimes your hosting provider could restrict installation of additional software. In this case you can contact them for further instructions and details.</p>
+				</blockquote>
+				
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#setup">Set Up</a> section to know more about plugin global settings.</p>
 
@@ -625,6 +634,14 @@
 			</div>
 	
 			<div class="content">
+				<div class="content-subhead">The process of publishing PDF files is the following:</div>
+					<ol>
+						<li>User uploads PDF document</li>
+						<li>PDF document is parsed by the plugin</li>
+						<li>User stays on the site until the document is parsed</li>
+						<li>User adds the wordpress shortcode, produced by the plugin, to the page or post</li>
+					</ol>
+				
 				<div class="content-subhead">Importing PDF file</div>
 		
 					<p>You can go to PDFs menu item to see the list of imported PDF files.</p>
@@ -707,6 +724,18 @@
 						After importing you can add PDF files with shortcodes anywhere in your post or page. You can copy shortcodes from PDFs list page or compose them manually.
 					</p>
 					<p><img src="img/screenshots/pdf-list-page.jpeg" alt="PDF List Page" /></p>
+				
+				<div class="content-subhead">Visual Composer</div>
+					<p>
+						In case when you're using Visual Composer plugin, the better approach would be to map PDF Light Viewer shortcode.
+					</p>
+					<p><img src="img/screenshots/visual-composer-shortcode-map.jpeg" alt="Map Shortcode" /></p>
+					
+					<p>
+						After mapping you can go to the page, when you want to have your PDF document and insert it there like shown below:
+					</p>
+					<p><img src="img/screenshots/visual-composer-shortcode-select.jpeg" alt="Shortcode Select" /></p>
+					<p><img src="img/screenshots/visual-composer-set-up-shortcode.jpeg" alt="Shortcode Set Up" /></p>
 				
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#advanced">Advanced Usage</a> section to get full control on the plugin functionality and look and feel.</p>

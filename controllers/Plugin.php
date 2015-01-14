@@ -113,7 +113,7 @@ class PdfLightViewer_Plugin {
 		return $info;
 	}
 	
-	public function getDocsUrl() {
+	public static function getDocsUrl() {
 		if (file_exists(PDF_LIGHT_VIEWER_APPPATH.'/documentation/index_'.WPLANG.'.html')) {
 			$documentation_url = 'documentation/index'.WPLANG.'.html';
 		}
@@ -124,29 +124,32 @@ class PdfLightViewer_Plugin {
 		return $documentation_url;
 	}
 	
-	public function getSettingsUrl() {
+	public static function getSettingsUrl() {
 		return admin_url('options-general.php?page='.PDF_LIGHT_VIEWER_PLUGIN);
 	}
 	
-	public function createUploadDirectory($id = '') {
+	public static function createUploadDirectory($id = '') {
 		$wp_upload_dir = wp_upload_dir();
 		$basedir = $wp_upload_dir['basedir'];
 		
 		$main_upload_dir = $basedir.'/'.PDF_LIGHT_VIEWER_PLUGIN;
 		
-		if (!file_exists($main_upload_dir)) {
-			mkdir($main_upload_dir);
+		if (file_exists($main_upload_dir)) {
+			$created = true;
+		}
+		else {
+			$created = @mkdir($main_upload_dir);
 		}
 		
 		if ($id) {
 			$pdf_upload_dir = $main_upload_dir.'/'.$id;
 			if (!file_exists($pdf_upload_dir)) {
-				mkdir($pdf_upload_dir);
+				@mkdir($pdf_upload_dir);
 			}
 			
 			$pdf_thumbs_upload_dir = $main_upload_dir.'/'.$id.'-thumbs';
 			if (!file_exists($pdf_thumbs_upload_dir)) {
-				mkdir($pdf_thumbs_upload_dir);
+				@mkdir($pdf_thumbs_upload_dir);
 			}
 			
 			if (file_exists($pdf_upload_dir)) {
@@ -166,7 +169,7 @@ class PdfLightViewer_Plugin {
 	}
 	
 	
-	public function getUploadDirectory($id = '') {
+	public static function getUploadDirectory($id = '') {
 		$wp_upload_dir = wp_upload_dir();
 		$basedir = $wp_upload_dir['basedir'];
 		
@@ -181,7 +184,7 @@ class PdfLightViewer_Plugin {
 		}
 	}
 	
-	public function getUploadDirectoryUrl($id) {
+	public static function getUploadDirectoryUrl($id) {
 		$wp_upload_dir = wp_upload_dir();
 		$basedir = $wp_upload_dir['baseurl'];
 		
