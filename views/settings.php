@@ -45,6 +45,9 @@
 							<p>
 								Fullscreen &copy; <a href="https://github.com/kayahr/jquery-fullscreen-plugin/" target="_blank">jQuery Fullscreen Plugin&nbsp;<span class="fa fa-external-link-square"></span></a>
 							</p>
+							<p>
+								Zoom &copy; <a href="http://www.jacklmoore.com/zoom/" target="_blank">jQuery Zoom&nbsp;<span class="fa fa-external-link-square"></span></a>
+							</p>
 						</blockquote>
 					</div>
 				</div>

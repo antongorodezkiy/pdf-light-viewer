@@ -13,6 +13,11 @@ class PdfLightViewer_Model {
 					'value' => 100,
 					'compare' => '<',
 					'type' => 'NUMERIC'
+				),
+				array(
+					'key' => '_pdf-light-viewer-import-status',
+					'value' => 'failed',
+					'compare' => '!='
 				)
 			),
 			'nopaging' => true

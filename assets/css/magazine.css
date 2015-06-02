@@ -22,14 +22,16 @@
 .pdf-light-viewer-magazine-viewport {
 	display: block;
 	z-index: 101;
+	margin-bottom: 25px;
 }
 
 .pdf-light-viewer-magazine-viewport .pdf-light-viewer-magazine-viewport-container {
 	position:relative;
 	/*top:50%;
 	left:50%;*/
-	width:922px;
-	height:600px;
+	/*width:922px;
+	height:600px;*/
+	width: 100%;
 	margin:auto;
 }
 
@@ -51,11 +53,12 @@
 	background-color:white;
 	background-repeat:no-repeat;
 	background-size:100% 100%;
+	padding: 0 !important;
 }
 
 
 
-.pdf-light-viewer-magazine .page{
+.pdf-light-viewer-magazine .page {
 	-webkit-box-shadow:0 0 20px rgba(0,0,0,0.2);
 	-moz-box-shadow:0 0 20px rgba(0,0,0,0.2);
 	-ms-box-shadow:0 0 20px rgba(0,0,0,0.2);
@@ -86,6 +89,12 @@
 	background-image:-ms-linear-gradient(left, rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
 	background-image:-o-linear-gradient(left, rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
 	background-image:linear-gradient(left, rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
+	
+	-webkit-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	-moz-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	-ms-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	-o-box-shadow:0 0 20px rgba(0,0,0,0.2);
+	box-shadow:0 0 20px rgba(0,0,0,0.2);
 }
 
 .pdf-light-viewer-magazine .odd .gradient{
@@ -112,11 +121,11 @@
 	left:219px;
 }
 
-.pdf-light-viewer-magazine-viewport .shadow{
-	-webkit-transition: -webkit-box-shadow 0.5s;
-	-moz-transition: -moz-box-shadow 0.5s;
-	-o-transition: -webkit-box-shadow 0.5s;
-	-ms-transition: -ms-box-shadow 0.5s;
+.pdf-light-viewer-magazine-viewport .shadow {
+	-webkit-transition: -webkit-box-shadow 0.3s;
+	-moz-transition: -moz-box-shadow 0.3s;
+	-o-transition: -webkit-box-shadow 0.3s;
+	-ms-transition: -ms-box-shadow 0.3s;
 
 	-webkit-box-shadow:0 0 20px #ccc;
 	-moz-box-shadow:0 0 20px #ccc;
@@ -199,6 +208,7 @@
 
 .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails .bx-wrapper {
 	margin: 30px auto;
+	box-shadow: none;
 }
 
 .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails .bx-viewport {
@@ -260,6 +270,11 @@
 
 .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails li.i {
 	width: 80px!important;
+}
+
+.pdf-light-viewer .pdf-light-viewer-magazine-thumbnails li img {
+	max-width: 75px;
+	max-height: 100px;
 }
 
 .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails li span{

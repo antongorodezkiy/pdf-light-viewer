@@ -5,7 +5,9 @@
 	
 	if (!empty($pdf_light_viewer_config['pages'])) {
 	?>
-		<div class="pdf-light-viewer js-pdf-light-viewer">
+		<div class="pdf-light-viewer js-pdf-light-viewer"
+			data-enable-zoom="<?php echo !$pdf_light_viewer_config['disable_page_zoom'];?>"
+			>
 			
 			<div class="pdf-light-viewer-magazine-viewport">
 				
@@ -16,14 +18,20 @@
 						</a>
 					<?php } ?>
 					
-					<a title="<?php _e('Fullscreen',PDF_LIGHT_VIEWER_PLUGIN);?>" href="#!" class="js-pdf-light-viewer-fullscreen">
-						<i class="fa fa-arrows-alt fa-2x"></i>
-						<i class="fa fa-compress fa-2x initially-hidden"></i>
-					</a>
+					<?php if (!$pdf_light_viewer_config['hide_fullscreen_button']) { ?>
+						<a title="<?php _e('Fullscreen',PDF_LIGHT_VIEWER_PLUGIN);?>" href="#!" class="js-pdf-light-viewer-fullscreen">
+							<i class="fa fa-arrows-alt fa-2x"></i>
+							<i class="fa fa-compress fa-2x initially-hidden"></i>
+						</a>
+					<?php } ?>
 				</div>
 				
-				<div class="pdf-light-viewer-magazine-viewport-container">	
-					<div class="js-pdf-light-viewer-magazine pdf-light-viewer-magazine">
+				<div class="pdf-light-viewer-magazine-viewport-container"
+					style="width: <?php echo ($pdf_light_viewer_config['page_width']*2);?>px;">	
+					<div class="js-pdf-light-viewer-magazine pdf-light-viewer-magazine"
+						data-width="<?php echo $pdf_light_viewer_config['page_width'];?>"
+						data-height="<?php echo $pdf_light_viewer_config['page_height'];?>"
+						>
 						<?php foreach($pdf_light_viewer_config['pages'] as $page) {
 							?>
 							<div style="background-image:url('<?php echo plugins_url('assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>');">
@@ -46,7 +54,10 @@
 					
 						<ul>
 							<li class="i slide">
-								<img src="<?php echo $pdf_upload_dir_url.'-thumbs/'.$pdf_light_viewer_config['thumbs'][0];?>" width="76" height="100" class="page-1">
+								<img
+									src="<?php echo $pdf_upload_dir_url.'-thumbs/'.$pdf_light_viewer_config['thumbs'][0];?>"
+									class="page-1"
+									/>
 								<span>1</span>
 							</li>
 							<?php
@@ -62,15 +73,24 @@
 								$next_thumb = $pdf_light_viewer_config['thumbs'][$i+1];
 								?>
 								<li class="d slide">
-									<img src="<?php echo $pdf_upload_dir_url.'-thumbs/'.$thumb;?>" width="76" height="100" class="page-<?php echo ($i+1);?>">
-									<img src="<?php echo $pdf_upload_dir_url.'-thumbs/'.$next_thumb;?>" width="76" height="100" class="page-<?php echo ($i+2);?>">
+									<img
+										src="<?php echo $pdf_upload_dir_url.'-thumbs/'.$thumb;?>"
+										class="page-<?php echo ($i+1);?>"
+										/>
+									<img
+										src="<?php echo $pdf_upload_dir_url.'-thumbs/'.$next_thumb;?>"
+										class="page-<?php echo ($i+2);?>"
+										/>
 									<span><?php echo ($i+1);?>-<?php echo ($i+2);?></span>
 								</li>
 							<?php } ?>
 							
 							<?php if ($last_page) { ?>
 								<li class="i slide">
-									<img src="<?php echo $pdf_upload_dir_url.'-thumbs/'.$pdf_light_viewer_config['thumbs'][$last_thumb_index];?>" width="76" height="100" class="page-<?php echo ($last_thumb_index+1);?>">
+									<img
+										src="<?php echo $pdf_upload_dir_url.'-thumbs/'.$pdf_light_viewer_config['thumbs'][$last_thumb_index];?>"
+										class="page-<?php echo ($last_thumb_index+1);?>"
+										/>
 									<span><?php echo ($last_thumb_index+1);?></span>
 								</li>
 							<?php } ?>

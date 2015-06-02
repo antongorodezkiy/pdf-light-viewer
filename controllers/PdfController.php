@@ -214,10 +214,20 @@ class PdfLightViewer_PdfController {
 					'default' => ''
 				),
 				array(
-					'name' => __('Hide thumbnail navigatin', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => __('Hide thumbnail navigation', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'hide_thumbnails_navigation',
 					'type' => 'checkbox'
-				)
+				),
+				array(
+					'name' => __('Hide fullscreen button', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'hide_fullscreen_button',
+					'type' => 'checkbox'
+				),
+				array(
+					'name' => __('Disable page zoom', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'disable_page_zoom',
+					'type' => 'checkbox'
+				),
 			),
 		);
 		
@@ -315,6 +325,9 @@ class PdfLightViewer_PdfController {
 			}
 			
 		$pdf_light_viewer_config['hide_thumbnails_navigation'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_thumbnails_navigation', true);
+		$pdf_light_viewer_config['hide_fullscreen_button'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_fullscreen_button', true);
+		$pdf_light_viewer_config['disable_page_zoom'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'disable_page_zoom', true);
+		
 		
 		$pdf_upload_dir = PdfLightViewer_Plugin::getUploadDirectory($post->ID);
 		$pdf_upload_dir_url = PdfLightViewer_Plugin::getUploadDirectoryUrl($post->ID);
@@ -322,11 +335,18 @@ class PdfLightViewer_PdfController {
 		$pdf_light_viewer_config['pdf_upload_dir_url'] = $pdf_upload_dir_url;
 		
 		$pdf_light_viewer_config['pages'] = directory_map($pdf_upload_dir);
-		sort($pdf_light_viewer_config['pages']);
+		if (!empty($pdf_light_viewer_config['pages'])) {
+			sort($pdf_light_viewer_config['pages']);
+		}
 		
 		$pdf_light_viewer_config['thumbs'] = directory_map($pdf_upload_dir.'-thumbs');
-		sort($pdf_light_viewer_config['thumbs']);
+		if (!empty($pdf_light_viewer_config['thumbs'])) {
+			sort($pdf_light_viewer_config['thumbs']);
+		}
 		
+		$pdf_light_viewer_config['page_width'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-width', true);
+		$pdf_light_viewer_config['page_height'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-height', true);
+			
 		if (!empty($pdf_light_viewer_config['pages'])) {
 			include_once(PDF_LIGHT_VIEWER_APPPATH.'/templates/shortcode-pdf-light-viewer.php');
 		}
@@ -405,10 +425,15 @@ class PdfLightViewer_PdfController {
 		
 		$status = PdfLightViewer_Plugin::get_post_meta($post_id,'_pdf-light-viewer-import-status',true);
 		if ($status == 'scheduled') {
+			$status_label = __('scheduled', PDF_LIGHT_VIEWER_PLUGIN);
 			update_post_meta($post_id,'_pdf-light-viewer-import-status', 'started');
 		}
 		else if ($status == 'started') {
+			$status_label = __('started', PDF_LIGHT_VIEWER_PLUGIN);
 			update_post_meta($post_id,'_pdf-light-viewer-import-status', 'processing');
+		}
+		else {
+			$status_label = __('processing', PDF_LIGHT_VIEWER_PLUGIN);
 		}
 		
 		ignore_user_abort(true);
@@ -438,57 +463,79 @@ class PdfLightViewer_PdfController {
 			return;
 		}
 	
+		$error = '';
 		for($current_page; $current_page <= $pdf_pages_number; $current_page++) {
 			$page_number = sprintf('%1$05d',$current_page);
 			if (!file_exists($pdf_upload_dir.'/page-'.$page_number.'.jpg')) {
 				
-				$_img = new Imagick();
-				$_img->setResolution($jpeg_resolution, $jpeg_resolution);
-				$_img->readImage($pdf_file_path.'['.($current_page-1).']');
-		
-				
-					$_img->setImageCompression(Imagick::COMPRESSION_JPEG);
-					$_img->resizeImage(768, round(768/$ratio), Imagick::FILTER_LANCZOS, 1, false);
-					$_img->setImageCompressionQuality($jpeg_compression_quality);
-					$_img->setImageFormat('jpg');
-					$_img->setBackgroundColor(new ImagickPixel('#FFFFFF'));
+				try {
+					$_img = new Imagick();
+					$_img->setResolution($jpeg_resolution, $jpeg_resolution);
+					$_img->readImage($pdf_file_path.'['.($current_page-1).']');
 			
-					$white = new Imagick();
-					$white->newImage(768, round(768/$ratio), "white");
-					$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
-					$white->setImageFormat('jpg');
-					$white->writeImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
 					
-					$_img->resizeImage(76, round(76/$ratio),Imagick::FILTER_LANCZOS, 1, false);
-			
-					$white = new Imagick();
-					$white->newImage(76, round(76/$ratio), "white");
-					$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
-					$white->setImageFormat('jpg');
-					$white->writeImage($pdf_upload_dir.'-thumbs/page-'.$page_number.'-100x76.jpg');
-					
-					if ($current_page == 1) {
-						$file = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
-						PdfLightViewer_Plugin::set_featured_image($post_id, $file, 'pdf-'.$post_id.'-page-'.$page_number.'.jpg');
-					}
+						$_img->setImageCompression(Imagick::COMPRESSION_JPEG);
+						$_img->resizeImage(1024, round(1024/$ratio), Imagick::FILTER_BESSEL, 1, false);
+						$_img->setImageCompressionQuality($jpeg_compression_quality);
+						$_img->setImageFormat('jpg');
+						//$_img->setImageInterlaceScheme(Imagick::INTERLACE_JPEG);
+						$_img->transformImageColorspace(Imagick::COLORSPACE_SRGB);
+						//$_img->setBackgroundColor(new ImagickPixel('#FFFFFF'));
+						
+						// Remove transparency, fill transparent areas with white rather than black.
+						//$_img->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
+						
+						// Convert to RGB to prevent creating a jpg with CMYK colors.
+						
 				
-					$percent = (($current_page)/$pdf_pages_number)*100;
-					update_post_meta($post_id,'_pdf-light-viewer-import-progress',$percent);
-					update_post_meta($post_id,'_pdf-light-viewer-import-current-page',$current_page);	
+						$white = new Imagick();
+						$white->newImage(1024, round(1024/$ratio), "white");
+						$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
+						$white->setImageFormat('jpg');
+						$white->setImageColorspace($_img->getImageColorspace());
+						$white->writeImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
+						
+						$_img->resizeImage(76, round(76/$ratio),Imagick::FILTER_BESSEL, 1, false);
+				
+						$white = new Imagick();
+						$white->newImage(76, round(76/$ratio), "white");
+						$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
+						$white->setImageFormat('jpg');
+						$white->setImageColorspace($_img->getImageColorspace());
+						$white->writeImage($pdf_upload_dir.'-thumbs/page-'.$page_number.'-100x76.jpg');
+						
+						if ($current_page == 1) {
+							$file = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
+							PdfLightViewer_Plugin::set_featured_image($post_id, $file, 'pdf-'.$post_id.'-page-'.$page_number.'.jpg');
+						}
 					
-				$_img->destroy();
+						$percent = (($current_page)/$pdf_pages_number)*100;
+						update_post_meta($post_id,'_pdf-light-viewer-import-progress',$percent);
+						update_post_meta($post_id,'_pdf-light-viewer-import-current-page',$current_page);	
+						
+					$_img->destroy();
+				}
+				catch(Exception $e) {
+					$status = 'failed';
+					$status_label = __('failed', PDF_LIGHT_VIEWER_PLUGIN);
+					$error = $e->getMessage();
+					update_post_meta($post_id,'_pdf-light-viewer-import-status', $status);
+				}
+				
 				break;
 			}
 		}
 			
 		if ($percent >= 100) {
 			$status = 'finished';
+			$status_label = __('finished', PDF_LIGHT_VIEWER_PLUGIN);
 			update_post_meta($post_id,'_pdf-light-viewer-import-status', $status);
 		}
 		
 		echo json_encode(array(
-			'status' => $status,
-			'progress' => (int)$percent
+			'status' => $status_label,
+			'progress' => (int)$percent,
+			'error' => $error
 		));
 		exit;
 	}

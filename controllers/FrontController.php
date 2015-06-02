@@ -29,6 +29,9 @@ class PdfLightViewer_FrontController {
 			}
 		
 		$pdf_light_viewer_config['hide_thumbnails_navigation'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_thumbnails_navigation', true);
+		$pdf_light_viewer_config['hide_fullscreen_button'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_fullscreen_button', true);
+		$pdf_light_viewer_config['disable_page_zoom'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'disable_page_zoom', true);
+		
 		
 		$pdf_upload_dir = PdfLightViewer_Plugin::getUploadDirectory($post->ID);
 		$pdf_upload_dir_url = PdfLightViewer_Plugin::getUploadDirectoryUrl($post->ID);
@@ -71,6 +74,9 @@ class PdfLightViewer_FrontController {
 					$pdf_light_viewer_config['thumbs'][$thumbs] = $thumbs[$page];
 				}
 			}
+			
+		$pdf_light_viewer_config['page_width'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-width', true);
+		$pdf_light_viewer_config['page_height'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-height', true);
 			
 		
 		ob_start();
