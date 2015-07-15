@@ -9,7 +9,7 @@
   
 **Tested up to:** 4.2.2
   
-**Stable tag:** 1.1.1
+**Stable tag:** 1.1.2
   
 **License:** GPLv2
   
@@ -60,7 +60,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
-### 1.1.1 - 2015-07-15 ###
+### 1.1.1-1.1.2 - 2015-07-15 ###
 * Added information about GhostScript to the documentation
 * Improved requirements section
 					

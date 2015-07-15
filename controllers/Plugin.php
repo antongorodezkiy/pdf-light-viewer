@@ -202,17 +202,53 @@ class PdfLightViewer_Plugin {
 			
 			$host_url = site_url();
 			
+			$Imagick = null;
+			$ImagickVersion = null;
+			if (class_exists("Imagick")) {
+				$Imagick = new Imagick();
+				$ImagickVersion = $Imagick->getVersion();
+			}
+			
+			if (stristr(php_uname('s'), 'win')) {
+				$ghostscript_version = shell_exec('gs --version');
+			}
+			else {
+				$ghostscript_version = shell_exec('$(which gs) --version');
+			}
+			
+			
 			$requirements = array(
 				array(
 					'name' => 'PHP',
 					'status' => version_compare(PHP_VERSION, '5.2.0', '>='),
 					'success' => sprintf(__('is %s or higher',PDF_LIGHT_VIEWER_PLUGIN), '5.2'),
-					'fail' => sprintf(__('is lower than %s',PDF_LIGHT_VIEWER_PLUGIN), '5.2')
+					'fail' => sprintf(__('is lower than %s',PDF_LIGHT_VIEWER_PLUGIN), '5.2'),
+					'description' => ''
 				),
 				array(
-					'name' => 'Imagick',
-					'status' => (extension_loaded('imagick') || class_exists("Imagick")),
-					'success' => __('is supported',PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => __('Imagick PHP Extension',PDF_LIGHT_VIEWER_PLUGIN),
+					'status' => extension_loaded('imagick'),
+					'success' => __('is loaded',PDF_LIGHT_VIEWER_PLUGIN),
+					'fail' => __('is not loaded',PDF_LIGHT_VIEWER_PLUGIN),
+					'description' => __("Imagick PHP Extension is required for PDF -> JPEG convertation. It cannot be included with the plugin unfortunately, so you or your hosting provider/server administrator should install it.",PDF_LIGHT_VIEWER_PLUGIN)
+				),
+				array(
+					'name' => __('Imagick PHP Wrapper',PDF_LIGHT_VIEWER_PLUGIN),
+					'status' => class_exists("Imagick"),
+					'success' => __('is supported',PDF_LIGHT_VIEWER_PLUGIN).($ImagickVersion ? '. v.'.$ImagickVersion['versionString'] : ''),
+					'fail' => __('is not supported',PDF_LIGHT_VIEWER_PLUGIN),
+					'description' => __("Imagick PHP Wrapper is required to make available Imagick PHP Extension functionality in the plugin. Usually it's integrated through the PECL plugin. It cannot be included with the plugin unfortunately, so you or your hosting provider/server administrator should install it.",PDF_LIGHT_VIEWER_PLUGIN)
+				),
+				array(
+					'name' => __('Imagick PDF Support',PDF_LIGHT_VIEWER_PLUGIN),
+					'status' => ($Imagick && !empty($Imagick->queryFormats('PDF'))),
+					'success' => __('is enabled',PDF_LIGHT_VIEWER_PLUGIN),
+					'fail' => __('is not enabled',PDF_LIGHT_VIEWER_PLUGIN)
+				),
+				array(
+					'name' => 'GhostScript',
+					'status' => $ghostscript_version,
+					'success' => __('is supported',PDF_LIGHT_VIEWER_PLUGIN).($ghostscript_version ? '. v.'.$ghostscript_version : ''),
 					'fail' => __('is not supported',PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				array(
@@ -222,6 +258,7 @@ class PdfLightViewer_Plugin {
 					'fail' => __('is not writable',PDF_LIGHT_VIEWER_PLUGIN)
 				)
 			);
+			
 			
 			if ($boolean) {
 				$status = true;

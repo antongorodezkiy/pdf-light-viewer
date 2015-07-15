@@ -97,8 +97,7 @@ class PdfLightViewer_AssetsController {
 			$styles = array(
 				'font-awesome' => 'assets/bower_components/fontawesome/css/font-awesome.min.css',
 				'jquery.bxslider.css' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.css',
-				'magazine.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/magazine.css',
-				'frontend.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/frontend.css'
+				'magazine.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/magazine.css'
 			);
 			
 			foreach($styles as $id => $file) {
