@@ -9,7 +9,7 @@
   
 **Tested up to:** 4.2.2
   
-**Stable tag:** 1.1.0
+**Stable tag:** 1.1.1
   
 **License:** GPLv2
   
@@ -20,7 +20,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 ## Description ##
 
-[Website](http://pdf-light-viewer.wp.teamlead.pw/) |  [Demo](http://pdf-light-viewer.wp.teamlead.pw/demo/) | [Docs](http://pdf-light-viewer.wp.teamlead.pw/wp-content/plugins/pdf-light-viewer/documentation/index.html) | [Donate(https://www.liqpay.com/api/pay?&public_key=i92244053838&amount=5&currency=USD&description=PDF%20Light%20Viewer&type=donate&pay_way=card,delayed&language=en)
+[Website](http://pdf-light-viewer.wp.teamlead.pw/) |  [Demo](http://pdf-light-viewer.wp.teamlead.pw/demo/) | [Docs](http://pdf-light-viewer.wp.teamlead.pw/wp-content/plugins/pdf-light-viewer/documentation/index.html) | [Donate](https://www.liqpay.com/api/pay?&public_key=i92244053838&amount=5&currency=USD&description=PDF%20Light%20Viewer&type=donate&pay_way=card,delayed&language=en)
 
 ### Features ###
 * Unlimited PDF files.
@@ -60,6 +60,10 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+### 1.1.1 - 2015-07-15 ###
+* Added information about GhostScript to the documentation
+* Improved requirements section
+					
 ### 1.1.0 - 2015-06-02 ###
 * Improved CMYK PDF import
 * Improved admin import status messages

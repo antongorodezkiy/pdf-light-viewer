@@ -567,7 +567,9 @@
 				
 				<ul>
 					<li>PHP is 5.2 or higher</li>
-					<li>Imagick support</li>
+					<li>ImageMagick PHP extension</li>
+					<li>Imagick PECL library</li>
+					<li><b>GhostScript support</b></li>
 					<li>Writable upload folder <code>wp-content/uploads/pdf-light-viewer</code></li>
 				</ul>
 				
@@ -582,13 +584,26 @@
 				<p>If some requirement is not met, you will see it on settings page:</p>
 				<p><img src="img/screenshots/settings-requirements-are-not-met.jpeg" alt="Requirements are not met" /></p>
 				
-				<h4 class="content-subhead">If Imagick is not supported</h4>
+				<h4 class="content-subhead">ImageMagick support</h4>
 				
 				<blockquote>
-					<p>The Imagick library is required for PDF Light Viewer plugin to work. Not supported in current context means that the Imagick library is not installed or turned off on the server. To make plugin work you will need to install it or to turn it on.</p>
-					<p><a href="http://en.wikipedia.org/wiki/ImageMagick" target="_blank">Imagick</a> is the image manipulation library for PHP. Imagick is a server software thus it cannot be installed through the Wordpress interface or Wordpress plugins system unfortunately.</p>
+					<p>The ImageMagick package and Imagick library are required for PDF Light Viewer plugin to work. Not supported in current context means that the Imagick library is not installed or turned off on the server. To make plugin work you will need to install it or to turn it on.</p>
+					<p><a href="http://en.wikipedia.org/wiki/ImageMagick" target="_blank">ImageMagick</a> is the image manipulation library for PHP. ImageMagick is a server software and currently not included into the plugin.</p>
 					<p>To make it work, someone, you, your server administrator or your hosting provider, should install (or enable, if it's already installed) this software on your server. If your site is maintained by some administrator, he or she already knows how to install ImageMagick and Imagick libraries. Otherwise the installation could be done through cPanel in some cases and you could try to install it.</p>
 					<p>Sometimes your hosting provider could restrict installation of additional software. In this case you can contact them for further instructions and details.</p>
+					<p>To install ImageMagick manually please visit <a href="http://php.net/manual/en/imagick.setup.php" target="_blank">this installation guide</a>.</p>
+				</blockquote>
+				
+				<h4 class="content-subhead">GhostScript support</h4>
+				
+				<blockquote cite="Noticed by Alexander">
+					<p>The GhostScript package is required for PDF Light Viewer plugin to work. To make plugin work you will need to install it on the server.</p>
+					<p><a href="https://en.wikipedia.org/wiki/Ghostscript" target="_blank">GhostScript</a> is the application to work with PDF files. GhostScript is a server software and currently not included into the plugin.</p>
+					<p>To make it work, someone, you, your server administrator or your hosting provider, should install this software on your server. If your site is maintained by some administrator, he or she already knows how to install GhostScript.</p>
+					<p>To install GhostScript manually please visit <a href="http://ghostscript.com/doc/current/Install.htm" target="_blank">this installation guide</a>.</p>
+					<p>
+						<b>Big thanks to <i>Alexander</i> for this notice.</b>
+					</p>
 				</blockquote>
 				
 				<h4 class="content-subhead">What next?</h4>
@@ -889,16 +904,53 @@
 			</div>
 	
 			<div class="content">
+				<h4 class="content-subhead">1.1.1 - 2015-07-15</h4>
+				<ul>
+					<li>Added information about GhostScript to the documentation</li>
+					<li>Improved requirements section</li>
+				</ul>
+				
+				<h4 class="content-subhead">1.1.0 - 2015-06-02</h4>
+				<ul>
+					<li>Improved CMYK PDF import</li>
+					<li>Improved admin import status messages</li>
+					<li>Added landscape PDF support</li>
+					<li>Fixed some bugs with images sizing</li>
+					<li>Increased default image sizes</li>
+					<li>Added page zoom for flipbooks</li>
+					<li>Added compability for 2 or more instances of plugin on the same page</li>
+					<li>Added options to disable zoom and fullscreen</li>
+					<li>Updated client side libraries</li>
+				</ul>
+
+				<h4 class="content-subhead">Version 1.0.1 - 2015-01-14</h4>
+				<ul>
+					<li>Fixed PHP errors</li>
+					<li>Added docs explanation for Visual Composer How-To and "Imagick is not supported" requirement error</li>
+				</ul>
 				
 				<h4 class="content-subhead">Version 1.0</h4>
-				
 				<ul>
 					<li>The plugin released</li>
 				</ul>
-				
 			</div>
 		</div>
 		
+		<div id="changelog" class="doc-section">
+			<div class="header">
+				<h1>Contributors</h1>
+			</div>
+	
+			<div class="content">
+				
+				<ul>
+					<li><a href="http://teamlead.pw" target="_blank">TeamLead Power</a></li>
+					<li><a href="http://github.com/antongorodezkiy/" target="_blank">antongorodezkiy</a></li>
+					<li>Alexander</li>
+				</ul>
+
+			</div>
+		</div>
 		
 	</div>
 
