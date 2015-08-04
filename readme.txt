@@ -3,8 +3,8 @@ Contributors: antongorodezkiy, teamleadpower
 Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link: https://www.liqpay.com/api/pay?&public_key=i92244053838&amount=5&currency=USD&description=PDF%20Light%20Viewer&type=donate&pay_way=card,delayed&language=en
 Requires at least: 3.5
-Tested up to: 4.2.2
-Stable tag: 1.1.2
+Tested up to: 4.2.4
+Stable tag: 1.1.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * [Well-documented](http://pdf-light-viewer.wp.teamlead.pw/wp-content/plugins/pdf-light-viewer/documentation/index.html).
 * Fully translatable to any language using .po files.
 * Supports wordpress multisites
+* Responsive design
 
 == Installation ==
 1. Get the package
@@ -44,8 +45,17 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 == Changelog ==
 
+= 1.1.3 - 2015-08-04 =
+* Added responsiveness for tablet and phones
+* Improved fullscreen mode
+* Hiding fullscreen button for browsers without Fullscreen API support
+* Fixing lazyload issues - thanks to Amit for reporting the issue
+* Some interface improvements - thanks to zipzit
+* BX Slider wrong path #3 - fixed
+* pdf-light-viewer template is not functional from user's theme. #5 - fixed
+
 = 1.1.1-1.1.2 - 2015-07-15 =
-* Added information about GhostScript to the documentation
+* Added information about GhostScript to the documentation - thanks to Alexander
 * Improved requirements section
 
 = 1.1.0 - 2015-06-02 =

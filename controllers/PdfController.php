@@ -80,7 +80,7 @@ class PdfLightViewer_PdfController {
 	
 	public static function custom_columns_registration( $defaults ) {
 		$defaults['preview'] = __('Preview', PDF_LIGHT_VIEWER_PLUGIN);
-		$defaults['shortcode'] = __('Shortcodes', PDF_LIGHT_VIEWER_PLUGIN);
+		$defaults['usage'] = __('Usage', PDF_LIGHT_VIEWER_PLUGIN);
 		$defaults['pages'] = __('Pages',PDF_LIGHT_VIEWER_PLUGIN);
 		$defaults['import_status'] = __('Import status',PDF_LIGHT_VIEWER_PLUGIN);
 		return $defaults;
@@ -89,10 +89,10 @@ class PdfLightViewer_PdfController {
 	public static function custom_columns_views($column_name, $post_id) {
 	 		
 		switch($column_name) {
-			case 'shortcode':
-				?>
-				<code>[pdf-light-viewer id="<?php echo $post_id;?>" template=""]</code>
-				<?php
+			case 'usage':
+				$pdf_upload_dir = PdfLightViewer_Plugin::getUploadDirectory($post_id);
+				$pages = directory_map($pdf_upload_dir);
+				include(PDF_LIGHT_VIEWER_APPPATH.'/views/metabox/usage.php');
 			break;
 		
 			case 'preview':
@@ -292,14 +292,25 @@ class PdfLightViewer_PdfController {
 		global $pagenow;
 		
 		if ($pagenow != 'post-new.php') {
-			// add meta box for employer match
+			// preview
 				add_meta_box(
 					'pdf_light_viewer_dashboard_preview',
 					__('PDF Preview', PDF_LIGHT_VIEWER_PLUGIN),
 					array(__CLASS__, 'metabox_dashboard_preview'),
 					self::$type,
 					'advanced',
-					'default',
+					'low',
+					array()
+				);
+				
+			// usage
+				add_meta_box(
+					'pdf_light_viewer_dashboard_usage',
+					__('Usage', PDF_LIGHT_VIEWER_PLUGIN),
+					array(__CLASS__, 'metabox_dashboard_usage'),
+					self::$type,
+					'advanced',
+					'high',
 					array()
 				);
 		}
@@ -350,6 +361,16 @@ class PdfLightViewer_PdfController {
 		if (!empty($pdf_light_viewer_config['pages'])) {
 			include_once(PDF_LIGHT_VIEWER_APPPATH.'/templates/shortcode-pdf-light-viewer.php');
 		}
+	}
+	
+	
+	public static function metabox_dashboard_usage($post) {
+		
+		$pdf_upload_dir = PdfLightViewer_Plugin::getUploadDirectory($post->ID);
+		$pages = directory_map($pdf_upload_dir);
+		
+		$post_id = $post->ID;
+		include_once(PDF_LIGHT_VIEWER_APPPATH.'/views/metabox/usage.php');
 	}
 	
 

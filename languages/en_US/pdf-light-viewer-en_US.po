@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pdf-light-viewer\n"
-"POT-Creation-Date: 2014-10-25 05:05+0300\n"
-"PO-Revision-Date: 2014-10-25 05:05+0300\n"
+"POT-Creation-Date: 2015-08-04 20:55+0300\n"
+"PO-Revision-Date: 2015-08-04 20:59+0300\n"
 "Last-Translator: Eduard Kozachek <eduard@kozachek.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,259 +11,348 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
+"Language: en\n"
 "X-Poedit-SearchPath-0: ../..\n"
 
-#: ../../controllers/PdfController.php:50
+#: ../../controllers/AssetsController.php:87
+msgid ""
+"Import process was successfully finished. Please check results on the PDF "
+"page."
+msgstr ""
+
+#: ../../controllers/AssetsController.php:88
+msgid "Import process failed due to the unknown error."
+msgstr ""
+
+#: ../../controllers/AssetsController.php:89
+msgid "Import process failed due to the error:"
+msgstr ""
+
+#: ../../controllers/PdfController.php:35
 msgid "PDFs"
 msgstr ""
 
-#: ../../controllers/PdfController.php:51
-#: ../../controllers/PdfController.php:156
+#: ../../controllers/PdfController.php:36
+#: ../../controllers/PdfController.php:161
 msgid "PDF"
 msgstr ""
 
-#: ../../controllers/PdfController.php:52
-#: ../../controllers/PdfController.php:53
+#: ../../controllers/PdfController.php:37
+#: ../../controllers/PdfController.php:38
 msgid "Import PDF"
 msgstr ""
 
-#: ../../controllers/PdfController.php:54
+#: ../../controllers/PdfController.php:39
 msgid "Edit"
 msgstr ""
 
-#: ../../controllers/PdfController.php:55
+#: ../../controllers/PdfController.php:40
 msgid "Edit PDF"
 msgstr ""
 
-#: ../../controllers/PdfController.php:56
+#: ../../controllers/PdfController.php:41
 msgid "New PDF"
 msgstr ""
 
-#: ../../controllers/PdfController.php:57
+#: ../../controllers/PdfController.php:42
 msgid "View"
 msgstr ""
 
-#: ../../controllers/PdfController.php:58
+#: ../../controllers/PdfController.php:43
 msgid "View PDF"
 msgstr ""
 
-#: ../../controllers/PdfController.php:59
+#: ../../controllers/PdfController.php:44
 msgid "Search PDFs"
 msgstr ""
 
-#: ../../controllers/PdfController.php:60
+#: ../../controllers/PdfController.php:45
 msgid "No PDFs found"
 msgstr ""
 
-#: ../../controllers/PdfController.php:62
+#: ../../controllers/PdfController.php:47
 msgid "For PDFs"
 msgstr ""
 
-#: ../../controllers/PdfController.php:77
-#: ../../controllers/PdfController.php:98
+#: ../../controllers/PdfController.php:72
+#, php-format
+msgid ""
+"<i class=\"fa fa-cog fa-spin\"></i> <b>%s</b> PDF import is <span class=\"js-"
+"pdf-light-viewer-current-status\">%s</span>. <span class=\"js-pdf-light-"
+"viewer-current-progress\">%d</span>%% is complete. <i>Please do not leave "
+"the admin interface until the import would not finished. %s</i>"
+msgstr ""
+
+#: ../../controllers/PdfController.php:76
+msgid "Otherwise the import will be continued during your next visit."
+msgstr ""
+
+#: ../../controllers/PdfController.php:82
+#: ../../controllers/PdfController.php:103
 msgid "Preview"
 msgstr ""
 
-#: ../../controllers/PdfController.php:78
-msgid "Shortcodes"
+#: ../../controllers/PdfController.php:83
+#: ../../controllers/PdfController.php:309
+msgid "Usage"
 msgstr ""
 
-#: ../../controllers/PdfController.php:79
+#: ../../controllers/PdfController.php:84
 msgid "Pages"
 msgstr ""
 
-#: ../../controllers/PdfController.php:80
+#: ../../controllers/PdfController.php:85
 msgid "Import status"
 msgstr ""
 
-#: ../../controllers/PdfController.php:126
+#: ../../controllers/PdfController.php:131
 msgid "Import scheduled"
 msgstr ""
 
-#: ../../controllers/PdfController.php:130
+#: ../../controllers/PdfController.php:135
 msgid "Import started"
 msgstr ""
 
-#: ../../controllers/PdfController.php:134
+#: ../../controllers/PdfController.php:139
 msgid "Import in progress"
 msgstr ""
 
-#: ../../controllers/PdfController.php:138
+#: ../../controllers/PdfController.php:143
 msgid "Import finished"
 msgstr ""
 
-#: ../../controllers/PdfController.php:164
-msgid "Check this if you want to import or re-import PDF file"
+#: ../../controllers/PdfController.php:168
+msgid "Enable import"
 msgstr ""
 
 #: ../../controllers/PdfController.php:169
+msgid "Check this if you want to import or re-import PDF file"
+msgstr ""
+
+#: ../../controllers/PdfController.php:174
 msgid "JPEG compression quality"
 msgstr ""
 
-#: ../../controllers/PdfController.php:175
+#: ../../controllers/PdfController.php:180
 msgid "JPEG resolution"
 msgstr ""
 
-#: ../../controllers/PdfController.php:181
+#: ../../controllers/PdfController.php:186
 msgid "PDF File"
 msgstr ""
 
-#: ../../controllers/PdfController.php:182
+#: ../../controllers/PdfController.php:187
 msgid "Choose what PDF file will be imported"
 msgstr ""
 
-#: ../../controllers/PdfController.php:192
+#: ../../controllers/PdfController.php:197
 msgid "Output Options"
 msgstr ""
 
-#: ../../controllers/PdfController.php:199
+#: ../../controllers/PdfController.php:204
 msgid "Allow download"
 msgstr ""
 
-#: ../../controllers/PdfController.php:200
+#: ../../controllers/PdfController.php:205
 msgid "Check this if you want to show download button on the frontend"
 msgstr ""
 
-#: ../../controllers/PdfController.php:205
+#: ../../controllers/PdfController.php:210
 msgid "Alternate download link"
 msgstr ""
 
-#: ../../controllers/PdfController.php:206
+#: ../../controllers/PdfController.php:211
 msgid "If not set, will be used link from PDF File"
 msgstr ""
 
-#: ../../controllers/PdfController.php:212
-msgid "Hide thumbnail navigatin"
+#: ../../controllers/PdfController.php:217
+msgid "Hide thumbnail navigation"
+msgstr ""
+
+#: ../../controllers/PdfController.php:222
+msgid "Hide fullscreen button"
 msgstr ""
 
 #: ../../controllers/PdfController.php:227
+msgid "Disable page zoom"
+msgstr ""
+
+#: ../../controllers/PdfController.php:242
 msgid "Anonymous / s2Member Level 0"
 msgstr ""
 
-#: ../../controllers/PdfController.php:236
+#: ../../controllers/PdfController.php:251
 msgid "Permissions"
 msgstr ""
 
-#: ../../controllers/PdfController.php:245
+#: ../../controllers/PdfController.php:260
 msgid "Pages limits for different user roles"
 msgstr ""
 
-#: ../../controllers/PdfController.php:247
+#: ../../controllers/PdfController.php:262
 msgid "Pages Limit"
 msgstr ""
 
-#: ../../controllers/PdfController.php:248
+#: ../../controllers/PdfController.php:263
 msgid "Add another limit"
 msgstr ""
 
-#: ../../controllers/PdfController.php:249
+#: ../../controllers/PdfController.php:264
 msgid "Remove limit"
 msgstr ""
 
-#: ../../controllers/PdfController.php:255
+#: ../../controllers/PdfController.php:270
 msgid "User Role"
 msgstr ""
 
-#: ../../controllers/PdfController.php:256
+#: ../../controllers/PdfController.php:271
 msgid "Select role which you want to pages limit"
 msgstr ""
 
-#: ../../controllers/PdfController.php:263
+#: ../../controllers/PdfController.php:278
 msgid "Visible pages"
 msgstr ""
 
-#: ../../controllers/PdfController.php:283
+#: ../../controllers/PdfController.php:298
 msgid "PDF Preview"
 msgstr ""
 
-#: ../../controllers/PdfController.php:382
+#: ../../controllers/PdfController.php:422
 msgid "PDF import scheduled."
 msgstr ""
 
-#: ../../controllers/PdfController.php:387
+#: ../../controllers/PdfController.php:427
 #, php-format
 msgid ""
 "Imagick not found, please check other requirements on <a href=\"%s\">plugin "
 "settings page</a> for more information."
 msgstr ""
 
-#: ../../controllers/Plugin.php:51 ../../views/settings.php:101
+#: ../../controllers/PdfController.php:449
+msgid "scheduled"
+msgstr ""
+
+#: ../../controllers/PdfController.php:453
+msgid "started"
+msgstr ""
+
+#: ../../controllers/PdfController.php:457
+msgid "processing"
+msgstr ""
+
+#: ../../controllers/PdfController.php:541
+msgid "failed"
+msgstr ""
+
+#: ../../controllers/PdfController.php:552
+msgid "finished"
+msgstr ""
+
+#: ../../controllers/Plugin.php:61 ../../views/settings.php:104
 msgid "Settings"
 msgstr ""
 
-#: ../../controllers/Plugin.php:52
+#: ../../controllers/Plugin.php:62
 msgid "Docs"
 msgstr ""
 
-#: ../../controllers/Plugin.php:182
+#: ../../controllers/Plugin.php:201
 msgid "Upload folder"
 msgstr ""
 
-#: ../../controllers/Plugin.php:213
-msgid "is supported"
-msgstr ""
-
-#: ../../controllers/Plugin.php:214
-msgid "is not supported"
-msgstr ""
-
-#: ../../controllers/Plugin.php:219
-msgid "is writable"
-msgstr ""
-
-#: ../../controllers/Plugin.php:220
-msgid "is not writable"
-msgstr ""
-
-#: ../../controllers/Plugin.php:225
-msgid "is enabled"
-msgstr ""
-
-#: ../../controllers/Plugin.php:226
+#: ../../controllers/Plugin.php:227
 #, php-format
-msgid ""
-"is disabled. To enable it please remove %s from your %s file or set it to %s"
+msgid "is %s or higher"
 msgstr ""
 
-#: ../../controllers/Plugin.php:229
-msgid "Server loopback requests"
-msgstr ""
-
-#: ../../controllers/Plugin.php:231
-msgid "are enabled"
+#: ../../controllers/Plugin.php:228
+#, php-format
+msgid "is lower than %s"
 msgstr ""
 
 #: ../../controllers/Plugin.php:232
-#, php-format
-msgid ""
-"are probably disabled. We think so because loopback request to the %s needed "
-"to execute WP Cron returned %s)"
+msgid "Imagick PHP Extension"
 msgstr ""
 
-#: ../../controllers/AdminController.php:70
+#: ../../controllers/Plugin.php:234
+msgid "is loaded"
+msgstr ""
+
+#: ../../controllers/Plugin.php:235
+msgid "is not loaded"
+msgstr ""
+
+#: ../../controllers/Plugin.php:236
+msgid ""
+"Imagick PHP Extension is required for PDF -> JPEG convertation. It cannot be "
+"included with the plugin unfortunately, so you or your hosting provider/"
+"server administrator should install it."
+msgstr ""
+
+#: ../../controllers/Plugin.php:239
+msgid "Imagick PHP Wrapper"
+msgstr ""
+
+#: ../../controllers/Plugin.php:241 ../../controllers/Plugin.php:254
+msgid "is supported"
+msgstr ""
+
+#: ../../controllers/Plugin.php:242 ../../controllers/Plugin.php:255
+msgid "is not supported"
+msgstr ""
+
+#: ../../controllers/Plugin.php:243
+msgid ""
+"Imagick PHP Wrapper is required to make available Imagick PHP Extension "
+"functionality in the plugin. Usually it's integrated through the PECL "
+"plugin. It cannot be included with the plugin unfortunately, so you or your "
+"hosting provider/server administrator should install it."
+msgstr ""
+
+#: ../../controllers/Plugin.php:246
+msgid "Imagick PDF Support"
+msgstr ""
+
+#: ../../controllers/Plugin.php:248
+msgid "is enabled"
+msgstr ""
+
+#: ../../controllers/Plugin.php:249
+msgid "is not enabled"
+msgstr ""
+
+#: ../../controllers/Plugin.php:260
+msgid "is writable"
+msgstr ""
+
+#: ../../controllers/Plugin.php:261
+msgid "is not writable"
+msgstr ""
+
+#: ../../controllers/AdminController.php:109
 msgid "requirements are met, happy using!"
 msgstr ""
 
-#: ../../controllers/AdminController.php:75
+#: ../../controllers/AdminController.php:114
 #, php-format
 msgid ""
 "requirements not met, please check <a href=\"%s\">plugin settings page</a> "
 "for more information."
 msgstr ""
 
-#: ../../controllers/AdminController.php:89
+#: ../../controllers/AdminController.php:128
 msgid ""
 "We have just created new section called PDFs in your dashboard. Use it to "
 "import and publish your cool PDF files."
 msgstr ""
 
-#: ../../templates/shortcode-pdf-light-viewer.php:14
+#: ../../templates/shortcode-pdf-light-viewer.php:16
 #: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:706
 #: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:768
 msgid "Download"
 msgstr ""
 
-#: ../../templates/shortcode-pdf-light-viewer.php:19
+#: ../../templates/shortcode-pdf-light-viewer.php:22
 msgid "Fullscreen"
 msgstr ""
 
@@ -288,6 +377,7 @@ msgid "Select / Deselect All"
 msgstr ""
 
 #: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:1177
+#: ../../views/settings.php:138
 msgid "Save"
 msgstr ""
 
@@ -612,26 +702,32 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ../../views/settings.php:57
+#: ../../views/settings.php:60
 msgid "Plugin Requirements"
 msgstr ""
 
-#: ../../views/settings.php:108
-msgid ""
-"We do not have global plugin settings yet. You can change settings on each "
-"PDF editing page"
+#: ../../views/settings.php:109
+msgid "Main settings"
 msgstr ""
 
-#: ../../views/settings.php:125
+#: ../../views/settings.php:117
+msgid "Show PDFs in Menu"
+msgstr ""
+
+#: ../../views/settings.php:118
+msgid "Show PDFs menu item in the left admin sidebar"
+msgstr ""
+
+#: ../../views/settings.php:155
 msgid "Personal Support"
 msgstr ""
 
-#: ../../views/settings.php:135
+#: ../../views/settings.php:165
 #, php-format
 msgid "Support request, plugin: %s (time: %s)"
 msgstr ""
 
-#: ../../views/settings.php:140
+#: ../../views/settings.php:170
 #, php-format
 msgid ""
 "To get support please contact us on address <a target=\"_blank\" href=\"%s\">"
@@ -639,30 +735,40 @@ msgid ""
 "server and site environment - this could be helpful to solve the issue."
 msgstr ""
 
-#: ../../views/settings.php:150
+#: ../../views/settings.php:180
 msgid "Subject"
 msgstr ""
 
-#: ../../views/settings.php:156
+#: ../../views/settings.php:186
 msgid "Server Info"
 msgstr ""
 
-#: ../../views/settings.php:176
+#: ../../views/settings.php:206
 msgid "Theme"
 msgstr ""
 
-#: ../../views/settings.php:185
+#: ../../views/settings.php:215
 msgid "from"
 msgstr ""
 
-#: ../../views/settings.php:195
+#: ../../views/settings.php:225
 msgid "Plugins"
 msgstr ""
 
-#: ../../views/settings.php:225
+#: ../../views/settings.php:255
 msgid "Documentation"
 msgstr ""
 
-#: ../../views/settings.php:226
+#: ../../views/settings.php:256
 msgid "open in the separate tab"
+msgstr ""
+
+#: ../../views/metabox/usage.php:12
+msgid "You have not yet converted the PDF."
+msgstr ""
+
+#: ../../views/metabox/usage.php:13
+msgid ""
+"Note: it normally takes just 60 to 90 seconds for the conversion of small "
+"PDF file after submission. Thank you for your patience!"
 msgstr ""

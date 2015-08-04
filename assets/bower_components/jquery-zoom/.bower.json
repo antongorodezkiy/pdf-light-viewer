@@ -34,6 +34,6 @@
     "commit": "734bff572489b5197be324b97fc90411dfe1d75d"
   },
   "_source": "git://github.com/jackmoore/zoom.git",
-  "_target": "*",
+  "_target": "1.7.14",
   "_originalSource": "jquery-zoom"
 }

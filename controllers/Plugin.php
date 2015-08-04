@@ -204,9 +204,12 @@ class PdfLightViewer_Plugin {
 			
 			$Imagick = null;
 			$ImagickVersion = null;
+			$pdf_format_support = array();
 			if (class_exists("Imagick")) {
 				$Imagick = new Imagick();
 				$ImagickVersion = $Imagick->getVersion();
+				
+				$pdf_format_support = $Imagick->queryFormats('PDF');
 			}
 			
 			if (stristr(php_uname('s'), 'win')) {
@@ -241,7 +244,7 @@ class PdfLightViewer_Plugin {
 				),
 				array(
 					'name' => __('Imagick PDF Support',PDF_LIGHT_VIEWER_PLUGIN),
-					'status' => ($Imagick && !empty($Imagick->queryFormats('PDF'))),
+					'status' => ($Imagick && !empty($pdf_format_support)),
 					'success' => __('is enabled',PDF_LIGHT_VIEWER_PLUGIN),
 					'fail' => __('is not enabled',PDF_LIGHT_VIEWER_PLUGIN)
 				),
