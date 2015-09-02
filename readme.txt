@@ -4,7 +4,7 @@ Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link: https://www.liqpay.com/api/pay?&public_key=i92244053838&amount=5&currency=USD&description=PDF%20Light%20Viewer&type=donate&pay_way=card,delayed&language=en
 Requires at least: 3.5
 Tested up to: 4.2.4
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 3. PDF Import Page
 
 == Changelog ==
+
+= 1.1.4 - 2015-09-03 =
+* Fixed bug for metaboxes on Import page (when Import page shows only title)
 
 = 1.1.3 - 2015-08-04 =
 * Added responsiveness for tablet and phones

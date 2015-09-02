@@ -3,8 +3,8 @@
 	Plugin Name: PDF Light Viewer Plugin
 	Plugin URI: http://pdf-light-viewer.wp.teamlead.pw/
 	Description: Wordpress plugin to embed normal, large and very large pdf documents to the wordpress site as flipbooks with thumbnail navigation.
-	Version: 1.1.3
-	Author: E. Kozachek
+	Version: 1.1.4
+	Author: Teamlead Power
 	Author URI: http://teamlead.pw/
 	License: GPLv2
 	Text Domain: pdf-light-viewer
@@ -43,6 +43,13 @@ function wp_pdf_light_viewer_init() {
 		function wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes() {
 			if (!class_exists('cmb_Meta_Box')) {
 				require_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php');
+			}
+			else {
+				$meta_boxes = array();
+				$meta_boxes = apply_filters( 'cmb_meta_boxes', $meta_boxes );
+				foreach ( $meta_boxes as $meta_box ) {
+					$my_box = new cmb_Meta_Box( $meta_box );
+				}
 			}
 		}
 		add_action('init', 'wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes', 9999);
