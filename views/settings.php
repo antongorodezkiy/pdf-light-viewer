@@ -245,6 +245,30 @@
 		</div>
 		
 	<div class="pure-u-1">
+		<div class="pdf-light-viewer-bl">
+
+			<div class="row hdr">
+				<h3>
+					<span class="fa fa-tasks"></span>
+					<?php _e("Today's log file", PDF_LIGHT_VIEWER_PLUGIN)?>
+				</h3>
+			</div>
+	
+			<div class="row in pdf-light-viewer-logfile-preview">
+				<code><pre><?php
+					if (file_exists(PdfLightViewer_Plugin::getLogsPath().date('Y-m-d').'.php')) {
+						include_once(PdfLightViewer_Plugin::getLogsPath().date('Y-m-d').'.php');
+					}
+					else {
+						_e("Today's log file doesn't exist", PDF_LIGHT_VIEWER_PLUGIN); 
+					}
+					?></pre></code>
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="pure-u-1">
 		<?php
 			$documentation_url = PdfLightViewer_Plugin::getDocsUrl();
 		?>
