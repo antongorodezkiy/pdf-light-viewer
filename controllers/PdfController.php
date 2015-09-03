@@ -17,7 +17,7 @@ class PdfLightViewer_PdfController {
 			add_filter('cmb_meta_boxes', array(__CLASS__, 'cmb_metaboxes'));
 		
 		// saving
-			add_action('save_post_'.self::$type, array(__CLASS__, 'save_post'), 100);
+			add_action('save_post_'.self::$type, array(__CLASS__, 'save_post'), 1000);
 		
 		// show import message, which will show progress
 			add_action('admin_notices', array(__CLASS__,'showImportProgressMessages'));
@@ -324,7 +324,7 @@ class PdfLightViewer_PdfController {
 		// download options
 			$pdf_light_viewer_config['download_allowed'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'download_allowed', true);
 			if ($pdf_light_viewer_config['download_allowed']) {
-				$pdf_file_id = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf_file_id', true);
+				$pdf_file_id = PdfLightViewer_Model::getPDFFileId($post->ID);
 				$pdf_file_url = wp_get_attachment_url($pdf_file_id);
 				
 				$alternate_download_link = PdfLightViewer_Plugin::get_post_meta($post->ID, 'alternate_download_link', true);
@@ -383,13 +383,23 @@ class PdfLightViewer_PdfController {
 		if (current_user_can('edit_posts')) {
 			$form_data = $_REQUEST;
 			
-			$pdf_file_id = $form_data['pdf_file_id'];
+			$pdf_file_id = (isset($form_data['pdf_file_id']) ? $form_data['pdf_file_id'] : PdfLightViewer_Model::getPDFFileId($post_id));
+			
 			$pdf_file_path = get_attached_file($pdf_file_id);
 			
-			if ($form_data['enable_pdf_import'] == 'on' && $pdf_file_id) {
+			if (
+				(
+					$form_data['enable_pdf_import'] == 'on'
+					|| (
+						isset($form_data['enable_pdf_import']['cmb-field-0'])
+						|| $form_data['enable_pdf_import']['cmb-field-0']
+					)
+				)
+				&& $pdf_file_id
+			) {
 				
-				$jpeg_compression_quality = $form_data['jpeg_compression_quality'];
-				$jpeg_resolution = $form_data['jpeg_resolution'];
+				$jpeg_compression_quality = (isset($form_data['jpeg_compression_quality']) ? $form_data['jpeg_compression_quality'] :get_post_meta($post_id, 'jpeg_compression_quality', true));
+				$jpeg_resolution = (isset($form_data['jpeg_resolution']) ? $form_data['jpeg_resolution'] : get_post_meta($post_id, 'jpeg_resolution', true));
 				
 				$pdf_upload_dir = PdfLightViewer_Plugin::createUploadDirectory($post_id);
 				
@@ -460,7 +470,7 @@ class PdfLightViewer_PdfController {
 		ignore_user_abort(true);
 		set_time_limit(0);
 		
-		$pdf_file_id = PdfLightViewer_Plugin::get_post_meta($post_id,'pdf_file_id',true);
+		$pdf_file_id = PdfLightViewer_Model::getPDFFileId($post_id);
 		$pdf_file_path = get_attached_file($pdf_file_id);
 		
 		$pdf_upload_dir = PdfLightViewer_Plugin::createUploadDirectory($post_id);
@@ -494,7 +504,7 @@ class PdfLightViewer_PdfController {
 					$_img->setResolution($jpeg_resolution, $jpeg_resolution);
 					$_img->readImage($pdf_file_path.'['.($current_page-1).']');
 			
-					
+						
 						$_img->setImageCompression(Imagick::COMPRESSION_JPEG);
 						$_img->resizeImage(1024, round(1024/$ratio), Imagick::FILTER_BESSEL, 1, false);
 						$_img->setImageCompressionQuality($jpeg_compression_quality);
@@ -525,6 +535,7 @@ class PdfLightViewer_PdfController {
 						$white->setImageColorspace($_img->getImageColorspace());
 						$white->writeImage($pdf_upload_dir.'-thumbs/page-'.$page_number.'-100x76.jpg');
 						
+						
 						if ($current_page == 1) {
 							$file = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
 							PdfLightViewer_Plugin::set_featured_image($post_id, $file, 'pdf-'.$post_id.'-page-'.$page_number.'.jpg');
@@ -537,6 +548,7 @@ class PdfLightViewer_PdfController {
 					$_img->destroy();
 				}
 				catch(Exception $e) {
+					PdfLightViewer_Plugin::log('Import exception: '.$e->getMessage(), print_r($e, true));
 					$status = 'failed';
 					$status_label = __('failed', PDF_LIGHT_VIEWER_PLUGIN);
 					$error = $e->getMessage();

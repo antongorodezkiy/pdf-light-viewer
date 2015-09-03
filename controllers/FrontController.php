@@ -20,7 +20,7 @@ class PdfLightViewer_FrontController {
 			$pdf_light_viewer_config['download_allowed'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'download_allowed', true);
 			
 			if ($pdf_light_viewer_config['download_allowed']) {
-				$pdf_file_id = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf_file_id', true);
+				$pdf_file_id = PdfLightViewer_Model::getPDFFileId($post->ID);
 				$pdf_file_url = wp_get_attachment_url($pdf_file_id);
 				
 				$alternate_download_link = PdfLightViewer_Plugin::get_post_meta($post->ID, 'alternate_download_link', true);

@@ -196,6 +196,56 @@ class PdfLightViewer_Plugin {
 	}
 	
 	
+	public static function getLogsPath() {
+		return WP_CONTENT_DIR.'/'.PDF_LIGHT_VIEWER_PLUGIN.'-logs/';
+	}
+	
+	public static function createLogsDirectory() {
+		$log_path = self::getLogsPath();
+		if ( ! file_exists($log_path)) {
+			mkdir($log_path);
+		}
+		
+		return file_exists($log_path);
+	}
+	
+	public static function log($label, $msg) {
+		
+		if (is_array($msg) || is_object($msg)) {
+			$msg = print_r($msg,true);
+		}
+			
+		$log_path = self::getLogsPath();
+		
+		if ( ! file_exists($log_path)) {
+			mkdir($log_path);
+		}
+		
+		$filename = date('Y-m-d').'.php';
+		$filepath = $log_path.$filename;
+			
+		$message = '';
+
+		if (!file_exists($filepath)) {
+			$message .= "<"."?php if ( ! defined('WPINC')) exit('No direct script access allowed'); ?".">\n\n";
+		}
+
+		if (!$fp = fopen($filepath, 'ab')) {
+			return FALSE;
+		}
+
+		$message .= "======================\n".date('d-m-Y H-i-s')."\n".' ---------------------- '."\n".$label.' >>> '.$msg."\n\n";
+
+		flock($fp, LOCK_EX);
+		fwrite($fp, $message);
+		flock($fp, LOCK_UN);
+		fclose($fp);
+
+		@chmod($filepath, 0666);
+		return TRUE;
+	}
+	
+	
 	// plugin requirements
 		public static function requirements($boolean = false) {
 			$upload_dir_message = __('Upload folder',PDF_LIGHT_VIEWER_PLUGIN).': <code>'.PdfLightViewer_Plugin::getUploadDirectory().'</code>';
@@ -219,6 +269,7 @@ class PdfLightViewer_Plugin {
 				$ghostscript_version = shell_exec('$(which gs) --version');
 			}
 			
+			$logs_dir_message = __('Logs folder',PDF_LIGHT_VIEWER_PLUGIN).': <code>'.self::getLogsPath().'</code>';
 			
 			$requirements = array(
 				array(
@@ -257,6 +308,12 @@ class PdfLightViewer_Plugin {
 				array(
 					'name' => $upload_dir_message,
 					'status' => PdfLightViewer_Plugin::createUploadDirectory(),
+					'success' => __('is writable',PDF_LIGHT_VIEWER_PLUGIN),
+					'fail' => __('is not writable',PDF_LIGHT_VIEWER_PLUGIN)
+				),
+				array(
+					'name' => $logs_dir_message,
+					'status' => self::createLogsDirectory() && is_writable(self::getLogsPath()),
 					'success' => __('is writable',PDF_LIGHT_VIEWER_PLUGIN),
 					'fail' => __('is not writable',PDF_LIGHT_VIEWER_PLUGIN)
 				)

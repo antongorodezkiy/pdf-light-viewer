@@ -31,4 +31,16 @@ class PdfLightViewer_Model {
 			return array();
 		}
 	}
+	
+	public static function getPDFFileId($post_id) {
+		
+		if (defined('cmb_Meta_Box::CMB_VERSION')) {
+			$pdf_file_id = get_post_meta($post_id, 'pdf_file_id', true);
+		}
+		else {
+			$pdf_file_id = get_post_meta($post_id, 'pdf_file', true);
+		}
+		
+		return $pdf_file_id;
+	}
 }
