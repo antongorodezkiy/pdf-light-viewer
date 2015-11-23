@@ -7,9 +7,9 @@
   
 **Requires at least:** 3.5
   
-**Tested up to:** 4.3
+**Tested up to:** 4.3.1
   
-**Stable tag:** 1.1.5
+**Stable tag:** 1.1.6
   
 **License:** GPLv2
   
@@ -61,6 +61,12 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+### 1.1.6 - 2015-11-22 ###
+* Improvements for lazy loading pages
+* Enabled zoom for fullscreen mode
+* Improvements to detect GhosScript installation on Unix-like systems
+* Improvements for settings page
 
 ### 1.1.5 - 2015-09-03 ###
 * Fixes for compability with themes/plugins which are using humanmade/Custom-Meta-Boxes

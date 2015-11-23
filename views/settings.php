@@ -73,6 +73,10 @@
 													<i class="fa fa-check fa-stack-1x fa-inverse"></i>
 												</span>
 												<?php echo $requirement['name'];?> <?php echo $requirement['success'];?>
+												
+												<?php if (isset($requirement['description']) && $requirement['description']) { ?>
+													<a href="#!" class="js-tip tip" title="<?php echo $requirement['description'] ?>"><span class="fa fa-question-circle"></span></a>
+												<?php } ?>
 											</li>
 										<?php
 									}
@@ -84,6 +88,10 @@
 													<i class="fa fa-exclamation fa-stack-1x fa-inverse"></i>
 												</span>
 												<?php echo $requirement['name'];?> <?php echo $requirement['fail'];?>
+												
+												<?php if (isset($requirement['description']) && $requirement['description']) { ?>
+													<a href="#!" class="js-tip tip" title="<?php echo $requirement['description'] ?>"><span class="fa fa-question-circle"></span></a>
+												<?php } ?>
 											</li>
 										<?php
 									}
@@ -130,17 +138,43 @@
 								/>
 						</p>
 						
+						<p class="pure-control-group">
+							<label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]">
+								<span class="fa-stack">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i class="fa fa-server fa-stack-1x fa-inverse"></i>
+								</span>
+								<?php _e('Do not check GhostScript installation', PDF_LIGHT_VIEWER_PLUGIN)?>
+								<a href="#!" class="js-tip tip" title="<?php _e('For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="fa fa-question-circle"></span></a>
+							</label>
+							<input
+								type="hidden"
+								name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]"
+								value="0"
+								/>
+							<input
+								type="checkbox"
+								name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]"
+								value="1"
+								<?php echo ( PdfLightViewer_AdminController::getSetting('do-not-check-gs') ? 'checked="checked"' : '' )?>
+								/>
+						</p>
+						
 						<hr />
 					
 						<div class="row">
 							<button class="button-primary" type="submit">
 								<span class="fa fa-save"></span>
-								<?php _e('Save', WP_APN_PLUGIN)?>
+								<?php _e('Save', PDF_LIGHT_VIEWER_PLUGIN)?>
 							</button>
 						</div>
 					</div>
 					
 				</form>
+				
+				<?php if (defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')) { ?>
+					<?php include_once(PDF_LIGHT_VIEWER_PRO_APPPATH.'/views/settings.php') ?>
+				<?php } ?>
 			
 			</div>
 			

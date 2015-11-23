@@ -32,13 +32,13 @@
 					<div class="js-pdf-light-viewer-magazine pdf-light-viewer-magazine"
 						data-width="<?php echo $pdf_light_viewer_config['page_width'];?>"
 						data-height="<?php echo $pdf_light_viewer_config['page_height'];?>"
-						>
-						<?php foreach($pdf_light_viewer_config['pages'] as $page) {
+						data-pages-count="<?php echo count($pdf_light_viewer_config['pages']) ?>">
+						<?php foreach($pdf_light_viewer_config['pages'] as $number => $page) {
 							?>
 							<div style="background-image:url('<?php echo plugins_url('assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>');">
 								<div class="gradient"></div>
 								<img
-									class="js-pdf-light-viewer-lazy-loading"
+									class="js-pdf-light-viewer-lazy-loading js-pdf-light-viewer-lazy-loading-<?php echo ($number + 1) ?> initially-hidden"
 									src="<?php echo plugins_url('assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>"
 									data-original="<?php echo $pdf_upload_dir_url.'/'.$page;?>"
 									width="100%"

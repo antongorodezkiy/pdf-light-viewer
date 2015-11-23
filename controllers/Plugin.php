@@ -114,7 +114,7 @@ class PdfLightViewer_Plugin {
 	}
 	
 	public static function getDocsUrl() {
-		if (file_exists(PDF_LIGHT_VIEWER_APPPATH.'/documentation/index_'.WPLANG.'.html')) {
+		if (defined('WPLANG') && file_exists(PDF_LIGHT_VIEWER_APPPATH.'/documentation/index_'.WPLANG.'.html')) {
 			$documentation_url = 'documentation/index'.WPLANG.'.html';
 		}
 		else {
@@ -262,11 +262,29 @@ class PdfLightViewer_Plugin {
 				$pdf_format_support = $Imagick->queryFormats('PDF');
 			}
 			
-			if (stristr(php_uname('s'), 'win')) {
-				$ghostscript_version = shell_exec('gs --version');
+			if (PdfLightViewer_AdminController::getSetting('do-not-check-gs')) {
+				$ghostscript_version = true;
 			}
 			else {
-				$ghostscript_version = shell_exec('$(which gs) --version');
+				if (function_exists('shell_exec')) {
+					if (stristr(php_uname('s'), 'win')) {
+						$ghostscript_version = @shell_exec('gs --version');
+					}
+					else {
+						$ghostscript_version = @shell_exec('$(command -v gs) --version');
+						
+						if (!$ghostscript_version) {
+							$ghostscript_version = @shell_exec('$(which gs) --version');
+						}
+						
+						if (!$ghostscript_version) {
+							$ghostscript_version = @shell_exec('gs --version');
+						}
+					}
+				}
+				else {
+					$ghostscript_version = false;
+				}
 			}
 			
 			$logs_dir_message = __('Logs folder',PDF_LIGHT_VIEWER_PLUGIN).': <code>'.self::getLogsPath().'</code>';
@@ -297,25 +315,29 @@ class PdfLightViewer_Plugin {
 					'name' => __('Imagick PDF Support',PDF_LIGHT_VIEWER_PLUGIN),
 					'status' => ($Imagick && !empty($pdf_format_support)),
 					'success' => __('is enabled',PDF_LIGHT_VIEWER_PLUGIN),
-					'fail' => __('is not enabled',PDF_LIGHT_VIEWER_PLUGIN)
+					'fail' => __('is not enabled',PDF_LIGHT_VIEWER_PLUGIN),
+					'description' => __("Imagick PDF Support is required for PDF -> JPEG convertation.",PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				array(
 					'name' => 'GhostScript',
 					'status' => $ghostscript_version,
-					'success' => __('is supported',PDF_LIGHT_VIEWER_PLUGIN).($ghostscript_version ? '. v.'.$ghostscript_version : ''),
-					'fail' => __('is not supported',PDF_LIGHT_VIEWER_PLUGIN)
+					'success' => __('is supported',PDF_LIGHT_VIEWER_PLUGIN).($ghostscript_version && is_string($ghostscript_version) ? '. v.'.$ghostscript_version : ''),
+					'fail' => __('is not supported',PDF_LIGHT_VIEWER_PLUGIN),
+					'description' => __("GhostScript is required for Imagick PDF Support. For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly you can disable this requirement in options below.",PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				array(
 					'name' => $upload_dir_message,
 					'status' => PdfLightViewer_Plugin::createUploadDirectory(),
 					'success' => __('is writable',PDF_LIGHT_VIEWER_PLUGIN),
-					'fail' => __('is not writable',PDF_LIGHT_VIEWER_PLUGIN)
+					'fail' => __('is not writable',PDF_LIGHT_VIEWER_PLUGIN),
+					'description' => __("This is the folder for converted images.",PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				array(
 					'name' => $logs_dir_message,
 					'status' => self::createLogsDirectory() && is_writable(self::getLogsPath()),
 					'success' => __('is writable',PDF_LIGHT_VIEWER_PLUGIN),
-					'fail' => __('is not writable',PDF_LIGHT_VIEWER_PLUGIN)
+					'fail' => __('is not writable',PDF_LIGHT_VIEWER_PLUGIN),
+					'description' => __("We will save plugin-specific log files in this folder.",PDF_LIGHT_VIEWER_PLUGIN)
 				)
 			);
 			
@@ -372,7 +394,96 @@ class PdfLightViewer_Plugin {
 		}
 		
 		
+	public static function init() {
+		// initialization
+			register_activation_hook(__FILE__, array('PdfLightViewer_Plugin','activation'));
+			
+		// plugin actions
+			add_filter('plugin_action_links', array('PdfLightViewer_Plugin','registerPluginActions'), 10, 2);
+			
+		// Create Text Domain For Translations
+			add_action('plugins_loaded', array('PdfLightViewer_Plugin','localization'));
+			
+		// run main action
+		add_action('after_setup_theme', array('PdfLightViewer_Plugin', 'run'));
+			
+		PdfLightViewer_Plugin::initEarlyActions();
+	}
+		
+		
 	public static function run() {
+		// third party
+			if (version_compare(PHP_VERSION, '5.3.0', '>=')) {
+				include_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/autoload.php');
+			}
+			
+			function wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes() {
+				if (!class_exists('cmb_Meta_Box')) {
+					require_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php');
+				}
+				else {
+					$meta_boxes = array();
+					$meta_boxes = apply_filters( 'cmb_meta_boxes', $meta_boxes );
+					foreach ( $meta_boxes as $meta_box ) {
+						$my_box = new cmb_Meta_Box( $meta_box );
+					}
+				}
+			}
+			add_action('init', 'wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes', 9999);
+			
+			include_once(PDF_LIGHT_VIEWER_APPPATH.'/libraries/directory_helper.php');
+		
+		// 	
+		if (!class_exists('PdfLightViewer_AssetsController')) {
+			include_once(PDF_LIGHT_VIEWER_APPPATH.'/controllers/AssetsController.php');
+		}
+		
+		if (!class_exists('PdfLightViewer_AdminController')) {
+			include_once(PDF_LIGHT_VIEWER_APPPATH.'/controllers/AdminController.php');
+		}
+		
+		if (!class_exists('PdfLightViewer_FrontController')) {
+			include_once(PDF_LIGHT_VIEWER_APPPATH.'/controllers/FrontController.php');
+		}
+		
+		if (!class_exists('PdfLightViewer_PdfController')) {
+			include_once(PDF_LIGHT_VIEWER_APPPATH.'/controllers/PdfController.php');
+		}
+		
+		if (!class_exists('PdfLightViewer_Model')) {
+			include_once(PDF_LIGHT_VIEWER_APPPATH.'/models/Model.php');
+		}
+		
+		// assets
+			if (is_admin()) {
+				add_action('admin_enqueue_scripts', array('PdfLightViewer_AssetsController', 'admin_head'));
+			}
+			else {
+				add_action('wp_enqueue_scripts', array('PdfLightViewer_AssetsController', 'frontend_head'));
+			}
+		
+		// post types
+			add_action('init', array('PdfLightViewer_Plugin','registerPostTypes'));
+		
+		// shortcodes
+			PdfLightViewer_Plugin::registerShortcodes();
+		
+		//ADMIN
+		if (is_admin() && (current_user_can('edit_posts') || current_user_can('edit_pages'))) {
+			
+			// settings init
+				add_action('admin_init', array('PdfLightViewer_AdminController','settingsInit'));
+				
+			// admin page
+				add_action('admin_menu', array('PdfLightViewer_AdminController','registerMenuPage'));
+				
+			// admin ajax
+				add_action('admin_init', array('PdfLightViewer_AdminController','registerAjaxHandlers'));
+				
+			// notifications init
+				add_action('admin_notices', array('PdfLightViewer_AdminController','showAdminNotifications'));
+		}
+		
 		$requirements_met = self::requirements(true);
 		if (
 			(!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notifications-viewed') && $requirements_met)
