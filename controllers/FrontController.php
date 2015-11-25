@@ -53,10 +53,10 @@ class PdfLightViewer_FrontController {
 			if (!empty($pages_limits)) {
 				foreach($pages_limits as $pages_limit) {
 					if (empty($current_user_roles) && $pages_limit['pages_limit_user_role'] == 'anonymous') {
-						$limit = $pages_limit['pages_limit_visible_pages'];
+						$limit = isset($pages_limit['pages_limit_visible_pages']) ? $pages_limit['pages_limit_visible_pages'] : null;
 					}
 					else if(in_array($pages_limit['pages_limit_user_role'], $current_user_roles)) {
-						$limit = $pages_limit['pages_limit_visible_pages'];
+						$limit = isset($pages_limit['pages_limit_visible_pages']) ? $pages_limit['pages_limit_visible_pages'] : null;
 					}
 				}
 			}

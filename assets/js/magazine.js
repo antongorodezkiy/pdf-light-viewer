@@ -181,19 +181,14 @@
 			},
 			
 			getViewportSize: function(width, height, ratio) {
-				if ($(document).fullScreen()) {
-					var size = {
-						width: Math.round(height * ratio),
-						height: height,
-					};
-				}
-				else {
-					var size = {
-						width: width,
-						height: Math.round(width / ratio),
-					};
-				}
 				
+				width -= 20;
+				
+				var size = {
+					width: width,
+					height: Math.round(width / ratio),
+				};
+			
 				return size;
 			},
 			
