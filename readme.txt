@@ -52,7 +52,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * Improvements for settings page
 
 = 1.1.5 - 2015-09-03 =
-* Fixes for compability with themes/plugins which are using humanmade/Custom-Meta-Boxes
+* Fixes for compatibility with themes/plugins which are using humanmade/Custom-Meta-Boxes
 
 = 1.1.4 - 2015-09-03 =
 * Fixed bug for metaboxes on Import page (when Import page shows only title)
@@ -77,7 +77,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * Fixed some bugs with images sizing
 * Increased default image sizes
 * Added page zoom for flipbooks
-* Added compability for 2 or more instances of plugin on the same page
+* Added compatibility for 2 or more instances of plugin on the same page
 * Added options to disable zoom and fullscreen
 * Updated client side libraries
 
