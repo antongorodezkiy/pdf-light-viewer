@@ -3,13 +3,13 @@
   
 **Tags:** pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
   
-**Donate link:** https://www.liqpay.com/api/pay?&public_key=i92244053838&amount=5&currency=USD&description=PDF%20Light%20Viewer&type=donate&pay_way=card,delayed&language=en
+**Donate link:** 
   
 **Requires at least:** 3.5
   
 **Tested up to:** 4.3.1
   
-**Stable tag:** 1.1.6
+**Stable tag:** 1.1.7
   
 **License:** GPLv2
   
@@ -20,7 +20,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 ## Description ##
 
-[Website](http://pdf-light-viewer.wp.teamlead.pw/) |  [Demo](http://pdf-light-viewer.wp.teamlead.pw/demo/) | [Docs](http://pdf-light-viewer.wp.teamlead.pw/wp-content/plugins/pdf-light-viewer/documentation/index.html) | [Donate](https://www.liqpay.com/api/pay?&public_key=i92244053838&amount=5&currency=USD&description=PDF%20Light%20Viewer&type=donate&pay_way=card,delayed&language=en)
+[Website](http://pdf-light-viewer.wp.teamlead.pw/) |  [Demo](http://pdf-light-viewer.wp.teamlead.pw/demo/) | [Docs](http://pdf-light-viewer.wp.teamlead.pw/wp-content/plugins/pdf-light-viewer/documentation/index.html) 
 
 ### Features ###
 * Unlimited PDF files.
@@ -61,6 +61,11 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+### 1.1.7 - 2015-12-05 ###
+* Fixed bug when 2nd page in a 2-page pdf not displayed in thumbnails
+* Pages limit bug
+* Fixed typos
 
 ### 1.1.6 - 2015-11-22 ###
 * Improvements for lazy loading pages

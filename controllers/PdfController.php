@@ -389,10 +389,16 @@ class PdfLightViewer_PdfController {
 			
 			if (
 				(
-					$form_data['enable_pdf_import'] == 'on'
+					(
+						isset($form_data['enable_pdf_import'])
+						&& $form_data['enable_pdf_import'] == 'on'
+					)
 					|| (
-						isset($form_data['enable_pdf_import']['cmb-field-0'])
-						|| $form_data['enable_pdf_import']['cmb-field-0']
+						isset($form_data['enable_pdf_import'])
+						&& (
+							isset($form_data['enable_pdf_import']['cmb-field-0'])
+							|| $form_data['enable_pdf_import']['cmb-field-0']
+						)
 					)
 				)
 				&& $pdf_file_id

@@ -64,7 +64,14 @@
 								</div>
 							</li>
 							<?php
-							$last_page = false;
+							
+							if ($last_thumb_index == 1) {
+								$last_page = true;
+							}
+							else {
+								$last_page = false;
+							}
+							
 							for($i = 1; $i < $last_thumb_index; $i+=2) {
 								if ($i+1 == $last_thumb_index) {
 									$last_page = false;

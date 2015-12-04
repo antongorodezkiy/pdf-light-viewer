@@ -71,7 +71,7 @@ class PdfLightViewer_FrontController {
 			else {
 				for($page = 0; $page < $limit; $page++) {
 					$pdf_light_viewer_config['pages'][$page] = $pages[$page];
-					$pdf_light_viewer_config['thumbs'][$thumbs] = $thumbs[$page];
+					$pdf_light_viewer_config['thumbs'][$page] = $thumbs[$page];
 				}
 			}
 			
