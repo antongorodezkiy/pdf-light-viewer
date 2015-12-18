@@ -47,20 +47,16 @@ class PdfLightViewer_Plugin {
 	}
 	
 	public static function initEarlyActions() {
-		add_action(
-			'PdfLightViewer_PdfController::scheduled_pdf_import',
-			array('PdfLightViewer_PdfController','scheduled_pdf_import'),
-			10,
-			5
-		);
+		
 	}
 
 	// plugin actions
 		public static function registerPluginActions($links, $file) {
-			if (stristr($file, PDF_LIGHT_VIEWER_PLUGIN)) {
+			if (stristr($file, PDF_LIGHT_VIEWER_PLUGIN.'/')) {
 				$settings_link = '<a href="'.self::getSettingsUrl().'">' . __('Settings', PDF_LIGHT_VIEWER_PLUGIN) . '</a>';
 				$docs_link = '<a href="'.self::getDocsUrl().'">' . __('Docs', PDF_LIGHT_VIEWER_PLUGIN) . '</a>';
-				$links = array_merge(array($settings_link, $docs_link), $links);
+				$support_link = '<a target="_blank" href="'.self::getSupportUrl().'">' . __('Support', PDF_LIGHT_VIEWER_PLUGIN) . '</a>';
+				$links = array_merge(array($settings_link, $docs_link, $support_link), $links);
 			}
 			return $links;
 		}
@@ -122,6 +118,10 @@ class PdfLightViewer_Plugin {
 		}
 		$documentation_url = plugins_url($documentation_url, PDF_LIGHT_VIEWER_FILE);
 		return $documentation_url;
+	}
+	
+	public static function getSupportUrl() {
+		return 'http://support.wp.teamlead.pw/';
 	}
 	
 	public static function getSettingsUrl() {
@@ -292,9 +292,9 @@ class PdfLightViewer_Plugin {
 			$requirements = array(
 				array(
 					'name' => 'PHP',
-					'status' => version_compare(PHP_VERSION, '5.2.0', '>='),
-					'success' => sprintf(__('is %s or higher',PDF_LIGHT_VIEWER_PLUGIN), '5.2'),
-					'fail' => sprintf(__('is lower than %s',PDF_LIGHT_VIEWER_PLUGIN), '5.2'),
+					'status' => version_compare(PHP_VERSION, '5.3.0', '>='),
+					'success' => sprintf(__('is %s or higher',PDF_LIGHT_VIEWER_PLUGIN), '5.3'),
+					'fail' => sprintf(__('is lower than %s',PDF_LIGHT_VIEWER_PLUGIN), '5.3'),
 					'description' => ''
 				),
 				array(
@@ -396,7 +396,7 @@ class PdfLightViewer_Plugin {
 		
 	public static function init() {
 		// initialization
-			register_activation_hook(__FILE__, array('PdfLightViewer_Plugin','activation'));
+			register_activation_hook(PDF_LIGHT_VIEWER_FILE, array('PdfLightViewer_Plugin','activation'));
 			
 		// plugin actions
 			add_filter('plugin_action_links', array('PdfLightViewer_Plugin','registerPluginActions'), 10, 2);
@@ -405,9 +405,7 @@ class PdfLightViewer_Plugin {
 			add_action('plugins_loaded', array('PdfLightViewer_Plugin','localization'));
 			
 		// run main action
-		add_action('after_setup_theme', array('PdfLightViewer_Plugin', 'run'));
-			
-		PdfLightViewer_Plugin::initEarlyActions();
+			add_action('after_setup_theme', array('PdfLightViewer_Plugin', 'run'));
 	}
 		
 		
@@ -473,6 +471,7 @@ class PdfLightViewer_Plugin {
 			
 			// settings init
 				add_action('admin_init', array('PdfLightViewer_AdminController','settingsInit'));
+				add_action('admin_notices', array('PdfLightViewer_AdminController', 'initGentleNotifications'));
 				
 			// admin page
 				add_action('admin_menu', array('PdfLightViewer_AdminController','registerMenuPage'));

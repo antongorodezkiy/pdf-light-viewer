@@ -10,9 +10,9 @@ class PdfLightViewer_AssetsController {
 				'purecss.grids.core' => 'assets/bower_components/pure/grids-core-min.css',
 				'purecss.forms' => 'assets/bower_components/pure/forms-min.css',
 				'font-awesome' => 'assets/bower_components/fontawesome/css/font-awesome.min.css',
+				'simple-line-icons' => 'assets/bower_components/simple-line-icons/css/simple-line-icons.css',
 				'jquery.bxslider.css' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.css',
-				'magazine.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/magazine.css',
-				'admin.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/admin.css'
+				'backend.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/backend.css'
 			);
 			
 			foreach($styles as $id => $file) {
@@ -96,8 +96,9 @@ class PdfLightViewer_AssetsController {
 		// styles
 			$styles = array(
 				'font-awesome' => 'assets/bower_components/fontawesome/css/font-awesome.min.css',
+				'simple-line-icons' => 'assets/bower_components/simple-line-icons/css/simple-line-icons.css',
 				'jquery.bxslider.css' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.css',
-				'magazine.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/magazine.css'
+				'frontend.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/frontend.css'
 			);
 			
 			foreach($styles as $id => $file) {

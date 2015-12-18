@@ -6,7 +6,7 @@
 	<br />
 	<div>
 		PHP:
-		<code>PdfLightViewer_FrontController::disaply_pdf_book(array('id' => '<?php echo $post_id;?>');</code>
+		<code>PdfLightViewer_FrontController::disaply_pdf_book(array('id' => '<?php echo $post_id;?>'));</code>
 	</div>
 <?php } else { ?>
 	<?php echo __('You have not yet converted the PDF.',PDF_LIGHT_VIEWER_PLUGIN)?>

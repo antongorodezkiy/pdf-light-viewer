@@ -4,12 +4,12 @@
 		PdfLightViewer = typeof PdfLightViewer != 'undefined' ? PdfLightViewer : {};
 		PdfLightViewer.app = {
 			success: function(content) {
-				var html = '<div class="updated"><p><i class="fa fa-check"></i> '+content+'</p></div>';
-				$('#wpbody .wrap h2').after(html);
+				var html = '<div class="updated"><p><i class="icons icon-check"></i> '+content+'</p></div>';
+				$('#wpbody .wrap').prepend(html);
 			},
 			error: function(content) {
-				var html = '<div class="error"><p><i class="fa fa-warning"></i> '+content+'</p></div>';
-				$('#wpbody .wrap h2').after(html);
+				var html = '<div class="error"><p><i class="icons icon-close"></i> '+content+'</p></div>';
+				$('#wpbody .wrap').prepend(html);
 			}
 		};
 
@@ -18,8 +18,15 @@
 
 			PdfLightViewer.ping_import = function() {
 				$.post(PdfLightViewer.url.ajaxurl, {"action": "pdf-light-viewer_ping_import"}, function(data) {
+					
 					try {
-						var json = $.parseJSON(data);
+						if (typeof(data) == 'string') {
+							var json = $.parseJSON(data);
+						}
+						else {
+							var json = data;
+						}
+						
 						
 						$(".js-pdf-light-viewer-current-status").html(json.status);
 						$(".js-pdf-light-viewer-current-progress").text(json.progress);
@@ -51,6 +58,22 @@
 			};
 			PdfLightViewer.ping_import();
 				
+		}
+		
+		if ( $('.js-pdf-light-viewer-hide-notification').size() ) {
+			$('.js-pdf-light-viewer-hide-notification').on('click', function(e) {
+				var a = $(this);
+				if (a.attr('href') == '#') {
+					e.preventDefault();
+				}
+				
+				a.parents('.updated').slideUp();
+				
+				$.post(PdfLightViewer.url.ajaxurl, {
+					'action': 'pdf-light-viewer_notification_viewed',
+					'notification': a.data('notification')
+				});
+			});
 		}
 	});
 })(jQuery);

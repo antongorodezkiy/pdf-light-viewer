@@ -2,23 +2,10 @@
 
 class PdfLightViewer_FrontController {
 	
-	public static function disaply_pdf_book($atts = array()) {
-		global $pdf_light_viewer_config;
-	
-		if (!isset($atts['id']) || !$atts['id']) {
-			return;
-		}
-		
-		$post = get_post($atts['id']);
-		if (empty($post) || !$post->ID) {
-			return;
-		}
-		
+	public static function getConfig($atts, $post) {
 		$pdf_light_viewer_config = self::parseDefaultsSettings($atts, $post);
 	
 		// download options
-			$pdf_light_viewer_config['download_allowed'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'download_allowed', true);
-			
 			if ($pdf_light_viewer_config['download_allowed']) {
 				$pdf_file_id = PdfLightViewer_Model::getPDFFileId($post->ID);
 				$pdf_file_url = wp_get_attachment_url($pdf_file_id);
@@ -28,26 +15,27 @@ class PdfLightViewer_FrontController {
 				$pdf_light_viewer_config['download_link'] = ($alternate_download_link ? $alternate_download_link : $pdf_file_url);
 			}
 		
-		$pdf_light_viewer_config['hide_thumbnails_navigation'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_thumbnails_navigation', true);
-		$pdf_light_viewer_config['hide_fullscreen_button'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_fullscreen_button', true);
-		$pdf_light_viewer_config['disable_page_zoom'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'disable_page_zoom', true);
-		
-		
 		$pdf_upload_dir = PdfLightViewer_Plugin::getUploadDirectory($post->ID);
 		$pdf_upload_dir_url = PdfLightViewer_Plugin::getUploadDirectoryUrl($post->ID);
 		
 		$pdf_light_viewer_config['pdf_upload_dir_url'] = $pdf_upload_dir_url;
-		$pages = directory_map($pdf_upload_dir);
-		sort($pages);
 		
+		$pages = directory_map($pdf_upload_dir);
 		$thumbs = directory_map($pdf_upload_dir.'-thumbs');
+		
+		if (empty($pages) || empty($thumbs)) {
+			echo '<span style="color: Salmon">'.__('[pdf-light-viewer] shortcode cannot be rendered due to the error: No converted pages found',PDF_LIGHT_VIEWER_PLUGIN).'</span>';
+			return;
+		}
+		
+		sort($pages);
 		sort($thumbs);
 		
 		// check permissions
 			$current_user = wp_get_current_user();
 			$current_user_roles = $current_user->roles;
 		
-			$pages_limits = get_post_meta($post->ID, 'pdf_light_viewer_permissions_metabox_repeat_group', true);
+			$pages_limits = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf_light_viewer_permissions_metabox_repeat_group', true);
 			
 			$limit = 0;
 			if (!empty($pages_limits)) {
@@ -62,8 +50,6 @@ class PdfLightViewer_FrontController {
 			}
 			
 		// limit allowed pages for user role
-			$pdf_light_viewer_config['pages'] = array();
-			$pdf_light_viewer_config['thumbs'] = array();
 			if (!$limit) {
 				$pdf_light_viewer_config['pages'] = $pages;
 				$pdf_light_viewer_config['thumbs'] = $thumbs;
@@ -75,9 +61,24 @@ class PdfLightViewer_FrontController {
 				}
 			}
 			
-		$pdf_light_viewer_config['page_width'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-width', true);
-		$pdf_light_viewer_config['page_height'] = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-height', true);
-			
+		$pdf_light_viewer_config = apply_filters(PDF_LIGHT_VIEWER_PLUGIN.':front_config', $pdf_light_viewer_config, $post);
+		
+		return $pdf_light_viewer_config;
+	}
+	
+	public static function disaply_pdf_book($atts = array()) {
+		global $pdf_light_viewer_config;
+	
+		if (!isset($atts['id']) || !$atts['id']) {
+			return;
+		}
+		
+		$post = get_post($atts['id']);
+		if (empty($post) || !$post->ID) {
+			return;
+		}
+		
+		$pdf_light_viewer_config = static::getConfig($atts, $post);
 		
 		ob_start();
 		ob_clean();
@@ -101,27 +102,27 @@ class PdfLightViewer_FrontController {
 	}
 	
 	
-	public static function parseDefaultsSettings($atts, $post = null) {
-		$linked_articles_config = array();
+	public static function parseDefaultsSettings($args, $post = null) {
+		$defaults = array(
+			'template' => 'shortcode-pdf-light-viewer',
+			'download_link' => '',
+			'download_allowed' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'download_allowed', true),
+			'hide_thumbnails_navigation' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_thumbnails_navigation', true),
+			'hide_fullscreen_button' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_fullscreen_button', true),
+			'disable_page_zoom' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'disable_page_zoom', true),
+			'page_width' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-width', true),
+			'page_height' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-height', true),
 		
-		// template
-			if (isset($atts['template']) && $atts['template']) {
-				$linked_articles_config['template'] = $atts['template'];
-			}
-			else {
-				$linked_articles_config['template'] = 'shortcode-pdf-light-viewer';
-			}
+			'pages' => array(),
+			'thumbs' => array(),
 		
-		// download_link
-			if (isset($atts['download_link']) && $atts['download_link']) {
-				$linked_articles_config['download_link'] = $atts['download_link'];
-			}
-			else {
-				$linked_articles_config['download_link'] = '';
-			}	
-			
+			'print_allowed' => false,
+			'enabled_pdf_text' => false,
+			'enabled_pdf_search' => false,
+			'enabled_archive' => false
+		);
 						
-		return $linked_articles_config;
+		return wp_parse_args($args, $defaults);
 	}
 	
 	
@@ -130,4 +131,14 @@ class PdfLightViewer_FrontController {
 		return $css_classes;
 	}
 	
+	
+	public static function getPageLink($number) {
+		$url = apply_filters(PDF_LIGHT_VIEWER_PLUGIN.':front_get_page_link', $number);
+		
+		if (!$url) {
+			$url = '#page/'.$number;
+		}
+		
+		return $url;
+	}
 }

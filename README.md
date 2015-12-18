@@ -7,9 +7,9 @@
   
 **Requires at least:** 3.5
   
-**Tested up to:** 4.3.1
+**Tested up to:** 4.4
   
-**Stable tag:** 1.1.7
+**Stable tag:** 1.2.1
   
 **License:** GPLv2
   
@@ -61,6 +61,18 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+### 1.2.1 - 2015-12-18 ###
+* bugfixing pro addon compatibility
+* design improvements
+
+### 1.2.0 - 2015-12-14 ###
+* PHP 5.3 is now required instead of PHP 5.2
+* Design improvements
+* Changed icon set from FontAwesome to Simple Line Icons
+* Fixed admin notifications handling
+* Refactoring, improved code logic
+* Added compatibility with PRO Addon
 
 ### 1.1.7 - 2015-12-05 ###
 * Fixed bug when 2nd page in a 2-page pdf not displayed in thumbnails

@@ -2,6 +2,30 @@
 
 class PdfLightViewer_AdminController {
 	
+	public static function initGentleNotifications() {
+		
+		if (
+			!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-pro-ad-viewed')
+			&& !defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')
+		) {
+			PdfLightViewer_AdminController::showDirectMessage(
+				sprintf(
+					__('PDF Light Viewer Team: We created PRO Addon with printing, search and SEO-friendly mode <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" target="_blank" href="%s">Check It</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" href="#">Not interested</a>',PDF_LIGHT_VIEWER_PLUGIN),
+					'http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505'
+				)
+			);
+		}
+		elseif (!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-survey-viewed')) {
+			PdfLightViewer_AdminController::showDirectMessage(
+				sprintf(
+					__('PDF Light Viewer Team: Please, take part in our 1-minute survey to make PDF Light Viewer plugin better <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" target="_blank" href="%s">Take Survey</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" href="#">Not interested</a>',PDF_LIGHT_VIEWER_PLUGIN),
+					'https://teamlead-power.typeform.com/to/Mr7eVs'
+				)
+			);
+		}
+		
+	}
+	
 	// show message
 		public static function showMessage($message, $errormsg = false) {
 			
@@ -60,6 +84,22 @@ class PdfLightViewer_AdminController {
 			}
 			if (!empty(PdfLightViewer_Model::$unimported)) {
 				add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_ping_import', array('PdfLightViewer_PdfController','pdf_partially_import'));
+			}
+			
+			add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_notification_viewed', array(__CLASS__,'notification_viewed'));
+		}
+		
+		public static function notification_viewed() {
+			if (!empty($_POST['notification'])) {
+				switch($_POST['notification']) {
+					case 'survey-viewed':
+						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-survey-viewed', true);
+					break;
+					
+					case 'pro-ad-viewed':
+						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-pro-ad-viewed', true);
+					break;
+				}
 			}
 		}
 

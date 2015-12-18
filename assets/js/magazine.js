@@ -59,7 +59,12 @@
 						},
 						turned: function(event, page) {
 							
-							page = PDFLightViewerApp.page;
+							if (PDFLightViewerApp.page) {
+								page = PDFLightViewerApp.page;
+							}
+							else {
+								PDFLightViewerApp.page = page;
+							}
 							
 							if (
 								typeof(page) == "undefined"
@@ -126,10 +131,12 @@
 				});
 				
 				// Events for thumbnails
-					$('.js-pdf-light-viewer-magazine-thumbnails', instance).click(function(event) {
+					$('.js-pdf-light-viewer-magazine-thumbnails a', instance).on('click', function(event) {
+						event.preventDefault();
+						
 						var page;
-						var css_class = $(event.target).attr('class');
-						if (event.target && (page=/page-([0-9]+)/.exec(css_class)) ) {
+						var css_class = $(event.currentTarget).attr('class');
+						if (event.currentTarget && (page=/page-([0-9]+)/.exec(css_class)) ) {
 							magazine.turn('page', page[1]);
 						}
 					});
@@ -149,7 +156,9 @@
 						maxSlides: 6,
 						slideMargin: 10,
 						moveSlides: 2,
-						infiniteLoop: false
+						infiniteLoop: false,
+						prevText: '<i class="icons icon-arrow-left-circle"></i>',
+						nextText: '<i class="icons icon-arrow-right-circle"></i>'
 					});
 					
 				// pages fulscreen
@@ -157,20 +166,26 @@
 						$(".js-pdf-light-viewer-fullscreen", instance).click(function(e){
 							e.preventDefault();
 							if ($(document).fullScreen()) {
-								instance.removeClass("pdf-light-viewer-fullscreen");
 								instance.fullScreen(false);
-								
 							}
 							else {
-								instance.addClass("pdf-light-viewer-fullscreen");
 								instance.fullScreen(true);
-								
 							}
+						});
+						
+						$(document).bind('fullscreenchange', function() {
+							if ($(document).fullScreen()) {
+								instance.addClass('pdf-light-viewer-fullscreen');
+							}
+							else {
+								instance.removeClass('pdf-light-viewer-fullscreen');
+							}
+							
 						});
 					}
 					else {
 						// if not supported
-						$(".js-pdf-light-viewer-fullscreen", instance).remove();
+						$('.js-pdf-light-viewer-fullscreen', instance).remove();
 					}
 					
 				// window resize
@@ -259,9 +274,10 @@
 				yep: function(path, parts) {
 					var page = parts[1];
 		
-					if (page!==undefined) {
-						if ($('.js-pdf-light-viewer-magazine').turn('is'))
+					if (page !== undefined) {
+						if ($('.js-pdf-light-viewer-magazine').turn('is')) {
 							$('.js-pdf-light-viewer-magazine').turn('page', page);
+						}
 					}
 				},
 				nop: function(path) {

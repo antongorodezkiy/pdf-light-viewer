@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pdf-light-viewer\n"
-"POT-Creation-Date: 2015-08-04 20:59+0300\n"
-"PO-Revision-Date: 2015-08-04 21:10+0300\n"
+"POT-Creation-Date: 2015-12-14 04:49+0300\n"
+"PO-Revision-Date: 2015-12-14 04:57+0300\n"
 "Last-Translator: Eduard Kozachek <eduard@kozachek.net>\n"
 "Language-Team: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
-"Language: ru\n"
 "X-Poedit-SearchPath-0: ../..\n"
 
 #: ../../controllers/AssetsController.php:87
@@ -77,12 +77,12 @@ msgstr "Для PDFs"
 #: ../../controllers/PdfController.php:72
 #, php-format
 msgid ""
-"<i class=\"fa fa-cog fa-spin\"></i> <b>%s</b> PDF import is <span class=\"js-"
-"pdf-light-viewer-current-status\">%s</span>. <span class=\"js-pdf-light-"
+"<i class=\"icons icon-settings\"></i> <b>%s</b> PDF import is <span class="
+"\"js-pdf-light-viewer-current-status\">%s</span>. <span class=\"js-pdf-light-"
 "viewer-current-progress\">%d</span>%% is complete. <i>Please do not leave "
 "the admin interface until the import would not finished. %s</i>"
 msgstr ""
-"<i class=\"fa fa-cog fa-spin\"></i> <b>%s</b> PDF импорт в стадии <span "
+"<i class=\"icons icon-settings\"></i> <b>%s</b> PDF импорт в стадии <span "
 "class=\"js-pdf-light-viewer-current-status\">%s</span>. <span class=\"js-pdf-"
 "light-viewer-current-progress\">%d</span>%% завершено. <i>Пожалуйста, не "
 "покидайте панель администратора до тех пор, пока импорт не будет завершен. "
@@ -227,11 +227,11 @@ msgstr "Видимые страницы"
 msgid "PDF Preview"
 msgstr "PDF предпросмотр"
 
-#: ../../controllers/PdfController.php:422
+#: ../../controllers/PdfController.php:397
 msgid "PDF import scheduled."
 msgstr "PDF импорт запланирован."
 
-#: ../../controllers/PdfController.php:427
+#: ../../controllers/PdfController.php:402
 #, php-format
 msgid ""
 "Imagick not found, please check other requirements on <a href=\"%s\">plugin "
@@ -240,61 +240,81 @@ msgstr ""
 "Imagick не найден, пожалуйста проверьте другие требования на <a href=\"%s"
 "\">странице настроек плагина</a> для детальной информации."
 
-#: ../../controllers/PdfController.php:449
+#: ../../controllers/PdfController.php:423
+msgid "Currently there are no unimported files in the queue."
+msgstr "В данный момент нет неимпортированных файлов в очереди."
+
+#: ../../controllers/PdfController.php:430
 msgid "scheduled"
 msgstr "Импорт запланирован"
 
-#: ../../controllers/PdfController.php:453
+#: ../../controllers/PdfController.php:434
 msgid "started"
 msgstr "Импорт начат"
 
-#: ../../controllers/PdfController.php:457
+#: ../../controllers/PdfController.php:438
 msgid "processing"
 msgstr "обработка"
 
-#: ../../controllers/PdfController.php:541
+#: ../../controllers/PdfController.php:465
+msgid "Cannot get width and height of the first page."
+msgstr "Невозможно получить высоту и ширину первой страницы."
+
+#: ../../controllers/PdfController.php:477
+msgid "Cannot detect current imported PDF page."
+msgstr "Не удалось определить текущую импортируемую PDF страницу."
+
+#: ../../controllers/PdfController.php:538
 msgid "failed"
 msgstr "не удалось"
 
-#: ../../controllers/PdfController.php:552
+#: ../../controllers/PdfController.php:553
 msgid "finished"
 msgstr "Импорт завершён"
 
-#: ../../controllers/Plugin.php:61 ../../views/settings.php:104
+#: ../../controllers/Plugin.php:56 ../../views/settings.php:113
 msgid "Settings"
 msgstr "Настройки"
 
-#: ../../controllers/Plugin.php:62
+#: ../../controllers/Plugin.php:57
 msgid "Docs"
 msgstr "Документация"
 
-#: ../../controllers/Plugin.php:201
+#: ../../controllers/Plugin.php:58
+msgid "Support"
+msgstr "Поддержка"
+
+#: ../../controllers/Plugin.php:251
 msgid "Upload folder"
 msgstr "Папка для загрузки"
 
-#: ../../controllers/Plugin.php:227
+#: ../../controllers/Plugin.php:290
+msgid "Logs folder"
+msgstr "Папка для журналов"
+
+#: ../../controllers/Plugin.php:296
 #, php-format
 msgid "is %s or higher"
 msgstr "%s или выше"
 
-#: ../../controllers/Plugin.php:228
+#: ../../controllers/Plugin.php:297
 #, php-format
 msgid "is lower than %s"
 msgstr "ниже чем %s"
 
-#: ../../controllers/Plugin.php:232
+#: ../../controllers/Plugin.php:301
 msgid "Imagick PHP Extension"
 msgstr "Imagick PHP Расширение"
 
-#: ../../controllers/Plugin.php:234
+#: ../../controllers/Plugin.php:303
 msgid "is loaded"
 msgstr "загружен"
 
-#: ../../controllers/Plugin.php:235
+#: ../../controllers/Plugin.php:304
 msgid "is not loaded"
 msgstr "не загружен"
 
-#: ../../controllers/Plugin.php:236
+#: ../../controllers/Plugin.php:305
 msgid ""
 "Imagick PHP Extension is required for PDF -> JPEG convertation. It cannot be "
 "included with the plugin unfortunately, so you or your hosting provider/"
@@ -304,19 +324,19 @@ msgstr ""
 "быть включен в плагин к сожалению, поэтому вы или ваш хостинг провайдер или "
 "системный администратор должны установить его самостоятельно."
 
-#: ../../controllers/Plugin.php:239
+#: ../../controllers/Plugin.php:308
 msgid "Imagick PHP Wrapper"
 msgstr "Imagick PHP Обертка"
 
-#: ../../controllers/Plugin.php:241 ../../controllers/Plugin.php:254
+#: ../../controllers/Plugin.php:310 ../../controllers/Plugin.php:324
 msgid "is supported"
 msgstr "поддерживается"
 
-#: ../../controllers/Plugin.php:242 ../../controllers/Plugin.php:255
+#: ../../controllers/Plugin.php:311 ../../controllers/Plugin.php:325
 msgid "is not supported"
 msgstr "не поддерживается"
 
-#: ../../controllers/Plugin.php:243
+#: ../../controllers/Plugin.php:312
 msgid ""
 "Imagick PHP Wrapper is required to make available Imagick PHP Extension "
 "functionality in the plugin. Usually it's integrated through the PECL "
@@ -329,31 +349,94 @@ msgstr ""
 "ваш хостинг провайдер или системный администратор должны установить ее "
 "самостоятельно."
 
-#: ../../controllers/Plugin.php:246
+#: ../../controllers/Plugin.php:315
 msgid "Imagick PDF Support"
 msgstr "Поддержка Imagick PDF"
 
-#: ../../controllers/Plugin.php:248
+#: ../../controllers/Plugin.php:317
 msgid "is enabled"
 msgstr "включён"
 
-#: ../../controllers/Plugin.php:249
+#: ../../controllers/Plugin.php:318
 msgid "is not enabled"
 msgstr "не включён"
 
-#: ../../controllers/Plugin.php:260
+#: ../../controllers/Plugin.php:319
+msgid "Imagick PDF Support is required for PDF -> JPEG convertation."
+msgstr "Поддержка Imagick требуется для конвертации PDF -> JPEG."
+
+#: ../../controllers/Plugin.php:326
+msgid ""
+"GhostScript is required for Imagick PDF Support. For cases, when you are "
+"sure that GhostScript is installed, but it was not detected by the plugin "
+"correctly you can disable this requirement in options below."
+msgstr ""
+"GhostScript необходим для поддержки PDF в Imagick. Для случаев, когда вы "
+"уверены, что GhosScript установлен, но он не был определен плагином, вы "
+"можете отключить эту проверку в опциях ниже."
+
+#: ../../controllers/Plugin.php:331 ../../controllers/Plugin.php:338
 msgid "is writable"
 msgstr "доступна для записи"
 
-#: ../../controllers/Plugin.php:261
+#: ../../controllers/Plugin.php:332 ../../controllers/Plugin.php:339
 msgid "is not writable"
 msgstr "не доступна для записи"
 
-#: ../../controllers/AdminController.php:109
+#: ../../controllers/Plugin.php:333
+msgid "This is the folder for converted images."
+msgstr "Это папка для конвертированных изображений."
+
+#: ../../controllers/Plugin.php:340
+msgid "We will save plugin-specific log files in this folder."
+msgstr "Мы будем хранить журналы плагина в этой папке."
+
+#: ../../controllers/FrontController.php:27
+msgid ""
+"[pdf-light-viewer] shortcode cannot be rendered due to the error: No "
+"converted pages found"
+msgstr ""
+"[pdf-light-viewer] шорткод не может быть отображен из-за ошибки: Не найдены "
+"сконвертированные страницы"
+
+#: ../../controllers/AdminController.php:13
+#, php-format
+msgid ""
+"PDF Light Viewer Team: We created PRO Addon with printing, search and SEO-"
+"friendly mode <a class=\"button-primary js-pdf-light-viewer-hide-notification"
+"\" data-notification=\"pro-ad-viewed\" target=\"_blank\" href=\"%s\">Check "
+"It</a> <a class=\"button-secondary js-pdf-light-viewer-hide-notification\" "
+"data-notification=\"pro-ad-viewed\" href=\"#\">Not interested</a>"
+msgstr ""
+"Команда PDF Light Viewer: Мы создали PRO Дополнение с возможностями печати, "
+"поиска и дружелюбным для SEO режимом  <a class=\"button-primary js-pdf-light-"
+"viewer-hide-notification\" data-notification=\"pro-ad-viewed\" target="
+"\"_blank\" href=\"%s\">Взглянуть на дополнение</a> <a class=\"button-"
+"secondary js-pdf-light-viewer-hide-notification\" data-notification=\"pro-ad-"
+"viewed\" href=\"#\">Не интересует</a>"
+
+#: ../../controllers/AdminController.php:21
+#, php-format
+msgid ""
+"PDF Light Viewer Team: Please, take part in our 1-minute survey to make PDF "
+"Light Viewer plugin better <a class=\"button-primary js-pdf-light-viewer-"
+"hide-notification\" data-notification=\"survey-viewed\" target=\"_blank\" "
+"href=\"%s\">Take Survey</a> <a class=\"button-secondary js-pdf-light-viewer-"
+"hide-notification\" data-notification=\"survey-viewed\" href=\"#\">Not "
+"interested</a>"
+msgstr ""
+"Команда PDF Light Viewer: Пожалуйста, примите участие в нашем 1-минутном "
+"опросе, чтобы сделать PDF Light Viewer плагин лучше <a class=\"button-"
+"primary js-pdf-light-viewer-hide-notification\" data-notification=\"survey-"
+"viewed\" target=\"_blank\" href=\"%s\">Принять участие</a> <a class=\"button-"
+"secondary js-pdf-light-viewer-hide-notification\" data-notification=\"survey-"
+"viewed\" href=\"#\">Не интересует</a>"
+
+#: ../../controllers/AdminController.php:150
 msgid "requirements are met, happy using!"
 msgstr "требования удовлетворены, счастливого пользования!"
 
-#: ../../controllers/AdminController.php:114
+#: ../../controllers/AdminController.php:155
 #, php-format
 msgid ""
 "requirements not met, please check <a href=\"%s\">plugin settings page</a> "
@@ -362,7 +445,7 @@ msgstr ""
 "требования не удовлетворены, пожалуйста проверьте <a href=\"%s\">страницу "
 "настроек плагина</a> чтобы узнать подробнее."
 
-#: ../../controllers/AdminController.php:128
+#: ../../controllers/AdminController.php:169
 msgid ""
 "We have just created new section called PDFs in your dashboard. Use it to "
 "import and publish your cool PDF files."
@@ -370,15 +453,27 @@ msgstr ""
 "Мы только что создали новую секцию PDFs в вашем административном интерфейсе. "
 "Используйте ее для импорта и публикации ваших неимоверных PDF файлов."
 
-#: ../../templates/shortcode-pdf-light-viewer.php:16
+#: ../../templates/shortcode-pdf-light-viewer.php:20
+msgid "Archive"
+msgstr "Архив"
+
+#: ../../templates/shortcode-pdf-light-viewer.php:30
+msgid "Print"
+msgstr "Печать"
+
+#: ../../templates/shortcode-pdf-light-viewer.php:38
 #: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:706
 #: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:768
 msgid "Download"
 msgstr "Скачать"
 
-#: ../../templates/shortcode-pdf-light-viewer.php:22
+#: ../../templates/shortcode-pdf-light-viewer.php:46
 msgid "Fullscreen"
 msgstr "Полный экран"
+
+#: ../../templates/shortcode-pdf-light-viewer.php:55
+msgid "Zoom enabled"
+msgstr "Увеличение включёно"
 
 #: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:258
 msgid "Clear"
@@ -401,7 +496,7 @@ msgid "Select / Deselect All"
 msgstr "Выбрать / Убрать выделение"
 
 #: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:1177
-#: ../../views/settings.php:138
+#: ../../views/settings.php:162
 msgid "Save"
 msgstr "Сохранить"
 
@@ -726,70 +821,91 @@ msgstr ""
 msgid "About"
 msgstr "Про"
 
-#: ../../views/settings.php:60
+#: ../../views/settings.php:66
 msgid "Plugin Requirements"
 msgstr "Требования плагина"
 
-#: ../../views/settings.php:109
+#: ../../views/settings.php:118
 msgid "Main settings"
 msgstr "Основные настройки"
 
-#: ../../views/settings.php:117
+#: ../../views/settings.php:123
 msgid "Show PDFs in Menu"
 msgstr "Отображать PDFs в Меню"
 
-#: ../../views/settings.php:118
+#: ../../views/settings.php:124
 msgid "Show PDFs menu item in the left admin sidebar"
 msgstr ""
 "Показывать ли пункт меню PDFs в левой панели административного интерфейса"
 
-#: ../../views/settings.php:155
+#: ../../views/settings.php:142
+msgid "Do not check GhostScript installation"
+msgstr "Не проверять установку GhosScript"
+
+#: ../../views/settings.php:143
+msgid ""
+"For cases, when you are sure that GhostScript is installed, but it was not "
+"detected by the plugin correctly."
+msgstr ""
+"Для случаев, когда вы уверены что GhostScript установлен, но он не "
+"определился корректно."
+
+#: ../../views/settings.php:180
 msgid "Personal Support"
 msgstr "Персональная поддержка"
 
-#: ../../views/settings.php:165
+#: ../../views/settings.php:190
 #, php-format
 msgid "Support request, plugin: %s (time: %s)"
 msgstr "Запрос в техподдержку, плагин %s (время: %s)"
 
-#: ../../views/settings.php:170
+#: ../../views/settings.php:195
 #, php-format
 msgid ""
-"To get support please contact us on address <a target=\"_blank\" href=\"%s\">"
-"%s</a>. Please also attach information below to let us know more about your "
-"server and site environment - this could be helpful to solve the issue."
+"To get support please contact us on forum <a target=\"_blank\" href=\"%s\">"
+"%s</a> or by email <a target=\"_blank\" href=\"%s\">%s</a>. Please also "
+"attach information below to let us know more about your server and site "
+"environment - this could be helpful to solve the issue."
 msgstr ""
-"Чтобы получить техническую поддержку, пожалуйста свяжитесь с нами по адресу "
-"<a target=\"_blank\" href=\"%s\">%s</a>. Пожалуйста, приложите к письму "
-"информацию представленную ниже, чтобы дать нам знать как можно больше о "
-"вашем сервере и программной окружении - это будет полезно для разрешения "
-"проблемы."
+"Чтобы получить техническую поддержку, пожалуйста свяжитесь с нами через "
+"форум <a target=\"_blank\" href=\"%s\">%s</a> или по адресу <a target="
+"\"_blank\" href=\"%s\">%s</a>. Пожалуйста, приложите к письму информацию "
+"представленную ниже, чтобы дать нам знать как можно больше о вашем сервере и "
+"программной окружении - это будет полезно для разрешения проблемы."
 
-#: ../../views/settings.php:180
+#: ../../views/settings.php:204
 msgid "Subject"
 msgstr "Тема"
 
-#: ../../views/settings.php:186
+#: ../../views/settings.php:210
 msgid "Server Info"
 msgstr "Серверная информация"
 
-#: ../../views/settings.php:206
+#: ../../views/settings.php:230
 msgid "Theme"
 msgstr "Тема"
 
-#: ../../views/settings.php:215
+#: ../../views/settings.php:239
 msgid "from"
 msgstr "от"
 
-#: ../../views/settings.php:225
+#: ../../views/settings.php:249
 msgid "Plugins"
 msgstr "Плагины"
 
-#: ../../views/settings.php:255
+#: ../../views/settings.php:277
+msgid "Today's log file"
+msgstr "Сегодняшний файл журнала"
+
+#: ../../views/settings.php:287
+msgid "Today's log file doesn't exist"
+msgstr "Сегодняшний файл журнала не существует"
+
+#: ../../views/settings.php:303
 msgid "Documentation"
 msgstr "Документация"
 
-#: ../../views/settings.php:256
+#: ../../views/settings.php:304
 msgid "open in the separate tab"
 msgstr "открыть в отдельной вкладке"
 
