@@ -9,7 +9,7 @@
   
 **Tested up to:** 4.4
   
-**Stable tag:** 1.2.1
+**Stable tag:** 1.2.2
   
 **License:** GPLv2
   
@@ -61,6 +61,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+### 1.2.2 - 2015-12-25 ###
+* fixing issue with 404 links in pagination
 
 ### 1.2.1 - 2015-12-18 ###
 * bugfixing pro addon compatibility

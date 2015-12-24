@@ -135,7 +135,7 @@ class PdfLightViewer_FrontController {
 	public static function getPageLink($number) {
 		$url = apply_filters(PDF_LIGHT_VIEWER_PLUGIN.':front_get_page_link', $number);
 		
-		if (!$url) {
+		if (!$url || $url == $number) {
 			$url = '#page/'.$number;
 		}
 		
