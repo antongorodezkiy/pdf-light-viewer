@@ -448,6 +448,10 @@ class PdfLightViewer_Plugin {
 			include_once(PDF_LIGHT_VIEWER_APPPATH.'/controllers/PdfController.php');
 		}
 		
+		if ( defined('WP_CLI') && WP_CLI ) {
+			include_once(PDF_LIGHT_VIEWER_APPPATH.'/controllers/CLIController.php');
+		}
+		
 		if (!class_exists('PdfLightViewer_Model')) {
 			include_once(PDF_LIGHT_VIEWER_APPPATH.'/models/Model.php');
 		}

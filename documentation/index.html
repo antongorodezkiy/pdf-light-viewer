@@ -539,6 +539,45 @@
 					You could call class method <code>PdfLightViewer_FrontController::disaply_pdf_book($atts = array())</code>
 					directly instead of using shortcode <code>[pdf-light-viewer]</code>.
 				</p>
+				
+				<div class="content-subhead">CLI usage</div>
+				<p>
+					You can work with plugin from command line interface. PDF Light Viewer integrated with great <a href="http://wp-cli.org/" target="_blank">WP CLI</a>, thus the plugin requires WP CLI to work in command line.
+				</p>
+				<p>
+					Command <code>wp pdf-light-viewer</code> has following subcommands:
+				</p>
+				<ul>
+					<li>
+						<p><code>bulk-import</code> - Bulk PDF import</p>
+						<hr />
+						<p>Options:</p>
+						<ul>
+							<li>
+								<code>source-dir</code> required, source directory to import PDF files
+							</li>
+							<li>
+								<code>jpeg-compression-quality</code> optional, jpeg compression quality, default 60
+							</li>
+							<li>
+								<code>jpeg-resolution</code> optional, jpeg resolution, default 300
+							</li>
+							<li>
+								<code>post-status</code> optional, PDF post status, default "draft"
+							</li>
+							<li>
+								<code>import-pdf-file</code> flag, if set then import PDF file to Wordpress media library
+							</li>
+						</ul>
+						<hr />
+						<p>Example:</p>
+						<p>
+							<code>
+								wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --import-pdf-file
+							</code>
+						</p>
+					</li>
+				</ul>
 								
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#support">Support</a> section to get in touch with our support team.</p>
@@ -622,6 +661,29 @@
 			<div class="content">
 				
 				<h3>PDF Light Viewer</h3>
+
+				<h4 class="content-subhead">1.2.3 - 2016-01-20</h4>
+				<ul>
+					<li>
+						integration with WP CLI
+					</li>
+					<li>
+						added CLI command bulk-import
+					</li>
+					<li>
+						fixed missing font-awesome css
+					</li>
+					<li>
+						icons compatibility fix
+					</li>
+				</ul>
+
+				<h4 class="content-subhead">1.2.2 - 2015-12-25</h4>
+				<ul>
+					<li>
+						fixing issue with 404 links in pagination
+					</li>
+				</ul>
 				
 				<h4 class="content-subhead">1.2.1 - 2015-12-18</h4>
 				<ul>

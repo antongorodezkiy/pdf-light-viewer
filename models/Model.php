@@ -16,7 +16,17 @@ class PdfLightViewer_Model {
 				),
 				array(
 					'key' => '_pdf-light-viewer-import-status',
-					'value' => 'failed',
+					'value' => PdfLightViewer_PdfController::STATUS_FAILED,
+					'compare' => '!='
+				),
+				array(
+					'key' => '_pdf-light-viewer-import-status',
+					'value' => PdfLightViewer_PdfController::STATUS_CLI_PROCESSING,
+					'compare' => '!='
+				),
+				array(
+					'key' => '_pdf-light-viewer-import-status',
+					'value' => PdfLightViewer_PdfController::STATUS_FINISHED,
 					'compare' => '!='
 				)
 			),

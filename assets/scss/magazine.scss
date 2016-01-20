@@ -3,6 +3,11 @@
 	position: relative;
 	margin-top: 20px;
 	
+	[class^="icon-"]:before,
+	[class*=" icon-"]:before {
+		font-family: 'simple-line-icons';
+	}
+	
 	.initially-hidden {
 		display: none;
 	}

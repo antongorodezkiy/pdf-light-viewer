@@ -1,6 +1,13 @@
 <?php
 	
 class PdfLightViewer_PdfController {
+
+	const STATUS_SCHEDULED = 'scheduled';
+	const STATUS_STARTED = 'started';
+	const STATUS_PROCESSING = 'processing';
+	const STATUS_CLI_PROCESSING = 'cli_processing';
+	const STATUS_FINISHED = 'finished';
+	const STATUS_FAILED = 'failed';
 	
 	public static $type = 'pdf_lv';
 	
@@ -127,20 +134,24 @@ class PdfLightViewer_PdfController {
 				$progress = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'_pdf-light-viewer-import-progress',true);
 				
 				switch($status) {
-					case 'scheduled':
+					case static::STATUS_SCHEDULED:
 						$status_label = __('Import scheduled',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 				
-					case 'started':
+					case static::STATUS_STARTED:
 						$status_label = __('Import started',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 				
-					case 'processing':
+					case static::STATUS_PROCESSING:
 						$status_label = __('Import in progress',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 				
-					case 'finished':
+					case static::STATUS_FINISHED:
 						$status_label = __('Import finished',PDF_LIGHT_VIEWER_PLUGIN);
+					break;
+				
+					case static::STATUS_FAILED:
+						$status_label = __('Import failed',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 				}
 				
@@ -386,7 +397,7 @@ class PdfLightViewer_PdfController {
 					
 					$im->destroy();
 					
-					update_post_meta($post_id,'_pdf-light-viewer-import-status', 'scheduled');
+					update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_SCHEDULED);
 					update_post_meta($post_id,'_pdf-light-viewer-import-progress',0);
 					update_post_meta($post_id,'_pdf-light-viewer-import-current-page',1);
 					update_post_meta($post_id,'pdf-pages-number', $pages_number);
@@ -426,11 +437,11 @@ class PdfLightViewer_PdfController {
 		}
 		
 		$status = PdfLightViewer_Plugin::get_post_meta($post_id,'_pdf-light-viewer-import-status',true);
-		if ($status == 'scheduled') {
+		if ($status == static::STATUS_SCHEDULED) {
 			$status_label = __('scheduled', PDF_LIGHT_VIEWER_PLUGIN);
-			update_post_meta($post_id,'_pdf-light-viewer-import-status', 'started');
+			update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_STARTED);
 		}
-		else if ($status == 'started') {
+		else if ($status == static::STATUS_STARTED) {
 			$status_label = __('started', PDF_LIGHT_VIEWER_PLUGIN);
 			update_post_meta($post_id,'_pdf-light-viewer-import-status', 'processing');
 		}
@@ -485,59 +496,23 @@ class PdfLightViewer_PdfController {
 			if (!file_exists($pdf_upload_dir.'/page-'.$page_number.'.jpg')) {
 				
 				try {
-					$_img = new Imagick();
-					$_img->setResolution($jpeg_resolution, $jpeg_resolution);
-					$_img->readImage($pdf_file_path.'['.($current_page-1).']');
-			
-						
-						$_img->setImageCompression(Imagick::COMPRESSION_JPEG);
-						$_img->resizeImage(1024, round(1024/$ratio), Imagick::FILTER_BESSEL, 1, false);
-						$_img->setImageCompressionQuality($jpeg_compression_quality);
-						$_img->setImageFormat('jpg');
-						//$_img->setImageInterlaceScheme(Imagick::INTERLACE_JPEG);
-						$_img->transformImageColorspace(Imagick::COLORSPACE_SRGB);
-						//$_img->setBackgroundColor(new ImagickPixel('#FFFFFF'));
-						
-						// Remove transparency, fill transparent areas with white rather than black.
-						//$_img->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
-						
-						// Convert to RGB to prevent creating a jpg with CMYK colors.
-						
-				
-						$white = new Imagick();
-						$white->newImage(1024, round(1024/$ratio), "white");
-						$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
-						$white->setImageFormat('jpg');
-						$white->setImageColorspace($_img->getImageColorspace());
-						$white->writeImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
-						
-						$_img->resizeImage(76, round(76/$ratio),Imagick::FILTER_BESSEL, 1, false);
-				
-						$white = new Imagick();
-						$white->newImage(76, round(76/$ratio), "white");
-						$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
-						$white->setImageFormat('jpg');
-						$white->setImageColorspace($_img->getImageColorspace());
-						$white->writeImage($pdf_upload_dir.'-thumbs/page-'.$page_number.'-100x76.jpg');
-						
-						
-						if ($current_page == 1) {
-							$file = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
-							PdfLightViewer_Plugin::set_featured_image($post_id, $file, 'pdf-'.$post_id.'-page-'.$page_number.'.jpg');
-						}
-					
-						$percent = (($current_page)/$pdf_pages_number)*100;
-						update_post_meta($post_id,'_pdf-light-viewer-import-progress',$percent);
-						update_post_meta($post_id,'_pdf-light-viewer-import-current-page',$current_page);	
-						
-					$_img->destroy();
+					$percent = static::process_pdf_page(
+						$post_id,
+						$current_page,
+						$page_number,
+						$pdf_pages_number,
+						$pdf_file_path,
+						$pdf_upload_dir,
+						$jpeg_resolution,
+						$jpeg_compression_quality,
+						$ratio
+					);
 				}
 				catch(Exception $e) {
 					PdfLightViewer_Plugin::log('Import exception: '.$e->getMessage(), print_r($e, true));
-					$status = 'failed';
 					$status_label = __('failed', PDF_LIGHT_VIEWER_PLUGIN);
 					$error = $e->getMessage();
-					update_post_meta($post_id,'_pdf-light-viewer-import-status', $status);
+					update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FAILED);
 				}
 				
 				break;
@@ -548,10 +523,8 @@ class PdfLightViewer_PdfController {
 			
 		if ($percent >= 100) {
 			do_action(PDF_LIGHT_VIEWER_PLUGIN.':finished_import', $post_id, $pdf_file_path);
-			
-			$status = 'finished';
 			$status_label = __('finished', PDF_LIGHT_VIEWER_PLUGIN);
-			update_post_meta($post_id,'_pdf-light-viewer-import-status', $status);
+			update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FINISHED);
 		}
 		
 		header('Content-Type: application/json');
@@ -561,6 +534,58 @@ class PdfLightViewer_PdfController {
 			'error' => $error
 		));
 		exit;
+	}
+	
+	public static function process_pdf_page($post_id, $current_page, $page_number, $pdf_pages_number, $pdf_file_path, $pdf_upload_dir, $jpeg_resolution, $jpeg_compression_quality, $ratio) {
+		$_img = new Imagick();
+		$_img->setResolution($jpeg_resolution, $jpeg_resolution);
+		$_img->readImage($pdf_file_path.'['.($current_page-1).']');
+
+			
+			$_img->setImageCompression(Imagick::COMPRESSION_JPEG);
+			$_img->resizeImage(1024, round(1024/$ratio), Imagick::FILTER_BESSEL, 1, false);
+			$_img->setImageCompressionQuality($jpeg_compression_quality);
+			$_img->setImageFormat('jpg');
+			//$_img->setImageInterlaceScheme(Imagick::INTERLACE_JPEG);
+			$_img->transformImageColorspace(Imagick::COLORSPACE_SRGB);
+			//$_img->setBackgroundColor(new ImagickPixel('#FFFFFF'));
+			
+			// Remove transparency, fill transparent areas with white rather than black.
+			//$_img->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
+			
+			// Convert to RGB to prevent creating a jpg with CMYK colors.
+			
+	
+			$white = new Imagick();
+			$white->newImage(1024, round(1024/$ratio), "white");
+			$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
+			$white->setImageFormat('jpg');
+			$white->setImageColorspace($_img->getImageColorspace());
+			$white->writeImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
+			
+			$_img->resizeImage(76, round(76/$ratio),Imagick::FILTER_BESSEL, 1, false);
+	
+			$white = new Imagick();
+			$white->newImage(76, round(76/$ratio), "white");
+			$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
+			$white->setImageFormat('jpg');
+			$white->setImageColorspace($_img->getImageColorspace());
+			$white->writeImage($pdf_upload_dir.'-thumbs/page-'.$page_number.'-100x76.jpg');
+			
+			
+			if ($current_page == 1) {
+				$file = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
+				PdfLightViewer_Plugin::set_featured_image($post_id, $file, 'pdf-'.$post_id.'-page-'.$page_number.'.jpg');
+			}
+		
+			$percent = (($current_page)/$pdf_pages_number)*100;
+			update_post_meta($post_id,'_pdf-light-viewer-import-progress',$percent);
+			update_post_meta($post_id,'_pdf-light-viewer-import-current-page',$current_page);	
+			
+		$_img->destroy();
+		unset($_img);
+		
+		return $percent;
 	}
 	
 	protected static function delete_pages_by_pdf_id($post_id, $pdf_upload_dir) {

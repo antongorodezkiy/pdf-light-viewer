@@ -9,7 +9,6 @@ class PdfLightViewer_AssetsController {
 				'purecss.grids.responsive' => 'assets/bower_components/pure/grids-responsive-min.css',
 				'purecss.grids.core' => 'assets/bower_components/pure/grids-core-min.css',
 				'purecss.forms' => 'assets/bower_components/pure/forms-min.css',
-				'font-awesome' => 'assets/bower_components/fontawesome/css/font-awesome.min.css',
 				'simple-line-icons' => 'assets/bower_components/simple-line-icons/css/simple-line-icons.css',
 				'jquery.bxslider.css' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.css',
 				'backend.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/backend.css'
@@ -95,7 +94,6 @@ class PdfLightViewer_AssetsController {
 		
 		// styles
 			$styles = array(
-				'font-awesome' => 'assets/bower_components/fontawesome/css/font-awesome.min.css',
 				'simple-line-icons' => 'assets/bower_components/simple-line-icons/css/simple-line-icons.css',
 				'jquery.bxslider.css' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.css',
 				'frontend.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/frontend.css'
