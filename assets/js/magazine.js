@@ -8,7 +8,7 @@
 			pages_count: 0,
 			
 			init: function() {
-				self = this;
+				var self = this;
 				PDFLightViewerApp.self = self;
 				
 				if (!$('.js-pdf-light-viewer').size()) {
@@ -23,6 +23,7 @@
 			
 			magazine: function(instance) {
 				var
+          				self = PDFLightViewerApp.self,
 					viewport = $('.js-pdf-light-viewer-magazine-viewport', instance),
 					magazine = $('.js-pdf-light-viewer-magazine', instance),
 					ratio_single = magazine.data('width') / magazine.data('height'),
@@ -32,7 +33,7 @@
 				PDFLightViewerApp.pages_count = magazine.data('pages-count');
 				
 				var flipbook = magazine.turn({
-					display: 'double',
+					display: (magazine.data('force-one-page-layout') ? 'single' : 'double'),
 					width: (magazine.data('width') * 2), // Magazine width
 					height: magazine.data('height'), // Magazine height
 					duration: 1000, // Duration in millisecond
@@ -162,19 +163,19 @@
 					});
 					
 				// pages fulscreen
-					if ($(document).fullScreen() != null) {
-						$(".js-pdf-light-viewer-fullscreen", instance).click(function(e){
+					if (screenfull.enabled) {
+						$('.js-pdf-light-viewer-fullscreen', instance).click(function(e){
 							e.preventDefault();
-							if ($(document).fullScreen()) {
-								instance.fullScreen(false);
+							if (screenfull.isFullscreen) {
+								screenfull.exit();
 							}
 							else {
-								instance.fullScreen(true);
+                						screenfull.request(instance.parent()[0]);
 							}
 						});
 						
-						$(document).bind('fullscreenchange', function() {
-							if ($(document).fullScreen()) {
+						$(document).bind(screenfull.raw.fullscreenchange, function() {
+							if (screenfull.isFullscreen) {
 								instance.addClass('pdf-light-viewer-fullscreen');
 							}
 							else {
@@ -185,7 +186,7 @@
 					}
 					else {
 						// if not supported
-						$('.js-pdf-light-viewer-fullscreen', instance).remove();
+						$('.js-pdf-light-viewer-fullscreen', instance).parent().remove();
 					}
 					
 				// window resize
@@ -209,15 +210,20 @@
 			
 			resize: function(viewport, magazine, ratio_single, ratio_double) {
 				
+        			var force_single = magazine.data('force-one-page-layout');
+        
 				setTimeout(function() {
-					var ratio, size;
+					var
+					    ratio,
+					    size,
+					    self = PDFLightViewerApp.self;
 				
-					if ($(document).fullScreen()) {
+					if (screenfull.isFullscreen && !force_single) {
 						magazine.turn('display', 'double');
 						ratio = ratio_double;
 					}
 					else {
-						if (viewport.width() >= 800) {
+						if (viewport.width() >= 800 && !force_single) {
 							magazine.turn('display', 'double');
 							ratio = ratio_double;
 						}

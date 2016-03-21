@@ -167,7 +167,8 @@
     transition: margin-left 0.5s; }
   .pdf-light-viewer.pdf-light-viewer-fullscreen {
     background: #fff;
-    overflow: auto; }
+    overflow: auto;
+    height: 100%; }
     .pdf-light-viewer.pdf-light-viewer-fullscreen .icon-size-fullscreen {
       display: none; }
     .pdf-light-viewer.pdf-light-viewer-fullscreen .icon-size-actual {
@@ -263,7 +264,7 @@
       position: absolute;
       top: 280px;
       left: 219px; }
-  .pdf-light-viewer .pdf-light-viewer-features-top-panel {
+  .pdf-light-viewer .pdf-light-viewer-features-top-panel, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel {
     list-style: none;
     position: absolute;
     text-align: center;
@@ -278,23 +279,25 @@
     margin: 0;
     -webkit-box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 2px -1px rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
     box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 2px -1px rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12); }
-    .pdf-light-viewer .pdf-light-viewer-features-top-panel li {
+    .pdf-light-viewer .pdf-light-viewer-features-top-panel li, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li {
       display: inline-block;
       vertical-align: middle;
       margin: 0px 4px; }
-      .pdf-light-viewer .pdf-light-viewer-features-top-panel li:after {
+      .pdf-light-viewer .pdf-light-viewer-features-top-panel li:after, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li:after {
         content: '';
         display: inline-block;
         vertical-align: middle;
         border-left: 1px solid LightGray;
         height: 25px;
         margin-left: 6px; }
-      .pdf-light-viewer .pdf-light-viewer-features-top-panel li:last-child:after {
+      .pdf-light-viewer .pdf-light-viewer-features-top-panel li:last-child:after, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li:last-child:after {
         display: none;
         margin-left: 0px; }
-      .pdf-light-viewer .pdf-light-viewer-features-top-panel li a,
+      .pdf-light-viewer .pdf-light-viewer-features-top-panel li a, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li a,
       .pdf-light-viewer .pdf-light-viewer-features-top-panel li button,
-      .pdf-light-viewer .pdf-light-viewer-features-top-panel li span {
+      .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li button,
+      .pdf-light-viewer .pdf-light-viewer-features-top-panel li span,
+      .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li span {
         border: none;
         background: transparent;
         text-decoration: none;
@@ -306,21 +309,27 @@
         vertical-align: middle;
         margin: 0;
         padding: 0; }
-      .pdf-light-viewer .pdf-light-viewer-features-top-panel li button:hover {
+      .pdf-light-viewer .pdf-light-viewer-features-top-panel li button:hover, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li button:hover {
         border: none;
         outline: none;
         -webkit-box-shadow: none;
         box-shadow: none; }
-      .pdf-light-viewer .pdf-light-viewer-features-top-panel li a:hover {
+      .pdf-light-viewer .pdf-light-viewer-features-top-panel li a:hover, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li a:hover {
         text-decoration: none;
         border: none; }
-      .pdf-light-viewer .pdf-light-viewer-features-top-panel li a:focus {
+      .pdf-light-viewer .pdf-light-viewer-features-top-panel li a:focus, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li a:focus {
         outline: none; }
-      .pdf-light-viewer .pdf-light-viewer-features-top-panel li span {
+      .pdf-light-viewer .pdf-light-viewer-features-top-panel li span, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li span {
         color: #777; }
+  .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel {
+    top: auto;
+    bottom: -32px;
+    right: 80px;
+    -webkit-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px; }
   .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails {
     text-align: center; }
-    .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails .pdf-light-viewer-features-bottom-panel {
+    .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails .pdf-light-viewer-features-bottom-panel, .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails .pdf-light-viewer-features-top-nav-panel {
       display: inline-block;
       text-align: center;
       background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(57%, #fefefe), to(#F6F6F6));
@@ -407,6 +416,9 @@
         -webkit-box-shadow: 0 3px 6px rgba(65, 105, 225, 0.16), 0 3px 6px rgba(65, 105, 225, 0.23);
         box-shadow: 0 3px 6px rgba(65, 105, 225, 0.16), 0 3px 6px rgba(65, 105, 225, 0.23);
         border: 1px solid rgba(65, 105, 225, 0.23); }
+  .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails .pdf-light-viewer-features-top-nav-panel {
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0; }
   .pdf-light-viewer .thumbanils-touch ul {
     -webkit-transform: none;
     -ms-transform: none;

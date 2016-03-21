@@ -62,6 +62,53 @@ class PdfLightViewer_PdfController {
 				'supports' => array('title', 'thumbnail'/*, 'custom-fields'*/),
 			)
 		);
+        
+        register_taxonomy(self::$type.'_category', self::$type, 
+			array( 
+				'hierarchical' => true, 
+				'labels' => array(
+					'name' => 'Categories',
+					'singular_name' => 'Category',
+					'search_items' =>  'Search in Category',
+					'popular_items' => 'Popular Categories',
+					'all_items' => 'All Categories',
+					'parent_item' => 'Parent Category',
+					'parent_item_colon' => 'Parent Category:',
+					'edit_item' => 'Edit Category',
+					'update_item' => 'Update Category',
+					'add_new_item' => 'Add New Category',
+					'new_item_name' => 'New Category Name'
+				),
+				'public' => false,
+				'show_ui' => (bool)PdfLightViewer_AdminController::getSetting('show-post-type'),
+				'query_var' => false, 
+				'show_admin_column' => true
+			) 
+		);
+		
+		
+		register_taxonomy(self::$type.'_tag', self::$type, 
+			array( 
+				'hierarchical' => false, 
+				'labels' => array(
+					'name' => 'Tags',
+					'singular_name' => 'Tag',
+					'search_items' =>  'Search in Tags',
+					'popular_items' => 'Popular Tags',
+					'all_items' => 'All Tags',
+					'parent_item' => 'Parent Tag',
+					'parent_item_colon' => 'Parent Tag:',
+					'edit_item' => 'Edit Tag',
+					'update_item' => 'Update Tag',
+					'add_new_item' => 'Add New Tag',
+					'new_item_name' => 'New Tag Name'
+				),
+				'public' => false,
+				'show_ui' => (bool)PdfLightViewer_AdminController::getSetting('show-post-type'),
+				'query_var' => false, 
+				'show_admin_column' => true
+			) 
+		);
 
 	}
 	
@@ -237,6 +284,11 @@ class PdfLightViewer_PdfController {
 				array(
 					'name' => __('Disable page zoom', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'disable_page_zoom',
+					'type' => 'checkbox'
+				),
+                		array(
+					'name' => __('Force one-page layout', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'force_one_page_layout',
 					'type' => 'checkbox'
 				),
 			),

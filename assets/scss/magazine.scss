@@ -23,6 +23,7 @@
 	&.pdf-light-viewer-fullscreen {
 		background: #fff;
 		overflow: auto;
+        	height: 100%;
 		
 		.icon-size-fullscreen {
 			display: none;
@@ -213,6 +214,7 @@
 				text-decoration: none;
 				border: none;
 				font-size: 25px;
+				line-height: 35px;
 				color: RoyalBlue;
 				display: inline-block;
 				vertical-align: middle;
@@ -242,6 +244,14 @@
 			}
 		}
 	}
+    
+    .pdf-light-viewer-features-bottom-toolbar-panel {
+        @extend .pdf-light-viewer-features-top-panel;
+        top: auto;
+        bottom: -32px;
+		right: 80px;
+		border-radius: 0 0 6px 6px;
+    }
 	
 	.pdf-light-viewer-magazine-thumbnails {
 		text-align: center;
@@ -374,6 +384,13 @@
 			}
 		}
 	}
+    
+    .pdf-light-viewer-magazine-thumbnails {
+        .pdf-light-viewer-features-top-nav-panel {
+            @extend .pdf-light-viewer-features-bottom-panel;
+			border-radius: 6px 6px 0 0;
+        }
+    }
 	
 	
 	.thumbanils-touch ul {

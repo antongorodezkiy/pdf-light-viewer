@@ -4,7 +4,7 @@ Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link: 
 Requires at least: 3.5
 Tested up to: 4.4
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,16 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * Fully translatable to any language using .po files.
 * Supports wordpress multisites
 * Responsive design
+* Clear default look
+* CLI integration
+* Bulk PDF Import
+
+### [PRO Addon Features](http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505) ###
+* Single separate PDF page.
+* PDF Archive page.
+* Simple PDF page search.
+* Printing.
+* SEO friendly mode.
 
 == Installation ==
 1. Get the package
@@ -44,6 +54,13 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 3. PDF Import Page
 
 == Changelog ==
+
+= 1.2.4 - 2016-03-21 =
+* option to display with a single page layout only
+* hide top toolbar when there are no icons
+* categories for PDFs
+* additional template to display thumbnail carousel at the top instead of the bottom
+* enhance full screen function in Chrome and IE
 
 = 1.2.3 - 2016-01-20 =
 * integration with WP CLI

@@ -112,6 +112,7 @@ class PdfLightViewer_FrontController {
 			'disable_page_zoom' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'disable_page_zoom', true),
 			'page_width' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-width', true),
 			'page_height' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-height', true),
+            		'force_one_page_layout' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'force_one_page_layout', true),
 		
 			'pages' => array(),
 			'thumbs' => array(),

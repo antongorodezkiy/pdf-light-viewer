@@ -1,13 +1,13 @@
 {
-    "name": "pdf-light-viewer",
-    "author": "E.Kozachek",
-    "version": "1.2.0",
-    "dependencies": {
-        "jquery.lazyload": "1.9.4",
-        "simple-line-icons": "2.2.3",
-        "pure": "0.6.0",
-        "bxslider-4": "4.2.5",
-        "jquery-zoom": "1.7.14",
-        "kayahr-jquery-fullscreen-plugin": "kayahr/jquery-fullscreen-plugin"
-    }
+  "name": "pdf-light-viewer",
+  "author": "E.Kozachek",
+  "version": "1.2.4",
+  "dependencies": {
+    "jquery.lazyload": "1.9.4",
+    "simple-line-icons": "2.2.3",
+    "pure": "0.6.0",
+    "bxslider-4": "4.2.5",
+    "jquery-zoom": "1.7.14",
+    "screenfull": "^3.0.0"
+  }
 }
