@@ -10,6 +10,12 @@ class PdfLightViewer_PdfController {
 	const STATUS_FAILED = 'failed';
 	
 	public static $type = 'pdf_lv';
+    
+    public static function getImagickVersion() {
+        $v = Imagick::getVersion();
+        preg_match('/ImageMagick ([0-9]+\.[0-9]+\.[0-9]+)/', $v['versionString'], $v);
+        return $v[1];
+    }
 	
 	public static function init() {
 		
@@ -543,6 +549,7 @@ class PdfLightViewer_PdfController {
 		}
 	
 		$error = '';
+        $percent = null;
 		for($current_page; $current_page <= $pdf_pages_number; $current_page++) {
 			$page_number = sprintf('%1$05d',$current_page);
 			if (!file_exists($pdf_upload_dir.'/page-'.$page_number.'.jpg')) {
@@ -598,15 +605,14 @@ class PdfLightViewer_PdfController {
 			$_img->resizeImage(1024, round(1024/$ratio), Imagick::FILTER_BESSEL, 1, false);
 			$_img->setImageCompressionQuality($jpeg_compression_quality);
 			$_img->setImageFormat('jpg');
-			//$_img->setImageInterlaceScheme(Imagick::INTERLACE_JPEG);
-			$_img->transformImageColorspace(Imagick::COLORSPACE_SRGB);
-			//$_img->setBackgroundColor(new ImagickPixel('#FFFFFF'));
 			
-			// Remove transparency, fill transparent areas with white rather than black.
-			//$_img->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
-			
-			// Convert to RGB to prevent creating a jpg with CMYK colors.
-			
+			// IMPORTANT: imagick changed SRGB and RGB profiles after vesion 6.7.6
+            if (version_compare(static::getImagickVersion(), '6.7.6', '>=')) {
+                $_img->transformImageColorspace(Imagick::COLORSPACE_SRGB);
+            }
+            else {
+                $_img->transformImageColorspace(Imagick::COLORSPACE_RGB);
+            }
 	
 			$white = new Imagick();
 			$white->newImage(1024, round(1024/$ratio), "white");

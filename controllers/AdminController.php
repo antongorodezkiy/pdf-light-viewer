@@ -150,7 +150,7 @@ class PdfLightViewer_AdminController {
 				self::showMessage($plugin_title.': '.__('requirements are met, happy using!',PDF_LIGHT_VIEWER_PLUGIN));
 			}
 			else {
-				self::showMessage(
+				self::showDirectMessage(
 					$plugin_title.': '
 					.sprintf(__('requirements not met, please check <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
 				, true);

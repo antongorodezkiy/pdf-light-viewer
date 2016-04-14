@@ -324,11 +324,11 @@
 			padding:0;
 			height: 180px;
 			text-align:center;
-			-webkit-transform:scale3d(0.5, 0.5, 1);
-			-moz-transform:scale3d(0.5, 0.5, 1);
-			-o-transform:scale3d(0.5, 0.5, 1);
-			-ms-transform:scale3d(0.5, 0.5, 1);
-			transform:scale3d(0.5, 0.5, 1);
+			//-webkit-transform:scale3d(0.5, 0.5, 1);
+			//-moz-transform:scale3d(0.5, 0.5, 1);
+			//-o-transform:scale3d(0.5, 0.5, 1);
+			//-ms-transform:scale3d(0.5, 0.5, 1);
+			//transform:scale3d(0.5, 0.5, 1);
 			-webkit-transition:-webkit-transform ease-in-out 100ms;
 			-moz-transition:-moz-transform ease-in-out 100ms;
 			-ms-transition:-ms-transform ease-in-out 100ms;
@@ -402,11 +402,11 @@
 	}
 	
 	.pdf-light-viewer-magazine-thumbnails-hover ul {
-		-webkit-transform:scale3d(0.6, 0.6, 1);
-		-moz-transform:scale3d(0.6, 0.6, 1);
-		-o-transform:scale3d(0.6, 0.6, 1);
-		-ms-transform:scale3d(0.6, 0.6, 1);
-		transform:scale3d(0.6, 0.6, 1);
+		//-webkit-transform:scale3d(0.6, 0.6, 1);
+		//-moz-transform:scale3d(0.6, 0.6, 1);
+		//-o-transform:scale3d(0.6, 0.6, 1);
+		//-ms-transform:scale3d(0.6, 0.6, 1);
+		//transform:scale3d(0.6, 0.6, 1);
 	}
 	
 	.exit-message {
