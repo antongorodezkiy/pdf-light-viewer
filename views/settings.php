@@ -8,7 +8,7 @@
             <div class="pdf-light-viewer-bl row">
                 <div class="row hdr">
                     <h3>
-                        <span class="icons icon-info"></span>
+                        <span class="icons slicon-info"></span>
                         <?php _e('About', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
@@ -20,39 +20,39 @@
                     </p>
                     
                     <blockquote>
-                        WordPress PDF Light Viewer Plugin &copy; <a target="_blank" href="http://teamlead.pw">Teamlead Power&nbsp;<span class="icons icon-link"></span></a>
+                        WordPress PDF Light Viewer Plugin &copy; <a target="_blank" href="http://teamlead.pw">Teamlead Power&nbsp;<span class="icons slicon-link"></span></a>
                     </blockquote>
                     
                     <blockquote>
                         <p>
-                            Icons &copy; <a href="http://thesabbir.github.io/simple-line-icons/" target="_blank">Simple line icons&nbsp;<span class="icons icon-link"></span></a>
+                            Icons &copy; <a href="http://thesabbir.github.io/simple-line-icons/" target="_blank">Simple line icons&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                         <p>
-                            Logo Icons &copy; <a href="https://www.iconfinder.com/Re66y" target="_blank">Gregor Cresnar&nbsp;<span class="icons icon-link"></span></a>
+                            Logo Icons &copy; <a href="https://www.iconfinder.com/Re66y" target="_blank">Gregor Cresnar&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                         <p>
-                            CSS Framework &copy; <a href="http://purecss.io/" target="_blank">Pure.css&nbsp;<span class="icons icon-link"></span></a>
+                            CSS Framework &copy; <a href="http://purecss.io/" target="_blank">Pure.css&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                         <p>
-                            Flipbook &copy; <a href="http://www.turnjs.com/" target="_blank">Turn.js&nbsp;<span class="icons icon-link"></span></a>
+                            Flipbook &copy; <a href="http://www.turnjs.com/" target="_blank">Turn.js&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                         <p>
-                            Lazy Load &copy; <a href="http://www.appelsiini.net/projects/lazyload" target="_blank">Lazy Load Plugin for jQuery&nbsp;<span class="icons icon-link"></span></a>
+                            Lazy Load &copy; <a href="http://www.appelsiini.net/projects/lazyload" target="_blank">Lazy Load Plugin for jQuery&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                         <p>
-                            Slider &copy; <a href="http://bxslider.com/" target="_blank">bxSlider&nbsp;<span class="icons icon-link"></span></a>
+                            Slider &copy; <a href="http://bxslider.com/" target="_blank">bxSlider&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                         <p>
-                            Fullscreen &copy; <a href="https://github.com/sindresorhus/screenfull.js" target="_blank">screenfull.js&nbsp;<span class="icons icon-link"></span></a>
+                            Fullscreen &copy; <a href="https://github.com/sindresorhus/screenfull.js" target="_blank">screenfull.js&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                         <p>
-                            Zoom &copy; <a href="http://www.jacklmoore.com/zoom/" target="_blank">jQuery Zoom&nbsp;<span class="icons icon-link"></span></a>
+                            Zoom &copy; <a href="http://www.jacklmoore.com/zoom/" target="_blank">jQuery Zoom&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                         <p>
-                            Grid &copy; <a href="http://isotope.metafizzy.co/" target="_blank">Isotope&nbsp;<span class="icons icon-link"></span></a>
+                            Grid &copy; <a href="http://isotope.metafizzy.co/" target="_blank">Isotope&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                         <p>
-                            Printing &copy; <a href="https://github.com/posabsolute/jQuery-printPage-plugin" target="_blank">jQuery PrintPage plugin&nbsp;<span class="icons icon-link"></span></a>
+                            Printing &copy; <a href="https://github.com/posabsolute/jQuery-printPage-plugin" target="_blank">jQuery PrintPage plugin&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
                     </blockquote>
                 </div>
@@ -62,7 +62,7 @@
             <div class="pdf-light-viewer-bl row">
                 <div class="row hdr">
                     <h3>
-                        <span class="icons icon-list"></span>
+                        <span class="icons slicon-list"></span>
                         <?php _e('Plugin Requirements', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
@@ -74,11 +74,11 @@
                                 if ($requirement['status']) {
                                     ?>
                                         <li>
-                                            <i class="icons icon-check pdf-light-viewer-requirement-success"></i>
+                                            <i class="icons slicon-check pdf-light-viewer-requirement-success"></i>
                                             <?php echo $requirement['name'];?> <?php echo $requirement['success'];?>
                                             
                                             <?php if (isset($requirement['description']) && $requirement['description']) { ?>
-                                                <a href="#!" class="js-tip tip" title="<?php echo $requirement['description'] ?>"><span class="icons icon-question"></span></a>
+                                                <a href="#!" class="js-tip tip" title="<?php echo $requirement['description'] ?>"><span class="icons slicon-question"></span></a>
                                             <?php } ?>
                                         </li>
                                     <?php
@@ -86,11 +86,11 @@
                                 else {
                                     ?>
                                         <li>
-                                            <i class="icons icon-close pdf-light-viewer-requirement-fail"></i>
+                                            <i class="icons slicon-close pdf-light-viewer-requirement-fail"></i>
                                             <?php echo $requirement['name'];?> <?php echo $requirement['fail'];?>
                                             
                                             <?php if (isset($requirement['description']) && $requirement['description']) { ?>
-                                                <a href="#!" class="js-tip tip" title="<?php echo $requirement['description'] ?>"><span class="icons icon-question"></span></a>
+                                                <a href="#!" class="js-tip tip" title="<?php echo $requirement['description'] ?>"><span class="icons slicon-question"></span></a>
                                             <?php } ?>
                                         </li>
                                     <?php
@@ -109,19 +109,19 @@
                 
                 <div class="row hdr">
                     <h3>
-                        <span class="icons icon-equalizer"></span>
+                        <span class="icons slicon-equalizer"></span>
                         <?php _e('Settings', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
         
                 <div class="row in">						
-                    <legend><span class="icons icon-settings"></span><?php _e('Main settings', PDF_LIGHT_VIEWER_PLUGIN)?></legend>
+                    <legend><span class="icons slicon-settings"></span><?php _e('Main settings', PDF_LIGHT_VIEWER_PLUGIN)?></legend>
                         
                     <p class="pure-control-group">
                         <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[show-post-type]">
-                            <i class="icons icon-menu"></i>
+                            <i class="icons slicon-menu"></i>
                             <?php _e('Show PDFs in Menu', PDF_LIGHT_VIEWER_PLUGIN)?>
-                            <a href="#!" class="js-tip tip" title="<?php _e('Show PDFs menu item in the left admin sidebar', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons icon-question"></span></a>
+                            <a href="#!" class="js-tip tip" title="<?php _e('Show PDFs menu item in the left admin sidebar', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
                         </label>
                         <input
                             type="hidden"
@@ -138,9 +138,9 @@
                     
                     <p class="pure-control-group">
                         <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]">
-                            <i class="icons icon-wrench"></i>
+                            <i class="icons slicon-wrench"></i>
                             <?php _e('Do not check GhostScript installation', PDF_LIGHT_VIEWER_PLUGIN)?>
-                            <a href="#!" class="js-tip tip" title="<?php _e('For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons icon-question"></span></a>
+                            <a href="#!" class="js-tip tip" title="<?php _e('For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
                         </label>
                         <input
                             type="hidden"
@@ -176,7 +176,7 @@
             <div class="pdf-light-viewer-bl row">
                 <div class="row hdr">
                     <h3>
-                        <span class="icons icon-support"></span>
+                        <span class="icons slicon-support"></span>
                         <?php _e('Personal Support', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
@@ -194,9 +194,9 @@
                                 
                                 echo sprintf(__('To get support please contact us on forum <a target="_blank" href="%s">%s</a> or by email <a target="_blank" href="%s">%s</a>. Please also attach information below to let us know more about your server and site environment - this could be helpful to solve the issue.', PDF_LIGHT_VIEWER_PLUGIN),
                                     PdfLightViewer_Plugin::getSupportUrl(),
-                                    PdfLightViewer_Plugin::getSupportUrl().'&nbsp;<span class="icons icon-link"></span>',
+                                    PdfLightViewer_Plugin::getSupportUrl().'&nbsp;<span class="icons slicon-link"></span>',
                                     'mailto:support@teamlead.pw?subject='.$subject,
-                                    'support@teamlead.pw&nbsp;<span class="icons icon-link"></span>'
+                                    'support@teamlead.pw&nbsp;<span class="icons slicon-link"></span>'
                                 );?>
                             </p>
                         </blockquote>
@@ -273,7 +273,7 @@
 
 			<div class="row hdr">
 				<h3>
-					<span class="icons icon-note"></span>
+					<span class="icons slicon-note"></span>
 					<?php _e("Today's log file", PDF_LIGHT_VIEWER_PLUGIN)?>
 				</h3>
 			</div>
@@ -299,9 +299,9 @@
 		<div class="pdf-light-viewer-bl">
 			<div class="row hdr">
 				<h3>
-					<span class="icons icon-doc"></span>
+					<span class="icons slicon-doc"></span>
 					<?php _e('Documentation', PDF_LIGHT_VIEWER_PLUGIN)?>
-					<a class="right" target="_blank" href="<?php echo $documentation_url?>" title="<?php _e('open in the separate tab', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons icon-link"></span></a>
+					<a class="right" target="_blank" href="<?php echo $documentation_url?>" title="<?php _e('open in the separate tab', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-link"></span></a>
 				</h3>
 			</div>
 			<div class="row in container">

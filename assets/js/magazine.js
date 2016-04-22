@@ -23,7 +23,7 @@
 			
 			magazine: function(instance) {
 				var
-          				self = PDFLightViewerApp.self,
+          self = PDFLightViewerApp.self,
 					viewport = $('.js-pdf-light-viewer-magazine-viewport', instance),
 					magazine = $('.js-pdf-light-viewer-magazine', instance),
 					ratio_single = magazine.data('width') / magazine.data('height'),
@@ -158,8 +158,8 @@
 						slideMargin: 10,
 						moveSlides: 2,
 						infiniteLoop: false,
-						prevText: '<i class="icons icon-arrow-left-circle"></i>',
-						nextText: '<i class="icons icon-arrow-right-circle"></i>'
+						prevText: '<i class="icons slicon-arrow-left-circle"></i>',
+						nextText: '<i class="icons slicon-arrow-right-circle"></i>'
 					});
 					
 				// pages fulscreen
@@ -170,7 +170,7 @@
 								screenfull.exit();
 							}
 							else {
-                						screenfull.request(instance.parent()[0]);
+                screenfull.request(instance.parent()[0]);
 							}
 						});
 						
@@ -210,7 +210,7 @@
 			
 			resize: function(viewport, magazine, ratio_single, ratio_double) {
 				
-        			var force_single = magazine.data('force-one-page-layout');
+        var force_single = magazine.data('force-one-page-layout');
         
 				setTimeout(function() {
 					var

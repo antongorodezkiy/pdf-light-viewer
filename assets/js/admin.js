@@ -4,11 +4,11 @@
 		PdfLightViewer = typeof PdfLightViewer != 'undefined' ? PdfLightViewer : {};
 		PdfLightViewer.app = {
 			success: function(content) {
-				var html = '<div class="updated"><p><i class="icons icon-check"></i> '+content+'</p></div>';
+				var html = '<div class="updated"><p><i class="icons slicon-check"></i> '+content+'</p></div>';
 				$('#wpbody .wrap').prepend(html);
 			},
 			error: function(content) {
-				var html = '<div class="error"><p><i class="icons icon-close"></i> '+content+'</p></div>';
+				var html = '<div class="error"><p><i class="icons slicon-close"></i> '+content+'</p></div>';
 				$('#wpbody .wrap').prepend(html);
 			}
 		};

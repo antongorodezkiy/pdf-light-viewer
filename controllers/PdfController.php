@@ -129,11 +129,11 @@ class PdfLightViewer_PdfController {
 				$progress = PdfLightViewer_Plugin::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-progress', true);
 	
 				PdfLightViewer_AdminController::showDirectMessage(sprintf(
-					__('<i class="icons icon-settings"></i> <b>%s</b> PDF import is <span class="js-pdf-light-viewer-current-status">%s</span>. <span class="js-pdf-light-viewer-current-progress">%d</span>%% is complete. <i>Please do not leave the admin interface until the import would not finished. %s</i>',PDF_LIGHT_VIEWER_PLUGIN),
+					__('<i class="icons slicon-settings"></i> <b>%s</b> PDF import is <span class="js-pdf-light-viewer-current-status">%s</span>. <span class="js-pdf-light-viewer-current-progress">%d</span>%% is complete. <i>Please do not leave the admin interface until the import would not finished. %s</i>',PDF_LIGHT_VIEWER_PLUGIN),
 					PdfLightViewer_Model::$unimported->post_title,
 					$status,
 					$progress,
-					'<a href="#!" class="js-tip tip" title="'.__('Otherwise the import will be continued during your next visit.', PDF_LIGHT_VIEWER_PLUGIN).'"><span class="icons icon-question"></span></a>'
+					'<a href="#!" class="js-tip tip" title="'.__('Otherwise the import will be continued during your next visit.', PDF_LIGHT_VIEWER_PLUGIN).'"><span class="icons slicon-question"></span></a>'
 				), false);
 			}
 		}
@@ -344,7 +344,7 @@ class PdfLightViewer_PdfController {
 							'default' => '',
 						),
 						array(
-							'name' => __('Visible pages', PDF_LIGHT_VIEWER_PLUGIN),
+							'name' => __('Visible pages limit', PDF_LIGHT_VIEWER_PLUGIN),
 							'id'   => 'pages_limit_visible_pages',
 							'type' => 'text'
 						)
@@ -508,7 +508,9 @@ class PdfLightViewer_PdfController {
 		}
 		
 		ignore_user_abort(true);
-		set_time_limit(0);
+        if (!ini_get('safe_mode')) {
+            set_time_limit(0);
+        }
 		
 		$pdf_file_id = PdfLightViewer_Model::getPDFFileId($post_id);
 		$pdf_file_path = get_attached_file($pdf_file_id);

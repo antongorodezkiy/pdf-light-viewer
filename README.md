@@ -9,7 +9,7 @@
   
 **Tested up to:** 4.5
   
-**Stable tag:** 1.2.5
+**Stable tag:** 1.2.6
   
 **License:** GPLv2
   
@@ -20,7 +20,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 ## Description ##
 
-[Website](http://pdf-light-viewer.wp.teamlead.pw/) |  [Demo](http://pdf-light-viewer.wp.teamlead.pw/demo/) | [Docs](http://pdf-light-viewer.wp.teamlead.pw/wp-content/plugins/pdf-light-viewer/documentation/index.html) | [PRO Addon Features](http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505)
+[Website](http://pdf-light-viewer.wp.teamlead.pw/) | [Demo](http://pdf-light-viewer.wp.teamlead.pw/demo/) | [Docs](http://pdf-light-viewer.wp.teamlead.pw/wp-content/plugins/pdf-light-viewer/documentation/index.html) | [PRO Addon Features](http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505) | [Support](http://support.wp.teamlead.pw/)
 
 ### Features ###
 * Unlimited PDF files.
@@ -71,6 +71,12 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+### 1.2.6 - 2016-04-22 ###
+* Simple Line Icons conflict fix
+* fix for compatibility with Magazon and other themes
+* Smart Manager compatibility fix
+* Mailpoet compatibility fix
 
 ### 1.2.5 - 2016-04-14 ###
 * improve colors and/or colorspaces of resulting images

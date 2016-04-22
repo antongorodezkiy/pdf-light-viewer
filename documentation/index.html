@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/pure.css" />
 	<link rel="stylesheet" href="css/prism.css" />
 	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.2.4/css/simple-line-icons.min.css" />
 
 	<!--[if lt IE 9]>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
@@ -540,6 +541,21 @@
 					directly instead of using shortcode <code>[pdf-light-viewer]</code>.
 				</p>
 				
+				<p>
+					<span class="pure-button pure-button-primary">PRO</span>
+					Shortcode <code>[pdf-light-viewer-archive]</code>
+					as well as <code>PdfLightViewerPro_FrontController::disaply_pdf_archive($atts = array())</code>
+					has following parameters:</p>
+				</p>
+				<ul>
+					<li>
+						<code>title</code> (optional), custom title above the archive
+					</li>
+					<li>
+						<code>categories</code> (optional), you can specify category slugs separated by commas "," - for example <code>[pdf-light-viewer-archive categories="top,featured"]</code>.
+					</li>
+				</ul>
+				
 				<div class="content-subhead">CLI usage</div>
 				<p>
 					You can work with plugin from command line interface. PDF Light Viewer integrated with great <a href="http://wp-cli.org/" target="_blank">WP CLI</a>, thus the plugin requires WP CLI to work in command line.
@@ -782,6 +798,16 @@
 				</ul>
 				
 				<h3>PDF Light Viewer Pro Addon</h3>
+				
+				<h4 class="content-subhead">0.0.6 - 2016-04-22</h4>
+				<ul>
+					<li>archive shortcode categories parameter</li>
+				</ul>
+				
+				<h4 class="content-subhead">0.0.5 - 2016-04-06</h4>
+				<ul>
+					<li>archive template view fix</li>
+				</ul>
 				
 				<h4 class="content-subhead">0.0.4 - 2016-01-28</h4>
 				<ul>

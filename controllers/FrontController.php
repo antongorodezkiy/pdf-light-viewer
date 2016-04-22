@@ -98,7 +98,7 @@ class PdfLightViewer_FrontController {
 			
 	
 
-		return ob_get_clean();
+		return str_ireplace(["\n", "\r"], ' ', ob_get_clean());
 	}
 	
 	

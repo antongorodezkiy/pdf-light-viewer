@@ -77,7 +77,7 @@ msgstr ""
 #: ../../controllers/PdfController.php:72
 #, php-format
 msgid ""
-"<i class=\"icons icon-settings\"></i> <b>%s</b> PDF import is <span class="
+"<i class=\"icons slicon-settings\"></i> <b>%s</b> PDF import is <span class="
 "\"js-pdf-light-viewer-current-status\">%s</span>. <span class=\"js-pdf-light-"
 "viewer-current-progress\">%d</span>%% is complete. <i>Please do not leave "
 "the admin interface until the import would not finished. %s</i>"
