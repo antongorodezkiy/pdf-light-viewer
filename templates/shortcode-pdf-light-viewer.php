@@ -23,7 +23,7 @@
 			
 			<?php do_action(PDF_LIGHT_VIEWER_PLUGIN.':shortcode_template_start', $pdf_light_viewer_config['id']) ?>
 			
-			<div class="pdf-light-viewer-magazine-viewport js-pdf-light-viewer-magazine-viewport">
+			<div class="pdf-light-viewer-magazine-viewport js-pdf-light-viewer-magazine-viewport with-nav-bottom">
 				
 				<?php if ($toolbarVisible) { ?>
 					<ul class="pdf-light-viewer-features-top-panel">
@@ -58,9 +58,9 @@
 					</ul>
 				<?php } ?>
 				
-				<div class="pdf-light-viewer-magazine-viewport-container"
-					>	
+				<div class="pdf-light-viewer-magazine-viewport-container">	
 					<div class="js-pdf-light-viewer-magazine pdf-light-viewer-magazine"
+                        data-max-book-width="<?php echo $pdf_light_viewer_config['max_book_width'] ?>"
 						data-width="<?php echo $pdf_light_viewer_config['page_width'] ?>"
 						data-height="<?php echo $pdf_light_viewer_config['page_height'] ?>"
 						data-pages-count="<?php echo count($pdf_light_viewer_config['pages']) ?>"

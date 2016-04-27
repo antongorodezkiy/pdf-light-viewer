@@ -114,12 +114,12 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 			);
 			
 			// create PDF post
-				$post_id = wp_insert_post([
+				$post_id = wp_insert_post(array(
 					'post_type' => PdfLightViewer_PdfController::$type,
 					'post_status' => $post_status,
 					'post_name' => sanitize_title(pathinfo($pdf_file_path, PATHINFO_FILENAME)),
 					'post_title' => pathinfo($pdf_file_path, PATHINFO_FILENAME),
-				]);
+				));
 			
 			if (is_wp_error($post_id)) {
 				WP_CLI::error(sprintf(__("Could not create PDF post: %s", PDF_LIGHT_VIEWER_PLUGIN), $post_id->get_error_message()), false);

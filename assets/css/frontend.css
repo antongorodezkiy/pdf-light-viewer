@@ -577,15 +577,6 @@
   .pdf-light-viewer .animated {
     -webkit-transition: margin-left 0.5s;
     transition: margin-left 0.5s; }
-  .pdf-light-viewer.pdf-light-viewer-fullscreen {
-    background: #fff;
-    overflow: auto;
-    height: 100%;
-    margin-top: 0px; }
-    .pdf-light-viewer.pdf-light-viewer-fullscreen .slicon-size-fullscreen {
-      display: none; }
-    .pdf-light-viewer.pdf-light-viewer-fullscreen .slicon-size-actual {
-      display: inline; }
   .pdf-light-viewer .pdf-light-viewer-magazine-viewport {
     display: block;
     z-index: 101;
@@ -677,6 +668,26 @@
       position: absolute;
       top: 280px;
       left: 219px; }
+  .pdf-light-viewer.pdf-light-viewer-fullscreen {
+    padding: 0;
+    background: #fff;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0px; }
+    .pdf-light-viewer.pdf-light-viewer-fullscreen .slicon-size-fullscreen {
+      display: none; }
+    .pdf-light-viewer.pdf-light-viewer-fullscreen .slicon-size-actual {
+      display: inline; }
+    .pdf-light-viewer.pdf-light-viewer-fullscreen .pdf-light-viewer-magazine-viewport.with-nav-top {
+      margin-bottom: 80px;
+      position: relative; }
+      .pdf-light-viewer.pdf-light-viewer-fullscreen .pdf-light-viewer-magazine-viewport.with-nav-top .pdf-light-viewer-features-bottom-toolbar-panel {
+        bottom: -52px; }
+    .pdf-light-viewer.pdf-light-viewer-fullscreen .pdf-light-viewer-magazine-viewport.with-nav-bottom {
+      margin-top: 45px; }
   .pdf-light-viewer .pdf-light-viewer-features-top-panel, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel {
     list-style: none;
     position: absolute;

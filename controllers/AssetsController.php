@@ -32,7 +32,7 @@ class PdfLightViewer_AssetsController {
 		// scripts
 			if (
                 (isset($_GET['post_type']) && $_GET['post_type'] == PdfLightViewer_PdfController::$type)
-                || $post->post_type == PdfLightViewer_PdfController::$type
+                || ($post && $post->post_type == PdfLightViewer_PdfController::$type)
             ) {
                 $jquery_plugins = array(
                     'jquery.scrollstop.js' => 'assets/bower_components/jquery.lazyload/jquery.scrollstop.js',
@@ -58,14 +58,14 @@ class PdfLightViewer_AssetsController {
                         $ver
                     );
                 }
+                
+                wp_enqueue_script(
+                    'magazine.'.PDF_LIGHT_VIEWER_FILE,
+                    plugins_url('assets/js/magazine.js', PDF_LIGHT_VIEWER_FILE),
+                    array('jquery', 'jquery.lazyload.js', 'turn.js'),
+                    filemtime(PDF_LIGHT_VIEWER_APPPATH.'/assets/js/magazine.js')
+                );
             }
-			
-			wp_enqueue_script(
-				'magazine.'.PDF_LIGHT_VIEWER_FILE,
-				plugins_url('assets/js/magazine.js', PDF_LIGHT_VIEWER_FILE),
-				array('jquery', 'jquery.lazyload.js', 'turn.js'),
-				filemtime(PDF_LIGHT_VIEWER_APPPATH.'/assets/js/magazine.js')
-			);
 			
 			wp_enqueue_script(
 				'admin.'.PDF_LIGHT_VIEWER_FILE,

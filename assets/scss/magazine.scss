@@ -26,21 +26,6 @@ $simple-line-icon-prefix: "slicon-" !default;
 		transition:margin-left 0.5s;
 	}
 	
-	&.pdf-light-viewer-fullscreen {
-		background: #fff;
-		overflow: auto;
-        height: 100%;
-        margin-top: 0px;
-		
-		.slicon-size-fullscreen {
-			display: none;
-		}
-		
-		.slicon-size-actual {
-			display: inline;
-		}
-	}
-	
 	.pdf-light-viewer-magazine-viewport {
 		display: block;
 		z-index: 101;
@@ -176,6 +161,39 @@ $simple-line-icon-prefix: "slicon-" !default;
 			left:219px;
 		}
 	}
+    
+    &.pdf-light-viewer-fullscreen {
+        padding: 0;
+        background: #fff;
+		overflow: auto;
+        width: 100%;
+        height: 100%;
+        width: 100vw;
+        height: 100vh;
+        margin-top: 0px;
+		
+		.slicon-size-fullscreen {
+			display: none;
+		}
+		
+		.slicon-size-actual {
+			display: inline;
+		}
+        
+        .pdf-light-viewer-magazine-viewport.with-nav-top {
+            margin-bottom: 80px;
+            position: relative;
+            
+            .pdf-light-viewer-features-bottom-toolbar-panel {
+                bottom: -52px;
+            }
+        }
+        
+        .pdf-light-viewer-magazine-viewport.with-nav-bottom {
+            margin-top: 45px;
+        }
+    }
+
 	
 	.pdf-light-viewer-features-top-panel {
 		list-style: none;

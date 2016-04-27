@@ -7,9 +7,9 @@
   
 **Requires at least:** 3.5
   
-**Tested up to:** 4.5
+**Tested up to:** 4.5.1
   
-**Stable tag:** 1.2.6
+**Stable tag:** 1.2.7
   
 **License:** GPLv2
   
@@ -71,6 +71,11 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+## 1.2.7 - 2016-04-27 ##
+* added maximum book width setting
+* fix PHP 5.3 compatibility
+* improved fullscreen mode
 
 ### 1.2.6 - 2016-04-22 ###
 * Simple Line Icons conflict fix

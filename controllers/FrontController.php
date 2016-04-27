@@ -98,7 +98,7 @@ class PdfLightViewer_FrontController {
 			
 	
 
-		return str_ireplace(["\n", "\r"], ' ', ob_get_clean());
+		return str_ireplace(array("\n", "\r"), ' ', ob_get_clean());
 	}
 	
 	
@@ -112,7 +112,8 @@ class PdfLightViewer_FrontController {
 			'disable_page_zoom' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'disable_page_zoom', true),
 			'page_width' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-width', true),
 			'page_height' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-height', true),
-            		'force_one_page_layout' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'force_one_page_layout', true),
+            'force_one_page_layout' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'force_one_page_layout', true),
+            'max_book_width' => (int)PdfLightViewer_Plugin::get_post_meta($post->ID, 'max_book_width', true),
 		
 			'pages' => array(),
 			'thumbs' => array(),

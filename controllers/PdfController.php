@@ -265,37 +265,43 @@ class PdfLightViewer_PdfController {
 			'show_names' => true, // Show field names on the left
 			'fields' => array(
 				array(
-					'name' => __('Allow download', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => '<i class="slicons slicon-cloud-download"></i> ' . __('Allow download', PDF_LIGHT_VIEWER_PLUGIN),
 					'desc' => __('Check this if you want to show download button on the frontend', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'download_allowed',
 					'type' => 'checkbox'
 				),
 				array(
-					'name' => __('Alternate download link', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => '<i class="slicons slicon-link"></i> ' . __('Alternate download link', PDF_LIGHT_VIEWER_PLUGIN),
 					'desc' => __('If not set, will be used link from PDF File', PDF_LIGHT_VIEWER_PLUGIN),
 					'id'   => 'alternate_download_link',
 					'type' => 'text',
 					'default' => ''
 				),
 				array(
-					'name' => __('Hide thumbnail navigation', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => '<i class="slicons slicon-directions"></i> ' . __('Hide thumbnail navigation', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'hide_thumbnails_navigation',
 					'type' => 'checkbox'
 				),
 				array(
-					'name' => __('Hide fullscreen button', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => '<i class="slicons slicon-size-fullscreen"></i> ' . __('Hide fullscreen button', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'hide_fullscreen_button',
 					'type' => 'checkbox'
 				),
 				array(
-					'name' => __('Disable page zoom', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => '<i class="slicons slicon-magnifier"></i> ' . __('Disable page zoom', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'disable_page_zoom',
 					'type' => 'checkbox'
 				),
-                		array(
-					'name' => __('Force one-page layout', PDF_LIGHT_VIEWER_PLUGIN),
+                array(
+					'name' => '<i class="slicons slicon-book-open"></i> ' . __('Force one-page layout', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'force_one_page_layout',
 					'type' => 'checkbox'
+				),
+                array(
+					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book width', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => '(px)',
+					'id' => 'max_book_width',
+					'type' => 'text'
 				),
 			),
 		);

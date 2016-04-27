@@ -3,8 +3,8 @@ Contributors: antongorodezkiy, teamleadpower
 Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link: 
 Requires at least: 3.5
-Tested up to: 4.5
-Stable tag: 1.2.6
+Tested up to: 4.5.1
+Stable tag: 1.2.7
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,11 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 3. PDF Import Page
 
 == Changelog ==
+
+= 1.2.7 - 2016-04-27 =
+* added maximum book width setting
+* fix PHP 5.3 compatibility
+* improved fullscreen mode
 
 = 1.2.6 - 2016-04-22 =
 * Simple Line Icons conflict fix

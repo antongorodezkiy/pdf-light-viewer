@@ -196,9 +196,16 @@
 					self.resize(viewport, magazine, ratio_single, ratio_double);
 			},
 			
-			getViewportSize: function(width, height, ratio) {
+			getViewportSize: function(width, height, ratio, magazine) {
 				
 				width -= 20;
+        
+        if (
+          magazine.data('max-book-width')
+          && width > magazine.data('max-book-width')
+        ) {
+          width = magazine.data('max-book-width') - 20;
+        }
 				
 				var size = {
 					width: width,
@@ -232,7 +239,7 @@
 							ratio = ratio_single;
 						}
 					}
-					size = self.getViewportSize(viewport.width(), viewport.height(), ratio);
+					size = self.getViewportSize(viewport.width(), viewport.height(), ratio, magazine);
 					
 					magazine.turn('size', size.width, size.height);
 					
