@@ -1,6 +1,15 @@
 <?php if (!defined('WPINC')) die();
 
 class PdfLightViewer_FrontController {
+    
+    public static function init() {
+		// toolbar
+			add_action(PDF_LIGHT_VIEWER_PLUGIN.':shortcode_template_top_panel', array(__CLASS__, 'shortcode_template_top_panel'), 101, 1);
+	}
+    
+    public static function shortcode_template_top_panel($post_id) {
+		include PDF_LIGHT_VIEWER_APPPATH.'/views/shortcode-top-panel.php';
+	}
 	
 	public static function getConfig($atts, $post) {
 		$pdf_light_viewer_config = self::parseDefaultsSettings($atts, $post);
@@ -24,7 +33,10 @@ class PdfLightViewer_FrontController {
 		$thumbs = directory_map($pdf_upload_dir.'-thumbs');
 		
 		if (empty($pages) || empty($thumbs)) {
-			echo '<span style="color: Salmon">'.__('[pdf-light-viewer] shortcode cannot be rendered due to the error: No converted pages found',PDF_LIGHT_VIEWER_PLUGIN).'</span>';
+			echo '
+                <div style="color: Salmon">'.__('[pdf-light-viewer] shortcode cannot be rendered due to the error: No converted pages found.',PDF_LIGHT_VIEWER_PLUGIN).'</div>
+                <div style="color: Salmon">'.sprintf(__('If PDF has been already converted, then probably there were some errors during the import. Please check <a href="%s" target="_blank">plugin error log on the settings page</a> and your site error log for errors.',PDF_LIGHT_VIEWER_PLUGIN), PdfLightViewer_Plugin::getSettingsUrl()).'</div>
+            ';
 			return;
 		}
 		
@@ -104,9 +116,11 @@ class PdfLightViewer_FrontController {
 	
 	public static function parseDefaultsSettings($args, $post = null) {
 		$defaults = array(
+            'title' => $post->post_title,
 			'template' => 'shortcode-pdf-light-viewer',
 			'download_link' => '',
 			'download_allowed' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'download_allowed', true),
+            'download_page_allowed' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'download_page_allowed', true),
 			'hide_thumbnails_navigation' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_thumbnails_navigation', true),
 			'hide_fullscreen_button' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_fullscreen_button', true),
 			'disable_page_zoom' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'disable_page_zoom', true),

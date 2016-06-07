@@ -142,7 +142,7 @@
 				});
 				
 				// Events for thumbnails
-					$('.js-pdf-light-viewer-magazine-thumbnails a', instance).on('click', function(event) {
+					$('.js-pdf-light-viewer-magazine-thumbnails a.js-page-thumbnail', instance).on('click', function(event) {
 						event.preventDefault();
 						
 						var page;

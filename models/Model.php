@@ -44,7 +44,7 @@ class PdfLightViewer_Model {
 	
 	public static function getPDFFileId($post_id) {
 		
-		if (defined('cmb_Meta_Box::CMB_VERSION')) {
+		if ((int)get_post_meta($post_id, 'pdf_file_id', true)) {
 			$pdf_file_id = get_post_meta($post_id, 'pdf_file_id', true);
 		}
 		else {

@@ -24,6 +24,18 @@ class PdfLightViewer_AdminController {
 			);
 		}
 		
+        // imagetragick
+        if (
+			!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-imagetragick-viewed')
+		) {
+			PdfLightViewer_AdminController::showDirectMessage(
+				sprintf(
+					__('Protect your site! - ImageMagick Is On Fire — CVE-2016–3714 <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" target="_blank" href="%s">Learn how to protect yourself!</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" href="#">Hide this, I know how to protect my ImageMagick</a>',PDF_LIGHT_VIEWER_PLUGIN),
+					'http://support.wp.teamlead.pw/q/warning-protect-your-site-imagemagick-is-on-fire%E2%80%8A-%E2%80%8Acve-2016-3714-multiple-vulnerabilities-in-imagemagick/'
+				),
+                true
+			);
+		}
 	}
 	
 	// show message
@@ -99,6 +111,14 @@ class PdfLightViewer_AdminController {
 					case 'pro-ad-viewed':
 						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-pro-ad-viewed', true);
 					break;
+                
+                    case 'imagetragick-viewed':
+						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-imagetragick-viewed', true);
+					break;
+                
+                    case 'installed-viewed':
+						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-installed-viewed', true);
+					break;
 				}
 			}
 		}
@@ -147,12 +167,21 @@ class PdfLightViewer_AdminController {
 			$plugin_title = PdfLightViewer_Plugin::getData('Title');
 			
 			if ($requirements_met) {
-				self::showMessage($plugin_title.': '.__('requirements are met, happy using!',PDF_LIGHT_VIEWER_PLUGIN));
+                if (!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-installed-viewed')) {
+                    self::showDirectMessage(
+                        sprintf(
+                            $plugin_title.': '.
+                            __('requirements are met, happy using! <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" target="_blank" href="%s">Check Settings</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" href="#">Hide</a>',PDF_LIGHT_VIEWER_PLUGIN),
+                            PdfLightViewer_Plugin::getSettingsUrl()
+                        )
+                    );
+                }
 			}
 			else {
 				self::showDirectMessage(
 					$plugin_title.': '
-					.sprintf(__('requirements not met, please check <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
+					.sprintf(__('requirements not met, please check <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),
+                             PdfLightViewer_Plugin::getSettingsUrl())
 				, true);
 			}
 		}

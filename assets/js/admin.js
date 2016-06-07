@@ -67,7 +67,12 @@
 					e.preventDefault();
 				}
 				
-				a.parents('.updated').slideUp();
+				if (a.parents('.updated').size()) {
+          a.parents('.updated').slideUp();
+        }
+        else {
+          a.parents('.error').slideUp();
+        }
 				
 				$.post(PdfLightViewer.url.ajaxurl, {
 					'action': 'pdf-light-viewer_notification_viewed',
