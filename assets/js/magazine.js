@@ -111,6 +111,16 @@
 								loaded_pdf_pages[page] = page;
 							}
 							self.zoom.initSingle(instance, magazine, page);
+              
+              $(document).trigger('pdf-light-viewer.turned', {
+                instance: instance,
+                magazine: magazine,
+                page: page,
+                neighborhood_page: neighborhood_page
+              });
+              
+              instance.data('current-page', page);
+              instance.data('current-neighborhood-page', neighborhood_page);
 							
 							if (
 								neighborhood_page

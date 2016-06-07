@@ -27,7 +27,7 @@ class PdfLightViewer_PdfController {
 		
 		// metaboxes
 			add_filter('add_meta_boxes', array(__CLASS__, 'add_meta_boxes'));
-			add_filter('cmb_meta_boxes', array(__CLASS__, 'cmb_metaboxes'));
+			add_filter('cmb2_meta_boxes', array(__CLASS__, 'cmb_metaboxes'));
 		
 		// saving
 			add_action('save_post_'.self::$type, array(__CLASS__, 'save_post'), 1000);
@@ -217,13 +217,12 @@ class PdfLightViewer_PdfController {
 		}
 	}
 	
-	
 	public static function cmb_metaboxes($meta_boxes) {
 		
 		$meta_boxes['pdf_light_viewer_file_metabox'] = array(
 			'id' => 'pdf_light_viewer_file_metabox',
 			'title' => __('PDF', PDF_LIGHT_VIEWER_PLUGIN),
-			'pages' => array(self::$type), // post type
+			'object_types' => array(self::$type), // post type
 			'context' => 'normal',
 			'priority' => 'high',
 			'show_names' => true, // Show field names on the left
@@ -259,7 +258,7 @@ class PdfLightViewer_PdfController {
 		$meta_boxes['pdf_light_viewer_options_metabox'] = array(
 			'id' => 'pdf_light_viewer_options_metabox',
 			'title' => __('Output Options', PDF_LIGHT_VIEWER_PLUGIN),
-			'pages' => array(self::$type), // post type
+			'object_types' => array(self::$type), // post type
 			'context' => 'normal',
 			'priority' => 'high',
 			'show_names' => true, // Show field names on the left
@@ -324,7 +323,7 @@ class PdfLightViewer_PdfController {
 		$meta_boxes['pdf_light_viewer_permissions_metabox'] = array(
 			'id' => 'pdf_light_viewer_permissions_metabox',
 			'title' => __('Permissions', PDF_LIGHT_VIEWER_PLUGIN),
-			'pages' => array(self::$type), // post type
+			'object_types' => array(self::$type), // post type
 			'context' => 'advanced',
 			'priority' => 'high',
 			'show_names' => true, // Show field names on the left

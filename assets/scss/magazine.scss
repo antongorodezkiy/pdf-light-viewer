@@ -426,14 +426,6 @@ $simple-line-icon-prefix: "slicon-" !default;
 		transform:none;
 	}
 	
-	.pdf-light-viewer-magazine-thumbnails-hover ul {
-		//-webkit-transform:scale3d(0.6, 0.6, 1);
-		//-moz-transform:scale3d(0.6, 0.6, 1);
-		//-o-transform:scale3d(0.6, 0.6, 1);
-		//-ms-transform:scale3d(0.6, 0.6, 1);
-		//transform:scale3d(0.6, 0.6, 1);
-	}
-	
 	.exit-message {
 		position: absolute;
 		top:10px;
@@ -454,4 +446,5 @@ $simple-line-icon-prefix: "slicon-" !default;
 			border-radius:10px;
 		}
 	}
+
 }

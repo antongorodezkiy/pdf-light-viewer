@@ -8,6 +8,10 @@
     "pure": "0.6.0",
     "bxslider-4": "4.2.5",
     "jquery-zoom": "1.7.14",
-    "screenfull": "^3.0.0"
+    "screenfull": "^3.0.0",
+    "qtip2": "^2.2.1"
+  },
+  "resolutions": {
+    "tipsy": "v1.0.0a"
   }
 }

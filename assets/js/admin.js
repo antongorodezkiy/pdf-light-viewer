@@ -75,5 +75,12 @@
 				});
 			});
 		}
+    
+    if ($('.js-tip').size()) {
+      $('.js-tip').qtip({
+        style: { classes: 'qtip-tipsy' }
+      });
+    }
+    
 	});
 })(jQuery);

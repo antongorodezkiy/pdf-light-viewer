@@ -211,6 +211,7 @@
 					<li>Imagick PECL library</li>
 					<li>GhostScript support</li>
 					<li>Writable upload folder <code>wp-content/uploads/pdf-light-viewer</code></li>
+					<li>(optional) <a href="http://wp-cli.org/" target="_blank">WP CLI</a> if you plan to use plugin from the <abbr title="Command Line Interface">CLI</abbr></li>
 				</ul>
 				
 				<h4 class="content-subhead"><span class="pure-button pure-button-primary">PRO</span> Requirements</h4>
@@ -566,7 +567,6 @@
 				<ul>
 					<li>
 						<p><code>bulk-import</code> - Bulk PDF import</p>
-						<hr />
 						<p>Options:</p>
 						<ul>
 							<li>
@@ -588,9 +588,13 @@
 						<hr />
 						<p>Example:</p>
 						<p>
-							<code>
-								wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --import-pdf-file
-							</code>
+<pre><code class="language-sh">$ cd /path/to/your/wordpress
+$ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --import-pdf-file
+</code></pre>
+						</p>
+						<p>or you can specify wordpress' path via option:</p>
+						<p>
+							<pre><code class="language-sh">$ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --import-pdf-file --path="/path/to/your/wordpress"</code></pre>
 						</p>
 					</li>
 				</ul>
@@ -618,7 +622,7 @@
 				<p>To  contact us please use support forum at <a href="http://support.wp.teamlead.pw" target="_blank">http://support.wp.teamlead.pw</a> or email <a href="mailto:support@teamlead.pw">support@teamlead.pw</a></p>
 				<p>Support is free for users of the PDF Light Viewer free plugin as well as for the users of Pro Addon.</p>
 				<p>This PDF Light Viewer plugin is free and we will appreciate your votes - <a href="https://wordpress.org/support/view/plugin-reviews/pdf-light-viewer?rate=5#postform" target="_blank">Vote for us!</a>.</p>
-				<p><span class="pure-button pure-button-primary">PDF Light Viewer Pro Addon</span> can be purchased on Codecanyon separately.</p>
+				<p><span class="pure-button pure-button-primary">PDF Light Viewer Pro Addon</span> can be <a href="http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505" target="_blank">purchased</a> on Codecanyon separately.</p>
 				<p>Also please find us on CodeCanyon: <a href="http://codecanyon.net/user/teamlead-power/portfolio">http://codecanyon.net/user/teamlead-power/portfolio</a></p>
 			</div>
 		</div>

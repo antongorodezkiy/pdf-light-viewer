@@ -1,19 +1,15 @@
 {
-	 "repositories": [
-		  {
-			   "type": "package",
-			   "package": {
-					"name": "WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress",
-					"version": "dev-master",
-					"source": {
-						"url": "https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress",
-						"type": "git",
-						"reference": "origin/master"
-					}
-			   }
-		  }
-	 ],
-	 "require": {
-		  "WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress": "dev-master"
-	 }
+  "name": "teamleadpower/pdf-light-viewer",
+  "description": "Plugin allows you to embed normal, big and very big pdf documents to the wordpress site as flipbooks with thumbnail navigation and zoom.",
+  "require": {
+    "webdevstudios/cmb2": "^2.2"
+  },
+  "license": "GPL-2",
+  "authors": [
+    {
+      "name": "Teamlead Power",
+      "email": "admin@teamlead.pw"
+    }
+  ],
+  "minimum-stability": "dev"
 }

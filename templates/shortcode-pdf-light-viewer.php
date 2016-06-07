@@ -9,6 +9,7 @@
 		|| !$pdf_light_viewer_config['hide_fullscreen_button']
 		|| !$pdf_light_viewer_config['disable_page_zoom']
 		|| !empty($pdf_light_viewer_config['print_allowed'])
+        || !empty($pdf_light_viewer_config['print_page_allowed'])
 		|| !empty($pdf_light_viewer_config['enabled_archive'])
 		|| !empty($pdf_light_viewer_config['enabled_pdf_search'])
 	);

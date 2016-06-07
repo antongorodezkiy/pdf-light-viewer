@@ -416,16 +416,12 @@ class PdfLightViewer_Plugin {
 			}
 			
 			function wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes() {
-				if (!class_exists('cmb_Meta_Box')) {
-					require_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php');
-				}
-				else {
-					$meta_boxes = array();
-					$meta_boxes = apply_filters( 'cmb_meta_boxes', $meta_boxes );
-					foreach ( $meta_boxes as $meta_box ) {
-						$my_box = new cmb_Meta_Box( $meta_box );
-					}
-				}
+                if (!is_admin()) {
+                    return;
+                }
+                
+				require_once PDF_LIGHT_VIEWER_APPPATH.'/vendor/webdevstudios/cmb2/init.php';
+                require_once PDF_LIGHT_VIEWER_APPPATH.'/vendor/webdevstudios/cmb2/bootstrap.php';
 			}
 			add_action('init', 'wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes', 9999);
 			

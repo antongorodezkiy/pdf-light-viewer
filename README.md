@@ -7,9 +7,9 @@
   
 **Requires at least:** 3.5
   
-**Tested up to:** 4.5.1
-  
-**Stable tag:** 1.2.7
+**Tested up to:** 4.5.2
+
+**Stable tag:** 1.3.0
   
 **License:** GPLv2
   
@@ -71,6 +71,10 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+## 1.3.0 - 2016-06-02 ##
+* CMB to CMB2 dependency upgrade
+* Imagetragick notification added
 
 ## 1.2.7 - 2016-04-27 ##
 * added maximum book width setting
