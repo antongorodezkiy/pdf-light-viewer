@@ -95,7 +95,14 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 		foreach($pdf_files as $pdf_file_path) {
 			
 			// get number of pages
-				$im = new Imagick();
+            
+                if (class_exists('Imagick')) {
+                    $im = new Imagick();
+                }
+                else if (class_exists('Gmagick')) {
+                    $im = new Gmagick();
+                }
+				
 				$im->readImage($pdf_file_path);
 				$pdf_pages_number = $im->getNumberImages();
 				
@@ -105,6 +112,13 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 					$height = $geometry['height'];
 					break;
 				}
+                
+                if (!$width && method_exists($im, 'getImageGeometry')) {
+                    $geometry = $im->getImageGeometry();
+                    $width = $geometry['width'];
+                    $height = $geometry['height'];
+                }
+                
 				$im->destroy();
 				unset($im);
 

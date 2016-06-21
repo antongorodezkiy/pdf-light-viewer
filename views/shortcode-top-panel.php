@@ -26,3 +26,20 @@ global $pdf_light_viewer_config;
         </span>
     </li>
 <?php } ?>
+
+<?php if ($pdf_light_viewer_config['show_toolbar_next_previous']) { ?>
+    <li>
+        <a href="#!" title="<?php _e('Previous page',PDF_LIGHT_VIEWER_PLUGIN);?>" class="js-pdf-light-viewer-previous-page">
+            <i class="icons slicon-arrow-left"></i>
+        </a>
+        <a href="#!" title="<?php _e('Next page',PDF_LIGHT_VIEWER_PLUGIN);?>" class="js-pdf-light-viewer-next-page">
+            <i class="icons slicon-arrow-right"></i>
+        </a>
+    </li>
+<?php } ?>
+    
+<?php if ($pdf_light_viewer_config['show_page_numbers']) { ?>
+    <li>
+        <span title="<?php _e('Current page',PDF_LIGHT_VIEWER_PLUGIN);?>" class="js-pdf-light-viewer-current-page-indicator"></span>
+    </li>
+<?php } ?>

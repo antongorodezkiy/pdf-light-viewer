@@ -260,6 +260,12 @@ class PdfLightViewer_Plugin {
 				
 				$pdf_format_support = $Imagick->queryFormats('PDF');
 			}
+            else if (class_exists("Gmagick")) {
+				$Imagick = new Gmagick();
+				$ImagickVersion = $Imagick->getVersion();
+				
+				$pdf_format_support = $Imagick->queryFormats('PDF');
+			}
 			
 			if (PdfLightViewer_AdminController::getSetting('do-not-check-gs')) {
 				$ghostscript_version = true;
@@ -297,32 +303,32 @@ class PdfLightViewer_Plugin {
 					'description' => ''
 				),
 				array(
-					'name' => __('Imagick PHP Extension',PDF_LIGHT_VIEWER_PLUGIN),
-					'status' => extension_loaded('imagick'),
+					'name' => __('ImageMagick or GraphicsMagick PHP Extension',PDF_LIGHT_VIEWER_PLUGIN),
+					'status' => (extension_loaded('imagick') || extension_loaded('gmagick')),
 					'success' => __('is loaded',PDF_LIGHT_VIEWER_PLUGIN),
 					'fail' => __('is not loaded',PDF_LIGHT_VIEWER_PLUGIN),
-					'description' => __("Imagick PHP Extension is required for PDF -> JPEG convertation. It cannot be included with the plugin unfortunately, so you or your hosting provider/server administrator should install it.",PDF_LIGHT_VIEWER_PLUGIN)
+					'description' => __("ImageMagick/GraphicsMagick PHP Extension is required for PDF -> JPEG convertation. It cannot be included with the plugin unfortunately, so you or your hosting provider/server administrator should install it.",PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				array(
-					'name' => __('Imagick PHP Wrapper',PDF_LIGHT_VIEWER_PLUGIN),
-					'status' => class_exists("Imagick"),
+					'name' => __('Imagick or Gmagick PHP Wrapper',PDF_LIGHT_VIEWER_PLUGIN),
+					'status' => (class_exists('Imagick') || class_exists('Gmagick')),
 					'success' => __('is supported',PDF_LIGHT_VIEWER_PLUGIN).($ImagickVersion ? '. v.'.$ImagickVersion['versionString'] : ''),
 					'fail' => __('is not supported',PDF_LIGHT_VIEWER_PLUGIN),
-					'description' => __("Imagick PHP Wrapper is required to make available Imagick PHP Extension functionality in the plugin. Usually it's integrated through the PECL plugin. It cannot be included with the plugin unfortunately, so you or your hosting provider/server administrator should install it.",PDF_LIGHT_VIEWER_PLUGIN)
+					'description' => __("Imagick/Gmagick PHP Wrapper is required to make available Imagick PHP Extension functionality in the plugin. Usually it's integrated through the PECL plugin. It cannot be included with the plugin unfortunately, so you or your hosting provider/server administrator should install it.",PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				array(
-					'name' => __('Imagick PDF Support',PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => __('Imagick or Gmagick PDF Support',PDF_LIGHT_VIEWER_PLUGIN),
 					'status' => ($Imagick && !empty($pdf_format_support)),
 					'success' => __('is enabled',PDF_LIGHT_VIEWER_PLUGIN),
 					'fail' => __('is not enabled',PDF_LIGHT_VIEWER_PLUGIN),
-					'description' => __("Imagick PDF Support is required for PDF -> JPEG convertation.",PDF_LIGHT_VIEWER_PLUGIN)
+					'description' => __("Imagick/Gmagick PDF Support is required for PDF -> JPEG convertation.",PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				array(
 					'name' => 'GhostScript',
 					'status' => $ghostscript_version,
 					'success' => __('is supported',PDF_LIGHT_VIEWER_PLUGIN).($ghostscript_version && is_string($ghostscript_version) ? '. v.'.$ghostscript_version : ''),
 					'fail' => __('is not supported',PDF_LIGHT_VIEWER_PLUGIN),
-					'description' => __("GhostScript is required for Imagick PDF Support. For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly you can disable this requirement in options below.",PDF_LIGHT_VIEWER_PLUGIN)
+					'description' => __("GhostScript is required for Imagick/Gmagick PDF Support. For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly you can disable this requirement in options below.",PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				array(
 					'name' => $upload_dir_message,

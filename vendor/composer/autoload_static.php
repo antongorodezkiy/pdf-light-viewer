@@ -10,6 +10,6 @@ class ComposerStaticInitb81e4e833817f9538bde4b524b317d88
     {
         return \Closure::bind(function () use ($loader) {
 
-        }, null, ClassLoader::class);
+        }, null, get_class(new ClassLoader));
     }
 }

@@ -124,6 +124,8 @@ class PdfLightViewer_FrontController {
 			'hide_thumbnails_navigation' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_thumbnails_navigation', true),
 			'hide_fullscreen_button' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_fullscreen_button', true),
 			'disable_page_zoom' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'disable_page_zoom', true),
+            'show_toolbar_next_previous' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'show_toolbar_next_previous', true),
+            'show_page_numbers' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'show_page_numbers', true),
 			'page_width' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-width', true),
 			'page_height' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-height', true),
             'force_one_page_layout' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'force_one_page_layout', true),

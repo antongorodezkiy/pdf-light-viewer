@@ -119,6 +119,15 @@
                 neighborhood_page: neighborhood_page
               });
               
+              if ($('.js-pdf-light-viewer-current-page-indicator', instance).size()) {
+                if (magazine.turn('display') == 'single') {
+                  $('.js-pdf-light-viewer-current-page-indicator', instance).text(page + ' / ' + PDFLightViewerApp.pages_count);
+                }
+                else {
+                  $('.js-pdf-light-viewer-current-page-indicator', instance).text(page + ' - '  + neighborhood_page + ' / ' + PDFLightViewerApp.pages_count);
+                }
+              }
+              
               instance.data('current-page', page);
               instance.data('current-neighborhood-page', neighborhood_page);
 							
@@ -174,7 +183,7 @@
 					
 				// pages fulscreen
 					if (screenfull.enabled) {
-						$('.js-pdf-light-viewer-fullscreen', instance).click(function(e){
+						$('.js-pdf-light-viewer-fullscreen', instance).click(function(e) {
 							e.preventDefault();
 							if (screenfull.isFullscreen) {
 								screenfull.exit();
@@ -198,6 +207,17 @@
 						// if not supported
 						$('.js-pdf-light-viewer-fullscreen', instance).parent().remove();
 					}
+          
+        // toolbar arrows
+          $('.js-pdf-light-viewer-previous-page', instance).click(function(e) {
+            e.preventDefault();
+            magazine.turn('previous');
+          });
+          
+          $('.js-pdf-light-viewer-next-page', instance).click(function(e) {
+            e.preventDefault();
+            magazine.turn('next');
+          });
 					
 				// window resize
 					window.addEventListener('resize', function (e) {

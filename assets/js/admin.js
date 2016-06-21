@@ -31,7 +31,7 @@
 						$(".js-pdf-light-viewer-current-status").html(json.status);
 						$(".js-pdf-light-viewer-current-progress").text(json.progress);
 						
-						if (json.status != 'failed') {
+						if (json.status && json.status != 'failed' && json.status != 'error') {
 							if (json.progress >= 100) {
 								$(".js-pdf-light-viewer-current-status").parents(".updated").slideUp(300);
 								PdfLightViewer.app.success(PdfLightViewer.__['Import process was successfully finished. Please check results on the PDF page.']);

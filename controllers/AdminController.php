@@ -94,7 +94,10 @@ class PdfLightViewer_AdminController {
 			if (!PdfLightViewer_Model::$unimported) {
 				PdfLightViewer_Model::$unimported = PdfLightViewer_Model::getOneUnimported();
 			}
-			if (!empty(PdfLightViewer_Model::$unimported)) {
+			if (
+                !empty(PdfLightViewer_Model::$unimported)
+                && !has_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_ping_import')
+            ) {
 				add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_ping_import', array('PdfLightViewer_PdfController','pdf_partially_import'));
 			}
 			

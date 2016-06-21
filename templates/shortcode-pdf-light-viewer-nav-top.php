@@ -4,15 +4,7 @@
 	$pdf_upload_dir_url = $pdf_light_viewer_config['pdf_upload_dir_url'];
 	$last_thumb_index = count($pdf_light_viewer_config['thumbs']) - 1;
 	
-	$toolbarVisible = (
-		$pdf_light_viewer_config['download_allowed']
-		|| !$pdf_light_viewer_config['hide_fullscreen_button']
-		|| !$pdf_light_viewer_config['disable_page_zoom']
-		|| !empty($pdf_light_viewer_config['print_allowed'])
-        || !empty($pdf_light_viewer_config['print_page_allowed'])
-		|| !empty($pdf_light_viewer_config['enabled_archive'])
-		|| !empty($pdf_light_viewer_config['enabled_pdf_search'])
-	);
+	$toolbarVisible = PdfLightViewer_PdfController::isToolbarVisible($pdf_light_viewer_config);
 ?>
 
 

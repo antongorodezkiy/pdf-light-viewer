@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "681fa0f7f7c6f34da0105f81bd60c566",
-    "content-hash": "882b44c20b65b6033425b12f40a55224",
+    "hash": "e80a58093de8521ee02766aa17558684",
+    "content-hash": "37d285716c3110ea85c4a6455e1a8e46",
     "packages": [
         {
             "name": "webdevstudios/cmb2",
@@ -59,6 +59,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.3.0"
+    },
     "platform-dev": []
 }

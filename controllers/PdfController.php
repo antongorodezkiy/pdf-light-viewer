@@ -12,8 +12,17 @@ class PdfLightViewer_PdfController {
 	public static $type = 'pdf_lv';
     
     public static function getImagickVersion() {
-        $v = Imagick::getVersion();
-        preg_match('/ImageMagick ([0-9]+\.[0-9]+\.[0-9]+)/', $v['versionString'], $v);
+        
+        if (class_exists('Imagick')) {
+            $v = Imagick::getVersion();
+            preg_match('/ImageMagick ([0-9]+\.[0-9]+\.[0-9]+)/', $v['versionString'], $v);
+        }
+        else {
+            $im = new Gmagick();
+            $v = $im->getVersion();
+            preg_match('/GraphicsMagick ([0-9]+\.[0-9]+\.[0-9]+)/', $v['versionString'], $v);
+        }
+        
         return $v[1];
     }
     
@@ -292,6 +301,33 @@ class PdfLightViewer_PdfController {
 			'priority' => 'high',
 			'show_names' => true, // Show field names on the left
 			'fields' => array(
+                array(
+					'name' => '<i class="slicons slicon-directions"></i> ' . __('Hide thumbnail navigation', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'hide_thumbnails_navigation',
+					'type' => 'checkbox'
+				),
+                array(
+					'name' => '<i class="slicons slicon-book-open"></i> ' . __('Force one-page layout', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'force_one_page_layout',
+					'type' => 'checkbox'
+				),
+                array(
+					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book width', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => '(px)',
+					'id' => 'max_book_width',
+					'type' => 'text'
+				),
+			),
+		);
+        
+        $meta_boxes['pdf_light_viewer_toolbar_options_metabox'] = array(
+			'id' => 'pdf_light_viewer_toolbar_options_metabox',
+			'title' => __('Toolbar Options', PDF_LIGHT_VIEWER_PLUGIN),
+			'object_types' => array(self::$type), // post type
+			'context' => 'normal',
+			'priority' => 'high',
+			'show_names' => true, // Show field names on the left
+			'fields' => array(
 				array(
 					'name' => '<i class="slicons slicon-cloud-download"></i> ' . __('Allow download', PDF_LIGHT_VIEWER_PLUGIN),
 					'desc' => __('Check this if you want to show download button on the frontend', PDF_LIGHT_VIEWER_PLUGIN),
@@ -312,11 +348,6 @@ class PdfLightViewer_PdfController {
 					'type' => 'checkbox'
 				),
 				array(
-					'name' => '<i class="slicons slicon-directions"></i> ' . __('Hide thumbnail navigation', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'hide_thumbnails_navigation',
-					'type' => 'checkbox'
-				),
-				array(
 					'name' => '<i class="slicons slicon-size-fullscreen"></i> ' . __('Hide fullscreen button', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'hide_fullscreen_button',
 					'type' => 'checkbox'
@@ -327,19 +358,17 @@ class PdfLightViewer_PdfController {
 					'type' => 'checkbox'
 				),
                 array(
-					'name' => '<i class="slicons slicon-book-open"></i> ' . __('Force one-page layout', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'force_one_page_layout',
+					'name' => '<i class="slicons slicon-arrow-left"></i><i class="slicons slicon-arrow-right"></i> ' . __('Show toolbar next and previous page arrows', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'show_toolbar_next_previous',
 					'type' => 'checkbox'
 				),
                 array(
-					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book width', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => '(px)',
-					'id' => 'max_book_width',
-					'type' => 'text'
+					'name' => '<i class="slicons slicon-info"></i> ' . __('Show page numbers', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'show_page_numbers',
+					'type' => 'checkbox'
 				),
 			),
 		);
-		
 		
 		// user roles pages limits
 		if ( !function_exists('get_editable_roles') ) {
@@ -396,6 +425,19 @@ class PdfLightViewer_PdfController {
 		return $meta_boxes;
 	}
 	
+    public static function isToolbarVisible($pdf_light_viewer_config) {
+        return (
+            $pdf_light_viewer_config['download_allowed']
+            || !$pdf_light_viewer_config['hide_fullscreen_button']
+            || !$pdf_light_viewer_config['disable_page_zoom']
+            || !empty($pdf_light_viewer_config['print_allowed'])
+            || !empty($pdf_light_viewer_config['print_page_allowed'])
+            || !empty($pdf_light_viewer_config['enabled_archive'])
+            || !empty($pdf_light_viewer_config['enabled_pdf_search'])
+            || !empty($pdf_light_viewer_config['show_page_numbers'])
+            || !empty($pdf_light_viewer_config['show_toolbar_next_previous'])
+        );
+    }
 	
 	public static function add_meta_boxes() {
 		global $pagenow;
@@ -480,18 +522,32 @@ class PdfLightViewer_PdfController {
 				// delete all files
 				self::delete_pages_by_pdf_id($post_id, $pdf_upload_dir);
 				
-				if (class_exists('Imagick')) {
+				if (class_exists('Imagick') || class_exists('Gmagick')) {
 					
-					$im = new Imagick();
+					if (class_exists('Imagick')) {
+                        $im = new Imagick();
+                    }
+                    else if (class_exists('Gmagick')) {
+                        $im = new Gmagick();
+                    }
+                    
 					$im->readImage($pdf_file_path);
 					$pages_number = $im->getNumberImages();
 					
+                    $width = null;
+                    $height = null;
 					foreach($im as $_img) {
 						$geometry = $_img->getImageGeometry();
 						$width = $geometry['width'];
 						$height = $geometry['height'];
 						break;
 					}
+                    
+                    if (!$width && method_exists($im, 'getImageGeometry')) {
+                        $geometry = $im->getImageGeometry();
+						$width = $geometry['width'];
+						$height = $geometry['height'];
+                    }
 					
 					$im->destroy();
 					
@@ -519,7 +575,7 @@ class PdfLightViewer_PdfController {
 				}
 				else {
 					PdfLightViewer_AdminController::showMessage(
-						sprintf(__('Imagick not found, please check other requirements on <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
+						sprintf(__('Imagick/Gmagick not found, please check other requirements on <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
 					, true);
 				}
 			}
@@ -538,13 +594,11 @@ class PdfLightViewer_PdfController {
 		$post_id = $unimported->ID;
 		
 		if (!$post_id) {
-			header('Content-Type: application/json');
-			echo json_encode(array(
+			return wp_send_json(array(
 				'status' => 'error',
 				'progress' => 0,
 				'error' => __('Currently there are no unimported files in the queue.', PDF_LIGHT_VIEWER_PLUGIN)
 			));
-			return;
 		}
 		
 		$status = PdfLightViewer_Plugin::get_post_meta($post_id,'_pdf-light-viewer-import-status',true);
@@ -583,25 +637,21 @@ class PdfLightViewer_PdfController {
 		$height = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'pdf-page-height',true);
 		
 		if (!$width || !$height) {
-			header('Content-Type: application/json');
-			echo json_encode(array(
+            return wp_send_json(array(
 				'status' => 'error',
 				'progress' => 0,
 				'error' => __('Cannot get width and height of the first page.', PDF_LIGHT_VIEWER_PLUGIN)
 			));
-			return;
 		}
 		
 		$ratio = $width / $height;
 	
 		if (!$current_page) {
-			header('Content-Type: application/json');
-			echo json_encode(array(
+			return wp_send_json(array(
 				'status' => 'error',
 				'progress' => 0,
 				'error' => __('Cannot detect current imported PDF page.', PDF_LIGHT_VIEWER_PLUGIN)
 			));
-			return;
 		}
 	
 		$error = '';
@@ -679,46 +729,61 @@ class PdfLightViewer_PdfController {
 			update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FINISHED);
 		}
 		
-		header('Content-Type: application/json');
-		echo json_encode(array(
+		return wp_send_json(array(
 			'status' => $status_label,
 			'progress' => (int)$percent,
 			'error' => $error
 		));
-		exit;
 	}
 	
 	public static function process_pdf_page($post_id, $current_page, $current_page_doc, $page_number, $pdf_pages_number, $pdf_file_path, $pdf_upload_dir, $jpeg_resolution, $jpeg_compression_quality, $ratio) {
-		$_img = new Imagick();
+        
+        if (class_exists('Imagick')) {
+            $ImagickClass = 'Imagick';
+        }
+        else if (class_exists('Gmagick')) {
+            $ImagickClass = 'Gmagick';
+        }
+        
+		$_img = new $ImagickClass();
 		$_img->setResolution($jpeg_resolution, $jpeg_resolution);
 		$_img->readImage($pdf_file_path.'['.($current_page_doc - 1).']');
 
 			
-			$_img->setImageCompression(Imagick::COMPRESSION_JPEG);
-			$_img->resizeImage(1024, round(1024/$ratio), Imagick::FILTER_BESSEL, 1, false);
-			$_img->setImageCompressionQuality($jpeg_compression_quality);
+			$_img->setImageCompression($ImagickClass::COMPRESSION_JPEG);
+			$_img->resizeImage(1024, round(1024/$ratio), $ImagickClass::FILTER_BESSEL, 1, false);
+            
+            if (class_exists('Imagick')) {
+                $_img->setImageCompressionQuality($jpeg_compression_quality);
+            }
+            else if (class_exists('Gmagick')) {
+                $_img->setCompressionQuality($jpeg_compression_quality);
+            }
+            
 			$_img->setImageFormat('jpg');
 			
 			// IMPORTANT: imagick changed SRGB and RGB profiles after vesion 6.7.6
-            if (version_compare(static::getImagickVersion(), '6.7.6', '>=')) {
-                $_img->transformImageColorspace(Imagick::COLORSPACE_SRGB);
-            }
-            else {
-                $_img->transformImageColorspace(Imagick::COLORSPACE_RGB);
+            if (method_exists($_img, 'transformImageColorspace')) {
+                if (version_compare(static::getImagickVersion(), '6.7.6', '>=')) {
+                    $_img->transformImageColorspace($ImagickClass::COLORSPACE_SRGB);
+                }
+                else {
+                    $_img->transformImageColorspace($ImagickClass::COLORSPACE_RGB);
+                }
             }
 	
-			$white = new Imagick();
+			$white = new $ImagickClass();
 			$white->newImage(1024, round(1024/$ratio), "white");
-			$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
+			$white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
 			$white->setImageFormat('jpg');
 			$white->setImageColorspace($_img->getImageColorspace());
 			$white->writeImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
 			
-			$_img->resizeImage(76, round(76/$ratio),Imagick::FILTER_BESSEL, 1, false);
+			$_img->resizeImage(76, round(76/$ratio),$ImagickClass::FILTER_BESSEL, 1, false);
 	
-			$white = new Imagick();
+			$white = new $ImagickClass();
 			$white->newImage(76, round(76/$ratio), "white");
-			$white->compositeimage($_img, Imagick::COMPOSITE_OVER, 0, 0);
+			$white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
 			$white->setImageFormat('jpg');
 			$white->setImageColorspace($_img->getImageColorspace());
 			$white->writeImage($pdf_upload_dir.'-thumbs/page-'.$page_number.'-100x76.jpg');
