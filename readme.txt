@@ -3,8 +3,8 @@ Contributors: antongorodezkiy, teamleadpower
 Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link: 
 Requires at least: 3.5
-Tested up to: 4.5.2
-Stable tag: 1.3.1
+Tested up to: 4.5.3
+Stable tag: 1.3.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,10 +36,12 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 ### PRO Addon Features ###
 * Single separate PDF page.
-* PDF Archive page and shortcode.
+* PDF Archive page.
+* PDF Categories.
+* PDF Archive page by shortcode on custom page or frontpage.
 * Simple PDF page search.
 * Document printing.
-* Per-page printing
+* Per-page printing.
 * SEO friendly mode.
 
 == Installation ==
@@ -56,6 +58,10 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 3. PDF Import Page
 
 == Changelog ==
+
+= 1.3.2 - 2016-06-22 =
+* per page download in toolbar
+* page numbers bugfixing
 
 = 1.3.1 - 2016-06-21 =
 * GraphicsMagick alternative support

@@ -7,9 +7,9 @@
   
 **Requires at least:** 3.5
   
-**Tested up to:** 4.5.2
+**Tested up to:** 4.5.3
 
-**Stable tag:** 1.3.1
+**Stable tag:** 1.3.2
   
 **License:** GPLv2
   
@@ -44,10 +44,12 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 ### PRO Addon Features ###
 * Single separate PDF page.
-* PDF Archive page and shortcode.
+* PDF Archive page.
+* PDF Categories.
+* PDF Archive page by shortcode on custom page or frontpage.
 * Simple PDF page search.
 * Document printing.
-* Per-page printing
+* Per-page printing.
 * SEO friendly mode.
 
 ## Installation ##
@@ -73,6 +75,10 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+## 1.3.2 - 2016-06-22 ##
+* per page download in toolbar
+* page numbers bugfixing
 
 ## 1.3.1 - 2016-06-21 ##
 * GraphicsMagick alternative support

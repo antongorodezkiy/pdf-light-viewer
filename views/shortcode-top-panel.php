@@ -2,9 +2,51 @@
 global $pdf_light_viewer_config;
 ?>
 
-<?php if ($pdf_light_viewer_config['download_allowed']) { ?>
+<?php if (
+    $pdf_light_viewer_config['download_allowed']
+    || $pdf_light_viewer_config['download_page_allowed']
+) { ?>
     <li>
-        <a title="<?php _e('Download',PDF_LIGHT_VIEWER_PLUGIN);?>" href="<?php echo $pdf_light_viewer_config['download_link'];?>" target="_blank">
+        <a href="#!" class="js-pdf-light-viewer-download-options" title="<?php _e('Download',PDF_LIGHT_VIEWER_PLUGIN)?>">
+            <i class="slicon-cloud-download"></i>
+        </a>
+        <div class="js-pdf-light-viewer-download-options-contaner pdf-light-viewer-print-options-contaner">
+            <ul>
+                <?php if ($pdf_light_viewer_config['download_allowed']) { ?>
+                    <li>
+                        <a href="<?php echo $pdf_light_viewer_config['download_link']?>" target="_blank">
+                            <i class="slicon-cloud-download"></i>
+                            <?php _e('Download',PDF_LIGHT_VIEWER_PLUGIN)?>
+                        </a>
+                    </li>
+                <?php } ?>
+                <li>
+                    <a
+                        href="#!"
+                        target="_blank"
+                        download=""
+                        class="js-pdf-light-viewer-download-page">
+                            <i class="icons slicon-picture"></i>
+                            <?php _e('Download Page',PDF_LIGHT_VIEWER_PLUGIN);?>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        style="display: none"
+                        href="#!"
+                        target="_blank"
+                        download=""
+                        class="js-pdf-light-viewer-download-neighborhood-page">
+                            <i class="icons slicon-picture"></i>
+                            <?php _e('Download Right Page',PDF_LIGHT_VIEWER_PLUGIN);?>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+<?php } else if ($pdf_light_viewer_config['download_allowed']) { ?>
+    <li>
+        <a title="<?php _e('Download',PDF_LIGHT_VIEWER_PLUGIN);?>" href="<?php echo $pdf_light_viewer_config['download_link']?>" target="_blank">
             <i class="icons slicon-cloud-download"></i>
         </a>
     </li>

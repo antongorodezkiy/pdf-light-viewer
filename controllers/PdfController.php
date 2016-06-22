@@ -102,17 +102,17 @@ class PdfLightViewer_PdfController {
 			array( 
 				'hierarchical' => true, 
 				'labels' => array(
-					'name' => 'Categories',
-					'singular_name' => 'Category',
-					'search_items' =>  'Search in Category',
-					'popular_items' => 'Popular Categories',
-					'all_items' => 'All Categories',
-					'parent_item' => 'Parent Category',
-					'parent_item_colon' => 'Parent Category:',
-					'edit_item' => 'Edit Category',
-					'update_item' => 'Update Category',
-					'add_new_item' => 'Add New Category',
-					'new_item_name' => 'New Category Name'
+					'name' => __('Categories', PDF_LIGHT_VIEWER_PLUGIN),
+					'singular_name' => __('Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'search_items' =>  __('Search in Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'popular_items' => __('Popular Categories', PDF_LIGHT_VIEWER_PLUGIN),
+					'all_items' => __('All Categories', PDF_LIGHT_VIEWER_PLUGIN),
+					'parent_item' => __('Parent Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'parent_item_colon' => __('Parent Category:', PDF_LIGHT_VIEWER_PLUGIN),
+					'edit_item' => __('Edit Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'update_item' => __('Update Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'add_new_item' => __('Add New Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'new_item_name' => __('New Category Name', PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				'public' => false,
 				'show_ui' => (bool)PdfLightViewer_AdminController::getSetting('show-post-type'),
@@ -126,17 +126,17 @@ class PdfLightViewer_PdfController {
 			array( 
 				'hierarchical' => false, 
 				'labels' => array(
-					'name' => 'Tags',
-					'singular_name' => 'Tag',
-					'search_items' =>  'Search in Tags',
-					'popular_items' => 'Popular Tags',
-					'all_items' => 'All Tags',
-					'parent_item' => 'Parent Tag',
-					'parent_item_colon' => 'Parent Tag:',
-					'edit_item' => 'Edit Tag',
-					'update_item' => 'Update Tag',
-					'add_new_item' => 'Add New Tag',
-					'new_item_name' => 'New Tag Name'
+					'name' => __('Tags', PDF_LIGHT_VIEWER_PLUGIN),
+					'singular_name' => __('Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'search_items' =>  __('Search in Tags', PDF_LIGHT_VIEWER_PLUGIN),
+					'popular_items' => __('Popular Tags', PDF_LIGHT_VIEWER_PLUGIN),
+					'all_items' => __('All Tags', PDF_LIGHT_VIEWER_PLUGIN),
+					'parent_item' => __('Parent Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'parent_item_colon' => __('Parent Tag:', PDF_LIGHT_VIEWER_PLUGIN),
+					'edit_item' => __('Edit Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'update_item' => __('Update Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'add_new_item' => __('Add New Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'new_item_name' => __('New Tag Name', PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				'public' => false,
 				'show_ui' => (bool)PdfLightViewer_AdminController::getSetting('show-post-type'),
@@ -428,6 +428,7 @@ class PdfLightViewer_PdfController {
     public static function isToolbarVisible($pdf_light_viewer_config) {
         return (
             $pdf_light_viewer_config['download_allowed']
+            || $pdf_light_viewer_config['download_page_allowed']
             || !$pdf_light_viewer_config['hide_fullscreen_button']
             || !$pdf_light_viewer_config['disable_page_zoom']
             || !empty($pdf_light_viewer_config['print_allowed'])
