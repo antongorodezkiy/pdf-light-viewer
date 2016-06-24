@@ -416,21 +416,15 @@ class PdfLightViewer_Plugin {
 		
 	public static function run() {
 		// third party
-			if (version_compare(PHP_VERSION, '5.3.0', '>=')) {
-				include_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/autoload.php');
-			}
-			
-			function wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes() {
-                if (!is_admin()) {
-                    return;
-                }
-                
-				require_once PDF_LIGHT_VIEWER_APPPATH.'/vendor/webdevstudios/cmb2/init.php';
-                require_once PDF_LIGHT_VIEWER_APPPATH.'/vendor/webdevstudios/cmb2/bootstrap.php';
-			}
-			add_action('init', 'wp_pdf_light_viewer_cmb_initialize_cmb_meta_boxes', 9999);
-			
-			include_once(PDF_LIGHT_VIEWER_APPPATH.'/libraries/directory_helper.php');
+		if (version_compare(PHP_VERSION, '5.3.0', '>=')) {
+			include_once(PDF_LIGHT_VIEWER_APPPATH.'/vendor/autoload.php');
+		}
+		
+		if (is_admin()) {
+			require_once PDF_LIGHT_VIEWER_APPPATH.'/vendor/webdevstudios/cmb2/init.php';
+		}
+		
+		include_once(PDF_LIGHT_VIEWER_APPPATH.'/libraries/directory_helper.php');
 		
 		// 	
 		if (!class_exists('PdfLightViewer_AssetsController')) {
