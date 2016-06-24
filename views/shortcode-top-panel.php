@@ -2,10 +2,7 @@
 global $pdf_light_viewer_config;
 ?>
 
-<?php if (
-    $pdf_light_viewer_config['download_allowed']
-    || $pdf_light_viewer_config['download_page_allowed']
-) { ?>
+<?php if ($pdf_light_viewer_config['download_page_allowed']) { ?>
     <li>
         <a href="#!" class="js-pdf-light-viewer-download-options" title="<?php _e('Download',PDF_LIGHT_VIEWER_PLUGIN)?>">
             <i class="slicon-cloud-download"></i>

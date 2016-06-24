@@ -446,5 +446,47 @@ $simple-line-icon-prefix: "slicon-" !default;
 			border-radius:10px;
 		}
 	}
+    
+    .pdf-light-viewer-print-options-contaner {
+		display: none;
+	}
 
+}
+
+body .pdf-light-viewer-tips {
+	margin-left: -12px;
+	background: transparent;
+	border-color: transparent;
+	
+	.qtip-tip {
+		background: #fff;
+	}
+	
+	.qtip-content {
+		background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
+		border-radius: 6px 6px;
+		padding: 12px 24px;
+		box-shadow:
+			1px 2px 2px 0px rgba(0, 0, 0, 0.14),
+			0px 3px 2px -1px rgba(0, 0, 0, 0.2),
+			0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+			
+		ul {
+			padding: 0;
+			margin: 0;
+		}
+			
+		li {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+			
+		a {
+			color: RoyalBlue;
+			text-decoration: none;
+			font-size: 16px;
+			line-height: 24px;
+		}
+	}
 }

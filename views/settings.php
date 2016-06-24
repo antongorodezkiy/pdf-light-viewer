@@ -54,6 +54,9 @@
                         <p>
                             Printing &copy; <a href="https://github.com/posabsolute/jQuery-printPage-plugin" target="_blank">jQuery PrintPage plugin&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
+                        <li>
+							Metaboxes &copy; <a href="https://github.com/WebDevStudios/CMB2" target="_blank">CMB2&nbsp;<span class="icons icon-link"></span></a>
+						</li>
                     </blockquote>
                 </div>
             </div>
