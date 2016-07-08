@@ -172,6 +172,7 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 							PdfLightViewer_PdfController::process_pdf_page(
 								$post_id,
 								$current_page,
+                                $current_page,
 								$page_number,
 								$pdf_pages_number,
 								$pdf_file_path,
