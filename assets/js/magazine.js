@@ -282,7 +282,7 @@
 			
 			getViewportSize: function(width, height, ratio, magazine) {
 				
-				width -= 20;
+        width -= 20;
         
         if (
           magazine.data('max-book-width')
@@ -293,9 +293,19 @@
 				
 				var size = {
 					width: width,
-					height: Math.round(width / ratio),
+					height: Math.round(width / ratio)
 				};
-			
+        
+        if (magazine.data('limit-fullscreen-book-height')) {
+          var fullScreenHeight = $('.js-pdf-light-viewer.pdf-light-viewer-fullscreen .js-pdf-light-viewer-magazine-viewport').height();
+          if (fullScreenHeight && size.height > fullScreenHeight) {
+            size = {
+              width: fullScreenHeight * ratio,
+              height: fullScreenHeight
+            };
+          }
+        }
+        
 				return size;
 			},
 			

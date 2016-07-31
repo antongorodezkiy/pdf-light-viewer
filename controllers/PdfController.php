@@ -26,7 +26,7 @@ class PdfLightViewer_PdfController {
         return $v[1];
     }
     
-    protected static function parsePages($pagesString)
+    public static function parsePages($pagesString)
     {
         $pages = array();
         
@@ -317,6 +317,12 @@ class PdfLightViewer_PdfController {
 					'id' => 'max_book_width',
 					'type' => 'text'
 				),
+                array(
+					'name' => '<i class="slicons slicon-frame"></i> ' . __('Limit book height by the viewport in fullscreen mode', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => '',
+					'id' => 'limit_fullscreen_book_height',
+					'type' => 'checkbox'
+				),
 			),
 		);
         
@@ -414,9 +420,16 @@ class PdfLightViewer_PdfController {
 						),
 						array(
 							'name' => __('Visible pages limit', PDF_LIGHT_VIEWER_PLUGIN),
+                            'desc' => __('Use for the higher limit. Has lower priority than "Visible pages"', PDF_LIGHT_VIEWER_PLUGIN),
 							'id'   => 'pages_limit_visible_pages',
 							'type' => 'text'
-						)
+						),
+//                        array(
+//							'name' => __('Visible pages', PDF_LIGHT_VIEWER_PLUGIN),
+//                            'desc' => __('Leave empty to show all. Use numbers for single pages or (e.g. 1-3) for ranges. Few numbers or ranges could be separated by commas (e.g. 2-5,7,9-15).', PDF_LIGHT_VIEWER_PLUGIN),
+//							'id'   => 'pages_limit_visible_pages_ranges',
+//							'type' => 'text'
+//						)
 					)
 				)
 			)

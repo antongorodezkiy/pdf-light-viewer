@@ -50,27 +50,63 @@ class PdfLightViewer_FrontController {
 			$pages_limits = PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf_light_viewer_permissions_metabox_repeat_group', true);
 			
 			$limit = 0;
+            $visiblePages = array();
 			if (!empty($pages_limits)) {
 				foreach($pages_limits as $pages_limit) {
 					if (empty($current_user_roles) && $pages_limit['pages_limit_user_role'] == 'anonymous') {
-						$limit = isset($pages_limit['pages_limit_visible_pages']) ? $pages_limit['pages_limit_visible_pages'] : null;
+						$limit = isset($pages_limit['pages_limit_visible_pages'])
+                            ? $pages_limit['pages_limit_visible_pages']
+                            : 0;
+                            
+                        // TODO: not implemented yet
+                        //$visiblePages = isset($pages_limit['pages_limit_visible_pages_ranges'])
+                        //    ? PdfLightViewer_PdfController::parsePages($pages_limit['pages_limit_visible_pages_ranges'])
+                        //    : array();
 					}
 					else if(in_array($pages_limit['pages_limit_user_role'], $current_user_roles)) {
-						$limit = isset($pages_limit['pages_limit_visible_pages']) ? $pages_limit['pages_limit_visible_pages'] : null;
+						$limit = isset($pages_limit['pages_limit_visible_pages'])
+                            ? $pages_limit['pages_limit_visible_pages']
+                            : 0;
+                            
+                        // TODO: not implemented yet
+                        //$visiblePages = isset($pages_limit['pages_limit_visible_pages_ranges'])
+                        //    ? PdfLightViewer_PdfController::parsePages($pages_limit['pages_limit_visible_pages_ranges'])
+                        //    : array();
 					}
 				}
 			}
 			
 		// limit allowed pages for user role
-			if (!$limit) {
+			if (!$limit /*&& empty($visiblePages)*/) {
 				$pdf_light_viewer_config['pages'] = $pages;
 				$pdf_light_viewer_config['thumbs'] = $thumbs;
+                
+                // TODO: not implemented yet
+                //for($page = 0; $page < count($pdf_light_viewer_config['pages']); $page++) {
+                //    $pdf_light_viewer_config['pagesIndexes'][$page] = $page;
+                //}
 			}
 			else {
-				for($page = 0; $page < $limit; $page++) {
-					$pdf_light_viewer_config['pages'][$page] = $pages[$page];
-					$pdf_light_viewer_config['thumbs'][$page] = $thumbs[$page];
-				}
+                
+                if (!empty($visiblePages)) {
+                    foreach($visiblePages as $page) {
+                        $i = $page - 1;
+                        $pdf_light_viewer_config['pages'][$i] = $pages[$i];
+                        $pdf_light_viewer_config['thumbs'][$i] = $thumbs[$i];
+                        
+                        // TODO: not implemented yet
+                        //$pdf_light_viewer_config['pagesIndexes'][$i] = $i;
+                    }
+                }
+				else {
+                    for($page = 0; $page < $limit; $page++) {
+                        $pdf_light_viewer_config['pages'][$page] = $pages[$page];
+                        $pdf_light_viewer_config['thumbs'][$page] = $thumbs[$page];
+                        
+                        // TODO: not implemented yet
+                        //$pdf_light_viewer_config['pagesIndexes'][$page] = $page;
+                    }
+                }
 			}
 			
 		$pdf_light_viewer_config = apply_filters(PDF_LIGHT_VIEWER_PLUGIN.':front_config', $pdf_light_viewer_config, $post);
@@ -130,6 +166,7 @@ class PdfLightViewer_FrontController {
 			'page_height' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'pdf-page-height', true),
             'force_one_page_layout' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'force_one_page_layout', true),
             'max_book_width' => (int)PdfLightViewer_Plugin::get_post_meta($post->ID, 'max_book_width', true),
+            'limit_fullscreen_book_height' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'limit_fullscreen_book_height', true),
 		
 			'pages' => array(),
 			'thumbs' => array(),
@@ -139,7 +176,7 @@ class PdfLightViewer_FrontController {
 			'enabled_pdf_search' => false,
 			'enabled_archive' => false
 		);
-						
+		
 		return wp_parse_args($args, $defaults);
 	}
 	

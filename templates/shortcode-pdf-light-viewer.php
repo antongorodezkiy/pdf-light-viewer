@@ -2,7 +2,8 @@
 	global $pdf_light_viewer_config;
 	
 	$pdf_upload_dir_url = $pdf_light_viewer_config['pdf_upload_dir_url'];
-	$last_thumb_index = count($pdf_light_viewer_config['thumbs']) - 1;
+    $pages = array_keys($pdf_light_viewer_config['thumbs']);
+	$last_thumb_index = end($pages);
 	
 	$toolbarVisible = PdfLightViewer_PdfController::isToolbarVisible($pdf_light_viewer_config);
 ?>
@@ -26,12 +27,12 @@
 				<div class="pdf-light-viewer-magazine-viewport-container">	
 					<div class="js-pdf-light-viewer-magazine pdf-light-viewer-magazine"
                         data-max-book-width="<?php echo $pdf_light_viewer_config['max_book_width'] ?>"
+                        data-limit-fullscreen-book-height="<?php echo $pdf_light_viewer_config['limit_fullscreen_book_height'] ?>"
 						data-width="<?php echo $pdf_light_viewer_config['page_width'] ?>"
 						data-height="<?php echo $pdf_light_viewer_config['page_height'] ?>"
 						data-pages-count="<?php echo count($pdf_light_viewer_config['pages']) ?>"
 						data-force-one-page-layout="<?php echo $pdf_light_viewer_config['force_one_page_layout'] ?>">
-						<?php foreach($pdf_light_viewer_config['pages'] as $number => $page) {
-							?>
+						<?php foreach($pdf_light_viewer_config['pages'] as $number => $page) { ?>
 							<div style="background-image:url('<?php echo plugins_url('assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>');">
 								<div class="gradient"></div>
 								<img
