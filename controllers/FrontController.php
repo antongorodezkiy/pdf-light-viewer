@@ -31,6 +31,7 @@ class PdfLightViewer_FrontController {
 		
 		$pages = directory_map($pdf_upload_dir);
 		$thumbs = directory_map($pdf_upload_dir.'-thumbs');
+        $pdfPages = directory_map($pdf_upload_dir.'-pdfs');
 		
 		if (empty($pages) || empty($thumbs)) {
 			echo '
@@ -125,6 +126,10 @@ class PdfLightViewer_FrontController {
 		if (empty($post) || !$post->ID) {
 			return;
 		}
+        
+        if (post_password_required($post)) {
+            return '<div class="pdf-light-viewer">'.get_the_password_form().'</div>';
+        }
 		
 		$pdf_light_viewer_config = static::getConfig($atts, $post);
 		
@@ -157,6 +162,7 @@ class PdfLightViewer_FrontController {
 			'download_link' => '',
 			'download_allowed' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'download_allowed', true),
             'download_page_allowed' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'download_page_allowed', true),
+            'download_page_format' => PdfLightViewer_Plugin::get_post_meta($post->ID, 'download_page_format', true),
 			'hide_thumbnails_navigation' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_thumbnails_navigation', true),
 			'hide_fullscreen_button' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'hide_fullscreen_button', true),
 			'disable_page_zoom' => (bool)PdfLightViewer_Plugin::get_post_meta($post->ID, 'disable_page_zoom', true),
@@ -195,5 +201,45 @@ class PdfLightViewer_FrontController {
 		}
 		
 		return $url;
+	}
+    
+    public static function getPageDownloadLink($pageFile) {
+		global $pdf_light_viewer_config;
+        
+        $url = '';
+		if ($pageFile) {
+            switch($pdf_light_viewer_config['download_page_format']) {
+                case 'pdf':
+                    $pageFile = mb_substr($pageFile, 0, -3);
+                    $pageFile .= 'pdf';
+                    $url = $pdf_light_viewer_config['pdf_upload_dir_url'].'-pdfs/'.$pageFile;
+                    break;
+                
+                default:
+                    $url = $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$pageFile;
+            }
+		}
+		
+		return $url;
+	}
+    
+    public static function getPageDownloadTitle($pageFile) {
+		global $pdf_light_viewer_config;
+        
+        $title = '';
+		if ($pageFile) {
+            switch($pdf_light_viewer_config['download_page_format']) {
+                case 'pdf':
+                    $pageFile = mb_substr($pageFile, 0, -3);
+                    $pageFile .= 'pdf';
+                    $title = htmlspecialchars($pdf_light_viewer_config['title']).' '.$pageFile;
+                    break;
+                
+                default:
+                    $title = htmlspecialchars($pdf_light_viewer_config['title']).' '.$pageFile;
+            }
+		}
+		
+		return $title;
 	}
 }

@@ -150,6 +150,11 @@ class PdfLightViewer_Plugin {
 			if (!file_exists($pdf_thumbs_upload_dir)) {
 				@mkdir($pdf_thumbs_upload_dir);
 			}
+            
+            $pdf_pdfs_upload_dir = $main_upload_dir.'/'.$id.'-pdfs';
+			if (!file_exists($pdf_pdfs_upload_dir)) {
+				@mkdir($pdf_pdfs_upload_dir);
+			}
 			
 			if (file_exists($pdf_upload_dir)) {
 				return $pdf_upload_dir;

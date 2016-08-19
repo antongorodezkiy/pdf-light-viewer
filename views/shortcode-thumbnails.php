@@ -10,7 +10,10 @@
             <span>
                 1
                 <?php if ($pdf_light_viewer_config['download_page_allowed']) { ?>
-                    <a target="_blank" download="<?php echo htmlspecialchars($pdf_light_viewer_config['title']) .' - '. $pdf_light_viewer_config['pages'][0] ?>" href="<?php echo $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$pdf_light_viewer_config['pages'][0];?>">
+                    <a
+                        target="_blank"
+                        download="<?php echo PdfLightViewer_FrontController::getPageDownloadTitle($pdf_light_viewer_config['pages'][0]) ?>"
+                        href="<?php echo PdfLightViewer_FrontController::getPageDownloadLink($pdf_light_viewer_config['pages'][0]) ?>">
                         <i class="icons slicon-cloud-download"></i>
                     </a>
                 <?php } ?>
@@ -52,7 +55,10 @@
                 </a>
                 <span>
                     <?php if ($pdf_light_viewer_config['download_page_allowed']) { ?>
-                        <a target="_blank" download="<?php echo htmlspecialchars($pdf_light_viewer_config['title']) .' - '. $pdf_light_viewer_config['pages'][0] ?>" href="<?php echo $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$pdf_light_viewer_config['pages'][$i];?>">
+                        <a
+                            target="_blank"
+                            download="<?php echo PdfLightViewer_FrontController::getPageDownloadTitle($pdf_light_viewer_config['pages'][$i]) ?>"
+                            href="<?php echo PdfLightViewer_FrontController::getPageDownloadLink($pdf_light_viewer_config['pages'][$i]) ?>">
                             <i class="icons slicon-cloud-download"></i>
                         </a>
                     <?php } ?>
@@ -60,7 +66,10 @@
                     <?php echo ($i+1);?>-<?php echo ($i+2);?>
                     
                     <?php if ($pdf_light_viewer_config['download_page_allowed']) { ?>
-                        <a target="_blank" download="<?php echo htmlspecialchars($pdf_light_viewer_config['title']) .' - '. $pdf_light_viewer_config['pages'][0] ?>" href="<?php echo $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$pdf_light_viewer_config['pages'][$i+1];?>">
+                        <a
+                            target="_blank"
+                            download="<?php echo PdfLightViewer_FrontController::getPageDownloadTitle($pdf_light_viewer_config['pages'][$i+1]) ?>"
+                            href="<?php echo PdfLightViewer_FrontController::getPageDownloadLink($pdf_light_viewer_config['pages'][$i+1]) ?>">
                             <i class="icons slicon-cloud-download"></i>
                         </a>
                     <?php } ?>
@@ -81,7 +90,10 @@
                 <span>
                     <?php echo ($last_thumb_index+1);?>
                     <?php if ($pdf_light_viewer_config['download_page_allowed']) { ?>
-                        <a target="_blank" download="<?php echo htmlspecialchars($pdf_light_viewer_config['title']) .' - '. $pdf_light_viewer_config['pages'][0] ?>" href="<?php echo $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$pdf_light_viewer_config['pages'][$last_thumb_index];?>">
+                        <a
+                            target="_blank"
+                            download="<?php echo PdfLightViewer_FrontController::getPageDownloadTitle($pdf_light_viewer_config['pages'][$last_thumb_index]) ?>"
+                            href="<?php echo PdfLightViewer_FrontController::getPageDownloadLink($pdf_light_viewer_config['pages'][$last_thumb_index]) ?>">
                             <i class="icons slicon-cloud-download"></i>
                         </a>
                     <?php } ?>

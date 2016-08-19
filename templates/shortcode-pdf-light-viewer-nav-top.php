@@ -2,7 +2,7 @@
 	global $pdf_light_viewer_config;
 	
 	$pdf_upload_dir_url = $pdf_light_viewer_config['pdf_upload_dir_url'];
-	$pages = array_keys($pdf_light_viewer_config['thumbs']);
+	$pages = !empty($pdf_light_viewer_config['thumbs']) ? array_keys($pdf_light_viewer_config['thumbs']) : array();
 	$last_thumb_index = end($pages);
 	
 	$toolbarVisible = PdfLightViewer_PdfController::isToolbarVisible($pdf_light_viewer_config);
@@ -36,7 +36,8 @@
 						data-width="<?php echo $pdf_light_viewer_config['page_width'] ?>"
 						data-height="<?php echo $pdf_light_viewer_config['page_height'] ?>"
 						data-pages-count="<?php echo count($pdf_light_viewer_config['pages']) ?>"
-						data-force-one-page-layout="<?php echo $pdf_light_viewer_config['force_one_page_layout'] ?>">
+						data-force-one-page-layout="<?php echo $pdf_light_viewer_config['force_one_page_layout'] ?>"
+                        data-download-page-format="<?php echo $pdf_light_viewer_config['download_page_format'] ?>">
 						<?php foreach($pdf_light_viewer_config['pages'] as $number => $page) {
 							?>
 							<div style="background-image:url('<?php echo plugins_url('assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>');">

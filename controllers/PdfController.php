@@ -235,11 +235,14 @@ class PdfLightViewer_PdfController {
 					case static::STATUS_FAILED:
 						$status_label = __('Import failed',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
+                
+                    default:
+                        $status_label = __('Import status unknown',PDF_LIGHT_VIEWER_PLUGIN);
 				}
 				
 				?>
-					<div><?php echo $status_label; ?></div>
-					<div><?php echo $progress; ?>%</div>
+					<div><?php echo $status_label ?></div>
+					<div><?php echo $progress ?>%</div>
 				<?php
 			break;
 			
@@ -352,6 +355,17 @@ class PdfLightViewer_PdfController {
 					'desc' => __('Check this if you want to show download button in the thumbnails to allow downloading of single page images', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'download_page_allowed',
 					'type' => 'checkbox'
+				),
+                array(
+					'name' => '' . __('Per-page download format', PDF_LIGHT_VIEWER_PLUGIN),
+					'desc' => __('Per page download in JPG or PDF formats', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'download_page_format',
+					'type'    => 'select',
+                    'options' => array(
+                        'jpg' => 'jpg',
+                        'pdf' => 'pdf'
+                    ),
+                    'default' => 'jpg',
 				),
 				array(
 					'name' => '<i class="slicons slicon-size-fullscreen"></i> ' . __('Hide fullscreen button', PDF_LIGHT_VIEWER_PLUGIN),
@@ -785,23 +799,32 @@ class PdfLightViewer_PdfController {
                     $_img->transformImageColorspace($ImagickClass::COLORSPACE_RGB);
                 }
             }
+            
+            // main page image in PDF
+                $white = new $ImagickClass();
+                $white->newImage(1024, round(1024/$ratio), "white");
+                $white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
+                $white->setImageFormat('pdf');
+                $white->setImageColorspace($_img->getImageColorspace());
+                $white->writeImage($pdf_upload_dir.'-pdfs/page-'.$page_number.'.pdf');
 	
-			$white = new $ImagickClass();
-			$white->newImage(1024, round(1024/$ratio), "white");
-			$white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
-			$white->setImageFormat('jpg');
-			$white->setImageColorspace($_img->getImageColorspace());
-			$white->writeImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
+            // main page image
+                $white = new $ImagickClass();
+                $white->newImage(1024, round(1024/$ratio), "white");
+                $white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
+                $white->setImageFormat('jpg');
+                $white->setImageColorspace($_img->getImageColorspace());
+                $white->writeImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
 			
-			$_img->resizeImage(76, round(76/$ratio),$ImagickClass::FILTER_BESSEL, 1, false);
-	
-			$white = new $ImagickClass();
-			$white->newImage(76, round(76/$ratio), "white");
-			$white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
-			$white->setImageFormat('jpg');
-			$white->setImageColorspace($_img->getImageColorspace());
-			$white->writeImage($pdf_upload_dir.'-thumbs/page-'.$page_number.'-100x76.jpg');
-			
+            // thumbnail
+                $_img->resizeImage(76, round(76/$ratio),$ImagickClass::FILTER_BESSEL, 1, false);
+        
+                $white = new $ImagickClass();
+                $white->newImage(76, round(76/$ratio), "white");
+                $white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
+                $white->setImageFormat('jpg');
+                $white->setImageColorspace($_img->getImageColorspace());
+                $white->writeImage($pdf_upload_dir.'-thumbs/page-'.$page_number.'-100x76.jpg');
 			
 			if ($current_page == 1) {
 				$file = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
@@ -838,6 +861,13 @@ class PdfLightViewer_PdfController {
 				unlink($pdf_upload_dir.'-thumbs/'.$file);
 			}
 		}
+        
+        $directory_map = directory_map($pdf_upload_dir.'-pdfs');
+		if (!empty($directory_map)) {
+			foreach($directory_map as $file) {
+				unlink($pdf_upload_dir.'-pdfs/'.$file);
+			}
+		}
 		
 		do_action(PDF_LIGHT_VIEWER_PLUGIN.':delete_pages_by_pdf_id', $post_id, $pdf_upload_dir);
 	}
@@ -851,6 +881,7 @@ class PdfLightViewer_PdfController {
 				self::delete_pages_by_pdf_id($post_id, $pdf_upload_dir);
 				rmdir($pdf_upload_dir);
 				rmdir($pdf_upload_dir.'-thumbs');
+                rmdir($pdf_upload_dir.'-pdfs');
 			}
 		}
 	}

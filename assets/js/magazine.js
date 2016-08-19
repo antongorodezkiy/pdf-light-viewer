@@ -40,10 +40,24 @@
             }
             
             var href = $('.page.p'+data.page+' .js-pdf-light-viewer-lazy-loading', data.instance).data('original');
+            switch (magazine.data('download-page-format')) {
+              case 'pdf':
+                href = href.substring(0, href.length-3);
+                href += 'pdf';
+                href = href.replace('/page-', '-pdfs/page-');
+                break;
+            }
             $('.js-pdf-light-viewer-download-page', data.instance).attr('href', href);
             
             if (neighborhood_page) {
-              var href = $('.page.p'+data.neighborhood_page+' .js-pdf-light-viewer-lazy-loading', data.instance).data('original');
+              href = $('.page.p'+data.neighborhood_page+' .js-pdf-light-viewer-lazy-loading', data.instance).data('original');
+              switch (magazine.data('download-page-format')) {
+                case 'pdf':
+                  href = href.substring(0, href.length-3);
+                  href += 'pdf';
+                  href = href.replace('/page-', '-pdfs/page-');
+                  break;
+              }
               $('.js-pdf-light-viewer-download-neighborhood-page', data.instance)
                 .attr('href', href)
                 .show();
