@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>WordPress PDF Light Viewer Plugin & Pro Addon Documentation for version 1.3.5 & pro 0.1.2</title>
+	<title>WordPress PDF Light Viewer Plugin & Pro Addon Documentation for version 1.3.7 & pro 0.1.3</title>
 
 	<link rel="stylesheet" href="css/pure.css" />
 	<link rel="stylesheet" href="css/prism.css" />
@@ -88,7 +88,7 @@
 		<div id="main" class="doc-section">
 			<div class="header">
 				<div class="logo-header"></div>
-				<h1>WordPress PDF Light Viewer Plugin v1.3.5<br />& <span class="pure-button pure-button-primary">PRO</span> Addon v0.1.2<br/>Documentation</h1>
+				<h1>WordPress PDF Light Viewer Plugin v1.3.7<br />& <span class="pure-button pure-button-primary">PRO</span> Addon v0.1.3<br/>Documentation</h1>
 				<h2>What did you get?</h2>
 			</div>
 	
@@ -130,9 +130,10 @@
 				<h4 class="content-subhead"><span class="pure-button pure-button-primary">PRO</span> Features</h4>
 				<ul>
 					<li>Single separate PDF page.</li>
-					<li>PDF Archive page.</li>
-					<li>PDF Categories.</li>
+					<li>Regular Wordpress PDF Archive page with 2 templates.</li>
+					<li>One-page PDF Archive page with 2 templates.</li>
 					<li>PDF Archive page by shortcode on custom page or frontpage.</li>
+					<li>PDF Categories.</li>
 					<li>Simple PDF page search.</li>
 					<li>Document printing.</li>
 					<li>Per-page printing.</li>
@@ -534,7 +535,7 @@
 				<div class="content-subhead">Plugin Output</div>
 				<p>
 					Shortcode <code>[pdf-light-viewer]</code>
-					as well as <code>PdfLightViewer_FrontController::disaply_pdf_book($atts = array())</code>
+					as well as <code>PdfLightViewer_FrontController::display_pdf_book($atts = array())</code>
 					has following parameters:</p>
 				</p>
 				<ul>
@@ -547,14 +548,14 @@
 				</ul>
 				
 				<p>
-					You could call class method <code>PdfLightViewer_FrontController::disaply_pdf_book($atts = array())</code>
+					You could call class method <code>PdfLightViewer_FrontController::display_pdf_book($atts = array())</code>
 					directly instead of using shortcode <code>[pdf-light-viewer]</code>.
 				</p>
 				
 				<p>
 					<span class="pure-button pure-button-primary">PRO</span>
 					Shortcode <code>[pdf-light-viewer-archive]</code>
-					as well as <code>PdfLightViewerPro_FrontController::disaply_pdf_archive($atts = array())</code>
+					as well as <code>PdfLightViewerPro_FrontController::display_pdf_archive($atts = array())</code>
 					has following parameters:</p>
 				</p>
 				<ul>
@@ -563,6 +564,15 @@
 					</li>
 					<li>
 						<code>categories</code> (optional), you can specify category slugs separated by commas "," - for example <code>[pdf-light-viewer-archive categories="top,featured"]</code>.
+					</li>
+					<li>
+						<code>template</code> (optional), you can specify template name to override default. Available options are:
+						<ul>
+							<li><code>(empty or not set)</code> - Material masonry (default)</li>
+							<li><code>masonry-full-thumbs</code> - Masonry full thumbnails</li>
+							<li><code>one-page-with-list-nav</code> - One page with list navigation</li>
+							<li><code>one-page-with-thumbs-nav</code> - One page with thumbnails navigation</li>
+						</ul>
 					</li>
 				</ul>
 				
@@ -693,6 +703,21 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 			<div class="content">
 				
 				<h3>PDF Light Viewer</h3>
+				
+				<h4 class="content-subhead">1.3.7 - 2016-08-25</h4>
+				<ul>
+					<li>Post including logic improved</li>
+					<li>Settings page help small improvements</li>
+					<li>Smallfix for function type</li>
+					<li>Documentation update</li>
+				</ul>
+				
+				<h4 class="content-subhead">1.3.6 - 2016-08-19</h4>
+				<ul>
+					<li>Make password protection work</li>
+					<li>Single page PDF download</li>
+					<li>Fixing minor php errors</li>
+				</ul>
 				
 				<h4 class="content-subhead">1.3.5 - 2016-07-31</h4>
 				<ul>
@@ -871,6 +896,13 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 				</ul>
 				
 				<h3>PDF Light Viewer Pro Addon</h3>
+				
+				<h4 class="content-subhead">0.1.3 - 2016-08-25</h4>
+				<ul>
+					<li>New one page archive layout with categories list navigation</li>
+					<li>New one page archive layout with categories thumbs navigation</li>
+					<li>Categories Images plugin integration</li>
+				</ul>
 				
 				<h4 class="content-subhead">0.1.2 - 2016-07-08</h4>
 				<ul>

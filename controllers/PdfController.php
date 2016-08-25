@@ -496,7 +496,7 @@ class PdfLightViewer_PdfController {
 	}
 	
 	public static function metabox_dashboard_preview($post) {
-		echo PdfLightViewer_FrontController::disaply_pdf_book(array('id' => $post->ID));
+		echo PdfLightViewer_FrontController::display_pdf_book(array('id' => $post->ID));
 	}
 	
 	

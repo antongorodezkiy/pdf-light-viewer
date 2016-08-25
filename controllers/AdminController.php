@@ -1,6 +1,18 @@
 <?php if (!defined('WPINC')) die();
 
 class PdfLightViewer_AdminController {
+    
+    public static function init() {
+        static::settingsInit();
+        
+        if (!defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')) {
+            add_action(PDF_LIGHT_VIEWER_PLUGIN.':settings_view_after_settings', array(__CLASS__, 'settings_view_after_settings'), 100);
+        }
+    }
+    
+    public static function settings_view_after_settings() {
+		include_once(PDF_LIGHT_VIEWER_APPPATH.'/views/pro-placeholder.php');
+	}
 	
 	public static function initGentleNotifications() {
 		

@@ -9,7 +9,7 @@
   
 **Tested up to:** 4.6
 
-**Stable tag:** 1.3.6
+**Stable tag:** 1.3.7
   
 **License:** GPLv2
   
@@ -42,11 +42,12 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * Bulk PDF Import
 * Downloading and per-page downloading
 
-### PRO Addon Features ###
+### [PRO Addon](http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505) Features ###
 * Single separate PDF page.
-* PDF Archive page.
-* PDF Categories.
+* Regular Wordpress PDF Archive page with 2 templates.
+* One-page PDF Archive page with 2 templates.
 * PDF Archive page by shortcode on custom page or frontpage.
+* PDF Categories.
 * Simple PDF page search.
 * Document printing.
 * Per-page printing.
@@ -75,6 +76,12 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+## 1.3.7 - 2016-08-25
+* Post including logic improved
+* Settings page help small improvements
+* Smallfix for function type
+* Documentation update
 
 ## 1.3.6 - 2016-08-19
 * Make password protection work

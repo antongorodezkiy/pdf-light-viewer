@@ -76,7 +76,7 @@ class PdfLightViewer_Plugin {
 		public static function registerShortcodes() {
 			add_shortcode(
 				'pdf-light-viewer',
-				array('PdfLightViewer_FrontController', 'disaply_pdf_book')
+				array('PdfLightViewer_FrontController', 'display_pdf_book')
 			);
 		}
 		
@@ -475,7 +475,7 @@ class PdfLightViewer_Plugin {
 		if (is_admin() && (current_user_can('edit_posts') || current_user_can('edit_pages'))) {
 			
 			// settings init
-				add_action('admin_init', array('PdfLightViewer_AdminController','settingsInit'));
+                add_action('admin_init', array('PdfLightViewer_AdminController','init'));
 				add_action('admin_notices', array('PdfLightViewer_AdminController', 'initGentleNotifications'));
 				
 			// admin page

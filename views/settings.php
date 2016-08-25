@@ -54,9 +54,9 @@
                         <p>
                             Printing &copy; <a href="https://github.com/posabsolute/jQuery-printPage-plugin" target="_blank">jQuery PrintPage plugin&nbsp;<span class="icons slicon-link"></span></a>
                         </p>
-                        <li>
+                        <p>
 							Metaboxes &copy; <a href="https://github.com/WebDevStudios/CMB2" target="_blank">CMB2&nbsp;<span class="icons icon-link"></span></a>
-						</li>
+						</p>
                     </blockquote>
                 </div>
             </div>
@@ -70,37 +70,8 @@
                     </h3>
                 </div>
                 <div class="row in container">
-                    <ul>
-                        <?php
-                            foreach($requirements as $requirement) {
-                                
-                                if ($requirement['status']) {
-                                    ?>
-                                        <li>
-                                            <i class="icons slicon-check pdf-light-viewer-requirement-success"></i>
-                                            <?php echo $requirement['name'];?> <?php echo $requirement['success'];?>
-                                            
-                                            <?php if (isset($requirement['description']) && $requirement['description']) { ?>
-                                                <a href="#!" class="js-tip tip" title="<?php echo $requirement['description'] ?>"><span class="icons slicon-question"></span></a>
-                                            <?php } ?>
-                                        </li>
-                                    <?php
-                                }
-                                else {
-                                    ?>
-                                        <li>
-                                            <i class="icons slicon-close pdf-light-viewer-requirement-fail"></i>
-                                            <?php echo $requirement['name'];?> <?php echo $requirement['fail'];?>
-                                            
-                                            <?php if (isset($requirement['description']) && $requirement['description']) { ?>
-                                                <a href="#!" class="js-tip tip" title="<?php echo $requirement['description'] ?>"><span class="icons slicon-question"></span></a>
-                                            <?php } ?>
-                                        </li>
-                                    <?php
-                                }
-                            }
-                        ?>
-                    </ul>
+                    <?php include(dirname(__FILE__).'/requirements.php') ?>
+                    <?php include(dirname(__FILE__).'/server-libs-requirements-doc.php') ?>
                 </div>
             </div>
         
@@ -207,6 +178,15 @@
                             <?php _e('Subject', PDF_LIGHT_VIEWER_PLUGIN)?>: <?php echo $subject;?>
                         </p>
                     </div>
+                    
+                    <div class="row">
+                        <h5 class="row">
+                            <?php _e('Plugin Requirements', PDF_LIGHT_VIEWER_PLUGIN)?>
+                        </h5>
+                        <?php include(dirname(__FILE__).'/requirements.php') ?>
+                    </div>
+                    
+                    <hr />
         
                     <div class="row">
                         <h5 class="row">

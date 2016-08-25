@@ -115,7 +115,7 @@ class PdfLightViewer_FrontController {
 		return $pdf_light_viewer_config;
 	}
 	
-	public static function disaply_pdf_book($atts = array()) {
+	public static function display_pdf_book($atts = array()) {
 		global $pdf_light_viewer_config;
 	
 		if (!isset($atts['id']) || !$atts['id']) {
@@ -123,7 +123,12 @@ class PdfLightViewer_FrontController {
 		}
 		
 		$post = get_post($atts['id']);
-		if (empty($post) || !$post->ID) {
+		if (
+            empty($post)
+            || !$post->ID
+            || $post->post_type != PdfLightViewer_PdfController::$type
+            || $post->post_status != 'publish'
+        ) {
 			return;
 		}
         
