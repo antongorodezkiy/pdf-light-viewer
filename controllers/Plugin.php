@@ -255,46 +255,16 @@ class PdfLightViewer_Plugin {
 			$upload_dir_message = __('Upload folder',PDF_LIGHT_VIEWER_PLUGIN).': <code>'.PdfLightViewer_Plugin::getUploadDirectory().'</code>';
 			
 			$host_url = site_url();
-			
-			$Imagick = null;
-			$ImagickVersion = null;
-			$pdf_format_support = array();
-			if (class_exists("Imagick")) {
-				$Imagick = new Imagick();
-				$ImagickVersion = $Imagick->getVersion();
-				
-				$pdf_format_support = $Imagick->queryFormats('PDF');
-			}
-            else if (class_exists("Gmagick")) {
-				$Imagick = new Gmagick();
-				$ImagickVersion = $Imagick->getVersion();
-				
-				$pdf_format_support = $Imagick->queryFormats('PDF');
-			}
-			
+            
+            $Imagick = static::getXMagick();
+            $ImagickVersion = $Imagick->getVersion();
+            $pdf_format_support = in_array('PDF', $Imagick->queryFormats());
+            
 			if (PdfLightViewer_AdminController::getSetting('do-not-check-gs')) {
 				$ghostscript_version = true;
 			}
 			else {
-				if (function_exists('shell_exec')) {
-					if (stristr(php_uname('s'), 'win')) {
-						$ghostscript_version = @shell_exec('gs --version');
-					}
-					else {
-						$ghostscript_version = @shell_exec('$(command -v gs) --version');
-						
-						if (!$ghostscript_version) {
-							$ghostscript_version = @shell_exec('$(which gs) --version');
-						}
-						
-						if (!$ghostscript_version) {
-							$ghostscript_version = @shell_exec('gs --version');
-						}
-					}
-				}
-				else {
-					$ghostscript_version = false;
-				}
+                list($gsPath, $ghostscript_version) = PdfLightViewer_Plugin::getGhostscript();
 			}
 			
 			$logs_dir_message = __('Logs folder',PDF_LIGHT_VIEWER_PLUGIN).': <code>'.self::getLogsPath().'</code>';
@@ -316,14 +286,14 @@ class PdfLightViewer_Plugin {
 				),
 				array(
 					'name' => __('Imagick or Gmagick PHP Wrapper',PDF_LIGHT_VIEWER_PLUGIN),
-					'status' => (class_exists('Imagick') || class_exists('Gmagick')),
+					'status' => $Imagick,
 					'success' => __('is supported',PDF_LIGHT_VIEWER_PLUGIN).($ImagickVersion ? '. v.'.$ImagickVersion['versionString'] : ''),
 					'fail' => __('is not supported',PDF_LIGHT_VIEWER_PLUGIN),
 					'description' => __("Imagick/Gmagick PHP Wrapper is required to make available Imagick PHP Extension functionality in the plugin. Usually it's integrated through the PECL plugin. It cannot be included with the plugin unfortunately, so you or your hosting provider/server administrator should install it.",PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				array(
 					'name' => __('Imagick or Gmagick PDF Support',PDF_LIGHT_VIEWER_PLUGIN),
-					'status' => ($Imagick && !empty($pdf_format_support)),
+					'status' => ($Imagick && $pdf_format_support),
 					'success' => __('is enabled',PDF_LIGHT_VIEWER_PLUGIN),
 					'fail' => __('is not enabled',PDF_LIGHT_VIEWER_PLUGIN),
 					'description' => __("Imagick/Gmagick PDF Support is required for PDF -> JPEG convertation.",PDF_LIGHT_VIEWER_PLUGIN)
@@ -402,7 +372,56 @@ class PdfLightViewer_Plugin {
 			
 			return $attach_id;
 		}
+        
+    public static function getXMagick() {
+        $Imagick = null;
+        
+        if (class_exists('Imagick') && class_exists('Gmagick')) {
+            if (PdfLightViewer_AdminController::getSetting('prefer-xmagick') == 'Imagick') {
+                $Imagick = new Imagick();
+            }
+            else {
+                $Imagick = new Gmagick();
+            }
+        }
+        else if (class_exists('Imagick')) {
+            $Imagick = new Imagick();
+        }
+        else if (class_exists('Gmagick')) {
+            $Imagick = new Gmagick();
+        }
+        
+        return $Imagick;
+    }
 		
+    public static function getGhostscript() {
+        $gsPath = null;
+        $ghostscript_version = null;
+            
+        if (function_exists('shell_exec')) {
+            
+            if (stristr(php_uname('s'), 'win')) {
+                $gsPath = 'gs';
+                $ghostscript_version = @shell_exec($gsPath.' --version');
+            }
+            else {
+                $gsPath = '$(command -v gs)';
+                $ghostscript_version = @shell_exec($gsPath.' --version');
+                
+                if (!$ghostscript_version) {
+                    $gsPath = '$(which gs)';
+                    $ghostscript_version = @shell_exec($gsPath.' --version');
+                }
+                
+                if (!$ghostscript_version) {
+                    $gsPath = 'gs';
+                    $ghostscript_version = @shell_exec($gsPath.' --version');
+                }
+            }
+        }
+        
+        return [$gsPath, $ghostscript_version];
+    }
 		
 	public static function init() {
 		// initialization

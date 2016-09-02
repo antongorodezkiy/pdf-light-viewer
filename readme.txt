@@ -4,7 +4,7 @@ Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link: 
 Requires at least: 3.5
 Tested up to: 4.6
-Stable tag: 1.3.6
+Stable tag: 1.3.8
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,8 +21,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * Dashboard flipbook preview.
 * Slider thumbnails navigation integrated.
 * Lazy loading pages integrated.
-* Pages zoom feature.
-* Pages fulscreen feature (for modern browsers).
+* Pages zoom.
+* Pages navigation.
+* Fulscreen feature (for modern browsers).
 * s2member compatible.
 * Developer-friendly.
 * [Well-documented](http://pdf-light-viewer.wp.teamlead.pw/wp-content/plugins/pdf-light-viewer/documentation/index.html).
@@ -32,7 +33,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * Clear default look
 * CLI integration
 * Bulk PDF Import
-* Downloading and per-page downloading
+* PDF Downloading
+* Per-page downloading in JPEG or PDF
+* Imagick or Gmagick support
 
 ### [PRO Addon](http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505) Features ###
 * Single separate PDF page.
@@ -59,6 +62,13 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 3. PDF Import Page
 
 == Changelog ==
+
+== 1.3.8 - 2016-09-02 ==
+* Improved and fixed Gmagick support
+* Added control for imagemagick/graphicsmagick switching
+* Improved single page PDF download
+* Added maximum viewer height setting
+* Added go to page functionality
 
 == 1.3.7 - 2016-08-25 ==
 * Post including logic improved

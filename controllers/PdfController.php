@@ -13,17 +13,18 @@ class PdfLightViewer_PdfController {
     
     public static function getImagickVersion() {
         
-        if (class_exists('Imagick')) {
+        $Imagick = PdfLightViewer_Plugin::getXMagick();
+        
+        if (class_exists('Imagick') && $Imagick instanceof Imagick) {
             $v = Imagick::getVersion();
             preg_match('/ImageMagick ([0-9]+\.[0-9]+\.[0-9]+)/', $v['versionString'], $v);
         }
-        else {
-            $im = new Gmagick();
-            $v = $im->getVersion();
+        else if (class_exists('Gmagick') && $Imagick instanceof Gmagick) {
+            $v = $Imagick->getVersion();
             preg_match('/GraphicsMagick ([0-9]+\.[0-9]+\.[0-9]+)/', $v['versionString'], $v);
         }
         
-        return $v[1];
+        return isset($v[1]) ? $v[1] : null;
     }
     
     public static function parsePages($pagesString)
@@ -321,6 +322,12 @@ class PdfLightViewer_PdfController {
 					'type' => 'text'
 				),
                 array(
+					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book height', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => '(px)',
+					'id' => 'max_book_height',
+					'type' => 'text'
+				),
+                array(
 					'name' => '<i class="slicons slicon-frame"></i> ' . __('Limit book height by the viewport in fullscreen mode', PDF_LIGHT_VIEWER_PLUGIN),
                     'desc' => '',
 					'id' => 'limit_fullscreen_book_height',
@@ -380,6 +387,11 @@ class PdfLightViewer_PdfController {
                 array(
 					'name' => '<i class="slicons slicon-arrow-left"></i><i class="slicons slicon-arrow-right"></i> ' . __('Show toolbar next and previous page arrows', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'show_toolbar_next_previous',
+					'type' => 'checkbox'
+				),
+                array(
+					'name' => '<i class="slicons slicon-directions"></i> ' . __('Show toolbar go to page control', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'show_toolbar_goto_page',
 					'type' => 'checkbox'
 				),
                 array(
@@ -464,6 +476,7 @@ class PdfLightViewer_PdfController {
             || !empty($pdf_light_viewer_config['enabled_pdf_search'])
             || !empty($pdf_light_viewer_config['show_page_numbers'])
             || !empty($pdf_light_viewer_config['show_toolbar_next_previous'])
+            || !empty($pdf_light_viewer_config['show_toolbar_goto_page'])
         );
     }
 	
@@ -550,15 +563,9 @@ class PdfLightViewer_PdfController {
 				// delete all files
 				self::delete_pages_by_pdf_id($post_id, $pdf_upload_dir);
 				
-				if (class_exists('Imagick') || class_exists('Gmagick')) {
-					
-					if (class_exists('Imagick')) {
-                        $im = new Imagick();
-                    }
-                    else if (class_exists('Gmagick')) {
-                        $im = new Gmagick();
-                    }
-                    
+                $im = PdfLightViewer_Plugin::getXMagick();
+				if ($im) {
+					                    
 					$im->readImage($pdf_file_path);
 					$pages_number = $im->getNumberImages();
 					
@@ -766,25 +773,21 @@ class PdfLightViewer_PdfController {
 	
 	public static function process_pdf_page($post_id, $current_page, $current_page_doc, $page_number, $pdf_pages_number, $pdf_file_path, $pdf_upload_dir, $jpeg_resolution, $jpeg_compression_quality, $ratio) {
         
-        if (class_exists('Imagick')) {
-            $ImagickClass = 'Imagick';
-        }
-        else if (class_exists('Gmagick')) {
-            $ImagickClass = 'Gmagick';
-        }
+        $Imagick = PdfLightViewer_Plugin::getXMagick();
+        $ImagickClass = get_class($Imagick);
         
 		$_img = new $ImagickClass();
-		$_img->setResolution($jpeg_resolution, $jpeg_resolution);
 		$_img->readImage($pdf_file_path.'['.($current_page_doc - 1).']');
-
-			
+        
 			$_img->setImageCompression($ImagickClass::COMPRESSION_JPEG);
 			$_img->resizeImage(1024, round(1024/$ratio), $ImagickClass::FILTER_BESSEL, 1, false);
             
-            if (class_exists('Imagick')) {
+            if (class_exists('Imagick') && $Imagick instanceof Imagick) {
+                $_img->setResolution($jpeg_resolution, $jpeg_resolution);
                 $_img->setImageCompressionQuality($jpeg_compression_quality);
             }
-            else if (class_exists('Gmagick')) {
+            else if (class_exists('Gmagick') && $Imagick instanceof Gmagick) {
+                $_img->setImageResolution($jpeg_resolution, $jpeg_resolution);
                 $_img->setCompressionQuality($jpeg_compression_quality);
             }
             
@@ -792,21 +795,38 @@ class PdfLightViewer_PdfController {
 			
 			// IMPORTANT: imagick changed SRGB and RGB profiles after vesion 6.7.6
             if (method_exists($_img, 'transformImageColorspace')) {
-                if (version_compare(static::getImagickVersion(), '6.7.6', '>=')) {
-                    $_img->transformImageColorspace($ImagickClass::COLORSPACE_SRGB);
-                }
-                else {
-                    $_img->transformImageColorspace($ImagickClass::COLORSPACE_RGB);
+                if (
+                    $_img->getImageColorspace() != $ImagickClass::COLORSPACE_RGB
+                    && $_img->getImageColorspace() != $ImagickClass::COLORSPACE_SRGB
+                ) {
+                    if (version_compare(static::getImagickVersion(), '6.7.6', '>=')) {
+                        $_img->transformImageColorspace($ImagickClass::COLORSPACE_SRGB);
+                    }
+                    else {
+                        $_img->transformImageColorspace($ImagickClass::COLORSPACE_RGB);
+                    }
                 }
             }
             
             // main page image in PDF
-                $white = new $ImagickClass();
-                $white->newImage(1024, round(1024/$ratio), "white");
-                $white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
-                $white->setImageFormat('pdf');
-                $white->setImageColorspace($_img->getImageColorspace());
-                $white->writeImage($pdf_upload_dir.'-pdfs/page-'.$page_number.'.pdf');
+                list($gsPath, $ghostscript_version) = PdfLightViewer_Plugin::getGhostscript();
+                
+                if (
+                    $gsPath
+                    && $ghostscript_version
+                ) {
+                    $commnad = $gsPath.' '
+                        .'-dBATCH '
+                        .'-dNOPAUSE '
+                        .'-dQUIET '
+                        .'-sDEVICE=pdfwrite '
+                        .'-dFirstPage='.($current_page_doc).' '
+                        .'-dLastPage='.($current_page_doc).' '
+                        .'-sOutputFile='.escapeshellcmd($pdf_upload_dir.'-pdfs/page-'.$page_number.'.pdf').' '
+                        .escapeshellcmd($pdf_file_path);
+                        
+                    @shell_exec($commnad);  
+                }
 	
             // main page image
                 $white = new $ImagickClass();

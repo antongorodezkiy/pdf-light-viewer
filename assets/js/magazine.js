@@ -263,15 +263,32 @@
             magazine.turn('next');
           });
           
+          $('.js-pdf-light-viewer-goto-page', instance).on('click', function(e) {
+            e.preventDefault();
+            var page = parseInt($('.js-pdf-light-viewer-goto-page-input', instance).val());
+            if (page) {
+              magazine.turn('page', page);
+            }
+          });
+          
+          $('.js-pdf-light-viewer-goto-page-input', instance).on('keypress', function(e) {
+            if (e.keyCode == 13) {
+              var page = parseInt($(this).val());
+              if (page) {
+                magazine.turn('page', page);
+              }
+            }
+          });
+          
         // per page download
-          if ($('.js-pdf-light-viewer-download-options').size()) {
-            $('.js-pdf-light-viewer-download-options').each(function() {
+          if ($('.js-pdf-light-viewer-download-options', instance).size()) {
+            $('.js-pdf-light-viewer-download-options', instance).each(function() {
               var self = $(this),
                   instance = self.parents('.js-pdf-light-viewer');
               self.qtip({
                 style: { classes: 'qtip-light pdf-light-viewer-tips' },
                 content: {
-                  text: $('.js-pdf-light-viewer-download-options-contaner')
+                  text: $('.js-pdf-light-viewer-download-options-contaner', instance)
                 },
                 show: 'click',
                 hide: {
@@ -309,6 +326,16 @@
 					width: width,
 					height: Math.round(width / ratio)
 				};
+        
+        if (
+          magazine.data('max-book-height')
+          && size.height > magazine.data('max-book-height')
+        ) {
+          size = {
+            width: magazine.data('max-book-height') * ratio,
+            height: magazine.data('max-book-height')
+          };
+        }
         
         if (magazine.data('limit-fullscreen-book-height')) {
           var fullScreenHeight = $('.js-pdf-light-viewer.pdf-light-viewer-fullscreen .js-pdf-light-viewer-magazine-viewport').height();

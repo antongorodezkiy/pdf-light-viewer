@@ -155,7 +155,8 @@ class PdfLightViewer_AdminController {
 		public static function getSettings() {
 			$config = array(
 				'show-post-type' => true,
-				'do-not-check-gs' => false
+				'do-not-check-gs' => false,
+                'prefer-xmagick' => 'Imagick'
 			);	
 			return wp_parse_args(get_option(PDF_LIGHT_VIEWER_PLUGIN),$config);
 		}

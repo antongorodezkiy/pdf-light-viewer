@@ -96,12 +96,7 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 			
 			// get number of pages
             
-                if (class_exists('Imagick')) {
-                    $im = new Imagick();
-                }
-                else if (class_exists('Gmagick')) {
-                    $im = new Gmagick();
-                }
+                $im = PdfLightViewer_Plugin::getXMagick();
 				
 				$im->readImage($pdf_file_path);
 				$pdf_pages_number = $im->getNumberImages();

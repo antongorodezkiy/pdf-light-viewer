@@ -200,7 +200,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 		position:absolute;
 		text-align: center;
 		background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
-		border-radius: 6px 6px 0 0;
+		border-radius: 6px;
 		top: -2px;
 		right: 80px;
 		padding: 8px;
@@ -267,6 +267,31 @@ $simple-line-icon-prefix: "slicon-" !default;
 			span {
 				color: #777;
 			}
+            
+            .pdf-light-viewer-goto-page-input {
+                font-size: 17px !important;
+                display: inline-block;
+                text-align: center;
+                width: 25px;
+                border: none;
+                padding: 3px 0 !important;
+                margin: 0;
+                border-bottom: 1px solid RoyalBlue;
+                transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+                background: transparent;
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, RoyalBlue 4%)  !important;
+                background-position: -25px 0;
+                background-size: 25px 100%;
+                background-repeat: no-repeat;
+                color: #777;
+                box-shadow: none;
+                
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                    background-position: 0 0;
+                }
+            }
 		}
 	}
     
@@ -275,7 +300,7 @@ $simple-line-icon-prefix: "slicon-" !default;
         top: auto;
         bottom: -32px;
 		right: 80px;
-		border-radius: 0 0 6px 6px;
+		border-radius: 6px;
     }
 	
 	.pdf-light-viewer-magazine-thumbnails {
@@ -285,7 +310,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 			display: inline-block;
 			text-align: center;
 			background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
-			border-radius: 0 0 6px 6px;
+			border-radius: 6px;
 			padding: 3px 8px;
 			margin: 0 10px;
 			box-shadow:
@@ -413,7 +438,7 @@ $simple-line-icon-prefix: "slicon-" !default;
     .pdf-light-viewer-magazine-thumbnails {
         .pdf-light-viewer-features-top-nav-panel {
             @extend .pdf-light-viewer-features-bottom-panel;
-			border-radius: 6px 6px 0 0;
+			border-radius: 6px;
         }
     }
 	
@@ -464,7 +489,7 @@ body .pdf-light-viewer-tips {
 	
 	.qtip-content {
 		background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
-		border-radius: 6px 6px;
+		border-radius: 6px;
 		padding: 12px 24px;
 		box-shadow:
 			1px 2px 2px 0px rgba(0, 0, 0, 0.14),

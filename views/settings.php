@@ -13,51 +13,56 @@
                     </h3>
                 </div>
                 <div class="row container">
-                    <p class="center">
-                        <a class="logo" href="http://pdf-light-viewer.wp.teamlead.pw" target="_blank">
-                            PDF Light Viewer Plugin
-                        </a>
-                    </p>
-                    
-                    <blockquote>
-                        WordPress PDF Light Viewer Plugin &copy; <a target="_blank" href="http://teamlead.pw">Teamlead Power&nbsp;<span class="icons slicon-link"></span></a>
-                    </blockquote>
-                    
-                    <blockquote>
-                        <p>
-                            Icons &copy; <a href="http://thesabbir.github.io/simple-line-icons/" target="_blank">Simple line icons&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-                            Logo Icons &copy; <a href="https://www.iconfinder.com/Re66y" target="_blank">Gregor Cresnar&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-                            CSS Framework &copy; <a href="http://purecss.io/" target="_blank">Pure.css&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-                            Flipbook &copy; <a href="http://www.turnjs.com/" target="_blank">Turn.js&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-                            Lazy Load &copy; <a href="http://www.appelsiini.net/projects/lazyload" target="_blank">Lazy Load Plugin for jQuery&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-                            Slider &copy; <a href="http://bxslider.com/" target="_blank">bxSlider&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-                            Fullscreen &copy; <a href="https://github.com/sindresorhus/screenfull.js" target="_blank">screenfull.js&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-                            Zoom &copy; <a href="http://www.jacklmoore.com/zoom/" target="_blank">jQuery Zoom&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-                            Grid &copy; <a href="http://isotope.metafizzy.co/" target="_blank">Isotope&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-                            Printing &copy; <a href="https://github.com/posabsolute/jQuery-printPage-plugin" target="_blank">jQuery PrintPage plugin&nbsp;<span class="icons slicon-link"></span></a>
-                        </p>
-                        <p>
-							Metaboxes &copy; <a href="https://github.com/WebDevStudios/CMB2" target="_blank">CMB2&nbsp;<span class="icons icon-link"></span></a>
-						</p>
-                    </blockquote>
+                    <div class="pure-g">
+                        <div class="pure-u-lg-2-3 pure-u-md-1-1 pure-u-sm-1-1 pure-u-xs-1-1">
+                            <p class="center">
+                                <a class="logo" href="http://pdf-light-viewer.wp.teamlead.pw" target="_blank">
+                                    PDF Light Viewer Plugin
+                                </a>
+                            </p>
+                            
+                            <blockquote>
+                                WordPress PDF Light Viewer Plugin &copy; <a target="_blank" href="http://teamlead.pw">Teamlead Power&nbsp;<span class="icons slicon-link"></span></a>
+                            </blockquote>
+                        </div>
+                        <div class="pure-u-lg-1-3 pure-u-md-1-1 pure-u-sm-1-1 pure-u-xs-1-1">
+                            <blockquote>
+                                <p>
+                                    Icons &copy; <a href="http://thesabbir.github.io/simple-line-icons/" target="_blank">Simple line icons&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    Logo Icons &copy; <a href="https://www.iconfinder.com/Re66y" target="_blank">Gregor Cresnar&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    CSS Framework &copy; <a href="http://purecss.io/" target="_blank">Pure.css&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    Flipbook &copy; <a href="http://www.turnjs.com/" target="_blank">Turn.js&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    Lazy Load &copy; <a href="http://www.appelsiini.net/projects/lazyload" target="_blank">Lazy Load Plugin for jQuery&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    Slider &copy; <a href="http://bxslider.com/" target="_blank">bxSlider&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    Fullscreen &copy; <a href="https://github.com/sindresorhus/screenfull.js" target="_blank">screenfull.js&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    Zoom &copy; <a href="http://www.jacklmoore.com/zoom/" target="_blank">jQuery Zoom&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    Grid &copy; <a href="http://isotope.metafizzy.co/" target="_blank">Isotope&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    Printing &copy; <a href="https://github.com/posabsolute/jQuery-printPage-plugin" target="_blank">jQuery PrintPage plugin&nbsp;<span class="icons slicon-link"></span></a>
+                                </p>
+                                <p>
+                                    Metaboxes &copy; <a href="https://github.com/WebDevStudios/CMB2" target="_blank">CMB2&nbsp;<span class="icons icon-link"></span></a>
+                                </p>
+                            </blockquote>
+                        </div>
+                    </div>
                 </div>
             </div>
         
@@ -127,6 +132,44 @@
                             value="1"
                             <?php echo ( PdfLightViewer_AdminController::getSetting('do-not-check-gs') ? 'checked="checked"' : '' )?>
                             />
+                    </p>
+                    
+                    <p class="pure-control-group">
+                        <label>
+                            <i class="icons slicon-magic-wand"></i>
+                            <?php _e('Prefer Imagick or Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <a href="#!" class="js-tip tip" title="<?php _e('For cases, when you have both. Otherwise only existing will be used.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
+                        </label>
+                        <input
+                            type="radio"
+                            id="prefer-xmagick-imagick"
+                            name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[prefer-xmagick]"
+                            value="Imagick"
+                            <?php echo ( PdfLightViewer_AdminController::getSetting('prefer-xmagick') == 'Imagick' ? 'checked="checked"' : '' )?>
+                            />
+                            <label for="prefer-xmagick-imagick" class="inline">
+                                <?php _e('Imagick', PDF_LIGHT_VIEWER_PLUGIN)?>
+                                <?php if (!class_exists('Imagick')) { ?>
+                                    <span class="pdf-light-viewer-requirement-fail">
+                                        (<?php _e('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
+                                    </span>
+                                <?php } ?>
+                            </label>
+                        <input
+                            type="radio"
+                            id="prefer-xmagick-gmagick"
+                            name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[prefer-xmagick]"
+                            value="Gmagick"
+                            <?php echo ( PdfLightViewer_AdminController::getSetting('prefer-xmagick') == 'Gmagick' ? 'checked="checked"' : '' )?>
+                            />
+                            <label for="prefer-xmagick-gmagick" class="inline">
+                                <?php _e('Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
+                                <?php if (!class_exists('Gmagick')) { ?>
+                                    <span class="pdf-light-viewer-requirement-fail">
+                                        (<?php _e('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
+                                    </span>
+                                <?php } ?>
+                            </label>
                     </p>
                     
                     <hr />

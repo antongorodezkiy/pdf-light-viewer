@@ -76,6 +76,13 @@ global $pdf_light_viewer_config;
         </a>
     </li>
 <?php } ?>
+
+<?php if ($pdf_light_viewer_config['show_toolbar_goto_page']) { ?>
+    <li>
+        <a href="#!" class="js-pdf-light-viewer-goto-page">Open</a>
+        <input type="text" class="js-pdf-light-viewer-goto-page-input pdf-light-viewer-goto-page-input" />
+    </li>
+<?php } ?>
     
 <?php if ($pdf_light_viewer_config['show_page_numbers']) { ?>
     <li>

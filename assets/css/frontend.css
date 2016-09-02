@@ -695,8 +695,8 @@
     background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(57%, #fefefe), to(#F6F6F6));
     background-image: -webkit-linear-gradient(top, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
     background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
-    -webkit-border-radius: 6px 6px 0 0;
-    border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
     top: -2px;
     right: 80px;
     padding: 8px;
@@ -745,12 +745,38 @@
         outline: none; }
       .pdf-light-viewer .pdf-light-viewer-features-top-panel li span, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li span {
         color: #777; }
+      .pdf-light-viewer .pdf-light-viewer-features-top-panel li .pdf-light-viewer-goto-page-input, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li .pdf-light-viewer-goto-page-input {
+        font-size: 17px !important;
+        display: inline-block;
+        text-align: center;
+        width: 25px;
+        border: none;
+        padding: 3px 0 !important;
+        margin: 0;
+        border-bottom: 1px solid RoyalBlue;
+        -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+        transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+        background: transparent;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(96%, rgba(255, 255, 255, 0)), color-stop(4%, RoyalBlue)) !important;
+        background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, RoyalBlue 4%) !important;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, RoyalBlue 4%) !important;
+        background-position: -25px 0;
+        background-size: 25px 100%;
+        background-repeat: no-repeat;
+        color: #777;
+        -webkit-box-shadow: none;
+        box-shadow: none; }
+        .pdf-light-viewer .pdf-light-viewer-features-top-panel li .pdf-light-viewer-goto-page-input:focus, .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel li .pdf-light-viewer-goto-page-input:focus {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          outline: none;
+          background-position: 0 0; }
   .pdf-light-viewer .pdf-light-viewer-features-bottom-toolbar-panel {
     top: auto;
     bottom: -32px;
     right: 80px;
-    -webkit-border-radius: 0 0 6px 6px;
-    border-radius: 0 0 6px 6px; }
+    -webkit-border-radius: 6px;
+    border-radius: 6px; }
   .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails {
     text-align: center; }
     .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails .pdf-light-viewer-features-bottom-panel, .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails .pdf-light-viewer-features-top-nav-panel {
@@ -759,8 +785,8 @@
       background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(57%, #fefefe), to(#F6F6F6));
       background-image: -webkit-linear-gradient(top, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
       background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
-      -webkit-border-radius: 0 0 6px 6px;
-      border-radius: 0 0 6px 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
       padding: 3px 8px;
       margin: 0 10px;
       -webkit-box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 2px -1px rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
@@ -838,8 +864,8 @@
         box-shadow: 0 3px 6px rgba(65, 105, 225, 0.16), 0 3px 6px rgba(65, 105, 225, 0.23);
         border: 1px solid rgba(65, 105, 225, 0.23); }
   .pdf-light-viewer .pdf-light-viewer-magazine-thumbnails .pdf-light-viewer-features-top-nav-panel {
-    -webkit-border-radius: 6px 6px 0 0;
-    border-radius: 6px 6px 0 0; }
+    -webkit-border-radius: 6px;
+    border-radius: 6px; }
   .pdf-light-viewer .thumbanils-touch ul {
     -webkit-transform: none;
     -ms-transform: none;
@@ -875,8 +901,8 @@ body .pdf-light-viewer-tips {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(57%, #fefefe), to(#F6F6F6));
     background-image: -webkit-linear-gradient(top, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
     background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
-    -webkit-border-radius: 6px 6px;
-    border-radius: 6px 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
     padding: 12px 24px;
     -webkit-box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 2px -1px rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
     box-shadow: 1px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 2px -1px rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12); }

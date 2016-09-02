@@ -32,6 +32,7 @@
 				<div class="pdf-light-viewer-magazine-viewport-container">	
 					<div class="js-pdf-light-viewer-magazine pdf-light-viewer-magazine"
                         data-max-book-width="<?php echo $pdf_light_viewer_config['max_book_width'] ?>"
+                        data-max-book-height="<?php echo $pdf_light_viewer_config['max_book_height'] ?>"
                         data-limit-fullscreen-book-height="<?php echo $pdf_light_viewer_config['limit_fullscreen_book_height'] ?>"
 						data-width="<?php echo $pdf_light_viewer_config['page_width'] ?>"
 						data-height="<?php echo $pdf_light_viewer_config['page_height'] ?>"
