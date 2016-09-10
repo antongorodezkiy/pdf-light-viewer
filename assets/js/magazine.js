@@ -28,6 +28,9 @@
 					ratio_double = (magazine.data('width')*2) / magazine.data('height'),
 					loaded_pdf_pages = [];
           
+        // preload images
+          self.preloadImages(magazine);
+          
         // per page download (need it before init)
           $(document).on('pdf-light-viewer.turned', function(event, data) {
             if ($('.js-pdf-light-viewer-magazine', data.instance).turn('display') == 'single') {
@@ -400,7 +403,14 @@
 						});
 					}
 				}
-			}
+			},
+      
+      preloadImages(magazine) {
+        $('img', magazine).each(function() {
+          var img = $(this);
+          $('<img />').attr('src', img.data('original'));
+        });
+      }
 		};
 		PDFLightViewerApp.init();
 		

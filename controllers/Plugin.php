@@ -420,7 +420,7 @@ class PdfLightViewer_Plugin {
             }
         }
         
-        return [$gsPath, $ghostscript_version];
+        return array($gsPath, $ghostscript_version);
     }
 		
 	public static function init() {
