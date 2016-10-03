@@ -256,9 +256,13 @@ class PdfLightViewer_Plugin {
 			
 			$host_url = site_url();
             
+            $ImagickVersion = null;
+            $pdf_format_support = null;
             $Imagick = static::getXMagick();
-            $ImagickVersion = $Imagick->getVersion();
-            $pdf_format_support = in_array('PDF', $Imagick->queryFormats());
+            if ($Imagick) {
+                $ImagickVersion = $Imagick->getVersion();
+                $pdf_format_support = in_array('PDF', $Imagick->queryFormats());
+            }
             
 			if (PdfLightViewer_AdminController::getSetting('do-not-check-gs')) {
 				$ghostscript_version = true;

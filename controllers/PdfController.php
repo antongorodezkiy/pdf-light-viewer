@@ -287,11 +287,22 @@ class PdfLightViewer_PdfController {
 					'type' => 'text',
 					'default' => 300
 				),
+                array(
+					'name' => __('Output biggest side', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => __('Also affects quality and size of resulting page images. Bigger value means better quality and bigger size; also will take more server resources during the import process.', PDF_LIGHT_VIEWER_PLUGIN),
+					'id'   => 'output_biggest_side',
+					'type' => 'text',
+					'default' => 1024
+				),
 				array(
 					'name' => __('PDF File', PDF_LIGHT_VIEWER_PLUGIN),
 					'desc' => __('Choose what PDF file will be imported. Also will be used as default link for downloading if download option is enabled.', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'pdf_file',
-					'type' => 'file'
+					'type' => 'file',
+                    'readonly' => 'readonly',
+                    'options' => array(
+                        'url' => false, // Hide the text input for the url
+                    )
 				)
 			),
 		);
@@ -670,6 +681,10 @@ class PdfLightViewer_PdfController {
 		
 		$width = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'pdf-page-width',true);
 		$height = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'pdf-page-height',true);
+        $output_biggest_side = (int)PdfLightViewer_Plugin::get_post_meta($post_id, 'output_biggest_side', true);
+        if (!$output_biggest_side) {
+            $output_biggest_side = 1024;
+        }
 		
 		if (!$width || !$height) {
             return wp_send_json(array(
@@ -708,7 +723,8 @@ class PdfLightViewer_PdfController {
                             $pdf_upload_dir,
                             $jpeg_resolution,
                             $jpeg_compression_quality,
-                            $ratio
+                            $ratio,
+                            $output_biggest_side
                         );
                     }
                     catch(Exception $e) {
@@ -739,7 +755,8 @@ class PdfLightViewer_PdfController {
                             $pdf_upload_dir,
                             $jpeg_resolution,
                             $jpeg_compression_quality,
-                            $ratio
+                            $ratio,
+                            $output_biggest_side
                         );
                     }
                     catch(Exception $e) {
@@ -771,23 +788,34 @@ class PdfLightViewer_PdfController {
 		));
 	}
 	
-	public static function process_pdf_page($post_id, $current_page, $current_page_doc, $page_number, $pdf_pages_number, $pdf_file_path, $pdf_upload_dir, $jpeg_resolution, $jpeg_compression_quality, $ratio) {
+	public static function process_pdf_page(
+        $post_id, $current_page, $current_page_doc,
+        $page_number, $pdf_pages_number, $pdf_file_path,
+        $pdf_upload_dir, $jpeg_resolution, $jpeg_compression_quality,
+        $ratio, $output_biggest_side
+    ) {
         
         $Imagick = PdfLightViewer_Plugin::getXMagick();
         $ImagickClass = get_class($Imagick);
         
 		$_img = new $ImagickClass();
-		$_img->readImage($pdf_file_path.'['.($current_page_doc - 1).']');
+        
+        if (class_exists('Imagick') && $Imagick instanceof Imagick) {
+            $_img->setResolution($jpeg_resolution, $jpeg_resolution);
+        }
+        else if (class_exists('Gmagick') && $Imagick instanceof Gmagick) {
+            $_img->setImageResolution($jpeg_resolution, $jpeg_resolution);
+        }
+        
+        $_img->readImage($pdf_file_path.'['.($current_page_doc - 1).']');
         
 			$_img->setImageCompression($ImagickClass::COMPRESSION_JPEG);
-			$_img->resizeImage(1024, round(1024/$ratio), $ImagickClass::FILTER_BESSEL, 1, false);
+			$_img->resizeImage($output_biggest_side, round($output_biggest_side/$ratio), $ImagickClass::FILTER_BESSEL, 1, false);
             
             if (class_exists('Imagick') && $Imagick instanceof Imagick) {
-                $_img->setResolution($jpeg_resolution, $jpeg_resolution);
                 $_img->setImageCompressionQuality($jpeg_compression_quality);
             }
             else if (class_exists('Gmagick') && $Imagick instanceof Gmagick) {
-                $_img->setImageResolution($jpeg_resolution, $jpeg_resolution);
                 $_img->setCompressionQuality($jpeg_compression_quality);
             }
             
@@ -830,7 +858,7 @@ class PdfLightViewer_PdfController {
 	
             // main page image
                 $white = new $ImagickClass();
-                $white->newImage(1024, round(1024/$ratio), "white");
+                $white->newImage($output_biggest_side, round($output_biggest_side/$ratio), "white");
                 $white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
                 $white->setImageFormat('jpg');
                 $white->setImageColorspace($_img->getImageColorspace());

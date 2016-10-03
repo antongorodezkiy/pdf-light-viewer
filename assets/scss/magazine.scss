@@ -8,7 +8,8 @@ $simple-line-icon-prefix: "slicon-" !default;
 	padding: 40px 0 20px;
 	position: relative;
 	margin-top: 20px;
-	
+	text-align: center;
+    
 	[class^="slicon-"]:before,
 	[class*=" slicon-"]:before {
 		font-family: 'simple-line-icons';
@@ -197,14 +198,13 @@ $simple-line-icon-prefix: "slicon-" !default;
 	
 	.pdf-light-viewer-features-top-panel {
 		list-style: none;
-		position:absolute;
+		position: static;
+        display: inline-block;
 		text-align: center;
 		background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
 		border-radius: 6px;
-		top: -2px;
-		right: 80px;
 		padding: 8px;
-		margin: 0;
+		margin: 10px 0;
 		box-shadow:
 			1px 2px 2px 0px rgba(0, 0, 0, 0.14),
 			0px 3px 2px -1px rgba(0, 0, 0, 0.2),
@@ -312,7 +312,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 			background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
 			border-radius: 6px;
 			padding: 3px 8px;
-			margin: 0 10px;
+			margin: 10px;
 			box-shadow:
 				1px 2px 2px 0px rgba(0, 0, 0, 0.14),
 				0px 3px 2px -1px rgba(0, 0, 0, 0.2),

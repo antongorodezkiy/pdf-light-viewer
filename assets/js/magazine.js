@@ -405,7 +405,7 @@
 				}
 			},
       
-      preloadImages(magazine) {
+      preloadImages: function(magazine) {
         $('img', magazine).each(function() {
           var img = $(this);
           $('<img />').attr('src', img.data('original'));

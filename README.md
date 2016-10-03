@@ -9,7 +9,7 @@
   
 **Tested up to:** 4.6
 
-**Stable tag:** 1.3.9
+**Stable tag:** 1.3.10
   
 **License:** GPLv2
   
@@ -79,6 +79,14 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+## 1.3.10 - 2016-10-03
+* Option to adjust result images size
+* Fixed bug with resulting image quality
+* Mobile styles improvements
+* Fixed php error when server has no Imagick/Gmagick
+* Fixed javascript bug in IE
+* Changed file upload field to prevent url pasting
 
 ## 1.3.9 - 2016-09-11
 * fix PHP 5.3 compatibility

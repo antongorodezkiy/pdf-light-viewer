@@ -17,6 +17,9 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
      *
      * <jpeg-resolution>
      * : optional, jpeg resolution, default 300
+     * 
+     * <output-biggest-side>
+     * : optional, output biggest side, default 1024
      *
      * <post-status>
      * : optional, PDF post status, default "draft"
@@ -27,9 +30,9 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
      * ## EXAMPLES
      * 
      *     wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs"
-     *     wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --import-pdf-file
+     *     wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compression-quality=60 --jpeg-resolution=300 --output-biggest-side=1024 --post-status=publish --import-pdf-file
      *
-     * @synopsis --source-dir=<source-dir> [--jpeg-compression-quality=<jpeg-compression-quality>] [--jpeg-resolution=<jpeg-resolution>] [--post-status=<post-status>] [--import-pdf-file]
+     * @synopsis --source-dir=<source-dir> [--jpeg-compression-quality=<jpeg-compression-quality>] [--jpeg-resolution=<jpeg-resolution>] [--output-biggest-side=<output biggest side width>] [--post-status=<post-status>] [--import-pdf-file]
      * @subcommand bulk-import
      */
     public function bulk_import( $args, $assoc_args ) {
@@ -46,11 +49,17 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 				? (int)$assoc_args['jpeg-resolution']
 				: 300
 			);
+            $output_biggest_side = (
+				isset($assoc_args['output-biggest-side'])
+				? (int)$assoc_args['output-biggest-side']
+				: 1024
+			);
 			$post_status = (
 				isset($assoc_args['post-status'])
 				? $assoc_args['post-status']
 				: 'draft'
 			);
+            
 			$import_pdf_file = isset($assoc_args['import-pdf-file']);
 		
 		// check requirements
@@ -174,7 +183,8 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 								$pdf_upload_dir,
 								$jpeg_resolution,
 								$jpeg_compression_quality,
-								$ratio
+								$ratio,
+                                $output_biggest_side
 							);
 						}
 						catch(Exception $e) {
