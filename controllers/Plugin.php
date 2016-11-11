@@ -484,7 +484,7 @@ class PdfLightViewer_Plugin {
 				add_action('admin_enqueue_scripts', array('PdfLightViewer_AssetsController', 'admin_head'));
 			}
 			else {
-				add_action('wp_enqueue_scripts', array('PdfLightViewer_AssetsController', 'frontend_head'));
+				add_action('wp_enqueue_scripts', array('PdfLightViewer_AssetsController', 'frontendRegister'));
 			}
 		
 		// post types

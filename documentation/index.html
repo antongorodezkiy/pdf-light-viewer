@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>WordPress PDF Light Viewer Plugin & Pro Addon Documentation for version 1.3.10 & pro 0.1.4</title>
+	<title>WordPress PDF Light Viewer Plugin & Pro Addon Documentation for version 1.3.11 & pro 0.1.4</title>
 
 	<link rel="stylesheet" href="css/pure.css" />
 	<link rel="stylesheet" href="css/prism.css" />
@@ -88,7 +88,7 @@
 		<div id="main" class="doc-section">
 			<div class="header">
 				<div class="logo-header"></div>
-				<h1>WordPress PDF Light Viewer Plugin v1.3.10<br />& <span class="pure-button pure-button-primary">PRO</span> Addon v0.1.4<br/>Documentation</h1>
+				<h1>WordPress PDF Light Viewer Plugin v1.3.11<br />& <span class="pure-button pure-button-primary">PRO</span> Addon v0.1.4<br/>Documentation</h1>
 				<h2>What did you get?</h2>
 			</div>
 	
@@ -602,6 +602,50 @@
 					</li>
 				</ul>
 				
+				<div class="content-subhead">WordPress Hooks (actions and filters)</div>
+				
+				<div>
+					<b>Filters:</b>
+				</div>
+				
+				<ul>
+					<li>
+						<div>
+							<b>
+								Conditional assets filter
+							</b>
+						</div>
+						<ul>
+							<li>
+								Filter: <code>PDF_LIGHT_VIEWER_PLUGIN.':should_enqueue_frontend_assets'</code>
+							</li>
+							<li>
+								<p>Expected result: Boolean</p>
+								<p>When <code>true</code>, the plugin will include assets even if it cannot detect PDF Light viewer shortcodes.</p>
+							</li>
+							<li>
+								<div>Example (compatible with php 5.3+):</div>
+								
+<pre><code class="language-php">add_filter(PDF_LIGHT_VIEWER_PLUGIN.':should_enqueue_frontend_assets', function() {
+	return true; // add your custom logic here
+});
+</code></pre>
+							</li>
+							<li>
+								Conditions: Should be added before <a target="_blank" href="https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts">wp_enqueue_scripts</a> hook is triggered.
+							</li>
+						</ul>
+					</li>
+				</ul>
+				
+				We didn't add setting, instead there we have added conditions to include frontend assets on PDF single pages, PDF Archive, in cases, when current $post->post_content contains PDF Light viewer shortcodes.
+
+				And the last condition is a filter for customization, when you have our shortcode in widgets, etc. So you could add the following filter with any conditions in it (please note that in the example below I used php anonymous function which is not available in legacy versions):
+				
+				
+				It should be added before https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts hook is triggered.
+				
+				
 				<div class="content-subhead">CLI usage</div>
 				<p>
 					You can work with plugin from command line interface. PDF Light Viewer integrated with great <a href="http://wp-cli.org/" target="_blank">WP CLI</a>, thus the plugin requires WP CLI to work in command line.
@@ -729,6 +773,13 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 			<div class="content">
 				
 				<h3>PDF Light Viewer</h3>
+				
+				<h4 class="content-subhead">1.3.11 - 2016-11-11</h4>
+				<ul>
+					<li>Added assets limit conditions and filter</li>
+					<li>GraphicsMagick: Low quality for resulting images fix</li>
+					<li>Improve page images preloading</li>
+				</ul>
 				
 				<h4 class="content-subhead">1.3.10 - 2016-10-03</h4>
 				<ul>
@@ -1043,14 +1094,13 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 			</div>
 	
 			<div class="content">
-				
 				<ul>
 					<li>Alexander</li>
 					<li><a href="https://github.com/zipzit" target="_blank">zipzit</a></li>
 					<li><a href="https://github.com/orthographic-pedant" target="_blank">orthographic-pedant</a></li>
 					<li><a href="https://github.com/jtsternberg" target="_blank">jtsternberg</a></li>
+					<li><a href="https://wordpress.org/support/users/soobahkdo/" target="_blank">SooBahkDo</a></li>
 				</ul>
-
 			</div>
 		</div>
 		

@@ -803,8 +803,8 @@ class PdfLightViewer_PdfController {
         if (class_exists('Imagick') && $Imagick instanceof Imagick) {
             $_img->setResolution($jpeg_resolution, $jpeg_resolution);
         }
-        else if (class_exists('Gmagick') && $Imagick instanceof Gmagick) {
-            $_img->setImageResolution($jpeg_resolution, $jpeg_resolution);
+        else if (class_exists('Gmagick') && $Imagick instanceof Gmagick && method_exists($_img, 'setResolution')) {
+            $_img->setResolution($jpeg_resolution, $jpeg_resolution);
         }
         
         $_img->readImage($pdf_file_path.'['.($current_page_doc - 1).']');
@@ -853,16 +853,35 @@ class PdfLightViewer_PdfController {
                         .'-sOutputFile='.escapeshellcmd($pdf_upload_dir.'-pdfs/page-'.$page_number.'.pdf').' '
                         .escapeshellcmd($pdf_file_path);
                         
+                    @shell_exec($commnad);
+                    
+                    // main page image
+                    // if possible, use ghostscript directly
+                    $commnad = $gsPath.' '
+                        .'-dBATCH '
+                        .'-dNOPAUSE '
+                        .'-dQUIET '
+                        .'-sDEVICE=jpeg '
+                        .'-r'.((int)$jpeg_resolution).' '
+                        .'-dJPEGQ='.$jpeg_compression_quality.' '
+                        .'-dDEVICEWIDTHPOINTS='.$output_biggest_side.' '
+                        .'-dDEVICEHEIGHTPOINTS='.round($output_biggest_side/$ratio).' '
+                        .'-dFirstPage='.($current_page_doc).' '
+                        .'-dLastPage='.($current_page_doc).' '
+                        .'-sOutputFile='.escapeshellcmd($pdf_upload_dir.'/page-'.$page_number.'.jpg').' '
+                        .escapeshellcmd($pdf_file_path);
+                        
                     @shell_exec($commnad);  
                 }
-	
-            // main page image
-                $white = new $ImagickClass();
-                $white->newImage($output_biggest_side, round($output_biggest_side/$ratio), "white");
-                $white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
-                $white->setImageFormat('jpg');
-                $white->setImageColorspace($_img->getImageColorspace());
-                $white->writeImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
+                else {
+                // main page image
+                    $white = new $ImagickClass();
+                    $white->newImage($output_biggest_side, round($output_biggest_side/$ratio), "white");
+                    $white->compositeimage($_img, $ImagickClass::COMPOSITE_OVER, 0, 0);
+                    $white->setImageFormat('jpg');
+                    $white->setImageColorspace($_img->getImageColorspace());
+                    $white->writeImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
+                }
 			
             // thumbnail
                 $_img->resizeImage(76, round(76/$ratio),$ImagickClass::FILTER_BESSEL, 1, false);

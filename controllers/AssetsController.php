@@ -35,6 +35,40 @@ class PdfLightViewer_AssetsController {
             );
         }
     }
+    
+    protected static function registerScripts($jquery_plugins)
+    {
+        foreach($jquery_plugins as $id => $file) {
+            $ver = null;
+            if (file_exists(PDF_LIGHT_VIEWER_APPPATH.'/'.$file)) {
+                $ver = filemtime(PDF_LIGHT_VIEWER_APPPATH.'/'.$file);
+            }
+            
+            wp_register_script(
+                $id,
+                plugins_url($file, PDF_LIGHT_VIEWER_FILE),
+                array('jquery'),
+                $ver
+            );
+        }
+    }
+    
+    protected static function registerStyles($styles)
+    {
+        foreach($styles as $id => $file) {
+            $ver = null;
+            if (file_exists(PDF_LIGHT_VIEWER_APPPATH.'/'.$file)) {
+                $ver = filemtime(PDF_LIGHT_VIEWER_APPPATH.'/'.$file);
+            }
+            
+            wp_register_style(
+                $id,
+                plugins_url($file, PDF_LIGHT_VIEWER_FILE),
+                null,
+                $ver
+            );
+        }
+    }
 	
 	public static function admin_head() {
 		global $post;
@@ -99,17 +133,28 @@ class PdfLightViewer_AssetsController {
 			));
 	}
 	
-	public static function frontend_head() {
+	public static function frontendRegister() {
 		
+        global $post;
+        
 		// styles
-			static::enqueueStyles(array(
+			static::registerStyles(array(
 				'jquery.bxslider.css' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.css',
-                'jquery.qtip.css' => 'assets/bower_components/qtip2/jquery.qtip.min.css',
-				'frontend.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/frontend.css'
+                'jquery.qtip.css' => 'assets/bower_components/qtip2/jquery.qtip.min.css'
 			));
+            
+            wp_register_style(
+				'frontend.'.PDF_LIGHT_VIEWER_PLUGIN,
+				plugins_url('assets/css/frontend.css', PDF_LIGHT_VIEWER_FILE),
+				array(
+                    'jquery.bxslider.css',
+                    'jquery.qtip.css'
+                ),
+				filemtime(PDF_LIGHT_VIEWER_APPPATH.'/assets/css/frontend.css')
+			);
 		
 		// scripts
-			static::enqueueScripts(array(
+			static::registerScripts(array(
 				'jquery.scrollstop.js' => 'assets/bower_components/jquery.lazyload/jquery.scrollstop.js',
 				'jquery.lazyload.js' => 'assets/bower_components/jquery.lazyload/jquery.lazyload.js',
 				'hash.turn.js' => 'assets/js/turn.js/hash.js',
@@ -121,14 +166,54 @@ class PdfLightViewer_AssetsController {
                 'jquery.qtip.js' => 'assets/bower_components/qtip2/jquery.qtip.min.js'
 			));
 			
-			wp_enqueue_script(
-				'pdf-light-viewer-magazine',
+			wp_register_script(
+				'magazine.'.PDF_LIGHT_VIEWER_PLUGIN,
 				plugins_url('assets/js/magazine.js', PDF_LIGHT_VIEWER_FILE),
-				array('jquery', 'jquery.lazyload.js', 'turn.js'),
+				array(
+                    'jquery',
+                    'jquery.scrollstop.js',
+                    'jquery.lazyload.js',
+                    'hash.turn.js',
+                    'screenfull.js',
+                    'html4.turn.js',
+                    'turn.js',
+                    'jquery.bxslider.js',
+                    'jquery.zoom.js',
+                    'jquery.qtip.js'
+                ),
 				filemtime(PDF_LIGHT_VIEWER_APPPATH.'/assets/js/magazine.js')
 			);
 
+        if (
+            // single pdf page
+            (
+                is_single([PdfLightViewer_PdfController::$type])
+                || (
+                    $post
+                    && get_post_type($post) == PdfLightViewer_PdfController::$type
+                )
+            )
+            
+            // pdf archive
+            || is_post_type_archive([PdfLightViewer_PdfController::$type])
+            
+            // pdf is in shortcode inside post_content
+            || (
+                $post
+                && $post->post_content
+                && (
+                    has_shortcode($post->post_content, 'pdf-light-viewer')
+                    || has_shortcode($post->post_content, 'pdf-light-viewer-archive')
+                )
+            )
+            || apply_filters(PDF_LIGHT_VIEWER_PLUGIN.':should_enqueue_frontend_assets', false)
+        ) {
+            static::frontendEnqueue();
+        }
 	}
 
-	
+    public static function frontendEnqueue() {
+        wp_enqueue_script('magazine.'.PDF_LIGHT_VIEWER_PLUGIN);
+        wp_enqueue_style('frontend.'.PDF_LIGHT_VIEWER_PLUGIN);
+    }
 }

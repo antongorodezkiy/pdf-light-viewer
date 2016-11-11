@@ -140,18 +140,39 @@
               if (parseInt(neighborhood_page) > magazine.data('pages-count')) {
                 neighborhood_page = null;
               }
-						
-							if (typeof(loaded_pdf_pages[page]) == 'undefined') {
-								$('.js-pdf-light-viewer-lazy-loading-'+page, instance).lazyload({
-									effect : 'fadeIn',
-									skip_invisible: false
-								})
-								.trigger('lazyload')
-								.trigger('scroll')
-								.trigger('appear'); // to fix cases when image is not loading
-								
-								loaded_pdf_pages[page] = page;
-							}
+              
+              var preloadPages = [
+                page,
+                page - 1
+              ];
+              
+              if (neighborhood_page) {
+                preloadPages.push(neighborhood_page);
+                preloadPages.push(neighborhood_page + 1);
+              }
+              else {
+                preloadPages.push(page + 1);
+                preloadPages.push(page + 2);
+              }
+              
+              for (var preloadPageKey in preloadPages) {
+                var preloadPage = preloadPages[preloadPageKey];
+                if (
+                  typeof(loaded_pdf_pages[preloadPage]) == 'undefined'
+                  && $('.js-pdf-light-viewer-lazy-loading-'+preloadPage, instance).size()
+                ) {
+                  $('.js-pdf-light-viewer-lazy-loading-'+preloadPage, instance).lazyload({
+                    effect : 'fadeIn',
+                    skip_invisible: true
+                  })
+                  .trigger('lazyload')
+                  .trigger('scroll')
+                  .trigger('appear'); // to fix cases when image is not loading
+                  
+                  loaded_pdf_pages[preloadPage] = preloadPage;
+                }
+              }
+              
 							self.zoom.initSingle(instance, magazine, page);
               
               $(document).trigger('pdf-light-viewer.turned', {
@@ -178,20 +199,6 @@
               instance.data('current-page', page);
               instance.data('current-neighborhood-page', neighborhood_page);
 							
-							if (
-								neighborhood_page
-								&& typeof(loaded_pdf_pages[neighborhood_page]) == 'undefined'
-							) {
-								$('.js-pdf-light-viewer-lazy-loading-'+neighborhood_page, instance).lazyload({
-									effect : 'fadeIn',
-									skip_invisible: false
-								})
-								.trigger('lazyload')
-								.trigger('scroll')
-								.trigger('appear'); // to fix cases when image is not loading
-								
-								loaded_pdf_pages[neighborhood_page] = neighborhood_page;
-							}
 							self.zoom.initSingle(instance, magazine, neighborhood_page);
 						}
 					}
