@@ -78,6 +78,11 @@ class PdfLightViewer_Plugin {
 				'pdf-light-viewer',
 				array('PdfLightViewer_FrontController', 'display_pdf_book')
 			);
+            
+            add_shortcode(
+				'pdf-light-viewer-enqueue-assets',
+                array('PdfLightViewer_AssetsController', 'frontendEnqueue')
+			);
 		}
 		
 	public static function getActivePlugins() {
