@@ -187,7 +187,7 @@ class PdfLightViewer_AssetsController {
         if (
             // single pdf page
             (
-                is_single([PdfLightViewer_PdfController::$type])
+                is_single(array(PdfLightViewer_PdfController::$type))
                 || (
                     $post
                     && get_post_type($post) == PdfLightViewer_PdfController::$type
@@ -195,7 +195,7 @@ class PdfLightViewer_AssetsController {
             )
             
             // pdf archive
-            || is_post_type_archive([PdfLightViewer_PdfController::$type])
+            || is_post_type_archive(array(PdfLightViewer_PdfController::$type))
             
             // pdf is in shortcode inside post_content
             || (
