@@ -156,7 +156,8 @@ class PdfLightViewer_AdminController {
 			$config = array(
 				'show-post-type' => true,
 				'do-not-check-gs' => false,
-                'prefer-xmagick' => 'Imagick'
+                'prefer-xmagick' => 'Imagick',
+                'enable-hash-nav' => true,
 			);	
 			return wp_parse_args(get_option(PDF_LIGHT_VIEWER_PLUGIN),$config);
 		}

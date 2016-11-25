@@ -172,6 +172,25 @@
                             </label>
                     </p>
                     
+                    <p class="pure-control-group">
+                        <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[enable-hash-nav]">
+                            <i class="icons slicon-wrench"></i>
+                            <?php _e('Enable hash navigation', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <a href="#!" class="js-tip tip" title="<?php _e('In some cases turning this off can solve compatibility issues.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
+                        </label>
+                        <input
+                            type="hidden"
+                            name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[enable-hash-nav]"
+                            value="0"
+                            />
+                        <input
+                            type="checkbox"
+                            name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[enable-hash-nav]"
+                            value="1"
+                            <?php echo ( PdfLightViewer_AdminController::getSetting('enable-hash-nav') ? 'checked="checked"' : '' )?>
+                            />
+                    </p>
+                    
                     <hr />
                 
                     <div class="row">

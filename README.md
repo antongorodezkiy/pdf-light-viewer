@@ -9,7 +9,7 @@
   
 **Tested up to:** 4.6
 
-**Stable tag:** 1.3.13
+**Stable tag:** 1.3.14
   
 **License:** GPLv2
   
@@ -79,6 +79,10 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 
 ## Changelog ##
+
+## 1.3.14 - 2016-09-25
+* Add setting to turn on/off url flipbook navigation
+* JS function to recalculate sizes
 
 ## 1.3.13 - 2016-09-18
 * fix PHP 5.3 compatibility

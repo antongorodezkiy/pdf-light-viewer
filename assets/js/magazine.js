@@ -1,3 +1,5 @@
+var PDFLightViewerApp;
+
 (function($) {
 	
 	$(document).ready(function() {
@@ -89,7 +91,9 @@
               magazine.data('current-page', page);
 					
 							// Update the current URI
-							Hash.go('page/' + page).update();
+							if (PdfLightViewer.settings.enable_hash_nav) {
+                Hash.go('page/' + page).update();
+              }
 		
 							$('.js-pdf-light-viewer-magazine-thumbnails .page-'+currentPage, instance).parent().removeClass('current');
 		
@@ -109,7 +113,8 @@
 								typeof(page) == "undefined"
 								|| page == "undefined"
 								|| (
-									window.location.hash
+                  PdfLightViewer.settings.enable_hash_nav
+									&& window.location.hash
 									&& window.location.hash != '#page/'+parseInt(page)
 								)
 							) {
@@ -157,6 +162,11 @@
               
               for (var preloadPageKey in preloadPages) {
                 var preloadPage = preloadPages[preloadPageKey];
+                
+                if (typeof preloadPage != 'number') {
+                  continue;
+                }
+                
                 if (
                   typeof(loaded_pdf_pages[preloadPage]) == 'undefined'
                   && $('.js-pdf-light-viewer-lazy-loading-'+preloadPage, instance).size()
@@ -321,6 +331,29 @@
 					self.resize(viewport, magazine, ratio_single, ratio_double);
 			},
 			
+      triggerRecalculateAllSizes: function() {
+        
+        $(window).trigger('resize');
+        
+        $('.js-pdf-light-viewer').each(function() {
+					var instance = $(this);
+					
+          var
+            self = PDFLightViewerApp.self,
+            viewport = $('.js-pdf-light-viewer-magazine-viewport', instance),
+            magazine = $('.js-pdf-light-viewer-magazine', instance),
+            ratio_single = magazine.data('width') / magazine.data('height'),
+            ratio_double = (magazine.data('width')*2) / magazine.data('height');
+            
+          self.resize(viewport, magazine, ratio_single, ratio_double);
+          
+          instance
+            .trigger('lazyload')
+            .trigger('scroll')
+            .trigger('appear');
+				});
+      },
+      
 			getViewportSize: function(width, height, ratio, magazine) {
 				
         width -= 20;
@@ -422,7 +455,7 @@
 		PDFLightViewerApp.init();
 		
 		// hash and keyboard controls only when we have one PDF on the page
-		if ($('.js-pdf-light-viewer').size() == 1) {
+		if ($('.js-pdf-light-viewer').size() == 1 && PdfLightViewer.settings.enable_hash_nav) {
 
 			$(window).bind('keydown', function(e){
 		

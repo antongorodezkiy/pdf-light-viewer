@@ -129,7 +129,10 @@ class PdfLightViewer_AssetsController {
 					'Import process was successfully finished. Please check results on the PDF page.' => __('Import process was successfully finished. Please check results on the PDF page.', PDF_LIGHT_VIEWER_PLUGIN),
 					'Import process failed due to the unknown error.' => __('Import process failed due to the unknown error.', PDF_LIGHT_VIEWER_PLUGIN),
 					'Import process failed due to the error:' => __('Import process failed due to the error:', PDF_LIGHT_VIEWER_PLUGIN)
-				)
+				),
+                'settings' => array(
+                    'enable_hash_nav' => (bool)PdfLightViewer_AdminController::getSetting('enable-hash-nav')
+                )
 			));
 	}
 	
@@ -183,6 +186,11 @@ class PdfLightViewer_AssetsController {
                 ),
 				filemtime(PDF_LIGHT_VIEWER_APPPATH.'/assets/js/magazine.js')
 			);
+            wp_localize_script('magazine.'.PDF_LIGHT_VIEWER_PLUGIN, 'PdfLightViewer', array(
+                'settings' => array(
+                    'enable_hash_nav' => (bool)PdfLightViewer_AdminController::getSetting('enable-hash-nav')
+                )
+			));
 
         if (
             // single pdf page
