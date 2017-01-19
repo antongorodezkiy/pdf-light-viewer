@@ -4,13 +4,13 @@ Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link: 
 Requires at least: 3.5
 Tested up to: 4.6
-Stable tag: 1.3.14
+Stable tag: 1.3.15
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Plugin allows you to embed normal, big and very big pdf documents to the wordpress site as flipbooks with thumbnail navigation.
-
 == Description ==
+
+Plugin allows you to embed normal, big and very big pdf documents to the wordpress site as flipbooks with thumbnail navigation.
 
 [Website](http://pdf-light-viewer.wp.teamlead.pw/) | [Demo](http://pdf-light-viewer.wp.teamlead.pw/demo/) | [Docs](http://pdf-light-viewer.wp.teamlead.pw/wp-content/plugins/pdf-light-viewer/documentation/index.html) | [PRO Addon Features](http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505) | [Support](http://support.wp.teamlead.pw/)
 
@@ -61,9 +61,16 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 2. PDF List
 3. PDF Import Page
 
+== Other Notes ==
+
 == Changelog ==
 
-== 1.3.14 - 2016-09-25 ==
+== 1.3.15 - 2017-01-19 ==
+* Stop import possibility
+* Assets enqueue improvement
+* Added French translation (R. Valentin)
+
+== 1.3.14 - 2016-11-25 ==
 * Add setting to turn on/off url flipbook navigation
 * JS function to recalculate sizes
 

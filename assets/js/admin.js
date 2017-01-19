@@ -81,6 +81,33 @@
 			});
 		}
     
+    if ( $('.js-pdf-light-viewer-cancel-import').size() ) {
+			$('.js-pdf-light-viewer-cancel-import').on('click', function(e) {
+        e.preventDefault();
+        
+				var a = $(this);
+				
+				$.post(PdfLightViewer.url.ajaxurl, {
+					'action': 'pdf-light-viewer_cancel_import'
+				}, function(data) {
+          try {
+						if (typeof(data) == 'string') {
+							var json = $.parseJSON(data);
+						}
+						else {
+							var json = data;
+						}
+            
+            PdfLightViewer.app.error(json.error);
+          }
+          catch(error){
+						$(".js-pdf-light-viewer-current-status").parents(".updated").slideUp(300);
+						PdfLightViewer.app.error(PdfLightViewer.__['Import process failed due to the error:']+' '+error);
+					}
+        });
+			});
+		}
+    
     if ($('.js-tip').size()) {
       $('.js-tip').qtip({
         style: { classes: 'qtip-tipsy' }

@@ -159,7 +159,8 @@ class PdfLightViewer_PdfController {
 				$progress = PdfLightViewer_Plugin::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-progress', true);
 	
 				PdfLightViewer_AdminController::showDirectMessage(sprintf(
-					__('<i class="icons slicon-settings"></i> <b>%s</b> PDF import is <span class="js-pdf-light-viewer-current-status">%s</span>. <span class="js-pdf-light-viewer-current-progress">%d</span>%% is complete. <i>Please do not leave the admin interface until the import would not finished. %s</i>',PDF_LIGHT_VIEWER_PLUGIN),
+					__('<i class="icons slicon-settings"></i> <b>%s</b> PDF import is <span class="js-pdf-light-viewer-current-status">%s</span>. <span class="js-pdf-light-viewer-current-progress">%d</span>%% is complete. <i>Please do not leave the admin interface until the import would not finished. %s</i>',PDF_LIGHT_VIEWER_PLUGIN)
+                    . '<a class="button-secondary js-pdf-light-viewer-cancel-import" href="#">'.__('Cancel', PDF_LIGHT_VIEWER_PLUGIN).'</a>',
 					PdfLightViewer_Model::$unimported->post_title,
 					$status,
 					$progress,
@@ -785,6 +786,25 @@ class PdfLightViewer_PdfController {
 			'status' => $status_label,
 			'progress' => (int)$percent,
 			'error' => $error
+		));
+	}
+    
+    public static function cancel_import() {
+		$unimported = PdfLightViewer_Model::getOneUnimported();
+		$post_id = $unimported->ID;
+		
+		if (!$post_id) {
+			return wp_send_json(array(
+				'status' => 'error',
+				'error' => __('Currently there are no unimported files in the queue.', PDF_LIGHT_VIEWER_PLUGIN)
+			));
+		}
+		
+		update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FAILED);
+		
+		return wp_send_json(array(
+			'status' => 'error',
+            'error' => __('Import cancelled', PDF_LIGHT_VIEWER_PLUGIN),
 		));
 	}
 	

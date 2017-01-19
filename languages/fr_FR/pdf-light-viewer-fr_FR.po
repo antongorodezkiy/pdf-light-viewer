@@ -1,0 +1,929 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pdf-light-viewer\n"
+"POT-Creation-Date: 2015-12-14 04:48+0300\n"
+"PO-Revision-Date: 2016-12-24 18:04+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
+"X-Poedit-SearchPath-0: ../..\n"
+
+#: ../../controllers/AssetsController.php:87
+msgid ""
+"Import process was successfully finished. Please check results on the PDF "
+"page."
+msgstr ""
+"Processus d'importation a été achevé avec succès. S'il vous plaît vérifier "
+"les résultats sur la page PDF."
+
+#: ../../controllers/AssetsController.php:88
+msgid "Import process failed due to the unknown error."
+msgstr "Le processus d'importation a échoué suie à une erreur."
+
+#: ../../controllers/AssetsController.php:89
+msgid "Import process failed due to the error:"
+msgstr "Le processus d'importation a échoué en raison de l'erreur:"
+
+#: ../../controllers/PdfController.php:35
+msgid "PDFs"
+msgstr "PDF"
+
+#: ../../controllers/PdfController.php:36
+#: ../../controllers/PdfController.php:161
+msgid "PDF"
+msgstr "PDF"
+
+#: ../../controllers/PdfController.php:37
+#: ../../controllers/PdfController.php:38
+msgid "Import PDF"
+msgstr "Importer un PDF"
+
+#: ../../controllers/PdfController.php:39
+msgid "Edit"
+msgstr "Modifier"
+
+#: ../../controllers/PdfController.php:40
+msgid "Edit PDF"
+msgstr "Modifier PDF"
+
+#: ../../controllers/PdfController.php:41
+msgid "New PDF"
+msgstr "Nouveau PDF"
+
+#: ../../controllers/PdfController.php:42
+msgid "View"
+msgstr "Afficher"
+
+#: ../../controllers/PdfController.php:43
+msgid "View PDF"
+msgstr "Voir le PDF"
+
+#: ../../controllers/PdfController.php:44
+msgid "Search PDFs"
+msgstr "Rechercher"
+
+#: ../../controllers/PdfController.php:45
+msgid "No PDFs found"
+msgstr "Aucun PDF trouvé"
+
+#: ../../controllers/PdfController.php:47
+msgid "For PDFs"
+msgstr "Pour PDF"
+
+#: ../../controllers/PdfController.php:72
+#, php-format
+msgid ""
+"<i class=\"icons slicon-settings\"></i> <b>%s</b> PDF import is <span class="
+"\"js-pdf-light-viewer-current-status\">%s</span>. <span class=\"js-pdf-light-"
+"viewer-current-progress\">%d</span>%% is complete. <i>Please do not leave "
+"the admin interface until the import would not finished. %s</i>"
+msgstr ""
+"<i class=\"icons slicon-settings\"></i> <b>%s</b> Importation <span class="
+"\"js-pdf-light-viewer-current-status\">%s</span>. <span class=\"js-pdf-light-"
+"viewer-current-progress\">%d</span>%% est complete. <i>Ne quittez pas cette "
+"page avant que l'importation est finie %s</i>"
+
+#: ../../controllers/PdfController.php:76
+msgid "Otherwise the import will be continued during your next visit."
+msgstr ""
+"Sinon, l'importation sera poursuivie au cours de votre prochaine visite."
+
+#: ../../controllers/PdfController.php:82
+#: ../../controllers/PdfController.php:103
+msgid "Preview"
+msgstr "Apercu"
+
+#: ../../controllers/PdfController.php:83
+#: ../../controllers/PdfController.php:309
+msgid "Usage"
+msgstr "Utilisation"
+
+#: ../../controllers/PdfController.php:84
+msgid "Pages"
+msgstr "Pages"
+
+#: ../../controllers/PdfController.php:85
+msgid "Import status"
+msgstr "Statut de l’importation"
+
+#: ../../controllers/PdfController.php:131
+msgid "Import scheduled"
+msgstr "Importation programmée"
+
+#: ../../controllers/PdfController.php:135
+msgid "Import started"
+msgstr "Importation commencée."
+
+#: ../../controllers/PdfController.php:139
+msgid "Import in progress"
+msgstr "Importation en cours"
+
+#: ../../controllers/PdfController.php:143
+msgid "Import finished"
+msgstr "Importation terminée"
+
+#: ../../controllers/PdfController.php:168
+msgid "Enable import"
+msgstr "Activer l'importation"
+
+#: ../../controllers/PdfController.php:169
+msgid "Check this if you want to import or re-import PDF file"
+msgstr ""
+"Cochez cette case si vous souhaitez importer ou réimporter un fichier PDF"
+
+#: ../../controllers/PdfController.php:174
+msgid "JPEG compression quality"
+msgstr "Qualité de compression JPEG"
+
+#: ../../controllers/PdfController.php:180
+msgid "JPEG resolution"
+msgstr "Rrésolution JPEG"
+
+#: ../../controllers/PdfController.php:186
+msgid "PDF File"
+msgstr "Fichier PDF"
+
+#: ../../controllers/PdfController.php:187
+msgid "Choose what PDF file will be imported"
+msgstr "Choisissez quel fichier PDF sera importé"
+
+#: ../../controllers/PdfController.php:197
+msgid "Output Options"
+msgstr "Options de sortie"
+
+#: ../../controllers/PdfController.php:204
+msgid "Allow download"
+msgstr "Autoriser Téléchargement"
+
+#: ../../controllers/PdfController.php:205
+msgid "Check this if you want to show download button on the frontend"
+msgstr ""
+"Cochez cette case si vous souhaitez afficher le bouton de téléchargement sur "
+"le frontend"
+
+#: ../../controllers/PdfController.php:210
+msgid "Alternate download link"
+msgstr "Autre lien de téléchargement"
+
+#: ../../controllers/PdfController.php:211
+msgid "If not set, will be used link from PDF File"
+msgstr "Si non défini, le lien sera celui de fichier PDF"
+
+#: ../../controllers/PdfController.php:217
+msgid "Hide thumbnail navigation"
+msgstr "Masquer la navigation par  vignettes"
+
+#: ../../controllers/PdfController.php:222
+msgid "Hide fullscreen button"
+msgstr "Masquer le bouton plein écran"
+
+#: ../../controllers/PdfController.php:227
+msgid "Disable page zoom"
+msgstr "Disable zoom"
+
+#: ../../controllers/PdfController.php:242
+msgid "Anonymous / s2Member Level 0"
+msgstr "Anonymous / s2Member Niveau 0"
+
+#: ../../controllers/PdfController.php:251
+msgid "Permissions"
+msgstr "Permissions"
+
+#: ../../controllers/PdfController.php:260
+msgid "Pages limits for different user roles"
+msgstr "Limites Pages pour différents rôles utilisateur"
+
+#: ../../controllers/PdfController.php:262
+msgid "Pages Limit"
+msgstr "Limite Pages"
+
+#: ../../controllers/PdfController.php:263
+msgid "Add another limit"
+msgstr "Ajouter une autre limite"
+
+#: ../../controllers/PdfController.php:264
+msgid "Remove limit"
+msgstr "Supprimer la limite"
+
+#: ../../controllers/PdfController.php:270
+msgid "User Role"
+msgstr "Rôle de l’utilisateur"
+
+#: ../../controllers/PdfController.php:271
+msgid "Select role which you want to pages limit"
+msgstr "Sélectionnez le rôle que vous voulez pages limite"
+
+#: ../../controllers/PdfController.php:278
+msgid "Visible pages"
+msgstr "Pages Visibles:"
+
+#: ../../controllers/PdfController.php:298
+msgid "PDF Preview"
+msgstr "Prévisualisation PDF"
+
+#: ../../controllers/PdfController.php:397
+msgid "PDF import scheduled."
+msgstr "Importation programmée"
+
+#: ../../controllers/PdfController.php:402
+#, php-format
+msgid ""
+"Imagick not found, please check other requirements on <a href=\"%s\">plugin "
+"settings page</a> for more information."
+msgstr ""
+"Imagick n'est pas trouvé , s'il vous plaît vérifier d' autres exigences "
+"dans  la <a href=\"%s\">page des paramètres</a> pour plus d' informations."
+
+#: ../../controllers/PdfController.php:423
+msgid "Currently there are no unimported files in the queue."
+msgstr ""
+"Actuellement, il n'y a pas de fichiers non importées  dans la file d'attente."
+
+#: ../../controllers/PdfController.php:430
+msgid "scheduled"
+msgstr "programmée"
+
+#: ../../controllers/PdfController.php:434
+msgid "started"
+msgstr "démarré"
+
+#: ../../controllers/PdfController.php:438
+msgid "processing"
+msgstr "en cours"
+
+#: ../../controllers/PdfController.php:465
+msgid "Cannot get width and height of the first page."
+msgstr "Impossible d'obtenir la largeur et la hauteur de la première page."
+
+#: ../../controllers/PdfController.php:477
+msgid "Cannot detect current imported PDF page."
+msgstr "Impossible de détecter la page PDF importé."
+
+#: ../../controllers/PdfController.php:538
+msgid "failed"
+msgstr "échoué"
+
+#: ../../controllers/PdfController.php:553
+msgid "finished"
+msgstr "terminé"
+
+#: ../../controllers/Plugin.php:56 ../../views/settings.php:113
+msgid "Settings"
+msgstr "Réglages"
+
+#: ../../controllers/Plugin.php:57
+msgid "Docs"
+msgstr "Docs"
+
+#: ../../controllers/Plugin.php:58
+msgid "Support"
+msgstr "Support"
+
+#: ../../controllers/Plugin.php:251
+msgid "Upload folder"
+msgstr "Répertoire des fichiers téléchargés"
+
+#: ../../controllers/Plugin.php:290
+msgid "Logs folder"
+msgstr "Dossier des journaux"
+
+#: ../../controllers/Plugin.php:296
+#, php-format
+msgid "is %s or higher"
+msgstr "est %s ou plus"
+
+#: ../../controllers/Plugin.php:297
+#, php-format
+msgid "is lower than %s"
+msgstr "est moins que %s"
+
+#: ../../controllers/Plugin.php:301
+msgid "Imagick PHP Extension"
+msgstr "Extension Imagick PHP"
+
+#: ../../controllers/Plugin.php:303
+msgid "is loaded"
+msgstr "est chargéé"
+
+#: ../../controllers/Plugin.php:304
+msgid "is not loaded"
+msgstr "n'est pas chargé"
+
+#: ../../controllers/Plugin.php:305
+msgid ""
+"Imagick PHP Extension is required for PDF -> JPEG convertation. It cannot be "
+"included with the plugin unfortunately, so you or your hosting provider/"
+"server administrator should install it."
+msgstr ""
+"Extension Imagick PHP est nécessaire pour la conversion PDF -> JPEG . Il ne "
+"peut pas être inclus avec le plugin , votre fournisseur d'hébergement / "
+"administrateur doit l'installer sur le serveur."
+
+#: ../../controllers/Plugin.php:308
+msgid "Imagick PHP Wrapper"
+msgstr "Imagick PHP Wrapper"
+
+#: ../../controllers/Plugin.php:310 ../../controllers/Plugin.php:324
+msgid "is supported"
+msgstr "est prise en charge."
+
+#: ../../controllers/Plugin.php:311 ../../controllers/Plugin.php:325
+msgid "is not supported"
+msgstr "n'est pas pris en charge"
+
+#: ../../controllers/Plugin.php:312
+msgid ""
+"Imagick PHP Wrapper is required to make available Imagick PHP Extension "
+"functionality in the plugin. Usually it's integrated through the PECL "
+"plugin. It cannot be included with the plugin unfortunately, so you or your "
+"hosting provider/server administrator should install it."
+msgstr ""
+"Imagick PHP Wrapper est nécessaire pour rendre la fonctionnalité Imagick PHP "
+"Extension disponible dans le plug-in. Habituellement, il est intégré à "
+"travers le plugin PECL. Il ne peut pas être inclus avec le plugin "
+"malheureusement, otre fournisseur d'hébergement / administrateur du serveur "
+"doit l'installer."
+
+#: ../../controllers/Plugin.php:315
+msgid "Imagick PDF Support"
+msgstr "Prise en charge Imagick PDF"
+
+#: ../../controllers/Plugin.php:317
+msgid "is enabled"
+msgstr "est activé"
+
+#: ../../controllers/Plugin.php:318
+msgid "is not enabled"
+msgstr "est pas activé"
+
+#: ../../controllers/Plugin.php:319
+msgid "Imagick PDF Support is required for PDF -> JPEG convertation."
+msgstr "Imagick support PDF est nécessaire pour la conversion PDF -> JPEG ."
+
+#: ../../controllers/Plugin.php:326
+msgid ""
+"GhostScript is required for Imagick PDF Support. For cases, when you are "
+"sure that GhostScript is installed, but it was not detected by the plugin "
+"correctly you can disable this requirement in options below."
+msgstr ""
+"GhostScript est nécessaire pour la prise en charge de PDF Imagick.Lorsque "
+"vous êtes sûr que GhostScript est installé, mais il n'a pas été détecté par "
+"le plugin correctement, vous pouvez désactiver cette exigence dans les "
+"options ci-dessous."
+
+#: ../../controllers/Plugin.php:331 ../../controllers/Plugin.php:338
+msgid "is writable"
+msgstr "est inscriptible"
+
+#: ../../controllers/Plugin.php:332 ../../controllers/Plugin.php:339
+msgid "is not writable"
+msgstr "est pas inscriptible"
+
+#: ../../controllers/Plugin.php:333
+msgid "This is the folder for converted images."
+msgstr "Ceci est le dossier pour les images converties."
+
+#: ../../controllers/Plugin.php:340
+msgid "We will save plugin-specific log files in this folder."
+msgstr ""
+"Nous allons enregistrer des fichiers journaux spécifiques plugins dans ce "
+"dossier."
+
+#: ../../controllers/FrontController.php:27
+msgid ""
+"[pdf-light-viewer] shortcode cannot be rendered due to the error: No "
+"converted pages found"
+msgstr ""
+"[Pdf-light-viewer] shortcode ne peut pas être rendue en raison de l'erreur: "
+"Pas de pages converties trouvés"
+
+#: ../../controllers/AdminController.php:13
+#, php-format
+msgid ""
+"PDF Light Viewer Team: We created PRO Addon with printing, search and SEO-"
+"friendly mode <a class=\"button-primary js-pdf-light-viewer-hide-notification"
+"\" data-notification=\"pro-ad-viewed\" target=\"_blank\" href=\"%s\">Check "
+"It</a> <a class=\"button-secondary js-pdf-light-viewer-hide-notification\" "
+"data-notification=\"pro-ad-viewed\" href=\"#\">Not interested</a>"
+msgstr ""
+"L'équipe PDF Light Viewer : Nous avons créé un addon PRO avec l'option de l' "
+"impression, la recherche et le mode SEO <a class=\"button-primary js-pdf-"
+"light-viewer-hide-notification\" data-notification=\"pro-ad-viewed\" target="
+"\"_blank\" href=\"%s\">Voir le addon !</a> <a class=\"button-secondary js-"
+"pdf-light-viewer-hide-notification\" data-notification=\"pro-ad-viewed\" "
+"href=\"#\">je suis pas intéressé.</a>"
+
+#: ../../controllers/AdminController.php:21
+#, php-format
+msgid ""
+"PDF Light Viewer Team: Please, take part in our 1-minute survey to make PDF "
+"Light Viewer plugin better <a class=\"button-primary js-pdf-light-viewer-"
+"hide-notification\" data-notification=\"survey-viewed\" target=\"_blank\" "
+"href=\"%s\">Take Survey</a> <a class=\"button-secondary js-pdf-light-viewer-"
+"hide-notification\" data-notification=\"survey-viewed\" href=\"#\">Not "
+"interested</a>"
+msgstr ""
+"PDF TeamViewer Lumière: S'il vous plaît, prenez part à notre sondage 1 "
+"minute pour rendre  PDF Light  Viewer meilleur <a class=\"button-primary js-"
+"pdf-light-viewer-hide-notification\" data-notification=\"survey-viewed\" "
+"target=\"_blank\" href=\"%s\">Participer au sondage</a> <a class=\"button-"
+"secondary js-pdf-light-viewer-hide-notification\" data-notification=\"survey-"
+"viewed\" href=\"#\">Je suis pas intéressé.</a>"
+
+#: ../../controllers/AdminController.php:150
+msgid "requirements are met, happy using!"
+msgstr "ces exigences sont remplies, bonne utilisation !"
+
+#: ../../controllers/AdminController.php:155
+#, php-format
+msgid ""
+"requirements not met, please check <a href=\"%s\">plugin settings page</a> "
+"for more information."
+msgstr ""
+"les exigences ne sont pas satisfaites, s’il vous plaît vérifier <a "
+"href=„%s“>la page des paramètres </a> pour plus d’informations."
+
+#: ../../controllers/AdminController.php:169
+msgid ""
+"We have just created new section called PDFs in your dashboard. Use it to "
+"import and publish your cool PDF files."
+msgstr ""
+"Nous venons de créer une entrée dans le menu Admin appelée PDF. Utilisez-la "
+"pour importer et publier vos fichiers PDF."
+
+#: ../../templates/shortcode-pdf-light-viewer.php:20
+msgid "Archive"
+msgstr "Archive"
+
+#: ../../templates/shortcode-pdf-light-viewer.php:30
+msgid "Print"
+msgstr "Imprimer"
+
+#: ../../templates/shortcode-pdf-light-viewer.php:38
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:706
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:768
+msgid "Download"
+msgstr "Télécharger"
+
+#: ../../templates/shortcode-pdf-light-viewer.php:46
+msgid "Fullscreen"
+msgstr "Plein-écran"
+
+#: ../../templates/shortcode-pdf-light-viewer.php:55
+msgid "Zoom enabled"
+msgstr "Zoom activé"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:258
+msgid "Clear"
+msgstr "Effacer"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:259
+msgid "Default"
+msgstr "Défaut"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:260
+msgid "Select Color"
+msgstr "Sélectionner la couleur"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:261
+msgid "Current Color"
+msgstr "Couleur actuelle"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:288
+msgid "Select / Deselect All"
+msgstr "Sélectionner/Déselectionner tout"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/init.php:1177
+#: ../../views/settings.php:162
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:28
+msgid "Test Metabox"
+msgstr "Test Metabox"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:36
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:270
+msgid "Test Text"
+msgstr "Test Texte"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:37
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:48
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:55
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:62
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:70
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:77
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:89
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:95
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:102
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:117
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:125
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:132
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:138
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:144
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:156
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:167
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:178
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:189
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:197
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:204
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:212
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:218
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:230
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:271
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:337
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:344
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:351
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:357
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:363
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:369
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:375
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:393
+msgid "field description (optional)"
+msgstr "Description du champ (facultatif)"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:47
+msgid "Test Text Small"
+msgstr "Test Text Small"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:54
+msgid "Test Text Medium"
+msgstr "Test Text Medium"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:61
+msgid "Website URL"
+msgstr "URL du Site :"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:69
+msgid "Test Text Email"
+msgstr "Test Texte Email"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:76
+msgid "Test Time"
+msgstr "Test Heure"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:82
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:83
+msgid "Time zone"
+msgstr "Fuseau horaire"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:88
+msgid "Test Date Picker"
+msgstr "Test Sélecteur de Date"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:94
+msgid "Test Date Picker (UNIX timestamp)"
+msgstr "﻿Test de Date Picker (horodatée UNIX)"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:101
+msgid "Test Date/Time Picker Combo (UNIX timestamp)"
+msgstr "Test  Date/Horaire sélectionné (horodatée UNIX)"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:116
+msgid "Test Money"
+msgstr "Test Monnaie"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:124
+msgid "Test Color Picker"
+msgstr "Test de Color Picker"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:131
+msgid "Test Text Area"
+msgstr "Test zone de texte"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:137
+msgid "Test Text Area Small"
+msgstr "Test petite zone de texte"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:143
+msgid "Test Text Area for Code"
+msgstr "Test de Zone de texte pour le code"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:149
+msgid "Test Title Weeeee"
+msgstr "Test Weeeee"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:150
+msgid "This is a title description"
+msgstr "C'est un titre de description"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:155
+msgid "Test Select"
+msgstr "Test Sélection"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:160
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:171
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:182
+msgid "Option One"
+msgstr "Option 1"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:161
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:172
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:183
+msgid "Option Two"
+msgstr "Option 2"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:162
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:173
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:184
+msgid "Option Three"
+msgstr "Option 3"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:166
+msgid "Test Radio inline"
+msgstr "Boutons radio inline"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:177
+msgid "Test Radio"
+msgstr "Test  Radio"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:188
+msgid "Test Taxonomy Radio"
+msgstr "Test Bouton Radio des taxonomies"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:196
+msgid "Test Taxonomy Select"
+msgstr "Test de Sélection de la Taxonomie"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:203
+msgid "Test Taxonomy Multi Checkbox"
+msgstr "Test de Taxonomie du Multi Checkbox"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:211
+msgid "Test Checkbox"
+msgstr "Teste  Checkbox"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:217
+msgid "Test Multi Checkbox"
+msgstr "Teste case à cocher multiple"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:222
+msgid "Check One"
+msgstr "Sélectionnez en un"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:223
+msgid "Check Two"
+msgstr "Sélectionnez en deux"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:224
+msgid "Check Three"
+msgstr "Sélectionnez en trois"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:229
+msgid "Test wysiwyg"
+msgstr "Test wysiwyg"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:236
+msgid "Test Image"
+msgstr "Image de Test"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:237
+msgid "Upload an image or enter a URL."
+msgstr "Télécharger une image ou entrer une URL."
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:242
+msgid "Multiple Files"
+msgstr "Plusieurs fichiers"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:243
+msgid "Upload or add multiple images/attachments."
+msgstr "Télécharger ou ajouter plusieurs images / pièces jointes."
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:249
+msgid "oEmbed"
+msgstr "oEmbed"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:250
+msgid ""
+"Enter a youtube, twitter, or instagram URL. Supports services listed at <a "
+"href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
+"Embeds</a>."
+msgstr ""
+"Entrez une URL YouTube, Twitter, ou Instagram. Liste des services pris en "
+"charge sur <a href=\"http://codex.wordpress.org/Embeds\">http://codex."
+"wordpress.org/Embeds</a> ."
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:262
+msgid "About Page Metabox"
+msgstr "À propos de la page Metabox"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:283
+msgid "Repeating Field Group"
+msgstr "Groupe de champs en repetition"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:289
+msgid "Generates reusable form entries"
+msgstr "Génère des entrées de formulaire réutilisables"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:291
+msgid "Entry {#}"
+msgstr "Entrée {#}"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:292
+msgid "Add Another Entry"
+msgstr "Ajouter une autre entrée"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:293
+msgid "Remove Entry"
+msgstr "Supprimer une entrée"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:330
+msgid "User Profile Metabox"
+msgstr "Metabox du Profil d'utilisateur"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:336
+msgid "Extra Info"
+msgstr "Infos complémentaires"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:343
+msgid "Avatar"
+msgstr "Logo"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:350
+msgid "Facebook URL"
+msgstr "URL Facebook"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:356
+msgid "Twitter URL"
+msgstr "URL Twitter"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:362
+msgid "Google+ URL"
+msgstr "URL Google+"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:368
+msgid "Linkedin URL"
+msgstr "URL LinkedIn"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:374
+msgid "User Field"
+msgstr "Champs de l’utilisateur"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:388
+msgid "Theme Options Metabox"
+msgstr "Options Theme Metabox"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/example-functions.php:392
+msgid "Site Background Color"
+msgstr "Couleur d'arrière-plan du site"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:250
+msgid "Add Row"
+msgstr "Ajouter une colonne"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:306
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:706
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:768
+msgid "Remove"
+msgstr "Supprimer"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:601
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:635
+msgid "No terms"
+msgstr "Aucun termes"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:674
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:728
+msgid "Add or Upload File"
+msgstr "Ajouter ou télécharger un fichier"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:695
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:760
+msgid "Remove Image"
+msgstr "Supprimer l’image"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:706
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_types.php:768
+msgid "File:"
+msgstr "Fichier:"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_ajax.php:47
+msgid "Please Try Again"
+msgstr "Réessayez."
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_ajax.php:131
+msgid "Remove Embed"
+msgstr "Suppression de l’intégration"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_ajax.php:134
+#, php-format
+msgid "No oEmbed Results Found for %s. View more info at"
+msgstr "Aucun résultat trouvé pour oEmbed pour %s. Voir plus sur"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_field.php:459
+msgid "Add Group"
+msgstr "Ajouter un groupe"
+
+#: ../../vendor/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress/helpers/cmb_Meta_Box_field.php:460
+msgid "Remove Group"
+msgstr "Supprimer un groupe"
+
+#: ../../views/settings.php:12
+msgid "About"
+msgstr "À propos"
+
+#: ../../views/settings.php:66
+msgid "Plugin Requirements"
+msgstr "Prérequis techniques pour le plugin"
+
+#: ../../views/settings.php:118
+msgid "Main settings"
+msgstr "Paramètres principaux"
+
+#: ../../views/settings.php:123
+msgid "Show PDFs in Menu"
+msgstr "Afficher les fichiers PDF dans Menu"
+
+#: ../../views/settings.php:124
+msgid "Show PDFs menu item in the left admin sidebar"
+msgstr "Afficher PDF dans le menu admin, barre latérale gauche"
+
+#: ../../views/settings.php:142
+msgid "Do not check GhostScript installation"
+msgstr "Ne pas vérifier l'installation GhostScript"
+
+#: ../../views/settings.php:143
+msgid ""
+"For cases, when you are sure that GhostScript is installed, but it was not "
+"detected by the plugin correctly."
+msgstr ""
+"Pour les cas, lorsque vous êtes sûr que GhostScript est installé, mais il "
+"n'a pas été détecté par le plugin correctement."
+
+#: ../../views/settings.php:180
+msgid "Personal Support"
+msgstr "Support"
+
+#: ../../views/settings.php:190
+#, php-format
+msgid "Support request, plugin: %s (time: %s)"
+msgstr "Support request, plugin: %s (time: %s)"
+
+#: ../../views/settings.php:195
+#, php-format
+msgid ""
+"To get support please contact us on forum <a target=\"_blank\" href=\"%s\">"
+"%s</a> or by email <a target=\"_blank\" href=\"%s\">%s</a>. Please also "
+"attach information below to let us know more about your server and site "
+"environment - this could be helpful to solve the issue."
+msgstr ""
+"Pour obtenir de l' aide s'il vous plaît nous contacter sur le forum <a "
+"target=\"_blank\" href=\"%s\">%s</a> ou par courriel <a target=\"_blank\" "
+"href=\"%s\">%s</a> . S'il vous plaît également joindre des informations ci-"
+"dessous pour nous faire savoir plus sur votre environnement serveur et le "
+"site - cela pourrait être utile pour résoudre le problème."
+
+#: ../../views/settings.php:204
+msgid "Subject"
+msgstr "Sujet"
+
+#: ../../views/settings.php:210
+msgid "Server Info"
+msgstr "Informations serveur"
+
+#: ../../views/settings.php:230
+msgid "Theme"
+msgstr "Thème"
+
+#: ../../views/settings.php:239
+msgid "from"
+msgstr "de"
+
+#: ../../views/settings.php:249
+msgid "Plugins"
+msgstr "Plugins/Extensions"
+
+#: ../../views/settings.php:277
+msgid "Today's log file"
+msgstr "Le fichier journal d'aujourd'hui"
+
+#: ../../views/settings.php:287
+msgid "Today's log file doesn't exist"
+msgstr "Il n'existe pas dans le fichier journal d'aujourd'hui"
+
+#: ../../views/settings.php:303
+msgid "Documentation"
+msgstr "Documentation"
+
+#: ../../views/settings.php:304
+msgid "open in the separate tab"
+msgstr "ouvert dans l'onglet séparé"
+
+#: ../../views/metabox/usage.php:12
+msgid "You have not yet converted the PDF."
+msgstr "Vous n'êtes pas encore converti des PDF."
+
+#: ../../views/metabox/usage.php:13
+msgid ""
+"Note: it normally takes just 60 to 90 seconds for the conversion of small "
+"PDF file after submission. Thank you for your patience!"
+msgstr ""
+"Remarque: il faut normalement entre 60 et 90 secondes pour la conversion "
+"d'un petit fichier PDF. Merci pour votre patience !"

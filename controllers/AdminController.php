@@ -103,17 +103,13 @@ class PdfLightViewer_AdminController {
 	// ajax
 		public static function registerAjaxHandlers() {
 			
-			if (!PdfLightViewer_Model::$unimported) {
-				PdfLightViewer_Model::$unimported = PdfLightViewer_Model::getOneUnimported();
-			}
-			if (
-                !empty(PdfLightViewer_Model::$unimported)
-                && !has_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_ping_import')
-            ) {
+			if (!has_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_ping_import')) {
 				add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_ping_import', array('PdfLightViewer_PdfController','pdf_partially_import'));
 			}
 			
 			add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_notification_viewed', array(__CLASS__,'notification_viewed'));
+            
+            add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_cancel_import', array('PdfLightViewer_PdfController', 'cancel_import'));
 		}
 		
 		public static function notification_viewed() {

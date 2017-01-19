@@ -117,6 +117,8 @@ class PdfLightViewer_FrontController {
 	
 	public static function display_pdf_book($atts = array()) {
 		global $pdf_light_viewer_config;
+        
+        PdfLightViewer_AssetsController::frontendEnqueue();
 	
 		if (!isset($atts['id']) || !$atts['id']) {
 			return;
