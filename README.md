@@ -9,7 +9,7 @@
   
 **Tested up to:** 4.6
 
-**Stable tag:** 1.3.15
+**Stable tag:** 1.3.16
   
 **License:** GPLv2
   
@@ -79,6 +79,12 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 ## Other Notes ##
 
 ## Changelog ##
+
+## 1.3.16 - 2017-02-10
+* Fix for ghostscript usage during the import (for wrong resolution issue)
+* Setting to force two-pages layout for some screen sizes
+* Enable/disable Zoom interactively
+* Zoom magnify option
 
 ## 1.3.15 - 2017-01-19
 * Stop import possibility

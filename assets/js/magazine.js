@@ -73,7 +73,7 @@ var PDFLightViewerApp;
           });
 				
 				var flipbook = magazine.turn({
-					display: (magazine.data('force-one-page-layout') ? 'single' : 'double'),
+					display: (magazine.data('page-layout') == 'single' ? 'single' : 'double'),
 					width: (magazine.data('width') * 2), // Magazine width
 					height: magazine.data('height'), // Magazine height
 					duration: 1000, // Duration in millisecond
@@ -300,6 +300,20 @@ var PDFLightViewerApp;
             }
           });
           
+        // zoom toggler
+          $('.js-pdf-light-viewer-toggle-zoom', instance).on('click', function(e) {
+            e.preventDefault();
+            
+            if (instance.data('enable-zoom')) {
+              instance.data('enable-zoom', 0);
+              self.zoom.disable(instance);
+            }
+            else {
+              instance.data('enable-zoom', 1);
+              self.zoom.enable(instance);
+            }
+          });
+          
         // per page download
           if ($('.js-pdf-light-viewer-download-options', instance).size()) {
             $('.js-pdf-light-viewer-download-options', instance).each(function() {
@@ -395,7 +409,7 @@ var PDFLightViewerApp;
 			
 			resize: function(viewport, magazine, ratio_single, ratio_double) {
 				
-        var force_single = magazine.data('force-one-page-layout');
+        var page_layout = magazine.data('page-layout');
         
 				setTimeout(function() {
 					var
@@ -403,20 +417,33 @@ var PDFLightViewerApp;
 					    size,
 					    self = PDFLightViewerApp.self;
 				
-					if (screenfull.isFullscreen && !force_single) {
-						magazine.turn('display', 'double');
-						ratio = ratio_double;
-					}
-					else {
-						if (viewport.width() >= 800 && !force_single) {
-							magazine.turn('display', 'double');
-							ratio = ratio_double;
-						}
-						else {
-							magazine.turn('display', 'single');
-							ratio = ratio_single;
-						}
-					}
+          if (page_layout == 'single') {
+            magazine.turn('display', 'single');
+            ratio = ratio_single;
+          }
+          else if (page_layout == 'double')  {
+            magazine.turn('display', 'double');
+            ratio = ratio_double;
+          }
+          
+          // adaptive
+          else {
+            if (screenfull.isFullscreen) {
+              magazine.turn('display', 'double');
+              ratio = ratio_double;
+            }
+            else {
+              if (viewport.width() >= 800) {
+                magazine.turn('display', 'double');
+                ratio = ratio_double;
+              }
+              else {
+                magazine.turn('display', 'single');
+                ratio = ratio_single;
+              }
+            }
+          }
+          
 					size = self.getViewportSize(viewport.width(), viewport.height(), ratio, magazine);
 					
 					magazine.turn('size', size.width, size.height);
@@ -439,10 +466,35 @@ var PDFLightViewerApp;
 					if (instance.data('enable-zoom') && instance.data('enable-zoom') == true) {
 						var page = $('.page.p'+page, magazine);
 						page.zoom({
-							url: $('img', page).attr('data-original')
+							url: $('img', page).attr('data-original'),
+              magnify: instance.data('zoom-magnify') || 1
 						});
 					}
-				}
+				},
+        
+        enable: function(instance) {
+          var
+            magazine = $('.js-pdf-light-viewer-magazine', instance);
+            
+          $('.page', magazine).each(function() {
+            var page = $(this);
+            page.zoom({
+              url: $('img', page).attr('data-original'),
+              magnify: instance.data('zoom-magnify') || 1
+            });
+          });
+        },
+        
+        disable: function(instance) {
+          var
+            magazine = $('.js-pdf-light-viewer-magazine', instance);
+            
+          $('.page', magazine).each(function() {
+            var page = $(this);
+            page.trigger('zoom.destroy');
+          });
+          
+        }
 			},
       
       preloadImages: function(magazine) {

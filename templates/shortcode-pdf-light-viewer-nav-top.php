@@ -13,7 +13,7 @@
 	?>
 		<div class="pdf-light-viewer js-pdf-light-viewer"
 			data-enable-zoom="<?php echo !$pdf_light_viewer_config['disable_page_zoom'];?>"
-			>
+			data-zoom-magnify="<?php echo $pdf_light_viewer_config['zoom_magnify']?>">
 			
 			<?php do_action(PDF_LIGHT_VIEWER_PLUGIN.':shortcode_template_start', $pdf_light_viewer_config['id']) ?>
 			
@@ -37,7 +37,7 @@
 						data-width="<?php echo $pdf_light_viewer_config['page_width'] ?>"
 						data-height="<?php echo $pdf_light_viewer_config['page_height'] ?>"
 						data-pages-count="<?php echo count($pdf_light_viewer_config['pages']) ?>"
-						data-force-one-page-layout="<?php echo $pdf_light_viewer_config['force_one_page_layout'] ?>"
+						data-page-layout="<?php echo $pdf_light_viewer_config['page_layout'] ?>"
                         data-download-page-format="<?php echo $pdf_light_viewer_config['download_page_format'] ?>">
 						<?php foreach($pdf_light_viewer_config['pages'] as $number => $page) {
 							?>

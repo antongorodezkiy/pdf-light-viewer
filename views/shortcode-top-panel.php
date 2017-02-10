@@ -60,9 +60,9 @@ global $pdf_light_viewer_config;
 
 <?php if (!$pdf_light_viewer_config['disable_page_zoom']) { ?>
     <li>
-        <span title="<?php _e('Zoom enabled',PDF_LIGHT_VIEWER_PLUGIN);?>">
+        <a class="js-pdf-light-viewer-toggle-zoom" href="#!" title="<?php _e('Zoom enabled',PDF_LIGHT_VIEWER_PLUGIN);?>">
             <i class="icons slicon-frame"></i>
-        </span>
+        </a>
     </li>
 <?php } ?>
 
