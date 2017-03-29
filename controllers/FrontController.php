@@ -125,11 +125,18 @@ class PdfLightViewer_FrontController {
 		}
 		
 		$post = get_post($atts['id']);
+        
 		if (
             empty($post)
             || !$post->ID
             || $post->post_type != PdfLightViewer_PdfController::$type
-            || $post->post_status != 'publish'
+            || !(
+                $post->post_status == 'publish'
+                || (
+                    $post->post_status == 'private'
+                    && current_user_can('read_private_posts', $post)
+                )
+            )
         ) {
 			return;
 		}
