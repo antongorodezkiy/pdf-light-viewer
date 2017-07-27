@@ -1,18 +1,18 @@
 # Wordpress PDF Light Viewer Plugin #
 **Contributors:** antongorodezkiy, teamleadpower
-  
+
 **Tags:** pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
-  
-**Donate link:** 
-  
+
+**Donate link:**
+
 **Requires at least:** 3.5
-  
+
 **Tested up to:** 4.7
 
-**Stable tag:** 1.3.17
-  
+**Stable tag:** 1.3.18
+
 **License:** GPLv2
-  
+
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description ##
@@ -79,6 +79,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 ## Other Notes ##
 
 ## Changelog ##
+
+# 1.3.18 - 2017-07-27
+* PDF support improvement
 
 ## 1.3.17 - 2017-03-29
 * Private PDFs fix
@@ -239,7 +242,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 ### 1.1.1-1.1.2 - 2015-07-15 ###
 * Added information about GhostScript to the documentation - thanks to Alexander
 * Improved requirements section
-					
+
 ### 1.1.0 - 2015-06-02 ###
 * Improved CMYK PDF import
 * Improved admin import status messages
