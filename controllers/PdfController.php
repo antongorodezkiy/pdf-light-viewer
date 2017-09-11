@@ -682,7 +682,7 @@ class PdfLightViewer_PdfController {
 
             @shell_exec($commnad);
 
-            $first_page_path = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
+            $first_page_path = $first_page_image_path = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
         }
         else {
             $first_page_path = $pdf_file_path;
@@ -701,6 +701,10 @@ class PdfLightViewer_PdfController {
             }
 
             $Imagick->destroy();
+        }
+
+        if (file_exists($first_page_image_path) && is_file($first_page_image_path)) {
+            unlink($first_page_image_path);
         }
 
         return $geometry;
