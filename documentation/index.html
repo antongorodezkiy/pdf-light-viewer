@@ -566,7 +566,7 @@
 				</p>
 				<ul>
 					<li>
-						<code>id</code> (required), this is ID of the PDF post, you can
+						<code>id</code> (required), this is ID of the PDF post, you can embed
 					</li>
 					<li>
 						<code>template</code> (optional), you can specify template name to override default. Template name can be any, that accepted by <a href="http://codex.wordpress.org/Function_Reference/get_template_part" target="_blank">get_template_part()</a> function.
@@ -607,6 +607,24 @@
 							<li><code>one-page-with-list-nav</code> - One page with list navigation</li>
 							<li><code>one-page-with-thumbs-nav</code> - One page with thumbnails navigation</li>
 						</ul>
+					</li>
+				</ul>
+
+                <p>
+					<span class="pure-button pure-button-primary">PRO</span>
+					Shortcode <code>[pdf-light-viewer-popup]</code>
+					as well as <code>PdfLightViewerPro_FrontController::display_pdf_book_popup($atts = array())</code>
+					has following parameters:</p>
+				</p>
+				<ul>
+                    <li>
+						<code>id</code> (required), this is ID of the PDF post, you can embed
+					</li>
+                    <li>
+						<code>width</code> (optional), maximum popup width. Default is 1024
+					</li>
+                    <li>
+						<code>height</code> (optional), maximum popup height. Default is 768
 					</li>
 				</ul>
 
