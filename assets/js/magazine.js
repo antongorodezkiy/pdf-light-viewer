@@ -1,27 +1,29 @@
 var PDFLightViewerApp;
 
 (function($) {
-	
+
 	$(document).ready(function() {
-		
+
 		PDFLightViewerApp = {
 			self: null,
-			
+      sliders: {},
+
 			init: function() {
 				var self = this;
 				PDFLightViewerApp.self = self;
-				
+
 				if (!$('.js-pdf-light-viewer').size()) {
 					return;
 				}
-				
-				$('.js-pdf-light-viewer').each(function() {
+
+				$('.js-pdf-light-viewer').each(function(index) {
+          console.log("el, i", index);
 					var instance = $(this);
-					self.magazine(instance);
+					self.magazine(instance, index);
 				});
 			},
-			
-			magazine: function(instance) {
+
+			magazine: function(instance, index) {
 				var
           self = PDFLightViewerApp.self,
 					viewport = $('.js-pdf-light-viewer-magazine-viewport', instance),
@@ -29,10 +31,10 @@ var PDFLightViewerApp;
 					ratio_single = magazine.data('width') / magazine.data('height'),
 					ratio_double = (magazine.data('width')*2) / magazine.data('height'),
 					loaded_pdf_pages = [];
-          
+
         // preload images
           self.preloadImages(magazine);
-          
+
         // per page download (need it before init)
           $(document).on('pdf-light-viewer.turned', function(event, data) {
             if ($('.js-pdf-light-viewer-magazine', data.instance).turn('display') == 'single') {
@@ -43,7 +45,7 @@ var PDFLightViewerApp;
               var pages = [data.page,data.neighborhood_page];
               var neighborhood_page = data.neighborhood_page;
             }
-            
+
             var href = $('.page.p'+data.page+' .js-pdf-light-viewer-lazy-loading', data.instance).data('original');
             switch (magazine.data('download-page-format')) {
               case 'pdf':
@@ -53,7 +55,7 @@ var PDFLightViewerApp;
                 break;
             }
             $('.js-pdf-light-viewer-download-page', data.instance).attr('href', href);
-            
+
             if (neighborhood_page) {
               href = $('.page.p'+data.neighborhood_page+' .js-pdf-light-viewer-lazy-loading', data.instance).data('original');
               switch (magazine.data('download-page-format')) {
@@ -71,7 +73,7 @@ var PDFLightViewerApp;
               $('.js-pdf-light-viewer-download-neighborhood-page', data.instance).hide();
             }
           });
-				
+
 				var flipbook = magazine.turn({
 					display: (magazine.data('page-layout') == 'single' ? 'single' : 'double'),
 					width: (magazine.data('width') * 2), // Magazine width
@@ -83,32 +85,32 @@ var PDFLightViewerApp;
 					autoCenter: false,
 					when: {
 						turning: function(event, page, view) {
-							
+
 							var book = $(this),
 							currentPage = book.turn('page'),
 							pages = book.turn('pages');
-							
+
               magazine.data('current-page', page);
-					
+
 							// Update the current URI
 							if (PdfLightViewer.settings.enable_hash_nav) {
                 Hash.go('page/' + page).update();
               }
-		
+
 							$('.js-pdf-light-viewer-magazine-thumbnails .page-'+currentPage, instance).parent().removeClass('current');
-		
+
 							$('.js-pdf-light-viewer-magazine-thumbnails .page-'+page, instance).parent().addClass('current');
-		
+
 						},
 						turned: function(event, page) {
-							
+
 							if (magazine.data('current-page')) {
 								page = magazine.data('current-page');
 							}
 							else {
 								magazine.data('current-page', page);
 							}
-							
+
 							if (
 								typeof(page) == "undefined"
 								|| page == "undefined"
@@ -120,15 +122,15 @@ var PDFLightViewerApp;
 							) {
 								return;
 							}
-							
+
 							var
 								is_first_page = (magazine.data('current-page') == 1),
 								is_last_page = (magazine.data('pages-count') == magazine.data('current-page')),
 								is_left_page = ((magazine.data('current-page') % 2) == 0),
 								is_right_page = ((magazine.data('current-page') % 2) != 0),
 								neighborhood_page = null;
-							
-							if (is_first_page || (is_last_page && is_left_page)) { 
+
+							if (is_first_page || (is_last_page && is_left_page)) {
 								$(this).turn('peel', 'br');
 								neighborhood_page = null;
 							}
@@ -141,16 +143,16 @@ var PDFLightViewerApp;
 									neighborhood_page = page - 1;
 								}
 							}
-              
+
               if (parseInt(neighborhood_page) > magazine.data('pages-count')) {
                 neighborhood_page = null;
               }
-              
+
               var preloadPages = [
                 page,
                 page - 1
               ];
-              
+
               if (neighborhood_page) {
                 preloadPages.push(neighborhood_page);
                 preloadPages.push(neighborhood_page + 1);
@@ -159,14 +161,14 @@ var PDFLightViewerApp;
                 preloadPages.push(page + 1);
                 preloadPages.push(page + 2);
               }
-              
+
               for (var preloadPageKey in preloadPages) {
                 var preloadPage = preloadPages[preloadPageKey];
-                
+
                 if (typeof preloadPage != 'number') {
                   continue;
                 }
-                
+
                 if (
                   typeof(loaded_pdf_pages[preloadPage]) == 'undefined'
                   && $('.js-pdf-light-viewer-lazy-loading-'+preloadPage, instance).size()
@@ -178,20 +180,20 @@ var PDFLightViewerApp;
                   .trigger('lazyload')
                   .trigger('scroll')
                   .trigger('appear'); // to fix cases when image is not loading
-                  
+
                   loaded_pdf_pages[preloadPage] = preloadPage;
                 }
               }
-              
+
 							self.zoom.initSingle(instance, magazine, page);
-              
+
               $(document).trigger('pdf-light-viewer.turned', {
                 instance: instance,
                 magazine: magazine,
                 page: page,
                 neighborhood_page: neighborhood_page
               });
-              
+
               if ($('.js-pdf-light-viewer-current-page-indicator', instance).size()) {
                 if (magazine.turn('display') == 'single' || !neighborhood_page) {
                   $('.js-pdf-light-viewer-current-page-indicator', instance).text(page + ' / ' + magazine.data('pages-count'));
@@ -205,26 +207,26 @@ var PDFLightViewerApp;
                   }
                 }
               }
-              
+
               instance.data('current-page', page);
               instance.data('current-neighborhood-page', neighborhood_page);
-							
+
 							self.zoom.initSingle(instance, magazine, neighborhood_page);
 						}
 					}
 				});
-				
+
 				// Events for thumbnails
 					$('.js-pdf-light-viewer-magazine-thumbnails a.js-page-thumbnail', instance).on('click', function(event) {
 						event.preventDefault();
-						
+
 						var page;
 						var css_class = $(event.currentTarget).attr('class');
 						if (event.currentTarget && (page=/page-([0-9]+)/.exec(css_class)) ) {
 							magazine.turn('page', page[1]);
 						}
 					});
-				
+
 					$('.js-pdf-light-viewer-magazine-thumbnails .slide', instance)
 						.bind($.mouseEvents.over, function() {
 							$(this).addClass('thumb-hover');
@@ -232,9 +234,9 @@ var PDFLightViewerApp;
 						.bind($.mouseEvents.out, function() {
 							$(this).removeClass('thumb-hover');
 						});
-				
+
 				// thumbnails slider
-					$('.js-pdf-light-viewer-magazine-thumbnails ul', instance).bxSlider({
+					PDFLightViewerApp.sliders[index] = $('.js-pdf-light-viewer-magazine-thumbnails ul', instance).bxSlider({
 						slideWidth: 154,
 						minSlides: 1,
 						maxSlides: 6,
@@ -244,7 +246,7 @@ var PDFLightViewerApp;
 						prevText: '<i class="icons slicon-arrow-left-circle"></i>',
 						nextText: '<i class="icons slicon-arrow-right-circle"></i>'
 					});
-					
+
 				// pages fulscreen
 					if (screenfull.enabled) {
 						$('.js-pdf-light-viewer-fullscreen', instance).click(function(e) {
@@ -256,7 +258,7 @@ var PDFLightViewerApp;
                 screenfull.request(instance.get(0));
 							}
 						});
-						
+
 						$(document).bind(screenfull.raw.fullscreenchange, function() {
 							if (screenfull.isFullscreen) {
 								instance.addClass('pdf-light-viewer-fullscreen');
@@ -264,25 +266,25 @@ var PDFLightViewerApp;
 							else {
 								instance.removeClass('pdf-light-viewer-fullscreen');
 							}
-							
+
 						});
 					}
 					else {
 						// if not supported
 						$('.js-pdf-light-viewer-fullscreen', instance).parent().remove();
 					}
-          
+
         // toolbar arrows
           $('.js-pdf-light-viewer-previous-page', instance).click(function(e) {
             e.preventDefault();
             magazine.turn('previous');
           });
-          
+
           $('.js-pdf-light-viewer-next-page', instance).click(function(e) {
             e.preventDefault();
             magazine.turn('next');
           });
-          
+
           $('.js-pdf-light-viewer-goto-page', instance).on('click', function(e) {
             e.preventDefault();
             var page = parseInt($('.js-pdf-light-viewer-goto-page-input', instance).val());
@@ -290,7 +292,7 @@ var PDFLightViewerApp;
               magazine.turn('page', page);
             }
           });
-          
+
           $('.js-pdf-light-viewer-goto-page-input', instance).on('keypress', function(e) {
             if (e.keyCode == 13) {
               var page = parseInt($(this).val());
@@ -299,11 +301,11 @@ var PDFLightViewerApp;
               }
             }
           });
-          
+
         // zoom toggler
           $('.js-pdf-light-viewer-toggle-zoom', instance).on('click', function(e) {
             e.preventDefault();
-            
+
             if (instance.data('enable-zoom')) {
               instance.data('enable-zoom', 0);
               self.zoom.disable(instance);
@@ -313,7 +315,7 @@ var PDFLightViewerApp;
               self.zoom.enable(instance);
             }
           });
-          
+
         // per page download
           if ($('.js-pdf-light-viewer-download-options', instance).size()) {
             $('.js-pdf-light-viewer-download-options', instance).each(function() {
@@ -337,53 +339,56 @@ var PDFLightViewerApp;
               });
             });
           }
-					
+
 				// window resize
 					window.addEventListener('resize', function (e) {
 						self.resize(viewport, magazine, ratio_single, ratio_double);
 					});
 					self.resize(viewport, magazine, ratio_single, ratio_double);
 			},
-			
+
       triggerRecalculateAllSizes: function() {
-        
+
         $(window).trigger('resize');
-        
-        $('.js-pdf-light-viewer').each(function() {
+
+        $('.js-pdf-light-viewer').each(function(index) {
 					var instance = $(this);
-					
+
           var
             self = PDFLightViewerApp.self,
             viewport = $('.js-pdf-light-viewer-magazine-viewport', instance),
             magazine = $('.js-pdf-light-viewer-magazine', instance),
             ratio_single = magazine.data('width') / magazine.data('height'),
             ratio_double = (magazine.data('width')*2) / magazine.data('height');
-            
+
           self.resize(viewport, magazine, ratio_single, ratio_double);
-          
+
           instance
             .trigger('lazyload')
             .trigger('scroll')
             .trigger('appear');
+
+          // thumbnail sliders
+          PDFLightViewerApp.sliders[index].redrawSlider();
 				});
       },
-      
+
 			getViewportSize: function(width, height, ratio, magazine) {
-				
+
         width -= 20;
-        
+
         if (
           magazine.data('max-book-width')
           && width > magazine.data('max-book-width')
         ) {
           width = magazine.data('max-book-width') - 20;
         }
-				
+
 				var size = {
 					width: width,
 					height: Math.round(width / ratio)
 				};
-        
+
         if (
           magazine.data('max-book-height')
           && size.height > magazine.data('max-book-height')
@@ -393,7 +398,7 @@ var PDFLightViewerApp;
             height: magazine.data('max-book-height')
           };
         }
-        
+
         if (magazine.data('limit-fullscreen-book-height')) {
           var fullScreenHeight = $('.js-pdf-light-viewer.pdf-light-viewer-fullscreen .js-pdf-light-viewer-magazine-viewport').height();
           if (fullScreenHeight && size.height > fullScreenHeight) {
@@ -403,20 +408,20 @@ var PDFLightViewerApp;
             };
           }
         }
-        
+
 				return size;
 			},
-			
+
 			resize: function(viewport, magazine, ratio_single, ratio_double) {
-				
+
         var page_layout = magazine.data('page-layout');
-        
+
 				setTimeout(function() {
 					var
 					    ratio,
 					    size,
 					    self = PDFLightViewerApp.self;
-				
+
           if (page_layout == 'single') {
             magazine.turn('display', 'single');
             ratio = ratio_single;
@@ -425,7 +430,7 @@ var PDFLightViewerApp;
             magazine.turn('display', 'double');
             ratio = ratio_double;
           }
-          
+
           // adaptive
           else {
             if (screenfull.isFullscreen) {
@@ -443,26 +448,26 @@ var PDFLightViewerApp;
               }
             }
           }
-          
+
 					size = self.getViewportSize(viewport.width(), viewport.height(), ratio, magazine);
-					
+
 					magazine.turn('size', size.width, size.height);
-					
+
 					var
 						is_first_page = (magazine.data('current-page') == 1),
 						is_last_page = (magazine.data('pages-count') == magazine.data('current-page')),
 						is_left_page = ((magazine.data('current-page') % 2) == 0),
 						is_right_page = ((magazine.data('current-page') % 2) != 0);
-					
-					if (is_first_page || (is_last_page && is_left_page)) { 
-					
+
+					if (is_first_page || (is_last_page && is_left_page)) {
+
 					}
 				}, 0);
 			},
-			
+
 			zoom: {
 				initSingle: function(instance, magazine, page) {
-					
+
 					if (instance.data('enable-zoom') && instance.data('enable-zoom') == true) {
 						var page = $('.page.p'+page, magazine);
 						page.zoom({
@@ -471,11 +476,11 @@ var PDFLightViewerApp;
 						});
 					}
 				},
-        
+
         enable: function(instance) {
           var
             magazine = $('.js-pdf-light-viewer-magazine', instance);
-            
+
           $('.page', magazine).each(function() {
             var page = $(this);
             page.zoom({
@@ -484,19 +489,19 @@ var PDFLightViewerApp;
             });
           });
         },
-        
+
         disable: function(instance) {
           var
             magazine = $('.js-pdf-light-viewer-magazine', instance);
-            
+
           $('.page', magazine).each(function() {
             var page = $(this);
             page.trigger('zoom.destroy');
           });
-          
+
         }
 			},
-      
+
       preloadImages: function(magazine) {
         $('img', magazine).each(function() {
           var img = $(this);
@@ -505,12 +510,12 @@ var PDFLightViewerApp;
       }
 		};
 		PDFLightViewerApp.init();
-		
+
 		// hash and keyboard controls only when we have one PDF on the page
 		if ($('.js-pdf-light-viewer').size() == 1 && PdfLightViewer.settings.enable_hash_nav) {
 
 			$(window).bind('keydown', function(e){
-		
+
 				if (e.keyCode == 37) {
 					$('.js-pdf-light-viewer-magazine').turn('previous');
 				}
@@ -518,12 +523,12 @@ var PDFLightViewerApp;
 					$('.js-pdf-light-viewer-magazine').turn('next');
 				}
 			});
-		
-			// URIs - Format #/page/1 
+
+			// URIs - Format #/page/1
 			Hash.on('^page\/([0-9]*)$', {
 				yep: function(path, parts) {
 					var page = parts[1];
-		
+
 					if (page !== undefined) {
 						if ($('.js-pdf-light-viewer-magazine').turn('is')) {
 							$('.js-pdf-light-viewer-magazine').turn('page', page);
@@ -536,8 +541,8 @@ var PDFLightViewerApp;
 					}
 				}
 			});
-		
+
 		}
 	});
-	
+
 })(jQuery);

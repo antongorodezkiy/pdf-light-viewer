@@ -7,9 +7,9 @@
 
 **Requires at least:** 3.5
 
-**Tested up to:** 4.7
+**Tested up to:** 4.9
 
-**Stable tag:** 1.3.19
+**Stable tag:** 1.3.20
 
 **License:** GPLv2
 
@@ -54,6 +54,8 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * Document printing.
 * Per-page printing.
 * SEO friendly mode.
+* All PDFs search (beta)
+* PDF in popup (beta)
 
 ## Installation ##
 1. Get the package
@@ -79,6 +81,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 ## Other Notes ##
 
 ## Changelog ##
+
+## 1.3.20 - 2018-02-06
+* PDF Light Viewer Pro Addon 0.1.7 compatibility
 
 ## 1.3.19 - 2017-09-11
 * First page thumbnail bug fix

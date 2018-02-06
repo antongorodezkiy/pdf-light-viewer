@@ -3,7 +3,7 @@
 	Plugin Name: PDF Light Viewer Plugin
 	Plugin URI: http://pdf-light-viewer.wp.teamlead.pw/
 	Description: Wordpress plugin to embed normal, large and very large pdf documents to the wordpress site as flipbooks with thumbnail navigation.
-	Version: 1.3.19
+	Version: 1.3.20
 	Author: Teamlead Power
 	Author URI: http://teamlead.pw/
 	License: GPLv2
