@@ -17,7 +17,6 @@ var PDFLightViewerApp;
 				}
 
 				$('.js-pdf-light-viewer').each(function(index) {
-          console.log("el, i", index);
 					var instance = $(this);
 					self.magazine(instance, index);
 				});
