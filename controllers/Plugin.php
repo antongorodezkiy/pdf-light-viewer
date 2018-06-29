@@ -423,7 +423,14 @@ class PdfLightViewer_Plugin {
 
         if (function_exists('shell_exec')) {
 
-            if (stristr(php_uname('s'), 'win')) {
+            if (
+                defined('PDF_LIGHT_VIEWER_GHOSTSCRIPT_PATH')
+                && !empty(PDF_LIGHT_VIEWER_GHOSTSCRIPT_PATH)
+            ) {
+                $gsPath = PDF_LIGHT_VIEWER_GHOSTSCRIPT_PATH;
+                $ghostscript_version = @shell_exec($gsPath.' --version');
+            }
+            else if (stristr(php_uname('s'), 'win')) {
                 $gsPath = 'gs';
                 $ghostscript_version = @shell_exec($gsPath.' --version');
             }
@@ -444,6 +451,14 @@ class PdfLightViewer_Plugin {
         }
 
         return array($gsPath, $ghostscript_version);
+    }
+
+    public static function isGhostscriptAvailableViaCli() {
+        list($gsPath, $ghostscript_version) = PdfLightViewer_Plugin::getGhostscript();
+        return (
+            !empty($gsPath)
+            && !empty($ghostscript_version)
+        );
     }
 
 	public static function init() {

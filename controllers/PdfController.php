@@ -260,13 +260,25 @@ class PdfLightViewer_PdfController {
 			'context' => 'normal',
 			'priority' => 'high',
 			'show_names' => true, // Show field names on the left
-			'fields' => array(
+			'fields' => array_filter(array(
 				array(
 					'name' => __('Enable import', PDF_LIGHT_VIEWER_PLUGIN),
 					'desc' => '<b>'.__('Check to import or re-import PDF file', PDF_LIGHT_VIEWER_PLUGIN).'</b>',
 					'id' => 'enable_pdf_import',
 					'type' => 'checkbox'
 				),
+                PdfLightViewer_Plugin::isGhostscriptAvailableViaCli()
+                    ? array(
+                        'desc' => __('Check to convert colors from CMYK to RGB (use only if you are not satisfied with PDF color results)', PDF_LIGHT_VIEWER_PLUGIN),
+                        'name' => __('Convert colors', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'enable_pdf_convert',
+    					'type' => 'checkbox',
+                    )
+                    : array(
+                        'name' => __('Convert colors (not possible)', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'enable_pdf_convert',
+    					'type' => '',
+                    ),
                 array(
 					'name' => __('Import pages', PDF_LIGHT_VIEWER_PLUGIN),
                     'desc' => __('Leave empty to import all. Use numbers for single pages or (e.g. 1-3) for ranges. Few numbers or ranges could be separated by commas (e.g. 2-5,7,9-15).', PDF_LIGHT_VIEWER_PLUGIN),
@@ -305,7 +317,7 @@ class PdfLightViewer_PdfController {
                         'url' => false, // Hide the text input for the url
                     )
 				)
-			),
+			)),
 		);
 
 
@@ -612,6 +624,10 @@ class PdfLightViewer_PdfController {
 					update_post_meta($post_id,'pdf-page-width', $width);
 					update_post_meta($post_id,'pdf-page-height', $height);
 
+                    if (!empty($form_data['enable_pdf_convert'])) {
+                        update_post_meta($post_id, 'enable-pdf-convert', 1);
+                    }
+
 					PdfLightViewer_AdminController::showMessage(
 						sprintf(__('PDF import scheduled.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
 					, false);
@@ -628,6 +644,8 @@ class PdfLightViewer_PdfController {
 		unset($_POST['enable_pdf_import']);
         unset($_REQUEST['import_pages']);
         unset($_POST['import_pages']);
+        unset($_REQUEST['enable_pdf_convert']);
+        unset($_POST['enable_pdf_convert']);
 	}
 
 	public static function getPDFPagesNumber($pdf_file_path) {
@@ -747,6 +765,11 @@ class PdfLightViewer_PdfController {
 
 		$pdf_upload_dir = PdfLightViewer_Plugin::createUploadDirectory($post_id);
 
+        $enable_pdf_convert = (
+            PdfLightViewer_Plugin::get_post_meta($post_id, 'enable-pdf-convert', true)
+            && PdfLightViewer_Plugin::isGhostscriptAvailableViaCli()
+        );
+
 		$jpeg_resolution = PdfLightViewer_Plugin::get_post_meta($post_id,'jpeg_resolution',true);
 		$jpeg_compression_quality = PdfLightViewer_Plugin::get_post_meta($post_id,'jpeg_compression_quality',true);
 
@@ -778,6 +801,11 @@ class PdfLightViewer_PdfController {
 				'error' => __('Cannot detect current imported PDF page.', PDF_LIGHT_VIEWER_PLUGIN)
 			));
 		}
+
+        if ($enable_pdf_convert) {
+            update_post_meta($post_id, 'enable-pdf-convert', false);
+            static::convert_colors($pdf_file_path);
+        }
 
 		$error = '';
         $percent = null;
@@ -881,6 +909,29 @@ class PdfLightViewer_PdfController {
             'error' => __('Import cancelled', PDF_LIGHT_VIEWER_PLUGIN),
 		));
 	}
+
+    public static function convert_colors($path)
+    {
+        list($gsPath, $ghostscript_version) = PdfLightViewer_Plugin::getGhostscript();
+
+        $commnad = $gsPath.' '
+            .'-dSAFER '
+            .'-dBATCH '
+            .'-dNOPAUSE '
+            .'-dNOCACHE '
+            .'-dQUIET '
+            .'-sDEVICE=pdfwrite '
+            .'-sColorConversionStrategy=CMYK '
+            .'-dProcessColorModel=/DeviceCMYK '
+            .'-sOutputFile='.escapeshellcmd($path.'.new').' '
+            .escapeshellcmd($path);
+
+        $result = @shell_exec($commnad);
+
+        if ($result) {
+            //rename($path.'.new', $path);
+        }
+    }
 
 	public static function process_pdf_page(
         $post_id, $current_page, $current_page_doc,
