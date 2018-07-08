@@ -425,7 +425,7 @@ class PdfLightViewer_Plugin {
 
             if (
                 defined('PDF_LIGHT_VIEWER_GHOSTSCRIPT_PATH')
-                && !empty(PDF_LIGHT_VIEWER_GHOSTSCRIPT_PATH)
+                && PDF_LIGHT_VIEWER_GHOSTSCRIPT_PATH
             ) {
                 $gsPath = PDF_LIGHT_VIEWER_GHOSTSCRIPT_PATH;
                 $ghostscript_version = @shell_exec($gsPath.' --version');

@@ -4,7 +4,7 @@ Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link:
 Requires at least: 3.5
 Tested up to: 4.9.6
-Stable tag: 1.3.21
+Stable tag: 1.3.22
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 == Other Notes ==
 
 == Changelog ==
+
+== 1.3.22 - 2018-07-08 ==
+* fix PHP 5.3 compatibility
 
 == 1.3.21 - 2018-06-29 ==
 * Convert colors option added to the PDF import
