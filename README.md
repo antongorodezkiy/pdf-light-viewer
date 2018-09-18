@@ -7,9 +7,9 @@
 
 **Requires at least:** 3.5
 
-**Tested up to:** 4.9.6
+**Tested up to:** 4.9.8
 
-**Stable tag:** 1.3.22
+**Stable tag:** 1.3.23
 
 **License:** GPLv2
 
@@ -81,6 +81,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 ## Other Notes ##
 
 ## Changelog ##
+
+## 1.3.23 - 2018-09-18
+* Option to disable lazy loading to prevent issues when using other lazy loading systems (e.g. Jetpack)
 
 ## 1.3.22 - 2018-07-08
 * fix PHP 5.3 compatibility

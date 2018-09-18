@@ -363,6 +363,12 @@ class PdfLightViewer_PdfController {
 					'id' => 'limit_fullscreen_book_height',
 					'type' => 'checkbox'
 				),
+                array(
+					'name' => '<i class="slicons slicon-picture"></i> ' . __('Disable lazy loading', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => __('May be useful to prevent issues when using other lazy loading systems', PDF_LIGHT_VIEWER_PLUGIN),
+					'id' => 'disable_lazy_loading',
+					'type' => 'checkbox'
+				),
 			),
 		);
 
