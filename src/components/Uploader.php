@@ -1,0 +1,79 @@
+<?php
+
+class PdfLightViewer_Components_Uploader
+{
+    public static function createUploadDirectory($id = '')
+    {
+		$wp_upload_dir = wp_upload_dir();
+		$basedir = $wp_upload_dir['basedir'];
+
+		$main_upload_dir = $basedir.'/'.PDF_LIGHT_VIEWER_PLUGIN;
+
+		if (file_exists($main_upload_dir)) {
+			$created = true;
+		}
+		else {
+			$created = @mkdir($main_upload_dir);
+		}
+
+		if ($id) {
+			$pdf_upload_dir = $main_upload_dir.'/'.$id;
+			if (!file_exists($pdf_upload_dir)) {
+				@mkdir($pdf_upload_dir);
+			}
+
+			$pdf_thumbs_upload_dir = $main_upload_dir.'/'.$id.'-thumbs';
+			if (!file_exists($pdf_thumbs_upload_dir)) {
+				@mkdir($pdf_thumbs_upload_dir);
+			}
+
+            $pdf_pdfs_upload_dir = $main_upload_dir.'/'.$id.'-pdfs';
+			if (!file_exists($pdf_pdfs_upload_dir)) {
+				@mkdir($pdf_pdfs_upload_dir);
+			}
+
+			if (file_exists($pdf_upload_dir)) {
+				return $pdf_upload_dir;
+			}
+			else {
+				return false;
+			}
+		}
+
+		if (file_exists($main_upload_dir)) {
+			return $main_upload_dir;
+		}
+		else {
+			return false;
+		}
+	}
+
+
+	public static function getUploadDirectory($id = '')
+    {
+		$wp_upload_dir = wp_upload_dir();
+		$basedir = $wp_upload_dir['basedir'];
+
+		$main_upload_dir = $basedir.'/'.PDF_LIGHT_VIEWER_PLUGIN;
+
+		if ($id) {
+			$pdf_upload_dir = $main_upload_dir.'/'.$id;
+			return $pdf_upload_dir;
+		}
+		else {
+			return $main_upload_dir;
+		}
+	}
+
+	public static function getUploadDirectoryUrl($id)
+    {
+		$wp_upload_dir = wp_upload_dir();
+		$basedir = $wp_upload_dir['baseurl'];
+
+		$main_upload_dir = $basedir.'/'.PDF_LIGHT_VIEWER_PLUGIN;
+
+		$pdf_upload_dir = $main_upload_dir.'/'.$id;
+
+		return $pdf_upload_dir;
+	}
+}

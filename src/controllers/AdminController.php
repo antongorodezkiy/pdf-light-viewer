@@ -1,21 +1,21 @@
 <?php if (!defined('WPINC')) die();
 
 class PdfLightViewer_AdminController {
-    
+
     public static function init() {
         static::settingsInit();
-        
+
         if (!defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')) {
             add_action(PDF_LIGHT_VIEWER_PLUGIN.':settings_view_after_settings', array(__CLASS__, 'settings_view_after_settings'), 100);
         }
     }
-    
+
     public static function settings_view_after_settings() {
-		include_once(PDF_LIGHT_VIEWER_APPPATH.'/views/pro-placeholder.php');
+        echo PdfLightViewer_Components_View::render('pro-placeholder');
 	}
-	
+
 	public static function initGentleNotifications() {
-		
+
 		if (
 			!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-pro-ad-viewed')
 			&& !defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')
@@ -35,7 +35,7 @@ class PdfLightViewer_AdminController {
 				)
 			);
 		}
-		
+
         // imagetragick
         if (
 			!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-imagetragick-viewed')
@@ -49,33 +49,33 @@ class PdfLightViewer_AdminController {
 			);
 		}
 	}
-	
+
 	// show message
 		public static function showMessage($message, $errormsg = false) {
-			
+
 			if (!session_id() && !headers_sent()) {
 				session_start();
 			}
-			
+
 			if (!isset($_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'])) {
 				$_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'] = array();
 			}
-			
+
 			$_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'][] = array(
 				'text' => $message,
 				'error' => $errormsg
 			);
 		}
-		
+
 		public static function showDirectMessage($message, $errormsg = false) {
-			
+
 			if ($errormsg) {
 				$css_class = 'error';
 			}
 			else {
 				$css_class = 'updated';
 			}
-			
+
 			echo '<div class="'.$css_class.'"><p>'.$message.'</p></div>';
 		}
 
@@ -83,50 +83,50 @@ class PdfLightViewer_AdminController {
 			if (!session_id() && !headers_sent()) {
 				session_start();
 			}
-			
+
 			if (isset($_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'])) {
 				foreach($_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'] as $key => $notice) {
-					
+
 					if ($notice['error']) {
 						$css_class = 'error';
 					}
 					else {
 						$css_class = 'updated';
 					}
-					
+
 					echo '<div class="'.$css_class.'"><p>'.$notice['text'].'</p></div>';
 				}
 				$_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'] = array();
 			}
 		}
-		
+
 	// ajax
 		public static function registerAjaxHandlers() {
-			
+
 			if (!has_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_ping_import')) {
 				add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_ping_import', array('PdfLightViewer_PdfController','pdf_partially_import'));
 			}
-			
+
 			add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_notification_viewed', array(__CLASS__,'notification_viewed'));
-            
+
             add_action('wp_ajax_'.PDF_LIGHT_VIEWER_PLUGIN.'_cancel_import', array('PdfLightViewer_PdfController', 'cancel_import'));
 		}
-		
+
 		public static function notification_viewed() {
 			if (!empty($_POST['notification'])) {
 				switch($_POST['notification']) {
 					case 'survey-viewed':
 						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-survey-viewed', true);
 					break;
-					
+
 					case 'pro-ad-viewed':
 						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-pro-ad-viewed', true);
 					break;
-                
+
                     case 'imagetragick-viewed':
 						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-imagetragick-viewed', true);
 					break;
-                
+
                     case 'installed-viewed':
 						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-installed-viewed', true);
 					break;
@@ -138,12 +138,14 @@ class PdfLightViewer_AdminController {
 		public static function registerMenuPage() {
 			add_options_page('PDF Light Viewer', 'PDF Light Viewer', 'manage_options', PDF_LIGHT_VIEWER_PLUGIN, array('PdfLightViewer_AdminController','showSettings'));
 		}
-	
+
 		public static function showSettings() {
 			$requirements = PdfLightViewer_Plugin::requirements();
-			include_once(PDF_LIGHT_VIEWER_APPPATH.'/views/settings.php');
+            echo PdfLightViewer_Components_View::render('settings', array(
+                'requirements' => $requirements
+            ));
 		}
-		
+
 		public static function settingsInit() {
 			register_setting(PDF_LIGHT_VIEWER_PLUGIN, PDF_LIGHT_VIEWER_PLUGIN);
 		}
@@ -154,16 +156,16 @@ class PdfLightViewer_AdminController {
 				'do-not-check-gs' => false,
                 'prefer-xmagick' => 'Imagick',
                 'enable-hash-nav' => true,
-			);	
+			);
 			return wp_parse_args(get_option(PDF_LIGHT_VIEWER_PLUGIN),$config);
 		}
-		
+
 		public static $cached_settings = null;
 		public static function getSetting($name) {
 			if (self::$cached_settings == null) {
 				self::$cached_settings = self::getSettings();
 			}
-			
+
 			if (isset(self::$cached_settings[$name])) {
 				return self::$cached_settings[$name];
 			}
@@ -171,14 +173,14 @@ class PdfLightViewer_AdminController {
 				return null;
 			}
 		}
-		
-		
+
+
 	// after install notifications
 		public static function showActivationMessages() {
 			$requirements_met = PdfLightViewer_Plugin::requirements(true);
-			
-			$plugin_title = PdfLightViewer_Plugin::getData('Title');
-			
+
+			$plugin_title = PdfLightViewer_Helpers_Plugins::getPluginData('Title');
+
 			if ($requirements_met) {
                 if (!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-installed-viewed')) {
                     self::showDirectMessage(
@@ -198,18 +200,18 @@ class PdfLightViewer_AdminController {
 				, true);
 			}
 		}
-		
+
 		public static function showActivationPointers() {
 			wp_enqueue_style('wp-pointer');
 			wp_enqueue_script('wp-pointer');
 			add_action('admin_print_footer_scripts', array('PdfLightViewer_AdminController','showPDFPointer'));
 		}
-		
+
 		public static function showPDFPointer() {
-			$plugin_title = PdfLightViewer_Plugin::getData('Title');
+			$plugin_title = PdfLightViewer_Helpers_Plugins::getPluginData('Title');
 			$pointer_content = '<h3>'.$plugin_title.'</h3>';
 			$pointer_content .= '<p>'.__("We have just created new section called PDFs in your dashboard. Use it to import and publish your cool PDF files.",PDF_LIGHT_VIEWER_PLUGIN).'</p>';
-			
+
 			?>
 				<script type="text/javascript">
 				(function($){

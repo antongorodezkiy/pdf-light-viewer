@@ -92,7 +92,7 @@ class PdfLightViewer_PdfController {
 				'show_ui' => (bool)PdfLightViewer_AdminController::getSetting('show-post-type'),
 				'_builtin' => false,
 				'capability_type' => 'post',
-				'menu_icon' => plugins_url('assets/img/pdf.png', PDF_LIGHT_VIEWER_FILE),
+				'menu_icon' => plugins_url('resources/assets/img/pdf.png', PDF_LIGHT_VIEWER_FILE),
 				'hierarchical' => false,
 				'map_meta_cap' => true,
 				'supports' => array('title', 'thumbnail'/*, 'custom-fields'*/),
@@ -155,8 +155,8 @@ class PdfLightViewer_PdfController {
 			}
 
 			if (!empty(PdfLightViewer_Model::$unimported)) {
-				$status = PdfLightViewer_Plugin::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-status', true);
-				$progress = PdfLightViewer_Plugin::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-progress', true);
+				$status = PdfLightViewer_Models_Meta::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-status', true);
+				$progress = PdfLightViewer_Models_Meta::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-progress', true);
 
 				PdfLightViewer_AdminController::showDirectMessage(sprintf(
 					__('<i class="icons slicon-settings"></i> <b>%s</b> PDF import is <span class="js-pdf-light-viewer-current-status">%s</span>. <span class="js-pdf-light-viewer-current-progress">%d</span>%% is complete. <i>Please do not leave the admin interface until the import would not finished. %s</i>',PDF_LIGHT_VIEWER_PLUGIN)
@@ -181,9 +181,10 @@ class PdfLightViewer_PdfController {
 
 		switch($column_name) {
 			case 'usage':
-				$pdf_upload_dir = PdfLightViewer_Plugin::getUploadDirectory($post_id);
-				$pages = directory_map($pdf_upload_dir);
-				include(PDF_LIGHT_VIEWER_APPPATH.'/views/metabox/usage.php');
+				echo PdfLightViewer_Components_View::render('metabox/usage', array(
+					'pdf_upload_dir' => PdfLightViewer_Components_Uploader::getUploadDirectory($post_id),
+					'pages' => directory_map($pdf_upload_dir)
+				));
 			break;
 
 			case 'preview':
@@ -197,10 +198,10 @@ class PdfLightViewer_PdfController {
 			break;
 
 			case 'pages':
-				$dir = PdfLightViewer_Plugin::getUploadDirectory($post_id);
+				$dir = PdfLightViewer_Components_Uploader::getUploadDirectory($post_id);
 				$directory_map = directory_map($dir);
 
-				$pdf_pages_number = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'pdf-pages-number',true);
+				$pdf_pages_number = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-pages-number',true);
 
 				if (!empty($directory_map)) {
 					$count = count($directory_map);
@@ -214,8 +215,8 @@ class PdfLightViewer_PdfController {
 			break;
 
 			case 'import_status':
-				$status = PdfLightViewer_Plugin::get_post_meta($post_id,'_pdf-light-viewer-import-status',true);
-				$progress = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'_pdf-light-viewer-import-progress',true);
+				$status = PdfLightViewer_Models_Meta::get_post_meta($post_id,'_pdf-light-viewer-import-status',true);
+				$progress = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'_pdf-light-viewer-import-progress',true);
 
 				switch($status) {
 					case static::STATUS_SCHEDULED:
@@ -557,12 +558,11 @@ class PdfLightViewer_PdfController {
 
 
 	public static function metabox_dashboard_usage($post) {
-
-		$pdf_upload_dir = PdfLightViewer_Plugin::getUploadDirectory($post->ID);
-		$pages = directory_map($pdf_upload_dir);
-
-		$post_id = $post->ID;
-		include_once(PDF_LIGHT_VIEWER_APPPATH.'/views/metabox/usage.php');
+        echo PdfLightViewer_Components_View::render('metabox/usage', array(
+            'pdf_upload_dir' => PdfLightViewer_Components_Uploader::getUploadDirectory($post->ID),
+            'pages' => directory_map($pdf_upload_dir),
+            'post_id' => $post->ID
+        ));
 	}
 
 
@@ -601,7 +601,7 @@ class PdfLightViewer_PdfController {
 				$jpeg_compression_quality = (isset($form_data['jpeg_compression_quality']) ? $form_data['jpeg_compression_quality'] :get_post_meta($post_id, 'jpeg_compression_quality', true));
 				$jpeg_resolution = (isset($form_data['jpeg_resolution']) ? $form_data['jpeg_resolution'] : get_post_meta($post_id, 'jpeg_resolution', true));
 
-				$pdf_upload_dir = PdfLightViewer_Plugin::createUploadDirectory($post_id);
+				$pdf_upload_dir = PdfLightViewer_Components_Uploader::createUploadDirectory($post_id);
 
 				// delete all files
 				self::delete_pages_by_pdf_id($post_id, $pdf_upload_dir);
@@ -746,7 +746,7 @@ class PdfLightViewer_PdfController {
 			));
 		}
 
-		$status = PdfLightViewer_Plugin::get_post_meta($post_id,'_pdf-light-viewer-import-status',true);
+		$status = PdfLightViewer_Models_Meta::get_post_meta($post_id,'_pdf-light-viewer-import-status',true);
 		if ($status == static::STATUS_SCHEDULED) {
 			$status_label = __('scheduled', PDF_LIGHT_VIEWER_PLUGIN);
 			update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_STARTED);
@@ -769,23 +769,23 @@ class PdfLightViewer_PdfController {
 
 		do_action(PDF_LIGHT_VIEWER_PLUGIN.':before_import', $post_id, $pdf_file_path);
 
-		$pdf_upload_dir = PdfLightViewer_Plugin::createUploadDirectory($post_id);
+		$pdf_upload_dir = PdfLightViewer_Components_Uploader::createUploadDirectory($post_id);
 
         $enable_pdf_convert = (
-            PdfLightViewer_Plugin::get_post_meta($post_id, 'enable-pdf-convert', true)
+            PdfLightViewer_Models_Meta::get_post_meta($post_id, 'enable-pdf-convert', true)
             && PdfLightViewer_Plugin::isGhostscriptAvailableViaCli()
         );
 
-		$jpeg_resolution = PdfLightViewer_Plugin::get_post_meta($post_id,'jpeg_resolution',true);
-		$jpeg_compression_quality = PdfLightViewer_Plugin::get_post_meta($post_id,'jpeg_compression_quality',true);
+		$jpeg_resolution = PdfLightViewer_Models_Meta::get_post_meta($post_id,'jpeg_resolution',true);
+		$jpeg_compression_quality = PdfLightViewer_Models_Meta::get_post_meta($post_id,'jpeg_compression_quality',true);
 
-        $pdf_import_pages = (array)PdfLightViewer_Plugin::get_post_meta($post_id,'pdf-import-pages',true);
-		$pdf_pages_number = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'pdf-pages-number',true);
-		$current_page = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'_pdf-light-viewer-import-current-page',true);
+        $pdf_import_pages = (array)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-import-pages',true);
+		$pdf_pages_number = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-pages-number',true);
+		$current_page = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'_pdf-light-viewer-import-current-page',true);
 
-		$width = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'pdf-page-width',true);
-		$height = (int)PdfLightViewer_Plugin::get_post_meta($post_id,'pdf-page-height',true);
-        $output_biggest_side = (int)PdfLightViewer_Plugin::get_post_meta($post_id, 'output_biggest_side', true);
+		$width = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-page-width',true);
+		$height = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-page-height',true);
+        $output_biggest_side = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id, 'output_biggest_side', true);
         if (!$output_biggest_side) {
             $output_biggest_side = 1024;
         }
@@ -837,7 +837,7 @@ class PdfLightViewer_PdfController {
                         );
                     }
                     catch(Exception $e) {
-                        PdfLightViewer_Plugin::log('Import exception: '.$e->getMessage(), print_r($e, true));
+                        PdfLightViewer_Components_Logger::log('Import exception: '.$e->getMessage(), print_r($e, true));
                         $status_label = __('failed', PDF_LIGHT_VIEWER_PLUGIN);
                         $error = $e->getMessage();
                         update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FAILED);
@@ -869,7 +869,7 @@ class PdfLightViewer_PdfController {
                         );
                     }
                     catch(Exception $e) {
-                        PdfLightViewer_Plugin::log('Import exception: '.$e->getMessage(), print_r($e, true));
+                        PdfLightViewer_Components_Logger::log('Import exception: '.$e->getMessage(), print_r($e, true));
                         $status_label = __('failed', PDF_LIGHT_VIEWER_PLUGIN);
                         $error = $e->getMessage();
                         update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FAILED);
@@ -1046,7 +1046,7 @@ class PdfLightViewer_PdfController {
 
 			if ($current_page == 1) {
 				$file = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
-				PdfLightViewer_Plugin::set_featured_image($post_id, $file, 'pdf-'.$post_id.'-page-'.$page_number.'.jpg');
+				PdfLightViewer_Components_Thumbnail::set_featured_image($post_id, $file, 'pdf-'.$post_id.'-page-'.$page_number.'.jpg');
 			}
 
 			$percent = (($current_page)/$pdf_pages_number)*100;
@@ -1093,7 +1093,7 @@ class PdfLightViewer_PdfController {
 
 	public static function deleted_post($post_id = '', $arg2 = '') {
 		if ($post_id && get_post_type($post_id) == self::$type) {
-			$pdf_upload_dir = PdfLightViewer_Plugin::createUploadDirectory($post_id);
+			$pdf_upload_dir = PdfLightViewer_Components_Uploader::createUploadDirectory($post_id);
 
 			if ($pdf_upload_dir) {
 				self::delete_pages_by_pdf_id($post_id, $pdf_upload_dir);

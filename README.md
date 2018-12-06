@@ -9,7 +9,7 @@
 
 **Tested up to:** 4.9.8
 
-**Stable tag:** 1.3.23
+**Stable tag:** 1.4.0
 
 **License:** GPLv2
 

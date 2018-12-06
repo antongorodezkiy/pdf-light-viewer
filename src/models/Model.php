@@ -1,10 +1,11 @@
 <?php if (!defined('WPINC')) die();
 
-class PdfLightViewer_Model {
+class PdfLightViewer_Model
+{
 
 	public static $unimported = null;
 	public static function getOneUnimported() {
-		
+
 		$query = new WP_Query(array(
 			'post_type' => PdfLightViewer_PdfController::$type,
 			'meta_query' => array(
@@ -32,7 +33,7 @@ class PdfLightViewer_Model {
 			),
 			'nopaging' => true
 		));
-		
+
 		if ($query->have_posts()) {
 			$unimported = $query->post;
 			return $query->post;
@@ -41,16 +42,16 @@ class PdfLightViewer_Model {
 			return array();
 		}
 	}
-	
+
 	public static function getPDFFileId($post_id) {
-		
+
 		if ((int)get_post_meta($post_id, 'pdf_file_id', true)) {
 			$pdf_file_id = get_post_meta($post_id, 'pdf_file_id', true);
 		}
 		else {
 			$pdf_file_id = get_post_meta($post_id, 'pdf_file', true);
 		}
-		
+
 		return $pdf_file_id;
 	}
 }

@@ -1,10 +1,10 @@
 <?php if (!defined('WPINC')) die();?>
 
 <div class="pdf-light-viewer-admin-settings js-pdf-light-viewer-admin-settings">
-	
+
     <div class="pure-g">
         <div class="pure-u-lg-2-3 pure-u-md-1-1 pure-u-sm-1-1 pure-u-xs-1-1">
-            
+
             <div class="pdf-light-viewer-bl row">
                 <div class="row hdr">
                     <h3>
@@ -20,7 +20,7 @@
                                     PDF Light Viewer Plugin
                                 </a>
                             </p>
-                            
+
                             <blockquote>
                                 WordPress PDF Light Viewer Plugin &copy; <a target="_blank" href="http://teamlead.pw">Teamlead Power&nbsp;<span class="icons slicon-link"></span></a>
                             </blockquote>
@@ -65,8 +65,8 @@
                     </div>
                 </div>
             </div>
-        
-        
+
+
             <div class="pdf-light-viewer-bl row">
                 <div class="row hdr">
                     <h3>
@@ -79,23 +79,23 @@
                     <?php include(dirname(__FILE__).'/server-libs-requirements-doc.php') ?>
                 </div>
             </div>
-        
+
             <?php do_action(PDF_LIGHT_VIEWER_PLUGIN.':settings_view_after_requirements') ?>
-        
+
             <form class="pdf-light-viewer-content pdf-light-viewer-bl settings-pure-form pure-form-aligned pure-form" method="post" action="options.php">
-                
+
                 <?php settings_fields(PDF_LIGHT_VIEWER_PLUGIN); ?>
-                
+
                 <div class="row hdr">
                     <h3>
                         <span class="icons slicon-equalizer"></span>
                         <?php _e('Settings', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
-        
-                <div class="row in">						
+
+                <div class="row in">
                     <legend><span class="icons slicon-settings"></span><?php _e('Main settings', PDF_LIGHT_VIEWER_PLUGIN)?></legend>
-                        
+
                     <p class="pure-control-group">
                         <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[show-post-type]">
                             <i class="icons slicon-menu"></i>
@@ -114,7 +114,7 @@
                             <?php echo ( PdfLightViewer_AdminController::getSetting('show-post-type') ? 'checked="checked"' : '' )?>
                             />
                     </p>
-                    
+
                     <p class="pure-control-group">
                         <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]">
                             <i class="icons slicon-wrench"></i>
@@ -133,7 +133,7 @@
                             <?php echo ( PdfLightViewer_AdminController::getSetting('do-not-check-gs') ? 'checked="checked"' : '' )?>
                             />
                     </p>
-                    
+
                     <p class="pure-control-group">
                         <label>
                             <i class="icons slicon-magic-wand"></i>
@@ -171,7 +171,7 @@
                                 <?php } ?>
                             </label>
                     </p>
-                    
+
                     <p class="pure-control-group">
                         <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[enable-hash-nav]">
                             <i class="icons slicon-wrench"></i>
@@ -190,25 +190,25 @@
                             <?php echo ( PdfLightViewer_AdminController::getSetting('enable-hash-nav') ? 'checked="checked"' : '' )?>
                             />
                     </p>
-                    
+
                     <hr />
-                
+
                     <div class="row">
                         <button class="button-primary" type="submit">
                             <?php _e('Save', PDF_LIGHT_VIEWER_PLUGIN)?>
                         </button>
                     </div>
                 </div>
-                
+
             </form>
-            
+
             <?php do_action(PDF_LIGHT_VIEWER_PLUGIN.':settings_view_after_settings') ?>
         </div>
-        
-        
-        
+
+
+
         <div class="pure-u-lg-1-3 pure-u-md-1-1 pure-u-sm-1-1 pure-u-xs-1-1">
-        
+
             <div class="pdf-light-viewer-bl row">
                 <div class="row hdr">
                     <h3>
@@ -217,20 +217,20 @@
                     </h3>
                 </div>
                 <div class="row in container">
-        
+
                     <div class="row">
                         <blockquote>
                             <p>
                                 <?php
-        
+
                                 $subject = sprintf(__('Support request, plugin: %s (time: %s)', PDF_LIGHT_VIEWER_PLUGIN),
                                     PDF_LIGHT_VIEWER_PLUGIN,
                                     date('d.m.Y H:i:s')
                                 );
-                                
+
                                 echo sprintf(__('To get support please contact us on forum <a target="_blank" href="%s">%s</a> or by email <a target="_blank" href="%s">%s</a>. Please also attach information below to let us know more about your server and site environment - this could be helpful to solve the issue.', PDF_LIGHT_VIEWER_PLUGIN),
-                                    PdfLightViewer_Plugin::getSupportUrl(),
-                                    PdfLightViewer_Plugin::getSupportUrl().'&nbsp;<span class="icons slicon-link"></span>',
+                                    PdfLightViewer_Helpers_Url::getSupportUrl(),
+                                    PdfLightViewer_Helpers_Url::getSupportUrl().'&nbsp;<span class="icons slicon-link"></span>',
                                     'mailto:support@teamlead.pw?subject='.$subject,
                                     'support@teamlead.pw&nbsp;<span class="icons slicon-link"></span>'
                                 );?>
@@ -240,23 +240,23 @@
                             <?php _e('Subject', PDF_LIGHT_VIEWER_PLUGIN)?>: <?php echo $subject;?>
                         </p>
                     </div>
-                    
+
                     <div class="row">
                         <h5 class="row">
                             <?php _e('Plugin Requirements', PDF_LIGHT_VIEWER_PLUGIN)?>
                         </h5>
                         <?php include(dirname(__FILE__).'/requirements.php') ?>
                     </div>
-                    
+
                     <hr />
-        
+
                     <div class="row">
                         <h5 class="row">
                             <?php _e('Server Info', PDF_LIGHT_VIEWER_PLUGIN)?>
                         </h5>
                         <ul>
                             <?php
-                                foreach(PdfLightViewer_Plugin::serverInfo() as $option => $val) {
+                                foreach(PdfLightViewer_Helpers_Server::serverInfo() as $option => $val) {
                                     $info = $option.' -> '.$val;
                                     ?>
                                         <li>
@@ -267,9 +267,9 @@
                             ?>
                         </ul>
                     </div>
-                    
+
                     <hr />
-                    
+
                     <div class="row">
                         <h5 class="row">
                             <?php _e('Theme', PDF_LIGHT_VIEWER_PLUGIN)?>
@@ -284,18 +284,18 @@
                             <?php _e('from', PDF_LIGHT_VIEWER_PLUGIN)?> <?php echo $current_theme->get('Author');?>,
                             <?php echo $current_theme->get('AuthorURI');?>
                         </p>
-                        
+
                     </div>
-                    
+
                     <hr />
-                    
+
                     <div class="row">
                         <h5 class="row">
                             <?php _e('Plugins', PDF_LIGHT_VIEWER_PLUGIN)?>
                         </h5>
                         <ul>
                             <?php
-                                foreach(PdfLightViewer_Plugin::getActivePlugins() as $pl) {
+                                foreach(PdfLightViewer_Helpers_Plugins::getActivePlugins() as $pl) {
                                     $plugin = $pl['Name'].', '.$pl['Version'].', '.$pl['PluginURI'];
                                     ?>
                                         <li>
@@ -306,13 +306,13 @@
                             ?>
                         </ul>
                     </div>
-            
+
                 </div>
             </div>
-            
+
         </div>
     </div>
-    
+
 	<div class="pure-u-1">
 		<div class="pdf-light-viewer-bl">
 
@@ -322,24 +322,24 @@
 					<?php _e("Today's log file", PDF_LIGHT_VIEWER_PLUGIN)?>
 				</h3>
 			</div>
-	
+
 			<div class="row in pdf-light-viewer-logfile-preview">
 				<code><pre><?php
-					if (file_exists(PdfLightViewer_Plugin::getLogsPath().date('Y-m-d').'.php')) {
-						include_once(PdfLightViewer_Plugin::getLogsPath().date('Y-m-d').'.php');
+					if (file_exists(PdfLightViewer_Components_Logger::getLogsPath().date('Y-m-d').'.php')) {
+						include_once(PdfLightViewer_Components_Logger::getLogsPath().date('Y-m-d').'.php');
 					}
 					else {
-						_e("Today's log file doesn't exist", PDF_LIGHT_VIEWER_PLUGIN); 
+						_e("Today's log file doesn't exist", PDF_LIGHT_VIEWER_PLUGIN);
 					}
 					?></pre></code>
 			</div>
-			
+
 		</div>
 	</div>
-	
+
 	<div class="pure-u-1">
 		<?php
-			$documentation_url = PdfLightViewer_Plugin::getDocsUrl();
+			$documentation_url = PdfLightViewer_Helpers_Url::getDocsUrl();
 		?>
 		<div class="pdf-light-viewer-bl">
 			<div class="row hdr">
@@ -354,5 +354,5 @@
 			</div>
 		</div>
 	</div>
-		
+
 </div>

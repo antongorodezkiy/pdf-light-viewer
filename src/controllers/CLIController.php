@@ -63,7 +63,7 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 			$import_pdf_file = isset($assoc_args['import-pdf-file']);
 
 		// check requirements
-			$plugin_title = PdfLightViewer_Plugin::getData('Title');
+			$plugin_title = PdfLightViewer_Helpers_Plugins::getPluginData('Title');
 			$requirements_met = PdfLightViewer_Plugin::requirements(true);
 			if (!$requirements_met) {
 				$message = $plugin_title.': '
@@ -147,14 +147,14 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 				// save pdf to media library
 					if ($import_pdf_file) {
 						$image_data = file_get_contents($pdf_file_path);
-						$attach_id = PdfLightViewer_Plugin::create_media_from_data(
+						$attach_id = PdfLightViewer_Components_Thumbnail::create_media_from_data(
 							pathinfo($pdf_file_path, PATHINFO_BASENAME),
 							$image_data
 						);
 						update_post_meta($post_id, 'pdf_file_id', $attach_id);
 					}
 
-				$pdf_upload_dir = PdfLightViewer_Plugin::createUploadDirectory($post_id);
+				$pdf_upload_dir = PdfLightViewer_Components_Uploader::createUploadDirectory($post_id);
 				$current_page = 1;
 				$ratio = $width / $height;
 
@@ -188,7 +188,7 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 							);
 						}
 						catch(Exception $e) {
-							PdfLightViewer_Plugin::log('Import exception: '.$e->getMessage(), print_r($e, true));
+							PdfLightViewer_Components_Logger::log('Import exception: '.$e->getMessage(), print_r($e, true));
 							$error = $e->getMessage();
 							update_post_meta($post_id,'_pdf-light-viewer-import-status', PdfLightViewer_PdfController::STATUS_FAILED);
 							WP_CLI::warning(sprintf(__('Import of PDF %s failed: %s', PDF_LIGHT_VIEWER_PLUGIN), $pdf_file_path, $error), false);
