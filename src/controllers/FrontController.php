@@ -133,10 +133,13 @@ class PdfLightViewer_FrontController {
             || !$post->ID
             || $post->post_type != PdfLightViewer_PdfController::$type
             || !(
-                $post->post_status == 'publish'
+                is_admin()
                 || (
-                    $post->post_status == 'private'
-                    && current_user_can('read_private_posts', $post)
+                    $post->post_status == 'publish'
+                    || (
+                        $post->post_status == 'private'
+                        && current_user_can('read_private_posts', $post)
+                    )
                 )
             )
         ) {
@@ -147,7 +150,7 @@ class PdfLightViewer_FrontController {
             return '<div class="pdf-light-viewer">'.get_the_password_form().'</div>';
         }
 
-		$pdf_light_viewer_config = static::getConfig($atts, $post);
+		$pdf_light_viewer_config = self::getConfig($atts, $post);
 
 		ob_start();
 		ob_clean();

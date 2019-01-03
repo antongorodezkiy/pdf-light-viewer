@@ -76,7 +76,9 @@
                 </div>
                 <div class="row in container">
                     <?php include(dirname(__FILE__).'/requirements.php') ?>
-                    <?php include(dirname(__FILE__).'/server-libs-requirements-doc.php') ?>
+                    <?php if (!defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')): ?>
+                        <?php include(dirname(__FILE__).'/server-libs-requirements-doc.php') ?>
+                    <?php endif ?>
                 </div>
             </div>
 
@@ -115,62 +117,64 @@
                             />
                     </p>
 
-                    <p class="pure-control-group">
-                        <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]">
-                            <i class="icons slicon-wrench"></i>
-                            <?php _e('Do not check GhostScript installation', PDF_LIGHT_VIEWER_PLUGIN)?>
-                            <a href="#!" class="js-tip tip" title="<?php _e('For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
-                        </label>
-                        <input
-                            type="hidden"
-                            name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]"
-                            value="0"
-                            />
-                        <input
-                            type="checkbox"
-                            name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]"
-                            value="1"
-                            <?php echo ( PdfLightViewer_AdminController::getSetting('do-not-check-gs') ? 'checked="checked"' : '' )?>
-                            />
-                    </p>
+                    <?php if (!defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')): ?>
+                        <p class="pure-control-group">
+                            <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]">
+                                <i class="icons slicon-wrench"></i>
+                                <?php _e('Do not check GhostScript installation', PDF_LIGHT_VIEWER_PLUGIN)?>
+                                <a href="#!" class="js-tip tip" title="<?php _e('For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
+                            </label>
+                            <input
+                                type="hidden"
+                                name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]"
+                                value="0"
+                                />
+                            <input
+                                type="checkbox"
+                                name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]"
+                                value="1"
+                                <?php echo ( PdfLightViewer_AdminController::getSetting('do-not-check-gs') ? 'checked="checked"' : '' )?>
+                                />
+                        </p>
 
-                    <p class="pure-control-group">
-                        <label>
-                            <i class="icons slicon-magic-wand"></i>
-                            <?php _e('Prefer Imagick or Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
-                            <a href="#!" class="js-tip tip" title="<?php _e('For cases, when you have both. Otherwise only existing will be used.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
-                        </label>
-                        <input
-                            type="radio"
-                            id="prefer-xmagick-imagick"
-                            name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[prefer-xmagick]"
-                            value="Imagick"
-                            <?php echo ( PdfLightViewer_AdminController::getSetting('prefer-xmagick') == 'Imagick' ? 'checked="checked"' : '' )?>
-                            />
-                            <label for="prefer-xmagick-imagick" class="inline">
-                                <?php _e('Imagick', PDF_LIGHT_VIEWER_PLUGIN)?>
-                                <?php if (!class_exists('Imagick')) { ?>
-                                    <span class="pdf-light-viewer-requirement-fail">
-                                        (<?php _e('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
-                                    </span>
-                                <?php } ?>
+                        <p class="pure-control-group">
+                            <label>
+                                <i class="icons slicon-magic-wand"></i>
+                                <?php _e('Prefer Imagick or Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
+                                <a href="#!" class="js-tip tip" title="<?php _e('For cases, when you have both. Otherwise only existing will be used.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
                             </label>
-                        <input
-                            type="radio"
-                            id="prefer-xmagick-gmagick"
-                            name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[prefer-xmagick]"
-                            value="Gmagick"
-                            <?php echo ( PdfLightViewer_AdminController::getSetting('prefer-xmagick') == 'Gmagick' ? 'checked="checked"' : '' )?>
-                            />
-                            <label for="prefer-xmagick-gmagick" class="inline">
-                                <?php _e('Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
-                                <?php if (!class_exists('Gmagick')) { ?>
-                                    <span class="pdf-light-viewer-requirement-fail">
-                                        (<?php _e('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
-                                    </span>
-                                <?php } ?>
-                            </label>
-                    </p>
+                            <input
+                                type="radio"
+                                id="prefer-xmagick-imagick"
+                                name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[prefer-xmagick]"
+                                value="Imagick"
+                                <?php echo ( PdfLightViewer_AdminController::getSetting('prefer-xmagick') == 'Imagick' ? 'checked="checked"' : '' )?>
+                                />
+                                <label for="prefer-xmagick-imagick" class="inline">
+                                    <?php _e('Imagick', PDF_LIGHT_VIEWER_PLUGIN)?>
+                                    <?php if (!class_exists('Imagick')) { ?>
+                                        <span class="pdf-light-viewer-requirement-fail">
+                                            (<?php _e('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
+                                        </span>
+                                    <?php } ?>
+                                </label>
+                            <input
+                                type="radio"
+                                id="prefer-xmagick-gmagick"
+                                name="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[prefer-xmagick]"
+                                value="Gmagick"
+                                <?php echo ( PdfLightViewer_AdminController::getSetting('prefer-xmagick') == 'Gmagick' ? 'checked="checked"' : '' )?>
+                                />
+                                <label for="prefer-xmagick-gmagick" class="inline">
+                                    <?php _e('Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
+                                    <?php if (!class_exists('Gmagick')) { ?>
+                                        <span class="pdf-light-viewer-requirement-fail">
+                                            (<?php _e('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
+                                        </span>
+                                    <?php } ?>
+                                </label>
+                        </p>
+                    <?php endif ?>
 
                     <p class="pure-control-group">
                         <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[enable-hash-nav]">

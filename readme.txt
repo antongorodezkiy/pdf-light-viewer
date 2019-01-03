@@ -67,6 +67,10 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 == Changelog ==
 
+= 1.4.0 - 2019-
+* Code structure cleaning up
+* PDF Light Viewer Serverless plugin compatibility
+
 == 1.3.23 - 2018-09-18 ==
 * Option to disable lazy loading to prevent issues when using other lazy loading systems (e.g. Jetpack)
 

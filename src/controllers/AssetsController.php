@@ -18,7 +18,7 @@ class PdfLightViewer_AssetsController
 
 		// scripts
 			if (
-                (isset($_GET['post_type']) && $_GET['post_type'] == PdfLightViewer_PdfController::$type)
+                (PdfLightViewer_Helpers_Http::get('post_type') && PdfLightViewer_Helpers_Http::get('post_type') == PdfLightViewer_PdfController::$type)
                 || ($post && $post->post_type == PdfLightViewer_PdfController::$type)
             ) {
                 PdfLightViewer_Components_Assets::enqueueScripts(array(
@@ -46,7 +46,8 @@ class PdfLightViewer_AssetsController
             ));
 
 			// javascript settings
-				if (!PdfLightViewer_Model::$unimported) {
+				// for serverless we will handle unimported in other way
+				if (!PdfLightViewer_Model::$unimported && !defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')) {
 					PdfLightViewer_Model::$unimported = PdfLightViewer_Model::getOneUnimported();
 				}
 

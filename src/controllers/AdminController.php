@@ -3,7 +3,7 @@
 class PdfLightViewer_AdminController {
 
     public static function init() {
-        static::settingsInit();
+        self::settingsInit();
 
         if (!defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')) {
             add_action(PDF_LIGHT_VIEWER_PLUGIN.':settings_view_after_settings', array(__CLASS__, 'settings_view_after_settings'), 100);

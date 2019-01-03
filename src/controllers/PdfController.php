@@ -150,11 +150,12 @@ class PdfLightViewer_PdfController {
 
 	// after import started
 		public static function showImportProgressMessages() {
-			if (!PdfLightViewer_Model::$unimported) {
+            // for serverless we will handle unimported in other way
+			if (!PdfLightViewer_Model::$unimported && !defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')) {
 				PdfLightViewer_Model::$unimported = PdfLightViewer_Model::getOneUnimported();
 			}
 
-			if (!empty(PdfLightViewer_Model::$unimported)) {
+			if (!empty(PdfLightViewer_Model::$unimported) && !defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')) {
 				$status = PdfLightViewer_Models_Meta::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-status', true);
 				$progress = PdfLightViewer_Models_Meta::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-progress', true);
 
@@ -177,12 +178,13 @@ class PdfLightViewer_PdfController {
 		return $defaults;
 	}
 
-	public static function custom_columns_views($column_name, $post_id) {
-
+	public static function custom_columns_views($column_name, $post_id)
+    {
+        $pdf_upload_dir = PdfLightViewer_Components_Uploader::getUploadDirectory($post_id);
 		switch($column_name) {
 			case 'usage':
-				echo PdfLightViewer_Components_View::render('metabox/usage', array(
-					'pdf_upload_dir' => PdfLightViewer_Components_Uploader::getUploadDirectory($post_id),
+				echo PdfLightViewer_Components_View::render('metabox.usage', array(
+					'pdf_upload_dir' => $pdf_upload_dir,
 					'pages' => directory_map($pdf_upload_dir)
 				));
 			break;
@@ -198,8 +200,7 @@ class PdfLightViewer_PdfController {
 			break;
 
 			case 'pages':
-				$dir = PdfLightViewer_Components_Uploader::getUploadDirectory($post_id);
-				$directory_map = directory_map($dir);
+				$directory_map = directory_map($pdf_upload_dir);
 
 				$pdf_pages_number = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-pages-number',true);
 
@@ -219,23 +220,23 @@ class PdfLightViewer_PdfController {
 				$progress = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'_pdf-light-viewer-import-progress',true);
 
 				switch($status) {
-					case static::STATUS_SCHEDULED:
+					case self::STATUS_SCHEDULED:
 						$status_label = __('Import scheduled',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
-					case static::STATUS_STARTED:
+					case self::STATUS_STARTED:
 						$status_label = __('Import started',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
-					case static::STATUS_PROCESSING:
+					case self::STATUS_PROCESSING:
 						$status_label = __('Import in progress',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
-					case static::STATUS_FINISHED:
+					case self::STATUS_FINISHED:
 						$status_label = __('Import finished',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
-					case static::STATUS_FAILED:
+					case self::STATUS_FAILED:
 						$status_label = __('Import failed',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
@@ -252,7 +253,13 @@ class PdfLightViewer_PdfController {
 		}
 	}
 
-	public static function cmb_metaboxes($meta_boxes) {
+	public static function cmb_metaboxes($meta_boxes)
+    {
+        global $post, $pagenow;
+
+        if (is_admin() && !$post && PdfLightViewer_Helpers_Http::get('post')) {
+			$post = get_post(PdfLightViewer_Helpers_Http::get('post'));
+		}
 
 		$meta_boxes['pdf_light_viewer_file_metabox'] = array(
 			'id' => 'pdf_light_viewer_file_metabox',
@@ -321,189 +328,196 @@ class PdfLightViewer_PdfController {
 			)),
 		);
 
+        $pageFiles = array();
+        if ($post) {
+            $pdf_upload_dir = PdfLightViewer_Components_Uploader::getUploadDirectory($post->ID);
+    		$pageFiles = directory_map($pdf_upload_dir);
+        }
 
-		$meta_boxes['pdf_light_viewer_options_metabox'] = array(
-			'id' => 'pdf_light_viewer_options_metabox',
-			'title' => __('Output Options', PDF_LIGHT_VIEWER_PLUGIN),
-			'object_types' => array(self::$type), // post type
-			'context' => 'normal',
-			'priority' => 'high',
-			'show_names' => true, // Show field names on the left
-			'fields' => array(
-                array(
-					'name' => '<i class="slicons slicon-directions"></i> ' . __('Hide thumbnail navigation', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'hide_thumbnails_navigation',
-					'type' => 'checkbox'
-				),
-                array(
-					'name' => '<i class="slicons slicon-book-open"></i> ' . __('Flipbook page layout', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'page_layout',
-					'type'    => 'select',
-                    'options' => array(
-                        'adaptive' => __('Adaptive', PDF_LIGHT_VIEWER_PLUGIN),
-                        'single' => __('Single', PDF_LIGHT_VIEWER_PLUGIN),
-                        'double' => __('Double', PDF_LIGHT_VIEWER_PLUGIN)
-                    ),
-                    'default' => 'adaptive',
-				),
-                array(
-					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book width', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => '(px)',
-					'id' => 'max_book_width',
-					'type' => 'text'
-				),
-                array(
-					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book height', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => '(px)',
-					'id' => 'max_book_height',
-					'type' => 'text'
-				),
-                array(
-					'name' => '<i class="slicons slicon-frame"></i> ' . __('Limit book height by the viewport in fullscreen mode', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => '',
-					'id' => 'limit_fullscreen_book_height',
-					'type' => 'checkbox'
-				),
-                array(
-					'name' => '<i class="slicons slicon-picture"></i> ' . __('Disable lazy loading', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => __('May be useful to prevent issues when using other lazy loading systems', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'disable_lazy_loading',
-					'type' => 'checkbox'
-				),
-			),
-		);
+        if (!empty($pageFiles) || $pagenow != 'post-new.php') {
+    		$meta_boxes['pdf_light_viewer_options_metabox'] = array(
+    			'id' => 'pdf_light_viewer_options_metabox',
+    			'title' => __('Output Options', PDF_LIGHT_VIEWER_PLUGIN),
+    			'object_types' => array(self::$type), // post type
+    			'context' => 'normal',
+    			'priority' => 'high',
+    			'show_names' => true, // Show field names on the left
+    			'fields' => array(
+                    array(
+    					'name' => '<i class="slicons slicon-directions"></i> ' . __('Hide thumbnail navigation', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'hide_thumbnails_navigation',
+    					'type' => 'checkbox'
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-book-open"></i> ' . __('Flipbook page layout', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'page_layout',
+    					'type'    => 'select',
+                        'options' => array(
+                            'adaptive' => __('Adaptive', PDF_LIGHT_VIEWER_PLUGIN),
+                            'single' => __('Single', PDF_LIGHT_VIEWER_PLUGIN),
+                            'double' => __('Double', PDF_LIGHT_VIEWER_PLUGIN)
+                        ),
+                        'default' => 'adaptive',
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book width', PDF_LIGHT_VIEWER_PLUGIN),
+                        'desc' => '(px)',
+    					'id' => 'max_book_width',
+    					'type' => 'text'
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book height', PDF_LIGHT_VIEWER_PLUGIN),
+                        'desc' => '(px)',
+    					'id' => 'max_book_height',
+    					'type' => 'text'
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-frame"></i> ' . __('Limit book height by the viewport in fullscreen mode', PDF_LIGHT_VIEWER_PLUGIN),
+                        'desc' => '',
+    					'id' => 'limit_fullscreen_book_height',
+    					'type' => 'checkbox'
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-picture"></i> ' . __('Disable lazy loading', PDF_LIGHT_VIEWER_PLUGIN),
+                        'desc' => __('May be useful to prevent issues when using other lazy loading systems', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'disable_lazy_loading',
+    					'type' => 'checkbox'
+    				),
+    			),
+    		);
 
-        $meta_boxes['pdf_light_viewer_toolbar_options_metabox'] = array(
-			'id' => 'pdf_light_viewer_toolbar_options_metabox',
-			'title' => __('Toolbar Options', PDF_LIGHT_VIEWER_PLUGIN),
-			'object_types' => array(self::$type), // post type
-			'context' => 'normal',
-			'priority' => 'high',
-			'show_names' => true, // Show field names on the left
-			'fields' => array(
-				array(
-					'name' => '<i class="slicons slicon-cloud-download"></i> ' . __('Allow download', PDF_LIGHT_VIEWER_PLUGIN),
-					'desc' => __('Check this if you want to show download button on the frontend', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'download_allowed',
-					'type' => 'checkbox'
-				),
-				array(
-					'name' => '<i class="slicons slicon-link"></i> ' . __('Alternate download link', PDF_LIGHT_VIEWER_PLUGIN),
-					'desc' => __('If not set, will be used link from PDF File', PDF_LIGHT_VIEWER_PLUGIN),
-					'id'   => 'alternate_download_link',
-					'type' => 'text',
-					'default' => ''
-				),
-                array(
-					'name' => '<i class="slicons slicon-cloud-download"></i> ' . __('Allow per-page download', PDF_LIGHT_VIEWER_PLUGIN),
-					'desc' => __('Check this if you want to show download button in the thumbnails to allow downloading of single page images', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'download_page_allowed',
-					'type' => 'checkbox'
-				),
-                array(
-					'name' => '' . __('Per-page download format', PDF_LIGHT_VIEWER_PLUGIN),
-					'desc' => __('Per page download in JPG or PDF formats', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'download_page_format',
-					'type'    => 'select',
-                    'options' => array(
-                        'jpg' => 'jpg',
-                        'pdf' => 'pdf'
-                    ),
-                    'default' => 'jpg',
-				),
-				array(
-					'name' => '<i class="slicons slicon-size-fullscreen"></i> ' . __('Hide fullscreen button', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'hide_fullscreen_button',
-					'type' => 'checkbox'
-				),
-				array(
-					'name' => '<i class="slicons slicon-magnifier"></i> ' . __('Disable page zoom', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'disable_page_zoom',
-					'type' => 'checkbox'
-				),
-                array(
-					'name' => '<i class="slicons slicon-magnifier"></i> ' . __('Zoom magnify multiplier', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => __('This value is multiplied against the full size of the zoomed image. The default value is 1, meaning the zoomed image should be at 100% of its natural width and height.', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'zoom_magnify',
-					'type' => 'text',
-					'default' => 1
-				),
-                array(
-					'name' => '<i class="slicons slicon-arrow-left"></i><i class="slicons slicon-arrow-right"></i> ' . __('Show toolbar next and previous page arrows', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'show_toolbar_next_previous',
-					'type' => 'checkbox'
-				),
-                array(
-					'name' => '<i class="slicons slicon-directions"></i> ' . __('Show toolbar go to page control', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'show_toolbar_goto_page',
-					'type' => 'checkbox'
-				),
-                array(
-					'name' => '<i class="slicons slicon-info"></i> ' . __('Show page numbers', PDF_LIGHT_VIEWER_PLUGIN),
-					'id' => 'show_page_numbers',
-					'type' => 'checkbox'
-				),
-			),
-		);
+            $meta_boxes['pdf_light_viewer_toolbar_options_metabox'] = array(
+    			'id' => 'pdf_light_viewer_toolbar_options_metabox',
+    			'title' => __('Toolbar Options', PDF_LIGHT_VIEWER_PLUGIN),
+    			'object_types' => array(self::$type), // post type
+    			'context' => 'normal',
+    			'priority' => 'high',
+    			'show_names' => true, // Show field names on the left
+    			'fields' => array(
+    				array(
+    					'name' => '<i class="slicons slicon-cloud-download"></i> ' . __('Allow download', PDF_LIGHT_VIEWER_PLUGIN),
+    					'desc' => __('Check this if you want to show download button on the frontend', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'download_allowed',
+    					'type' => 'checkbox'
+    				),
+    				array(
+    					'name' => '<i class="slicons slicon-link"></i> ' . __('Alternate download link', PDF_LIGHT_VIEWER_PLUGIN),
+    					'desc' => __('If not set, will be used link from PDF File', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id'   => 'alternate_download_link',
+    					'type' => 'text',
+    					'default' => ''
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-cloud-download"></i> ' . __('Allow per-page download', PDF_LIGHT_VIEWER_PLUGIN),
+    					'desc' => __('Check this if you want to show download button in the thumbnails to allow downloading of single page images', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'download_page_allowed',
+    					'type' => 'checkbox'
+    				),
+                    array(
+    					'name' => '' . __('Per-page download format', PDF_LIGHT_VIEWER_PLUGIN),
+    					'desc' => __('Per page download in JPG or PDF formats', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'download_page_format',
+    					'type'    => 'select',
+                        'options' => array(
+                            'jpg' => 'jpg',
+                            'pdf' => 'pdf'
+                        ),
+                        'default' => 'jpg',
+    				),
+    				array(
+    					'name' => '<i class="slicons slicon-size-fullscreen"></i> ' . __('Hide fullscreen button', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'hide_fullscreen_button',
+    					'type' => 'checkbox'
+    				),
+    				array(
+    					'name' => '<i class="slicons slicon-magnifier"></i> ' . __('Disable page zoom', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'disable_page_zoom',
+    					'type' => 'checkbox'
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-magnifier"></i> ' . __('Zoom magnify multiplier', PDF_LIGHT_VIEWER_PLUGIN),
+                        'desc' => __('This value is multiplied against the full size of the zoomed image. The default value is 1, meaning the zoomed image should be at 100% of its natural width and height.', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'zoom_magnify',
+    					'type' => 'text',
+    					'default' => 1
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-arrow-left"></i><i class="slicons slicon-arrow-right"></i> ' . __('Show toolbar next and previous page arrows', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'show_toolbar_next_previous',
+    					'type' => 'checkbox'
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-directions"></i> ' . __('Show toolbar go to page control', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'show_toolbar_goto_page',
+    					'type' => 'checkbox'
+    				),
+                    array(
+    					'name' => '<i class="slicons slicon-info"></i> ' . __('Show page numbers', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'show_page_numbers',
+    					'type' => 'checkbox'
+    				),
+    			),
+    		);
 
-		// user roles pages limits
-		if ( !function_exists('get_editable_roles') ) {
-			require_once(ABSPATH.'/wp-admin/includes/user.php');
-		}
+    		// user roles pages limits
+    		if ( !function_exists('get_editable_roles') ) {
+    			require_once(ABSPATH.'/wp-admin/includes/user.php');
+    		}
 
-		$editable_roles = get_editable_roles();
-		$roles = array(
-			'anonymous' => __('Anonymous / s2Member Level 0', PDF_LIGHT_VIEWER_PLUGIN)
-		);
+    		$editable_roles = get_editable_roles();
+    		$roles = array(
+    			'anonymous' => __('Anonymous / s2Member Level 0', PDF_LIGHT_VIEWER_PLUGIN)
+    		);
 
-		foreach($editable_roles as $role_id => $editable_role) {
-			$roles[$role_id] = $editable_role['name'];
-		}
+    		foreach($editable_roles as $role_id => $editable_role) {
+    			$roles[$role_id] = $editable_role['name'];
+    		}
 
-		$meta_boxes['pdf_light_viewer_permissions_metabox'] = array(
-			'id' => 'pdf_light_viewer_permissions_metabox',
-			'title' => __('Permissions', PDF_LIGHT_VIEWER_PLUGIN),
-			'object_types' => array(self::$type), // post type
-			'context' => 'advanced',
-			'priority' => 'high',
-			'show_names' => true, // Show field names on the left
-			'fields' => array(
-				array(
-					'id'          => 'pdf_light_viewer_permissions_metabox_repeat_group',
-					'type'        => 'group',
-					'description' => __('Pages limits for different user roles', PDF_LIGHT_VIEWER_PLUGIN),
-					'options'     => array(
-						'group_title'   => __('Pages Limit', PDF_LIGHT_VIEWER_PLUGIN), // since version 1.1.4, {#} gets replaced by row number
-						'add_button'    => __('Add another limit', PDF_LIGHT_VIEWER_PLUGIN),
-						'remove_button' => __('Remove limit', PDF_LIGHT_VIEWER_PLUGIN),
-						'sortable'      => false, // beta
-					),
-					// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
-					'fields'      => array(
-						array(
-							'name'    => __('User Role', PDF_LIGHT_VIEWER_PLUGIN),
-							'desc'    => __('Select role which you want to pages limit', PDF_LIGHT_VIEWER_PLUGIN),
-							'id'      => 'pages_limit_user_role',
-							'type'    => 'select',
-							'options' => $roles,
-							'default' => '',
-						),
-						array(
-							'name' => __('Visible pages limit', PDF_LIGHT_VIEWER_PLUGIN),
-                            'desc' => __('Use for the higher limit. Has lower priority than "Visible pages"', PDF_LIGHT_VIEWER_PLUGIN),
-							'id'   => 'pages_limit_visible_pages',
-							'type' => 'text'
-						),
-//                        array(
-//							'name' => __('Visible pages', PDF_LIGHT_VIEWER_PLUGIN),
-//                            'desc' => __('Leave empty to show all. Use numbers for single pages or (e.g. 1-3) for ranges. Few numbers or ranges could be separated by commas (e.g. 2-5,7,9-15).', PDF_LIGHT_VIEWER_PLUGIN),
-//							'id'   => 'pages_limit_visible_pages_ranges',
-//							'type' => 'text'
-//						)
-					)
-				)
-			)
-		);
+    		$meta_boxes['pdf_light_viewer_permissions_metabox'] = array(
+    			'id' => 'pdf_light_viewer_permissions_metabox',
+    			'title' => __('Permissions', PDF_LIGHT_VIEWER_PLUGIN),
+    			'object_types' => array(self::$type), // post type
+    			'context' => 'advanced',
+    			'priority' => 'high',
+    			'show_names' => true, // Show field names on the left
+    			'fields' => array(
+    				array(
+    					'id'          => 'pdf_light_viewer_permissions_metabox_repeat_group',
+    					'type'        => 'group',
+    					'description' => __('Pages limits for different user roles', PDF_LIGHT_VIEWER_PLUGIN),
+    					'options'     => array(
+    						'group_title'   => __('Pages Limit', PDF_LIGHT_VIEWER_PLUGIN), // since version 1.1.4, {#} gets replaced by row number
+    						'add_button'    => __('Add another limit', PDF_LIGHT_VIEWER_PLUGIN),
+    						'remove_button' => __('Remove limit', PDF_LIGHT_VIEWER_PLUGIN),
+    						'sortable'      => false, // beta
+    					),
+    					// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
+    					'fields'      => array(
+    						array(
+    							'name'    => __('User Role', PDF_LIGHT_VIEWER_PLUGIN),
+    							'desc'    => __('Select role which you want to pages limit', PDF_LIGHT_VIEWER_PLUGIN),
+    							'id'      => 'pages_limit_user_role',
+    							'type'    => 'select',
+    							'options' => $roles,
+    							'default' => '',
+    						),
+    						array(
+    							'name' => __('Visible pages limit', PDF_LIGHT_VIEWER_PLUGIN),
+                                'desc' => __('Use for the higher limit. Has lower priority than "Visible pages"', PDF_LIGHT_VIEWER_PLUGIN),
+    							'id'   => 'pages_limit_visible_pages',
+    							'type' => 'text'
+    						),
+    //                        array(
+    //							'name' => __('Visible pages', PDF_LIGHT_VIEWER_PLUGIN),
+    //                            'desc' => __('Leave empty to show all. Use numbers for single pages or (e.g. 1-3) for ranges. Few numbers or ranges could be separated by commas (e.g. 2-5,7,9-15).', PDF_LIGHT_VIEWER_PLUGIN),
+    //							'id'   => 'pages_limit_visible_pages_ranges',
+    //							'type' => 'text'
+    //						)
+    					)
+    				)
+    			)
+    		);
+        }
 
 		return $meta_boxes;
 	}
@@ -558,8 +572,9 @@ class PdfLightViewer_PdfController {
 
 
 	public static function metabox_dashboard_usage($post) {
-        echo PdfLightViewer_Components_View::render('metabox/usage', array(
-            'pdf_upload_dir' => PdfLightViewer_Components_Uploader::getUploadDirectory($post->ID),
+        $pdf_upload_dir = PdfLightViewer_Components_Uploader::getUploadDirectory($post->ID);
+        echo PdfLightViewer_Components_View::render('metabox.usage', array(
+            'pdf_upload_dir' => $pdf_upload_dir,
             'pages' => directory_map($pdf_upload_dir),
             'post_id' => $post->ID
         ));
@@ -578,6 +593,8 @@ class PdfLightViewer_PdfController {
 			$pdf_file_id = (isset($form_data['pdf_file_id']) ? $form_data['pdf_file_id'] : PdfLightViewer_Model::getPDFFileId($post_id));
 
 			$pdf_file_path = get_attached_file($pdf_file_id);
+
+            $pdf_upload_dir = PdfLightViewer_Components_Uploader::createUploadDirectory($post_id);
 
 			if (
 				(
@@ -598,37 +615,39 @@ class PdfLightViewer_PdfController {
 
 				do_action(PDF_LIGHT_VIEWER_PLUGIN.':before_import_scheduled', $pdf_file_path);
 
-				$jpeg_compression_quality = (isset($form_data['jpeg_compression_quality']) ? $form_data['jpeg_compression_quality'] :get_post_meta($post_id, 'jpeg_compression_quality', true));
-				$jpeg_resolution = (isset($form_data['jpeg_resolution']) ? $form_data['jpeg_resolution'] : get_post_meta($post_id, 'jpeg_resolution', true));
-
-				$pdf_upload_dir = PdfLightViewer_Components_Uploader::createUploadDirectory($post_id);
+				$jpeg_compression_quality = (isset($form_data['jpeg_compression_quality'])
+                    ? $form_data['jpeg_compression_quality']
+                    : get_post_meta($post_id, 'jpeg_compression_quality', true));
+				$jpeg_resolution = (isset($form_data['jpeg_resolution'])
+                    ? $form_data['jpeg_resolution']
+                    : get_post_meta($post_id, 'jpeg_resolution', true));
 
 				// delete all files
 				self::delete_pages_by_pdf_id($post_id, $pdf_upload_dir);
 
-                $pages_number = static::getPDFPagesNumber($pdf_file_path);
-                $geometry = static::getFirstPageGeometry($jpeg_resolution, $jpeg_compression_quality, $pdf_upload_dir, $pdf_file_path);
+                $pages_number = self::getPDFPagesNumber($pdf_file_path);
+                $geometry = self::getFirstPageGeometry($jpeg_resolution, $jpeg_compression_quality, $pdf_upload_dir, $pdf_file_path);
                 extract($geometry);
 
 				if ($width) {
 
-					update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_SCHEDULED);
-					update_post_meta($post_id,'_pdf-light-viewer-import-progress',0);
-					update_post_meta($post_id,'_pdf-light-viewer-import-current-page',1);
+					update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_SCHEDULED);
+					update_post_meta($post_id,'_pdf-light-viewer-import-progress', 0);
+					update_post_meta($post_id,'_pdf-light-viewer-import-current-page', 1);
 
                     $importPages = array();
                     if (!empty($form_data['import_pages'])) {
-                        $importPages = static::parsePages($form_data['import_pages']);
+                        $importPages = self::parsePages($form_data['import_pages']);
 
                         if (!empty($importPages)) {
                             $pages_number = count($importPages);
                         }
                     }
 
-                    update_post_meta($post_id,'pdf-import-pages', $importPages);
-                    update_post_meta($post_id,'pdf-pages-number', $pages_number);
-					update_post_meta($post_id,'pdf-page-width', $width);
-					update_post_meta($post_id,'pdf-page-height', $height);
+                    update_post_meta($post_id, 'pdf-import-pages', $importPages);
+                    update_post_meta($post_id, 'pdf-pages-number', $pages_number);
+					update_post_meta($post_id, 'pdf-page-width', $width);
+					update_post_meta($post_id, 'pdf-page-height', $height);
 
                     if (!empty($form_data['enable_pdf_convert'])) {
                         update_post_meta($post_id, 'enable-pdf-convert', 1);
@@ -747,13 +766,13 @@ class PdfLightViewer_PdfController {
 		}
 
 		$status = PdfLightViewer_Models_Meta::get_post_meta($post_id,'_pdf-light-viewer-import-status',true);
-		if ($status == static::STATUS_SCHEDULED) {
+		if ($status == self::STATUS_SCHEDULED) {
 			$status_label = __('scheduled', PDF_LIGHT_VIEWER_PLUGIN);
-			update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_STARTED);
+			update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_STARTED);
 		}
-		else if ($status == static::STATUS_STARTED) {
+		else if ($status == self::STATUS_STARTED) {
 			$status_label = __('started', PDF_LIGHT_VIEWER_PLUGIN);
-			update_post_meta($post_id,'_pdf-light-viewer-import-status', 'processing');
+			update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_PROCESSING);
 		}
 		else {
 			$status_label = __('processing', PDF_LIGHT_VIEWER_PLUGIN);
@@ -810,7 +829,7 @@ class PdfLightViewer_PdfController {
 
         if ($enable_pdf_convert) {
             update_post_meta($post_id, 'enable-pdf-convert', false);
-            static::convert_colors($pdf_file_path);
+            self::convert_colors($pdf_file_path);
         }
 
 		$error = '';
@@ -822,7 +841,7 @@ class PdfLightViewer_PdfController {
                 if (!file_exists($pdf_upload_dir.'/page-'.$page_number.'.jpg')) {
 
                     try {
-                        $percent = static::process_pdf_page(
+                        $percent = self::process_pdf_page(
                             $post_id,
                             $current_page,
                             $current_page,
@@ -840,7 +859,7 @@ class PdfLightViewer_PdfController {
                         PdfLightViewer_Components_Logger::log('Import exception: '.$e->getMessage(), print_r($e, true));
                         $status_label = __('failed', PDF_LIGHT_VIEWER_PLUGIN);
                         $error = $e->getMessage();
-                        update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FAILED);
+                        update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_FAILED);
                     }
 
                     break;
@@ -854,7 +873,7 @@ class PdfLightViewer_PdfController {
                 if (!file_exists($pdf_upload_dir.'/page-'.$page_number.'.jpg')) {
 
                     try {
-                        $percent = static::process_pdf_page(
+                        $percent = self::process_pdf_page(
                             $post_id,
                             $current_page,
                             $current_page_doc,
@@ -872,7 +891,7 @@ class PdfLightViewer_PdfController {
                         PdfLightViewer_Components_Logger::log('Import exception: '.$e->getMessage(), print_r($e, true));
                         $status_label = __('failed', PDF_LIGHT_VIEWER_PLUGIN);
                         $error = $e->getMessage();
-                        update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FAILED);
+                        update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_FAILED);
                     }
 
                     break;
@@ -887,7 +906,7 @@ class PdfLightViewer_PdfController {
 		if ($percent >= 100) {
 			do_action(PDF_LIGHT_VIEWER_PLUGIN.':finished_import', $post_id, $pdf_file_path);
 			$status_label = __('finished', PDF_LIGHT_VIEWER_PLUGIN);
-			update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FINISHED);
+			update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_FINISHED);
 		}
 
 		return wp_send_json(array(
@@ -908,7 +927,7 @@ class PdfLightViewer_PdfController {
 			));
 		}
 
-		update_post_meta($post_id,'_pdf-light-viewer-import-status', static::STATUS_FAILED);
+		update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_FAILED);
 
 		return wp_send_json(array(
 			'status' => 'error',
@@ -1017,7 +1036,7 @@ class PdfLightViewer_PdfController {
                     $_img->getImageColorspace() != $ImagickClass::COLORSPACE_RGB
                     && $_img->getImageColorspace() != $ImagickClass::COLORSPACE_SRGB
                 ) {
-                    if (version_compare(static::getImagickVersion(), '6.7.6', '>=')) {
+                    if (version_compare(self::getImagickVersion(), '6.7.6', '>=')) {
                         $_img->transformImageColorspace($ImagickClass::COLORSPACE_SRGB);
                     }
                     else {
@@ -1049,9 +1068,9 @@ class PdfLightViewer_PdfController {
 				PdfLightViewer_Components_Thumbnail::set_featured_image($post_id, $file, 'pdf-'.$post_id.'-page-'.$page_number.'.jpg');
 			}
 
-			$percent = (($current_page)/$pdf_pages_number)*100;
-			update_post_meta($post_id,'_pdf-light-viewer-import-progress',$percent);
-			update_post_meta($post_id,'_pdf-light-viewer-import-current-page',$current_page);
+			$percent = ($current_page / $pdf_pages_number) * 100;
+			update_post_meta($post_id,'_pdf-light-viewer-import-progress', $percent);
+			update_post_meta($post_id,'_pdf-light-viewer-import-current-page', $current_page);
 
 		$_img->destroy();
 		unset($_img);
