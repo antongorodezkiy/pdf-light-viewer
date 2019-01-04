@@ -5,13 +5,19 @@ class PdfLightViewer_AdminController {
     public static function init() {
         self::settingsInit();
 
-        if (!defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')) {
+        if (!defined('PDF_LIGHT_VIEWER_PRO_PLUGIN') || !defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')) {
             add_action(PDF_LIGHT_VIEWER_PLUGIN.':settings_view_after_settings', array(__CLASS__, 'settings_view_after_settings'), 100);
         }
     }
 
     public static function settings_view_after_settings() {
-        echo PdfLightViewer_Components_View::render('pro-placeholder');
+        if (!defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')) {
+            echo PdfLightViewer_Components_View::render('pro-placeholder');
+        }
+
+        if (!defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')) {
+            echo PdfLightViewer_Components_View::render('serverless-placeholder');
+        }
 	}
 
 	public static function initGentleNotifications() {

@@ -22,44 +22,69 @@
                             </p>
 
                             <blockquote>
-                                WordPress PDF Light Viewer Plugin &copy; <a target="_blank" href="http://teamlead.pw">Teamlead Power&nbsp;<span class="icons slicon-link"></span></a>
+                                <div>
+                                    PDF Light Viewer Plugin &copy; <a target="_blank" href="http://teamlead.pw">Teamlead Power&nbsp;<span class="icons slicon-link"></span></a>
+                                </div>
+                                <?php if (defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')): ?>
+                                    <div>
+                                        PDF Light Viewer PRO Addon &copy; <a target="_blank" href="http://teamlead.pw">Teamlead Power&nbsp;<span class="icons slicon-link"></span></a>
+                                    </div>
+                                <?php endif ?>
+
+                                <?php if (defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')): ?>
+                                    <div>
+                                        PDF Light Viewer Serverless Addon &copy; <a target="_blank" href="http://teamlead.pw">Teamlead Power&nbsp;<span class="icons slicon-link"></span></a>
+                                    </div>
+                                <?php endif ?>
                             </blockquote>
                         </div>
                         <div class="pure-u-lg-1-3 pure-u-md-1-1 pure-u-sm-1-1 pure-u-xs-1-1">
                             <blockquote>
-                                <p>
+                                <div>
                                     Icons &copy; <a href="http://thesabbir.github.io/simple-line-icons/" target="_blank">Simple line icons&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     Logo Icons &copy; <a href="https://www.iconfinder.com/Re66y" target="_blank">Gregor Cresnar&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     CSS Framework &copy; <a href="http://purecss.io/" target="_blank">Pure.css&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     Flipbook &copy; <a href="http://www.turnjs.com/" target="_blank">Turn.js&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     Lazy Load &copy; <a href="http://www.appelsiini.net/projects/lazyload" target="_blank">Lazy Load Plugin for jQuery&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     Slider &copy; <a href="http://bxslider.com/" target="_blank">bxSlider&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     Fullscreen &copy; <a href="https://github.com/sindresorhus/screenfull.js" target="_blank">screenfull.js&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     Zoom &copy; <a href="http://www.jacklmoore.com/zoom/" target="_blank">jQuery Zoom&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
-                                    Grid &copy; <a href="http://isotope.metafizzy.co/" target="_blank">Isotope&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
-                                    Printing &copy; <a href="https://github.com/posabsolute/jQuery-printPage-plugin" target="_blank">jQuery PrintPage plugin&nbsp;<span class="icons slicon-link"></span></a>
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                     Metaboxes &copy; <a href="https://github.com/WebDevStudios/CMB2" target="_blank">CMB2&nbsp;<span class="icons icon-link"></span></a>
-                                </p>
+                                </div>
+                                <?php if (defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')): ?>
+                                    <hr />
+                                    <div>
+                                        Printing &copy; <a href="https://github.com/posabsolute/jQuery-printPage-plugin" target="_blank">jQuery PrintPage plugin&nbsp;<span class="icons slicon-link"></span></a>
+                                    </div>
+                                    <div>
+                                        Grid &copy; <a href="http://isotope.metafizzy.co/" target="_blank">Isotope&nbsp;<span class="icons slicon-link"></span></a>
+                                    </div>
+                                    <div>
+                                        Pdf Text Parser &copy; <a href="https://github.com/smalot/pdfparser" target="_blank">Smalot PdfParser&nbsp;<span class="icons slicon-link"></span></a>
+                                    </div>
+                                <?php endif ?>
+                                <?php if (defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')): ?>
+                                    <hr />
+                                    <div>
+                                        PDF.js &copy; <a href="https://mozilla.github.io/pdf.js/" target="_blank">Mozilla PDF.js&nbsp;<span class="icons icon-link"></span></a>
+                                    </div>
+                                <?php endif ?>
                             </blockquote>
                         </div>
                     </div>

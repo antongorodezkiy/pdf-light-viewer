@@ -667,8 +667,6 @@ class PdfLightViewer_PdfController {
 
 		unset($_REQUEST['enable_pdf_import']);
 		unset($_POST['enable_pdf_import']);
-        unset($_REQUEST['import_pages']);
-        unset($_POST['import_pages']);
         unset($_REQUEST['enable_pdf_convert']);
         unset($_POST['enable_pdf_convert']);
 	}
