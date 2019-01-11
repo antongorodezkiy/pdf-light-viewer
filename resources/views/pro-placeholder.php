@@ -30,7 +30,7 @@
 
 		<div class="row">
 			<a class="button-primary" href="https://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505" target="_blank">
-				<?php _e('Check &amp; Purchase your PRO Addon', PDF_LIGHT_VIEWER_PLUGIN)?>
+				<?php _e('Purchase your PRO Addon', PDF_LIGHT_VIEWER_PLUGIN)?>
                 <i class="icons slicon-arrow-right"></i>
 			</a>
 		</div>

@@ -459,6 +459,52 @@ class PdfLightViewer_PdfController {
     			),
     		);
 
+            // export / import
+            $exportConfig = PdfLightViewer_FrontController::parseDefaultsSettings(array(), $post);
+            $exportConfig = apply_filters(PDF_LIGHT_VIEWER_PLUGIN.':front_config', $exportConfig, $post);
+            foreach ($exportConfig as $i => $value) {
+                if (in_array($i, array(
+                    'title',
+                    'template',
+                    'download_link',
+                    'alternate_download_link',
+                    'pages',
+                    'thumbs'
+                ))) {
+                    unset($exportConfig[$i]);
+                }
+            }
+            $meta_boxes['pdf_light_viewer_export_import_metabox'] = array(
+    			'id' => 'pdf_light_viewer_export_import_metabox',
+    			'title' => __('Export/Import Options', PDF_LIGHT_VIEWER_PLUGIN),
+    			'object_types' => array(self::$type), // post type
+    			'context' => 'normal',
+    			'priority' => 'low',
+    			'show_names' => true, // Show field names on the left
+    			'fields' => array(
+    				array(
+    					'name' => '' . __('Export configuration', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id'   => 'export_config',
+    					'type' => 'textarea',
+    					'default' => json_encode($exportConfig),
+                        'attributes'  => array(
+                    		'rows'        => 3,
+                            'readonly' => true,
+                    	),
+    				),
+    				array(
+    					'name' => '' . __('Import configuration', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id'   => 'import_config',
+    					'type' => 'textarea',
+                        'attributes'  => array(
+                    		'placeholder' => __('Paste configuration here to import...', PDF_LIGHT_VIEWER_PLUGIN),
+                    		'rows'        => 3,
+                            'class' => 'pure-input-1-1'
+                    	),
+    				)
+    			),
+    		);
+
     		// user roles pages limits
     		if ( !function_exists('get_editable_roles') ) {
     			require_once(ABSPATH.'/wp-admin/includes/user.php');
@@ -580,7 +626,6 @@ class PdfLightViewer_PdfController {
         ));
 	}
 
-
 	public static function save_post($post_id) {
 
 		if ( (defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE) || !$_POST ) {
@@ -663,12 +708,55 @@ class PdfLightViewer_PdfController {
 					, true);
 				}
 			}
+
+            // import config
+            if (!empty($form_data['import_config'])) {
+                $allowedMeta = array(
+                    'download_allowed',
+                    'download_page_allowed',
+                    'download_page_format',
+        			'hide_thumbnails_navigation',
+        			'hide_fullscreen_button',
+        			'disable_page_zoom',
+                    'zoom_magnify',
+                    'show_toolbar_next_previous',
+                    'show_toolbar_goto_page',
+                    'show_page_numbers',
+                    'page_layout',
+                    'max_book_width',
+                    'max_book_height',
+                    'limit_fullscreen_book_height',
+                    'disable_lazy_loading',
+        			'print_allowed',
+        			'print_page_allowed',
+        			'enabled_pdf_text',
+        			'enabled_pdf_search',
+        			'enabled_archive'
+                );
+                $metaToImport = str_replace('\"', '"', $form_data['import_config']);
+                $metaToImport = @json_decode($metaToImport, true);
+                foreach ($metaToImport as $name => $value) {
+                    if (in_array($name, $allowedMeta)) {
+
+                        if ($value === true) $value = 'on';
+
+                        if ($value === false) $value = 'off';
+
+                        $_REQUEST[$name] = $value;
+                        $_POST[$name] = $value;
+                    }
+                }
+            }
 		}
 
 		unset($_REQUEST['enable_pdf_import']);
 		unset($_POST['enable_pdf_import']);
         unset($_REQUEST['enable_pdf_convert']);
         unset($_POST['enable_pdf_convert']);
+        unset($_REQUEST['import_config']);
+        unset($_POST['import_config']);
+        unset($_REQUEST['export_config']);
+        unset($_POST['export_config']);
 	}
 
 	public static function getPDFPagesNumber($pdf_file_path) {

@@ -44,6 +44,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * Per-page downloading in JPEG or PDF
 * Imagick or Gmagick support
 
+### [Serverless Addon](http://pdf-light-viewer.wp.teamlead.pw/serverless/) Features ###
+* Plugin allows you to embed PDF files without server libraries ImageMagick and GhostScript
+
 ### [PRO Addon](http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505) Features ###
 * Single separate PDF page.
 * Regular Wordpress PDF Archive page with 2 templates.
@@ -85,6 +88,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 ## 1.4.0 - 2019-
 * Code structure cleaning up
 * PDF Light Viewer Serverless plugin compatibility
+* Export/Import PDF config
 
 ## 1.3.23 - 2018-09-18
 * Option to disable lazy loading to prevent issues when using other lazy loading systems (e.g. Jetpack)

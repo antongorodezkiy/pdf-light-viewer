@@ -201,6 +201,7 @@ class PdfLightViewer_FrontController {
 			'thumbs' => array(),
 
 			'print_allowed' => false,
+			'print_page_allowed' => false,
 			'enabled_pdf_text' => false,
 			'enabled_pdf_search' => false,
 			'enabled_archive' => false

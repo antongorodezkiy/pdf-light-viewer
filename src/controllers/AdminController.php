@@ -14,10 +14,6 @@ class PdfLightViewer_AdminController {
         if (!defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')) {
             echo PdfLightViewer_Components_View::render('pro-placeholder');
         }
-
-        if (!defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')) {
-            echo PdfLightViewer_Components_View::render('serverless-placeholder');
-        }
 	}
 
 	public static function initGentleNotifications() {
@@ -28,7 +24,7 @@ class PdfLightViewer_AdminController {
 		) {
 			PdfLightViewer_AdminController::showDirectMessage(
 				sprintf(
-					__('PDF Light Viewer Team: We created PRO Addon with printing, search and SEO-friendly mode <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" target="_blank" href="%s">Check It</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" href="#">Not interested</a>',PDF_LIGHT_VIEWER_PLUGIN),
+					__('PDF Light Viewer Team: We created PRO Addon with printing, search, popup and SEO-friendly mode <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" target="_blank" href="%s">Check It</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" href="#">Not interested</a>',PDF_LIGHT_VIEWER_PLUGIN),
 					'http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505'
 				)
 			);
@@ -42,9 +38,23 @@ class PdfLightViewer_AdminController {
 			);
 		}
 
+        if (
+			!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-serverless-ad-viewed')
+			&& !defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')
+            && defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')
+		) {
+			PdfLightViewer_AdminController::showDirectMessage(
+				sprintf(
+					__('PDF Light Viewer Team: <b>Special offer till Feb 1, 2019 - 50%% off for the Serverless Addon</b> which allows to import PDFs without ImageMagick and GhostScript <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="serverless-ad-viewed" target="_blank" href="%s">Check It</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="serverless-ad-viewed" href="#">Not interested</a>',PDF_LIGHT_VIEWER_PLUGIN),
+					'https://pdf-light-viewer.wp.teamlead.pw/serverless/'
+				)
+			);
+		}
+
         // imagetragick
         if (
 			!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-imagetragick-viewed')
+            && !defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')
 		) {
 			PdfLightViewer_AdminController::showDirectMessage(
 				sprintf(
@@ -127,6 +137,10 @@ class PdfLightViewer_AdminController {
 
 					case 'pro-ad-viewed':
 						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-pro-ad-viewed', true);
+					break;
+
+					case 'serverless-ad-viewed':
+						update_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-serverless-ad-viewed', true);
 					break;
 
                     case 'imagetragick-viewed':
