@@ -1,0 +1,269 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pdf-light-viewer\n"
+"POT-Creation-Date: 2019-01-14 12:05+0200\n"
+"PO-Revision-Date: 2019-01-14 12:05+0200\n"
+"Last-Translator: Eduard Kozachek <eduard@kozachek.net>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../..\n"
+
+#: ../../views/metabox/usage.php:12
+msgid "You have not yet converted the PDF."
+msgstr ""
+
+#: ../../views/metabox/usage.php:13
+msgid ""
+"Note: it normally takes just 60 to 90 seconds for the conversion of small "
+"PDF file after submission. Thank you for your patience!"
+msgstr ""
+
+#: ../../views/pro-placeholder.php:6
+msgid "PRO Addon"
+msgstr ""
+
+#: ../../views/pro-placeholder.php:11
+msgid "Do you like PDF Light Viewer plugin? We glad to hear if so!"
+msgstr ""
+
+#: ../../views/pro-placeholder.php:12
+msgid "Interesting in <b>additional features</b>? We have some for you!"
+msgstr ""
+
+#: ../../views/pro-placeholder.php:14
+msgid ""
+"Please check our <b>Pro Addon</b> which has the following additional features"
+msgstr ""
+
+#: ../../views/pro-placeholder.php:17
+msgid "Single separate PDF page."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:18
+msgid "Regular Wordpress PDF Archive page with 2 templates."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:19
+msgid "One-page PDF Archive page with 2 templates."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:20
+msgid "PDF Archive page by shortcode on custom page or frontpage."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:21
+msgid "PDF Categories."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:22
+msgid "Simple PDF page search."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:23
+msgid "Document printing."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:24
+msgid "Per-page printing."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:25
+msgid "SEO friendly mode."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:33
+msgid "Purchase your PRO Addon"
+msgstr ""
+
+#: ../../views/serverless-placeholder.php:6
+msgid "Serverless Addon"
+msgstr ""
+
+#: ../../views/serverless-placeholder.php:11
+msgid "Wish to import PDFs independently from server environment?"
+msgstr ""
+
+#: ../../views/serverless-placeholder.php:13
+msgid ""
+"Check <b>Serverless Addon</b> which allows to import PDFs no matter have "
+"your server ImageMagick library or not"
+msgstr ""
+
+#: ../../views/serverless-placeholder.php:19
+msgid "Purchase your Serverless Addon"
+msgstr ""
+
+#: ../../views/settings.php:12
+msgid "Vote for PDF Light Viewer plugin!"
+msgstr ""
+
+#: ../../views/settings.php:17
+msgid "Support PDF Light Viewer team spirit!"
+msgstr ""
+
+#: ../../views/settings.php:19
+msgid "Give 5 stars"
+msgstr ""
+
+#: ../../views/settings.php:34
+msgid "About"
+msgstr ""
+
+#: ../../views/settings.php:121 ../../views/settings.php:301
+msgid "Plugin Requirements"
+msgstr ""
+
+#: ../../views/settings.php:141
+msgid "Settings"
+msgstr ""
+
+#: ../../views/settings.php:147
+msgid "Main settings"
+msgstr ""
+
+#: ../../views/settings.php:148
+msgid "CLI settings"
+msgstr ""
+
+#: ../../views/settings.php:154
+msgid "Show PDFs in Menu"
+msgstr ""
+
+#: ../../views/settings.php:155
+msgid "Show PDFs menu item in the left admin sidebar"
+msgstr ""
+
+#: ../../views/settings.php:173
+msgid "Do not check GhostScript installation"
+msgstr ""
+
+#: ../../views/settings.php:174
+msgid ""
+"For cases, when you are sure that GhostScript is installed, but it was not "
+"detected by the plugin correctly."
+msgstr ""
+
+#: ../../views/settings.php:192
+msgid "Prefer Imagick or Gmagick"
+msgstr ""
+
+#: ../../views/settings.php:193
+msgid "For cases, when you have both. Otherwise only existing will be used."
+msgstr ""
+
+#: ../../views/settings.php:203
+msgid "Imagick"
+msgstr ""
+
+#: ../../views/settings.php:206 ../../views/settings.php:221
+msgid "seems to be not installed"
+msgstr ""
+
+#: ../../views/settings.php:218
+msgid "Gmagick"
+msgstr ""
+
+#: ../../views/settings.php:231
+msgid "Enable hash navigation"
+msgstr ""
+
+#: ../../views/settings.php:232
+msgid "In some cases turning this off can solve compatibility issues."
+msgstr ""
+
+#: ../../views/settings.php:251
+msgid "Save"
+msgstr ""
+
+#: ../../views/settings.php:273
+msgid "Support"
+msgstr ""
+
+#: ../../views/settings.php:283
+#, php-format
+msgid "Support request, plugin: %s (time: %s)"
+msgstr ""
+
+#: ../../views/settings.php:288
+#, php-format
+msgid ""
+"To get support please contact us on forum <a target=\"_blank\" href=\"%s\">"
+"%s</a>. Please also attach server information and log information below to "
+"let us know more about your server and site environment - this could be "
+"helpful to solve the issue."
+msgstr ""
+
+#: ../../views/settings.php:295
+msgid "Subject"
+msgstr ""
+
+#: ../../views/settings.php:310
+msgid "Server Info"
+msgstr ""
+
+#: ../../views/settings.php:330
+msgid "Theme"
+msgstr ""
+
+#: ../../views/settings.php:339
+msgid "from"
+msgstr ""
+
+#: ../../views/settings.php:349
+msgid "Plugins"
+msgstr ""
+
+#: ../../views/settings.php:377
+msgid "Today's log file"
+msgstr ""
+
+#: ../../views/settings.php:387
+msgid "Today's log file doesn't exist"
+msgstr ""
+
+#: ../../views/settings.php:403
+msgid "Documentation"
+msgstr ""
+
+#: ../../views/settings.php:404
+msgid "open in the separate tab"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:7 ../../views/shortcode-top-panel.php:16
+#: ../../views/shortcode-top-panel.php:46
+msgid "Download"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:27
+msgid "Download Page"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:38
+msgid "Download Right Page"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:54
+msgid "Fullscreen"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:63
+msgid "Zoom enabled"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:71
+msgid "Previous page"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:74
+msgid "Next page"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:89
+msgid "Current page"
+msgstr ""

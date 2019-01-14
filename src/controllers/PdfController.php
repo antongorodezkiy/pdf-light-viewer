@@ -9,6 +9,9 @@ class PdfLightViewer_PdfController {
 	const STATUS_FINISHED = 'finished';
 	const STATUS_FAILED = 'failed';
 
+    const THEME_LIGHT = 'light';
+    const THEME_DARK = 'dark';
+
 	public static $type = 'pdf_lv';
 
     public static function getImagickVersion() {
@@ -582,6 +585,38 @@ class PdfLightViewer_PdfController {
             || !empty($pdf_light_viewer_config['show_toolbar_next_previous'])
             || !empty($pdf_light_viewer_config['show_toolbar_goto_page'])
         );
+    }
+
+    public static function getThemeImagePlaceholder($pdf_light_viewer_config)
+    {
+        if (!empty($pdf_light_viewer_config['theme'])) {
+            switch ($pdf_light_viewer_config['theme']) {
+                case self::THEME_DARK:
+                    return plugins_url('resources/assets/img/dark-background.png',  PDF_LIGHT_VIEWER_FILE);
+            }
+        }
+
+        return plugins_url('resources/assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE);;
+    }
+
+    public static function getThemeClass($pdf_light_viewer_config = null)
+    {
+		if (empty($pdf_light_viewer_config)) {
+			$theme = defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')
+				? PdfLightViewerPro_AdminController::getSetting('theme', PdfLightViewer_PdfController::THEME_LIGHT)
+				: PdfLightViewer_PdfController::THEME_LIGHT;
+		} else {
+			$theme = !empty($pdf_light_viewer_config['theme'])
+				? $pdf_light_viewer_config['theme']
+				: PdfLightViewer_PdfController::THEME_LIGHT;
+		}
+
+        switch ($theme) {
+            case self::THEME_DARK:
+                return 'pdf-light-viewer--theme-dark';
+        }
+
+        return 'pdf-light-viewer--theme-light';
     }
 
 	public static function add_meta_boxes() {

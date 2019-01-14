@@ -1,0 +1,682 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pdf-light-viewer\n"
+"POT-Creation-Date: 2019-01-14 12:05+0200\n"
+"PO-Revision-Date: 2019-01-14 12:23+0200\n"
+"Last-Translator: Eduard Kozachek <eduard@kozachek.net>\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../..\n"
+
+#: ../../views/metabox/usage.php:12
+msgid "You have not yet converted the PDF."
+msgstr "Ваш PDF еще не был конвертирован."
+
+#: ../../views/metabox/usage.php:13
+msgid ""
+"Note: it normally takes just 60 to 90 seconds for the conversion of small "
+"PDF file after submission. Thank you for your patience!"
+msgstr ""
+"Заметка: обычно конвертация маленького PDF файла занимает всего лишь 60-90 "
+"секунд после отправки формы. Спасибо за ваше терпение!"
+
+#: ../../views/pro-placeholder.php:6
+msgid "PRO Addon"
+msgstr "PRO Addon"
+
+#: ../../views/pro-placeholder.php:11
+msgid "Do you like PDF Light Viewer plugin? We glad to hear if so!"
+msgstr "Вам нравится PDF Light Viewer плагин? Мы рады это слышать!"
+
+#: ../../views/pro-placeholder.php:12
+msgid "Interesting in <b>additional features</b>? We have some for you!"
+msgstr ""
+"Заинтересованы в <b>дополнительных функциях</b>? У нас есть несколько для "
+"вас!"
+
+#: ../../views/pro-placeholder.php:14
+msgid ""
+"Please check our <b>Pro Addon</b> which has the following additional features"
+msgstr ""
+"Обратите внимание на <b>PRO Addon</b>, в который включены следующие функции"
+
+#: ../../views/pro-placeholder.php:17
+msgid "Single separate PDF page."
+msgstr "Отдельная страница для каждого PDF."
+
+#: ../../views/pro-placeholder.php:18
+msgid "Regular Wordpress PDF Archive page with 2 templates."
+msgstr "Обычная страница архива PDF для Wordpress с двумя шаблонами."
+
+#: ../../views/pro-placeholder.php:19
+msgid "One-page PDF Archive page with 2 templates."
+msgstr "Одностраничный дизайн PDF архива с двумя шаблонами."
+
+#: ../../views/pro-placeholder.php:20
+msgid "PDF Archive page by shortcode on custom page or frontpage."
+msgstr "Архив PDF выводимый по shortcode на любой странице вашего сайта."
+
+#: ../../views/pro-placeholder.php:21
+msgid "PDF Categories."
+msgstr "Категории PDF."
+
+#: ../../views/pro-placeholder.php:22
+msgid "Simple PDF page search."
+msgstr "Простой поиск внутри PDF."
+
+#: ../../views/pro-placeholder.php:23
+msgid "Document printing."
+msgstr "Печать документа."
+
+#: ../../views/pro-placeholder.php:24
+msgid "Per-page printing."
+msgstr "Постраничная печать."
+
+#: ../../views/pro-placeholder.php:25
+msgid "SEO friendly mode."
+msgstr "Дружественный режим для SEO."
+
+#: ../../views/pro-placeholder.php:33
+msgid "Purchase your PRO Addon"
+msgstr "Приобретите ваш PRO Addon"
+
+#: ../../views/serverless-placeholder.php:6
+msgid "Serverless Addon"
+msgstr "Serverless Addon"
+
+#: ../../views/serverless-placeholder.php:11
+msgid "Wish to import PDFs independently from server environment?"
+msgstr "Хотите импортировать PDF независимо от возможностей сервера?"
+
+#: ../../views/serverless-placeholder.php:13
+msgid ""
+"Check <b>Serverless Addon</b> which allows to import PDFs no matter have "
+"your server ImageMagick library or not"
+msgstr ""
+"Взгляните <b>Serverless Addon</b>, который позволяет импортировать PDF не "
+"зависимо от того установлен ли на сервере ImageMagick или нет"
+
+#: ../../views/serverless-placeholder.php:19
+msgid "Purchase your Serverless Addon"
+msgstr "Приобретите ваш Serverless Addon"
+
+#: ../../views/settings.php:12
+msgid "Vote for PDF Light Viewer plugin!"
+msgstr "Проголосуйте за PDF Light Viewer plugin!"
+
+#: ../../views/settings.php:17
+msgid "Support PDF Light Viewer team spirit!"
+msgstr "Поддержите командный дух PDF Light Viewer!"
+
+#: ../../views/settings.php:19
+msgid "Give 5 stars"
+msgstr "Поставьте 5 звезд"
+
+#: ../../views/settings.php:34
+msgid "About"
+msgstr "Про"
+
+#: ../../views/settings.php:121 ../../views/settings.php:301
+msgid "Plugin Requirements"
+msgstr "Требования плагина"
+
+#: ../../views/settings.php:141
+msgid "Settings"
+msgstr "Настройки"
+
+#: ../../views/settings.php:147
+msgid "Main settings"
+msgstr "Основные настройки"
+
+#: ../../views/settings.php:148
+msgid "CLI settings"
+msgstr "Настройки командной строки"
+
+#: ../../views/settings.php:154
+msgid "Show PDFs in Menu"
+msgstr "Отображать PDFs в Меню"
+
+#: ../../views/settings.php:155
+msgid "Show PDFs menu item in the left admin sidebar"
+msgstr ""
+"Показывать ли пункт меню PDFs в левой панели административного интерфейса"
+
+#: ../../views/settings.php:173
+msgid "Do not check GhostScript installation"
+msgstr "Не проверять установку GhosScript"
+
+#: ../../views/settings.php:174
+msgid ""
+"For cases, when you are sure that GhostScript is installed, but it was not "
+"detected by the plugin correctly."
+msgstr ""
+"Для случаев, когда вы уверены что GhostScript установлен, но он не "
+"определился корректно."
+
+#: ../../views/settings.php:192
+msgid "Prefer Imagick or Gmagick"
+msgstr "Предпочтение Imagick или Gmagick"
+
+#: ../../views/settings.php:193
+msgid "For cases, when you have both. Otherwise only existing will be used."
+msgstr ""
+"Для случаев, когда установлены оба. В ином случае будет использован "
+"имеющийся."
+
+#: ../../views/settings.php:203
+msgid "Imagick"
+msgstr "Imagick"
+
+#: ../../views/settings.php:206 ../../views/settings.php:221
+msgid "seems to be not installed"
+msgstr "похоже не установлен"
+
+#: ../../views/settings.php:218
+msgid "Gmagick"
+msgstr "Gmagick"
+
+#: ../../views/settings.php:231
+msgid "Enable hash navigation"
+msgstr "Включить навигацию по hash"
+
+#: ../../views/settings.php:232
+msgid "In some cases turning this off can solve compatibility issues."
+msgstr ""
+"В некоторый случаях отключение этой опции может решить проблемы "
+"совместимости."
+
+#: ../../views/settings.php:251
+msgid "Save"
+msgstr "Сохранить"
+
+#: ../../views/settings.php:273
+msgid "Support"
+msgstr "Поддержка"
+
+#: ../../views/settings.php:283
+#, php-format
+msgid "Support request, plugin: %s (time: %s)"
+msgstr "Запрос в техподдержку, плагин %s (время: %s)"
+
+#: ../../views/settings.php:288
+#, php-format
+msgid ""
+"To get support please contact us on forum <a target=\"_blank\" href=\"%s\">"
+"%s</a>. Please also attach server information and log information below to "
+"let us know more about your server and site environment - this could be "
+"helpful to solve the issue."
+msgstr ""
+"Чтобы получить техническую поддержку, пожалуйста свяжитесь с нами через "
+"форум <a target=\"_blank\" href=\"%s\">%s</a>. Пожалуйста, приложите к "
+"письму серверную информацию и журнал ошибок представленные ниже, чтобы дать "
+"нам знать как можно больше о вашем сервере и программном окружении - это "
+"будет полезно для разрешения проблемы."
+
+#: ../../views/settings.php:295
+msgid "Subject"
+msgstr "Тема"
+
+#: ../../views/settings.php:310
+msgid "Server Info"
+msgstr "Серверная информация"
+
+#: ../../views/settings.php:330
+msgid "Theme"
+msgstr "Тема"
+
+#: ../../views/settings.php:339
+msgid "from"
+msgstr "от"
+
+#: ../../views/settings.php:349
+msgid "Plugins"
+msgstr "Плагины"
+
+#: ../../views/settings.php:377
+msgid "Today's log file"
+msgstr "Сегодняшний файл журнала"
+
+#: ../../views/settings.php:387
+msgid "Today's log file doesn't exist"
+msgstr "Сегодняшний файл журнала не существует"
+
+#: ../../views/settings.php:403
+msgid "Documentation"
+msgstr "Документация"
+
+#: ../../views/settings.php:404
+msgid "open in the separate tab"
+msgstr "открыть в отдельной вкладке"
+
+#: ../../views/shortcode-top-panel.php:7 ../../views/shortcode-top-panel.php:16
+#: ../../views/shortcode-top-panel.php:46
+msgid "Download"
+msgstr "Скачать"
+
+#: ../../views/shortcode-top-panel.php:27
+msgid "Download Page"
+msgstr "Скачать страницу"
+
+#: ../../views/shortcode-top-panel.php:38
+msgid "Download Right Page"
+msgstr "Скачать правую страницу"
+
+#: ../../views/shortcode-top-panel.php:54
+msgid "Fullscreen"
+msgstr "Полный экран"
+
+#: ../../views/shortcode-top-panel.php:63
+msgid "Zoom enabled"
+msgstr "Увеличение включёно"
+
+#: ../../views/shortcode-top-panel.php:71
+msgid "Previous page"
+msgstr "Предыдущая страница"
+
+#: ../../views/shortcode-top-panel.php:74
+msgid "Next page"
+msgstr "Следующая страница"
+
+#: ../../views/shortcode-top-panel.php:89
+msgid "Current page"
+msgstr "Текущая страница"
+
+#~ msgid ""
+#~ "Import process was successfully finished. Please check results on the PDF "
+#~ "page."
+#~ msgstr "Импорт прошел успешно. Проверье результаты на странице PDF."
+
+#~ msgid "Import process failed due to the unknown error."
+#~ msgstr "Импорт не удался из-за неизвестной ошибки."
+
+#~ msgid "Import process failed due to the error:"
+#~ msgstr "Импорт не удался из-за ошибки:"
+
+#~ msgid "Import PDF"
+#~ msgstr "Импорт PDF"
+
+#~ msgid "Edit"
+#~ msgstr "Редактировать"
+
+#~ msgid "Edit PDF"
+#~ msgstr "Редактировать PDF"
+
+#~ msgid "New PDF"
+#~ msgstr "Новый PDF"
+
+#~ msgid "View"
+#~ msgstr "Просмотр"
+
+#~ msgid "View PDF"
+#~ msgstr "Просмотр PDF"
+
+#~ msgid "Search PDFs"
+#~ msgstr "Искать PDFs"
+
+#~ msgid "No PDFs found"
+#~ msgstr "PDFs не найдены"
+
+#~ msgid "For PDFs"
+#~ msgstr "Для PDFs"
+
+#~ msgid ""
+#~ "<i class=\"icons slicon-settings\"></i> <b>%s</b> PDF import is <span "
+#~ "class=\"js-pdf-light-viewer-current-status\">%s</span>. <span class=\"js-"
+#~ "pdf-light-viewer-current-progress\">%d</span>%% is complete. <i>Please do "
+#~ "not leave the admin interface until the import would not finished. %s</i>"
+#~ msgstr ""
+#~ "<i class=\"icons slicon-settings\"></i> <b>%s</b> PDF импорт в стадии "
+#~ "<span class=\"js-pdf-light-viewer-current-status\">%s</span>. <span class="
+#~ "\"js-pdf-light-viewer-current-progress\">%d</span>%% завершено. "
+#~ "<i>Пожалуйста, не покидайте панель администратора до тех пор, пока импорт "
+#~ "не будет завершен. %s</i>"
+
+#~ msgid "Otherwise the import will be continued during your next visit."
+#~ msgstr ""
+#~ "В противном случае импорт будет продолжен во время вашего следующего "
+#~ "визита."
+
+#~ msgid "Usage"
+#~ msgstr "Использование"
+
+#~ msgid "Pages"
+#~ msgstr "Страницы"
+
+#~ msgid "Import status"
+#~ msgstr "Статус импорта"
+
+#~ msgid "Import scheduled"
+#~ msgstr "Импорт запланирован"
+
+#~ msgid "Import started"
+#~ msgstr "Импорт начат"
+
+#~ msgid "Import in progress"
+#~ msgstr "Импорт в процессе"
+
+#~ msgid "Import finished"
+#~ msgstr "Импорт завершён"
+
+#~ msgid "Enable import"
+#~ msgstr "Включить импорт"
+
+#~ msgid "Check this if you want to import or re-import PDF file"
+#~ msgstr ""
+#~ "Отметьте это, если вы хотите импортировать или повторно импортировать PDF-"
+#~ "файл"
+
+#~ msgid "JPEG compression quality"
+#~ msgstr "Качество сжатия JPEG"
+
+#~ msgid "JPEG resolution"
+#~ msgstr "Разрешение JPEG"
+
+#~ msgid "PDF File"
+#~ msgstr "PDF файл"
+
+#~ msgid "Choose what PDF file will be imported"
+#~ msgstr "Выберите какой PDF файл будет импортирован"
+
+#~ msgid "Output Options"
+#~ msgstr "Опции вывода"
+
+#~ msgid "Allow download"
+#~ msgstr "Разрешить скачивание"
+
+#~ msgid "Check this if you want to show download button on the frontend"
+#~ msgstr ""
+#~ "Отметьте это, если вы хотите отображать кнопку скачивания в лицевой части "
+#~ "сайта"
+
+#~ msgid "Alternate download link"
+#~ msgstr "Альтернативная ссылка для скачивания"
+
+#~ msgid "If not set, will be used link from PDF File"
+#~ msgstr "Если не указана, будет использована ссылка на PDF файл"
+
+#~ msgid "Hide fullscreen button"
+#~ msgstr "Спрятать кнопку Полноэкранного режима"
+
+#~ msgid "Disable page zoom"
+#~ msgstr "Отключить функции увеличения для страниц"
+
+#~ msgid "Anonymous / s2Member Level 0"
+#~ msgstr "Анонимный / s2member Уровень 0"
+
+#~ msgid "Permissions"
+#~ msgstr "Разрешения"
+
+#~ msgid "Pages limits for different user roles"
+#~ msgstr "Лимиты страниц для различных ролей пользователей"
+
+#~ msgid "Pages Limit"
+#~ msgstr "Лимит страниц"
+
+#~ msgid "Add another limit"
+#~ msgstr "Добавить еще лимит"
+
+#~ msgid "Remove limit"
+#~ msgstr "Убрать лимит"
+
+#~ msgid "User Role"
+#~ msgstr "Пользовательская роль"
+
+#~ msgid "Select role which you want to pages limit"
+#~ msgstr "Выберите роль, для которой вы хотите добавить ограничение"
+
+#~ msgid "Visible pages"
+#~ msgstr "Видимые страницы"
+
+#~ msgid "PDF Preview"
+#~ msgstr "PDF предпросмотр"
+
+#~ msgid "PDF import scheduled."
+#~ msgstr "PDF импорт запланирован."
+
+#~ msgid ""
+#~ "Imagick not found, please check other requirements on <a href=\"%s"
+#~ "\">plugin settings page</a> for more information."
+#~ msgstr ""
+#~ "Imagick не найден, пожалуйста проверьте другие требования на <a href=\"%s"
+#~ "\">странице настроек плагина</a> для детальной информации."
+
+#~ msgid "Currently there are no unimported files in the queue."
+#~ msgstr "В данный момент нет неимпортированных файлов в очереди."
+
+#~ msgid "scheduled"
+#~ msgstr "Импорт запланирован"
+
+#~ msgid "started"
+#~ msgstr "Импорт начат"
+
+#~ msgid "processing"
+#~ msgstr "обработка"
+
+#~ msgid "Cannot get width and height of the first page."
+#~ msgstr "Невозможно получить высоту и ширину первой страницы."
+
+#~ msgid "Cannot detect current imported PDF page."
+#~ msgstr "Не удалось определить текущую импортируемую PDF страницу."
+
+#~ msgid "failed"
+#~ msgstr "не удалось"
+
+#~ msgid "finished"
+#~ msgstr "Импорт завершён"
+
+#~ msgid "Docs"
+#~ msgstr "Документация"
+
+#~ msgid "Upload folder"
+#~ msgstr "Папка для загрузки"
+
+#~ msgid "Logs folder"
+#~ msgstr "Папка для журналов"
+
+#~ msgid "is %s or higher"
+#~ msgstr "%s или выше"
+
+#~ msgid "is lower than %s"
+#~ msgstr "ниже чем %s"
+
+#~ msgid "Imagick PHP Extension"
+#~ msgstr "Imagick PHP Расширение"
+
+#~ msgid "is loaded"
+#~ msgstr "загружен"
+
+#~ msgid "is not loaded"
+#~ msgstr "не загружен"
+
+#~ msgid ""
+#~ "Imagick PHP Extension is required for PDF -> JPEG convertation. It cannot "
+#~ "be included with the plugin unfortunately, so you or your hosting "
+#~ "provider/server administrator should install it."
+#~ msgstr ""
+#~ "Imagick PHP Extension необходим для конвертации PDF -> JPEG. Он не может "
+#~ "быть включен в плагин к сожалению, поэтому вы или ваш хостинг провайдер "
+#~ "или системный администратор должны установить его самостоятельно."
+
+#~ msgid "Imagick PHP Wrapper"
+#~ msgstr "Imagick PHP Обертка"
+
+#~ msgid "is supported"
+#~ msgstr "поддерживается"
+
+#~ msgid "is not supported"
+#~ msgstr "не поддерживается"
+
+#~ msgid ""
+#~ "Imagick PHP Wrapper is required to make available Imagick PHP Extension "
+#~ "functionality in the plugin. Usually it's integrated through the PECL "
+#~ "plugin. It cannot be included with the plugin unfortunately, so you or "
+#~ "your hosting provider/server administrator should install it."
+#~ msgstr ""
+#~ "Imagick PHP Обертка необходима, чтобы сделать доступной функциональность "
+#~ "Imagick PHP Расширения в плагине. Как правило она включена в PECL "
+#~ "расширение. Она не может быть включена в плагин к сожалению, поэтому вы "
+#~ "или ваш хостинг провайдер или системный администратор должны установить "
+#~ "ее самостоятельно."
+
+#~ msgid "Imagick PDF Support"
+#~ msgstr "Поддержка Imagick PDF"
+
+#~ msgid "is enabled"
+#~ msgstr "включён"
+
+#~ msgid "is not enabled"
+#~ msgstr "не включён"
+
+#~ msgid "Imagick PDF Support is required for PDF -> JPEG convertation."
+#~ msgstr "Поддержка Imagick требуется для конвертации PDF -> JPEG."
+
+#~ msgid ""
+#~ "GhostScript is required for Imagick PDF Support. For cases, when you are "
+#~ "sure that GhostScript is installed, but it was not detected by the plugin "
+#~ "correctly you can disable this requirement in options below."
+#~ msgstr ""
+#~ "GhostScript необходим для поддержки PDF в Imagick. Для случаев, когда вы "
+#~ "уверены, что GhosScript установлен, но он не был определен плагином, вы "
+#~ "можете отключить эту проверку в опциях ниже."
+
+#~ msgid "is writable"
+#~ msgstr "доступна для записи"
+
+#~ msgid "is not writable"
+#~ msgstr "не доступна для записи"
+
+#~ msgid "This is the folder for converted images."
+#~ msgstr "Это папка для конвертированных изображений."
+
+#~ msgid "We will save plugin-specific log files in this folder."
+#~ msgstr "Мы будем хранить журналы плагина в этой папке."
+
+#~ msgid ""
+#~ "[pdf-light-viewer] shortcode cannot be rendered due to the error: No "
+#~ "converted pages found"
+#~ msgstr ""
+#~ "[pdf-light-viewer] шорткод не может быть отображен из-за ошибки: Не "
+#~ "найдены сконвертированные страницы"
+
+#~ msgid ""
+#~ "PDF Light Viewer Team: We created PRO Addon with printing, search and SEO-"
+#~ "friendly mode <a class=\"button-primary js-pdf-light-viewer-hide-"
+#~ "notification\" data-notification=\"pro-ad-viewed\" target=\"_blank\" href="
+#~ "\"%s\">Check It</a> <a class=\"button-secondary js-pdf-light-viewer-hide-"
+#~ "notification\" data-notification=\"pro-ad-viewed\" href=\"#\">Not "
+#~ "interested</a>"
+#~ msgstr ""
+#~ "Команда PDF Light Viewer: Мы создали PRO Дополнение с возможностями "
+#~ "печати, поиска и дружелюбным для SEO режимом  <a class=\"button-primary "
+#~ "js-pdf-light-viewer-hide-notification\" data-notification=\"pro-ad-viewed"
+#~ "\" target=\"_blank\" href=\"%s\">Взглянуть на дополнение</a> <a class="
+#~ "\"button-secondary js-pdf-light-viewer-hide-notification\" data-"
+#~ "notification=\"pro-ad-viewed\" href=\"#\">Не интересует</a>"
+
+#~ msgid ""
+#~ "PDF Light Viewer Team: Please, take part in our 1-minute survey to make "
+#~ "PDF Light Viewer plugin better <a class=\"button-primary js-pdf-light-"
+#~ "viewer-hide-notification\" data-notification=\"survey-viewed\" target="
+#~ "\"_blank\" href=\"%s\">Take Survey</a> <a class=\"button-secondary js-pdf-"
+#~ "light-viewer-hide-notification\" data-notification=\"survey-viewed\" href="
+#~ "\"#\">Not interested</a>"
+#~ msgstr ""
+#~ "Команда PDF Light Viewer: Пожалуйста, примите участие в нашем 1-минутном "
+#~ "опросе, чтобы сделать PDF Light Viewer плагин лучше <a class=\"button-"
+#~ "primary js-pdf-light-viewer-hide-notification\" data-notification="
+#~ "\"survey-viewed\" target=\"_blank\" href=\"%s\">Принять участие</a> <a "
+#~ "class=\"button-secondary js-pdf-light-viewer-hide-notification\" data-"
+#~ "notification=\"survey-viewed\" href=\"#\">Не интересует</a>"
+
+#~ msgid "requirements are met, happy using!"
+#~ msgstr "требования удовлетворены, счастливого пользования!"
+
+#~ msgid ""
+#~ "requirements not met, please check <a href=\"%s\">plugin settings page</"
+#~ "a> for more information."
+#~ msgstr ""
+#~ "требования не удовлетворены, пожалуйста проверьте <a href=\"%s\">страницу "
+#~ "настроек плагина</a> чтобы узнать подробнее."
+
+#~ msgid ""
+#~ "We have just created new section called PDFs in your dashboard. Use it to "
+#~ "import and publish your cool PDF files."
+#~ msgstr ""
+#~ "Мы только что создали новую секцию PDFs в вашем административном "
+#~ "интерфейсе. Используйте ее для импорта и публикации ваших неимоверных PDF "
+#~ "файлов."
+
+#~ msgid "Archive"
+#~ msgstr "Архив"
+
+#~ msgid "Print"
+#~ msgstr "Печать"
+
+#~ msgid "Clear"
+#~ msgstr "Очистить"
+
+#~ msgid "Default"
+#~ msgstr "По умолчанию"
+
+#~ msgid "Select Color"
+#~ msgstr "Выберите цвет"
+
+#~ msgid "Select / Deselect All"
+#~ msgstr "Выбрать / Убрать выделение"
+
+#~ msgid "field description (optional)"
+#~ msgstr "поле описания (опционально)"
+
+#~ msgid "Website URL"
+#~ msgstr "Ссылка"
+
+#~ msgid "Upload an image or enter a URL."
+#~ msgstr "Загрузите изображение или вставьте URL"
+
+#~ msgid "Multiple Files"
+#~ msgstr "Несколько файлов"
+
+#~ msgid "Add or Upload File"
+#~ msgstr "Добавить или загрузить файл"
+
+#~ msgid "File:"
+#~ msgstr "Файл:"
+
+#~ msgid "Please Try Again"
+#~ msgstr "Пожалуйста, попробуйте еще раз"
+
+#~ msgid "Personal Support"
+#~ msgstr "Персональная поддержка"
+
+#~ msgid ""
+#~ "is disabled. To enable it please remove %s from your %s file or set it to "
+#~ "%s"
+#~ msgstr ""
+#~ "отключён. Чтобы включить его, пожалуйста удалите %s из вашего %s файла "
+#~ "или выставьте ее в %s"
+
+#~ msgid "Server loopback requests"
+#~ msgstr "Запросы сервера самому себе (Server loopback requests)"
+
+#~ msgid "are enabled"
+#~ msgstr "включены"
+
+#~ msgid ""
+#~ "are probably disabled. We think so because loopback request to the %s "
+#~ "needed to execute WP Cron returned %s)"
+#~ msgstr ""
+#~ "вероятно отключены. Мы считаем так, потому что запрос к %s, необходимый "
+#~ "для выполнения WP Cron, вернул %s"
+
+#~ msgid ""
+#~ "We do not have global plugin settings yet. You can change settings on "
+#~ "each PDF editing page"
+#~ msgstr ""
+#~ "У нас пока нет глобальных настроек. Вы можете изменить настройки на "
+#~ "страницах редактирования самих PDF"

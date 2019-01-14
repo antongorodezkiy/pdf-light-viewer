@@ -6,12 +6,14 @@
 	$last_thumb_index = end($pages);
 
 	$toolbarVisible = PdfLightViewer_PdfController::isToolbarVisible($pdf_light_viewer_config);
+    $imagePlaceholder = PdfLightViewer_PdfController::getThemeImagePlaceholder($pdf_light_viewer_config);
+    $themeClass = PdfLightViewer_PdfController::getThemeClass($pdf_light_viewer_config);
 ?>
 
 
 	<?php if (!empty($pdf_light_viewer_config['pages'])) {
 	?>
-		<div class="pdf-light-viewer js-pdf-light-viewer"
+		<div class="pdf-light-viewer js-pdf-light-viewer <?php echo $themeClass ?>"
 			data-enable-zoom="<?php echo !$pdf_light_viewer_config['disable_page_zoom'];?>"
 			data-zoom-magnify="<?php echo $pdf_light_viewer_config['zoom_magnify']?>">
 
@@ -39,10 +41,11 @@
 						data-height="<?php echo $pdf_light_viewer_config['page_height'] ?>"
 						data-pages-count="<?php echo count($pdf_light_viewer_config['pages']) ?>"
 						data-page-layout="<?php echo $pdf_light_viewer_config['page_layout'] ?>"
-                        data-download-page-format="<?php echo $pdf_light_viewer_config['download_page_format'] ?>">
+                        data-download-page-format="<?php echo $pdf_light_viewer_config['download_page_format'] ?>"
+                        data-theme="<?php echo $pdf_light_viewer_config['theme'] ?>">
 						<?php foreach($pdf_light_viewer_config['pages'] as $number => $page) {
 							?>
-							<div style="background-image:url('<?php echo plugins_url('resources/assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>');">
+							<div style="background-image:url('<?php echo $imagePlaceholder ?>');">
 								<div class="gradient"></div>
                                 <?php if ((bool)$pdf_light_viewer_config['lazy_loading_disabled']): ?>
     								<img
@@ -55,7 +58,7 @@
                                 <?php else : ?>
                                     <img
     									class="js-pdf-light-viewer-lazy-loading js-pdf-light-viewer-lazy-loading-<?php echo ($number + 1) ?> initially-hidden"
-    									src="<?php echo plugins_url('resources/assets/img/lightpaperfibers.png',  PDF_LIGHT_VIEWER_FILE );?>"
+    									src="<?php echo $imagePlaceholder"
     									data-original="<?php echo $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$page;?>"
     									width="100%"
     									height="100%"

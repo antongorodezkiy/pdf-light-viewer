@@ -51,6 +51,9 @@ class PdfLightViewer_AssetsController
 					PdfLightViewer_Model::$unimported = PdfLightViewer_Model::getOneUnimported();
 				}
 
+            $theme = defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')
+                ? PdfLightViewerPro_AdminController::getSetting('theme', PdfLightViewer_PdfController::THEME_LIGHT)
+                : PdfLightViewer_PdfController::THEME_LIGHT;
 
 			wp_localize_script('admin.'.PDF_LIGHT_VIEWER_FILE, 'PdfLightViewer', array(
 				'url' => array(
@@ -65,7 +68,9 @@ class PdfLightViewer_AssetsController
 					'Import process failed due to the error:' => __('Import process failed due to the error:', PDF_LIGHT_VIEWER_PLUGIN)
 				),
                 'settings' => array(
-                    'enable_hash_nav' => (bool)PdfLightViewer_AdminController::getSetting('enable-hash-nav')
+                    'enable_hash_nav' => (bool)PdfLightViewer_AdminController::getSetting('enable-hash-nav'),
+                    'theme' => $theme,
+                    'theme_class' => PdfLightViewer_PdfController::getThemeClass(array('theme' => $theme))
                 )
 			));
 	}
@@ -121,9 +126,16 @@ class PdfLightViewer_AssetsController
                 ),
 				filemtime(PDF_LIGHT_VIEWER_APPPATH.'/resources/assets/js/magazine.js')
 			);
+
+            $theme = defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')
+                ? PdfLightViewerPro_AdminController::getSetting('theme', PdfLightViewer_PdfController::THEME_LIGHT)
+                : PdfLightViewer_PdfController::THEME_LIGHT;
+
             wp_localize_script('magazine.'.PDF_LIGHT_VIEWER_PLUGIN, 'PdfLightViewer', array(
                 'settings' => array(
-                    'enable_hash_nav' => (bool)PdfLightViewer_AdminController::getSetting('enable-hash-nav')
+                    'enable_hash_nav' => (bool)PdfLightViewer_AdminController::getSetting('enable-hash-nav'),
+                    'theme' => $theme,
+                    'theme_class' => PdfLightViewer_PdfController::getThemeClass(array('theme' => $theme))
                 )
 			));
 

@@ -321,7 +321,7 @@ var PDFLightViewerApp;
               var self = $(this),
                   instance = self.parents('.js-pdf-light-viewer');
               self.qtip({
-                style: { classes: 'qtip-light pdf-light-viewer-tips' },
+                style: { classes: 'qtip-dark pdf-light-viewer-tips ' + PdfLightViewer.settings.theme_class },
                 content: {
                   text: $('.js-pdf-light-viewer-download-options-contaner', instance)
                 },

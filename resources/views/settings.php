@@ -270,7 +270,7 @@
                 <div class="row hdr">
                     <h3>
                         <span class="icons slicon-support"></span>
-                        <?php _e('Personal Support', PDF_LIGHT_VIEWER_PLUGIN)?>
+                        <?php _e('Support', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
                 <div class="row in container">
@@ -285,11 +285,9 @@
                                     date('d.m.Y H:i:s')
                                 );
 
-                                echo sprintf(__('To get support please contact us on forum <a target="_blank" href="%s">%s</a> or by email <a target="_blank" href="%s">%s</a>. Please also attach information below to let us know more about your server and site environment - this could be helpful to solve the issue.', PDF_LIGHT_VIEWER_PLUGIN),
+                                echo sprintf(__('To get support please contact us on forum <a target="_blank" href="%s">%s</a>. Please also attach server information and log information below to let us know more about your server and site environment - this could be helpful to solve the issue.', PDF_LIGHT_VIEWER_PLUGIN),
                                     PdfLightViewer_Helpers_Url::getSupportUrl(),
-                                    PdfLightViewer_Helpers_Url::getSupportUrl().'&nbsp;<span class="icons slicon-link"></span>',
-                                    'mailto:support@teamlead.pw?subject='.$subject,
-                                    'support@teamlead.pw&nbsp;<span class="icons slicon-link"></span>'
+                                    PdfLightViewer_Helpers_Url::getSupportUrl().'&nbsp;<span class="icons slicon-link"></span>'
                                 );?>
                             </p>
                         </blockquote>

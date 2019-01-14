@@ -2,8 +2,15 @@
 
 > Simple wrapper for cross-browser usage of the JavaScript [Fullscreen API](https://developer.mozilla.org/en/DOM/Using_full-screen_mode), which lets you bring the page or any element into fullscreen. Smoothens out the browser implementation differences, so you don't have to.
 
+**This package is feature complete. No new changes will be accepted.**
 
-### [Demo](http://sindresorhus.com/screenfull.js)
+---
+
+<p align="center"><b>🔥 Want to strengthen your core JavaScript skills and master ES6?</b><br>I would personally recommend this awesome <a href="https://ES6.io/friend/AWESOME">ES6 course</a> by Wes Bos.</p>
+
+---
+
+### [Demo](https://sindresorhus.com/screenfull.js)
 
 ### [Check out my other projects](https://github.com/sindresorhus?tab=repositories)
 
@@ -61,19 +68,16 @@ if (document.fullscreenEnabled) {
 
 [Supported browsers](http://caniuse.com/fullscreen)
 
-Safari doesn't support use of the keyboard in fullscreen.
-
 
 ## Documentation
 
 
 ### Examples
 
-
 #### Fullscreen the page
 
 ```js
-document.getElementById('button').addEventListener('click', function () {
+document.getElementById('button').addEventListener('click', () => {
 	if (screenfull.enabled) {
 		screenfull.request();
 	} else {
@@ -82,64 +86,67 @@ document.getElementById('button').addEventListener('click', function () {
 });
 ```
 
-
 #### Fullscreen an element
 
 ```js
-var elem = document.getElementById('target');
-document.getElementById('button').addEventListener('click', function () {
+const el = document.getElementById('target');
+
+document.getElementById('button').addEventListener('click', () => {
 	if (screenfull.enabled) {
-		screenfull.request(elem);
+		screenfull.request(el);
 	}
 });
 ```
 
-
 #### Fullscreen an element with jQuery
 
 ```js
-var target = $('#target')[0]; // Get DOM element from jQuery collection
-$('#button').click(function () {
+const target = $('#target')[0]; // Get DOM element from jQuery collection
+
+$('#button').on('click', () => {
 	if (screenfull.enabled) {
 		screenfull.request(target);
 	}
 });
 ```
 
-
 #### Toggle fullscreen on a image with jQuery
 
 ```js
-$('img').click(function () {
+$('img').on('click', event => {
 	if (screenfull.enabled) {
-		// We can use `this` since we want the clicked element
-		screenfull.toggle(this);
+		screenfull.toggle(event.target);
 	}
 });
 ```
-
 
 #### Detect fullscreen change
 
 ```js
 if (screenfull.enabled) {
-	document.addEventListener(screenfull.raw.fullscreenchange, function () {
-		console.log('Am I fullscreen? ' + (screenfull.isFullscreen ? 'Yes' : 'No'));
+	screenfull.on('change', () => {
+		console.log('Am I fullscreen?', screenfull.isFullscreen ? 'Yes' : 'No');
 	});
 }
+```
+
+Remove listeners with:
+
+```js
+screenfull.off('change', callback);
 ```
 
 #### Detect fullscreen error
 
 ```js
 if (screenfull.enabled) {
-	document.addEventListener(screenfull.raw.fullscreenerror, function (event) {
+	screenfull.on('error', event => {
 		console.error('Failed to enable fullscreen', event);
 	});
 }
 ```
 
-See the [demo](http://sindresorhus.com/screenfull.js) for more examples, and view the source.
+See the [demo](https://sindresorhus.com/screenfull.js) for more examples, and view the source.
 
 #### Fullscreen an element with Angular.js
 
@@ -147,9 +154,31 @@ You can use the [Angular.js binding](https://github.com/hrajchert/angular-screen
 
 ```html
 <div ngsf-fullscreen>
-    <p>This is a fullscreen element</p>
-    <button ngsf-toggle-fullscreen>Toggle fullscreen</button>
+	<p>This is a fullscreen element</p>
+	<button ngsf-toggle-fullscreen>Toggle fullscreen</button>
 </div>
+```
+
+#### Fullscreen the page with Angular 2
+
+```typescript
+import {Directive, HostListener} from '@angular/core';
+import * as screenfull from 'screenfull';
+
+@Directive({
+	selector: '[toggleFullscreen]'
+})
+export class ToggleFullscreenDirective {
+	@HostListener('click') onClick() {
+		if (screenfull.enabled) {
+			screenfull.toggle();
+		}
+	}
+}
+```
+
+```html
+<button toggleFullscreen>Toggle fullscreen<button>
 ```
 
 ### Methods
@@ -172,6 +201,23 @@ Brings you out of fullscreen.
 
 Requests fullscreen if not active, otherwise exits.
 
+#### .on(event, function)
+
+Events: `change` `error`
+
+Add a listener for when the browser switches in and out of fullscreen or when there is an error.
+
+#### .off(event, function)
+
+Remove a previously registered event listener.
+
+#### .onchange(function)
+
+Alias for `.on('change', function)`
+
+#### .onerror(function)
+
+Alias for `.on('error', function)`
 
 ### Properties
 
@@ -191,12 +237,6 @@ Returns a boolean whether you are allowed to enter fullscreen. If your page is i
 
 Exposes the raw properties (prefixed if needed) used internally: `requestFullscreen`, `exitFullscreen`, `fullscreenElement`, `fullscreenEnabled`, `fullscreenchange`, `fullscreenerror`
 
-```js
-$(document).on(screenfull.raw.fullscreenchange, function () {
-	console.log('Fullscreen change');
-});
-```
-
 
 ## FAQ
 
@@ -205,8 +245,8 @@ $(document).on(screenfull.raw.fullscreenchange, function () {
 That's not supported by browsers for security reasons. There is, however, a dirty workaround. Create a seamless iframe that fills the screen and navigate to the page in that instead.
 
 ```js
-$('#new-page-btn').click(function () {
-	var iframe = document.createElement('iframe')
+$('#new-page-btn').click(() => {
+	const iframe = document.createElement('iframe')
 
 	iframe.setAttribute('id', 'external-iframe');
 	iframe.setAttribute('src', 'http://new-page-website.com');
@@ -235,4 +275,4 @@ $('#new-page-btn').click(function () {
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)

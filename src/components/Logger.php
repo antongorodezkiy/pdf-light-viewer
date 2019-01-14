@@ -29,7 +29,7 @@ class PdfLightViewer_Components_Logger
 			mkdir($log_path);
 		}
 
-		$filename = date('Y-m-d').'.php';
+		$filename = date('Y-m-00').'.php';
 		$filepath = $log_path.$filename;
 
 		$message = '';

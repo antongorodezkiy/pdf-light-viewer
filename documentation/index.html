@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>WordPress PDF Light Viewer Plugin & Pro Addon Documentation for version 1.3.23 & pro 0.2.0</title>
+	<title>Docs | PDF Light Viewer Plugin, Pro Addon, Serverless Addon</title>
 
 	<link rel="stylesheet" href="css/pure.css" />
 	<link rel="stylesheet" href="css/prism.css" />
@@ -35,8 +35,9 @@
 			<div class="pure-menu pure-menu-open">
 				<a class="logo" href="http://pdf-light-viewer.wp.teamlead.pw/">
 					<span>PDF Light Viewer</span>
-					<span>and PRO Addon</span>
-					<span>Documentation</span>
+					<small>PRO Addon</small><br />
+					<small>Serverless Addon</small><br />
+					<small>Documentation</small>
 				</a>
 
 				<ul>
@@ -88,7 +89,16 @@
 		<div id="main" class="doc-section">
 			<div class="header">
 				<div class="logo-header"></div>
-				<h1>WordPress PDF Light Viewer Plugin v1.3.23<br />& <span class="pure-button pure-button-primary">PRO</span> Addon v0.2.0<br/>Documentation</h1>
+				<h1>
+                    Documentation
+                    <small>
+                        <div>WordPress PDF Light Viewer Plugin v1.4.0</div>
+                        <div>
+                            <span class="pure-button pure-button-primary">PRO</span> Addon v0.3.0
+                            & <span class="pure-button pure-button-primary">Serverless</span> Addon v0.0.1
+                        </div>
+                    </small>
+                </h1>
 				<h2>What did you get?</h2>
 			</div>
 
@@ -101,8 +111,9 @@
 				<p>You could add unlimited amount of PDF of any size without performance issues.</p>
 				<p>Added PDF could be embedded as flipbooks on frontend.</p>
 				<p><span class="pure-button pure-button-primary">PRO</span> Addon is not required but it adds some useful features (marked with <span class="pure-button pure-button-primary">PRO</span> here) which you can check in this documentation or on the <a target="_blank" href="http://pdf-light-viewer.wp.teamlead.pw/pro/">Addon's page</a>.</p>
+                <p><span class="pure-button pure-button-primary">Serverless</span> Addon is not required, it just adds an alternative way to import PDFs (marked with <span class="pure-button pure-button-primary">Serverless</span> here), more info on <a target="_blank" href="http://pdf-light-viewer.wp.teamlead.pw/serverless/">Addon's page</a>.</p>
 				<blockquote>
-					Please note that <span class="pure-button pure-button-primary">PRO</span> Addon is not standalone plugin and it requires <a href="https://wordpress.org/plugins/pdf-light-viewer/" target="_blank">PDF Light Viewer free plugin</a>.
+					Please note that <span class="pure-button pure-button-primary">PRO</span> Addon and <span class="pure-button pure-button-primary">Serverless</span> Addon are not standalone plugins and both require <a href="https://wordpress.org/plugins/pdf-light-viewer/" target="_blank">PDF Light Viewer free plugin</a>.
 				</blockquote>
 
 				<h4 class="content-subhead">Features</h4>
@@ -140,6 +151,11 @@
 					<li>SEO friendly mode.</li>
 				</ul>
 
+				<h4 class="content-subhead"><span class="pure-button pure-button-primary">Serverless</span> Features</h4>
+				<ul>
+					<li>Plugin allows you to embed PDF files without server libraries ImageMagick and GhostScript.</li>
+				</ul>
+
 				<h4 class="content-subhead">What next?</h4>
 				<p>Check <a href="#install">Installation</a> section to know how to install the plugin.</p>
 			</div>
@@ -164,6 +180,7 @@
 					<li>Upload plugin package with WordPress <code>http://yoursite.com/wp-admin/plugin-install.php?tab=upload</code> or WordPress Multisite <code>http://yoursite.com/wp-admin/network/plugin-install.php?tab=upload</code></li>
 					<li>Activate <code>PDF Light Viewer Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li><span class="pure-button pure-button-primary">PRO</span> Tip: Activate <code>PDF Light Viewer Pro Addon</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
+                    <li><span class="pure-button pure-button-primary">Serverless</span> Tip: Activate <code>PDF Light Viewer Serverless Addon</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li>That's all! You can start from <a href="#quick">Quick start guide</a></li>
 					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=pdf-light-viewer</code> to <a href="#setup">Set Up</a> the plugin.</li>
 					<li><span class="pure-button pure-button-primary">PRO</span> Tip: Settings of the PRO functions are placed on the main plugin Settings page.</li>
@@ -175,6 +192,7 @@
 					<li>Extract plugin package contents to the <code>/wp-content/plugins/</code> folder</li>
 					<li>Activate <code>PDF Light Viewer Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li><span class="pure-button pure-button-primary">PRO</span> Tip: Activate <code>PDF Light Viewer Pro Addon</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
+                    <li><span class="pure-button pure-button-primary">Serverless</span> Tip: Activate <code>PDF Light Viewer Serverless Addon</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li>That's all! You can start from <a href="#quick">Quick start guide</a></li>
 					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=pdf-light-viewer</code> to <a href="#setup">Set Up</a> the plugin.</li>
 					<li><span class="pure-button pure-button-primary">PRO</span> Tip: Settings of the PRO functions are placed on the main plugin Settings page.</li>
@@ -186,6 +204,7 @@
 					<li>Upload files folder to the <code>/wp-content/plugins/</code> to the server with any FTP client application, for example <a href="https://filezilla-project.org/" target="_blank">FileZilla</a></li>
 					<li>Activate <code>PDF Light Viewer Plugin</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li><span class="pure-button pure-button-primary">PRO</span> Tip: Activate <code>PDF Light Viewer Pro Addon</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
+                    <li><span class="pure-button pure-button-primary">Serverless</span> Tip: Activate <code>PDF Light Viewer Serverless Addon</code> on the WordPress Plugins page <code>http://yoursite.com/wp-admin/plugins.php</code></li>
 					<li>That's all! You can start from <a href="#quick">Quick start guide</a></li>
 					<li>After plugin activation please go to plugin's settings on the page <code>http://yoursite.com/wp-admin/options-general.php?page=pdf-light-viewer</code> to <a href="#setup">Set Up</a> the plugin.</li>
 					<li><span class="pure-button pure-button-primary">PRO</span> Tip: Settings of the PRO functions are placed on the main plugin Settings page.</li>
@@ -231,6 +250,14 @@
 					<li>Specific version on PDF Light Viewer</li>
 				</ul>
 
+                <h4 class="content-subhead"><span class="pure-button pure-button-primary">Serverless</span> Requirements</h4>
+
+				<ul>
+					<li>PDF Light Viewer installed and activated</li>
+					<li>Specific version on PDF Light Viewer</li>
+					<li>Modern Browser required (Latest Chrome / Latest Firefox / Safari 9+ / Microsoft Edge)</li>
+				</ul>
+
 				<p>After activation plugin will create new post type for PDF files. You'll see pointer notification near it's menu item.</p>
 				<p><img src="img/screenshots/activation-notifications.jpeg" alt="Activation notifications" /></p>
 
@@ -246,6 +273,8 @@
 				<p><img src="img/screenshots/requirements-pro.jpeg" alt="PRO Requirements" /></p>
 
 				<h4 class="content-subhead">ImageMagick/GraphicsMagick support</h4>
+
+                <p><span class="pure-button pure-button-primary">Serverless</span> Tip: With Serverless Addon you don't need to have ImageMagick or GhostScript libraries to import PDFs from browser.</p>
 
 				<blockquote>
 					<p>The ImageMagick/GraphicsMagick package and Imagick/Gmagick library are required for PDF Light Viewer plugin to work. Not supported in current context means that the Imagick library is not installed or turned off on the server. To make plugin work you will need to install it or to turn it on.</p>
@@ -342,6 +371,9 @@
 						<li>User uploads PDF document</li>
 						<li>PDF document is parsed by the plugin</li>
 						<li>User stays on the site until the document is parsed</li>
+                        <li>
+							<span class="pure-button pure-button-primary">Serverless</span> Serverless Addon is slightly changing the import process functions, but it will look almost the same in common.
+						</li>
 						<li>User adds the wordpress shortcode, produced by the plugin, to the page or post</li>
 						<li>
 							<span class="pure-button pure-button-primary">PRO</span> User can open Single PDF page to have PDF flipbook there.
@@ -409,9 +441,13 @@
 						<p>Please note, that all previously imported pages of this document will be deleted from the disk. This operation cannot be undone.</p>
 					</blockquote>
 
+                    <span class="pure-button pure-button-primary">Serverless</span> With Serverless Addon you do not need to check "Enable import", it has own import button in the top section.
+
 				<div class="content-subhead">Updating PDF file</div>
 
 					<p>If you just need to change the name of the PDF file or some of the Output options, you leave the option <code>Enable import</code> unchecked. Without checking this checkbox import wouldn't be triggered.</p>
+
+                    <span class="pure-button pure-button-primary">Serverless</span> With Serverless Addon you do not need to check "Enable import", it has own import button in the top section.
 
 				<div class="content-subhead">Deleting PDF file</div>
 
@@ -550,7 +586,7 @@
 				</ul>
 
 				<p>
-					<span class="pure-button pure-button-primary">PRO</span> Tip: PRO Addon has similar file structure and can be overrided in the similar way.
+					<span class="pure-button pure-button-primary">PRO</span> Tip: PRO Addon has similar file structure and can be overriden in the similar way.
 				</p>
 
 				<div class="content-subhead">Templates control</div>
@@ -802,6 +838,14 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 			<div class="content">
 
 				<h3>PDF Light Viewer</h3>
+
+                <h4 class="content-subhead">1.4.0 - 2019-01-12</h4>
+                <ul>
+                    <li>Code structure cleaning up</li>
+                    <li>PDF Light Viewer Serverless plugin compatibility</li>
+                    <li>Export/Import PDF config</li>
+                    <li>screenfull update</li>
+                </ul>
 
                 <h4 class="content-subhead">1.3.23 - 2018-09-18</h4>
 				<ul>
@@ -1100,10 +1144,22 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 
 				<h3>PDF Light Viewer Pro Addon</h3>
 
+                <h4 class="content-subhead">0.3.0 - 2019-01-12</h4>
+				<ul>
+                    <li>PDF Light Viewer plugin compatibility</li>
+                    <li>PDF Light Viewer Serverless plugin compatibility</li>
+                    <li>Dark theme</li>
+                </ul>
+
+                <h4 class="content-subhead">0.2.1 - 2018-07-06</h4>
+				<ul>
+                    <li>Smalot PDF Library update to 0.13.2</li>
+                </ul>
+
                 <h4 class="content-subhead">0.2.0 - 2018-06-20</h4>
 				<ul>
                     <li>WPMU archive search fix</li>
-                    <Li>Archive pagination fix</Li>
+                    <li>Archive pagination fix</li>
                     <li>Archive shortcode 'posts_per_page' parameter</li>
                     <li>Popup shortcode 'fullscreen' parameter</li>
                 </ul>
@@ -1206,6 +1262,16 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 					<li>Added PDF Archive page</li>
 					<li>Added PDF Single page</li>
 				</ul>
+
+
+
+
+                <h3>PDF Light Viewer Serverless Addon</h3>
+
+                <h4 class="content-subhead">0.0.1 - 2019-01-12</h4>
+				<ul>
+                    <li>Initial release</li>
+                </ul>
 			</div>
 		</div>
 

@@ -1,0 +1,858 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pdf-light-viewer\n"
+"POT-Creation-Date: 2019-01-14 12:26+0200\n"
+"PO-Revision-Date: 2019-01-14 12:26+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SearchPath-0: ../..\n"
+
+#: ../../views/metabox/usage.php:12
+msgid "You have not yet converted the PDF."
+msgstr "Vous n'êtes pas encore converti des PDF."
+
+#: ../../views/metabox/usage.php:13
+msgid ""
+"Note: it normally takes just 60 to 90 seconds for the conversion of small "
+"PDF file after submission. Thank you for your patience!"
+msgstr ""
+"Remarque: il faut normalement entre 60 et 90 secondes pour la conversion "
+"d'un petit fichier PDF. Merci pour votre patience !"
+
+#: ../../views/pro-placeholder.php:6
+msgid "PRO Addon"
+msgstr ""
+
+#: ../../views/pro-placeholder.php:11
+msgid "Do you like PDF Light Viewer plugin? We glad to hear if so!"
+msgstr ""
+
+#: ../../views/pro-placeholder.php:12
+msgid "Interesting in <b>additional features</b>? We have some for you!"
+msgstr ""
+
+#: ../../views/pro-placeholder.php:14
+msgid ""
+"Please check our <b>Pro Addon</b> which has the following additional features"
+msgstr ""
+
+#: ../../views/pro-placeholder.php:17
+msgid "Single separate PDF page."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:18
+msgid "Regular Wordpress PDF Archive page with 2 templates."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:19
+msgid "One-page PDF Archive page with 2 templates."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:20
+msgid "PDF Archive page by shortcode on custom page or frontpage."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:21
+msgid "PDF Categories."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:22
+msgid "Simple PDF page search."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:23
+#, fuzzy
+#| msgid "Documentation"
+msgid "Document printing."
+msgstr "Documentation"
+
+#: ../../views/pro-placeholder.php:24
+msgid "Per-page printing."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:25
+msgid "SEO friendly mode."
+msgstr ""
+
+#: ../../views/pro-placeholder.php:33
+msgid "Purchase your PRO Addon"
+msgstr ""
+
+#: ../../views/serverless-placeholder.php:6
+msgid "Serverless Addon"
+msgstr ""
+
+#: ../../views/serverless-placeholder.php:11
+msgid "Wish to import PDFs independently from server environment?"
+msgstr ""
+
+#: ../../views/serverless-placeholder.php:13
+msgid ""
+"Check <b>Serverless Addon</b> which allows to import PDFs no matter have "
+"your server ImageMagick library or not"
+msgstr ""
+
+#: ../../views/serverless-placeholder.php:19
+msgid "Purchase your Serverless Addon"
+msgstr ""
+
+#: ../../views/settings.php:12
+msgid "Vote for PDF Light Viewer plugin!"
+msgstr ""
+
+#: ../../views/settings.php:17
+msgid "Support PDF Light Viewer team spirit!"
+msgstr ""
+
+#: ../../views/settings.php:19
+msgid "Give 5 stars"
+msgstr ""
+
+#: ../../views/settings.php:34
+msgid "About"
+msgstr "À propos"
+
+#: ../../views/settings.php:121 ../../views/settings.php:301
+msgid "Plugin Requirements"
+msgstr "Prérequis techniques pour le plugin"
+
+#: ../../views/settings.php:141
+msgid "Settings"
+msgstr "Réglages"
+
+#: ../../views/settings.php:147
+msgid "Main settings"
+msgstr "Paramètres principaux"
+
+#: ../../views/settings.php:148
+#, fuzzy
+#| msgid "Main settings"
+msgid "CLI settings"
+msgstr "Paramètres principaux"
+
+#: ../../views/settings.php:154
+msgid "Show PDFs in Menu"
+msgstr "Afficher les fichiers PDF dans Menu"
+
+#: ../../views/settings.php:155
+msgid "Show PDFs menu item in the left admin sidebar"
+msgstr "Afficher PDF dans le menu admin, barre latérale gauche"
+
+#: ../../views/settings.php:173
+msgid "Do not check GhostScript installation"
+msgstr "Ne pas vérifier l'installation GhostScript"
+
+#: ../../views/settings.php:174
+msgid ""
+"For cases, when you are sure that GhostScript is installed, but it was not "
+"detected by the plugin correctly."
+msgstr ""
+"Pour les cas, lorsque vous êtes sûr que GhostScript est installé, mais il "
+"n'a pas été détecté par le plugin correctement."
+
+#: ../../views/settings.php:192
+msgid "Prefer Imagick or Gmagick"
+msgstr ""
+
+#: ../../views/settings.php:193
+msgid "For cases, when you have both. Otherwise only existing will be used."
+msgstr ""
+
+#: ../../views/settings.php:203
+msgid "Imagick"
+msgstr ""
+
+#: ../../views/settings.php:206 ../../views/settings.php:221
+msgid "seems to be not installed"
+msgstr ""
+
+#: ../../views/settings.php:218
+msgid "Gmagick"
+msgstr ""
+
+#: ../../views/settings.php:231
+#, fuzzy
+#| msgid "Hide thumbnail navigation"
+msgid "Enable hash navigation"
+msgstr "Masquer la navigation par  vignettes"
+
+#: ../../views/settings.php:232
+msgid "In some cases turning this off can solve compatibility issues."
+msgstr ""
+
+#: ../../views/settings.php:251
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: ../../views/settings.php:273
+msgid "Support"
+msgstr "Support"
+
+#: ../../views/settings.php:283
+#, php-format
+msgid "Support request, plugin: %s (time: %s)"
+msgstr "Support request, plugin: %s (time: %s)"
+
+#: ../../views/settings.php:288
+#, fuzzy, php-format
+#| msgid ""
+#| "To get support please contact us on forum <a target=\"_blank\" href=\"%s"
+#| "\">%s</a> or by email <a target=\"_blank\" href=\"%s\">%s</a>. Please "
+#| "also attach information below to let us know more about your server and "
+#| "site environment - this could be helpful to solve the issue."
+msgid ""
+"To get support please contact us on forum <a target=\"_blank\" href=\"%s\">"
+"%s</a>. Please also attach server information and log information below to "
+"let us know more about your server and site environment - this could be "
+"helpful to solve the issue."
+msgstr ""
+"Pour obtenir de l' aide s'il vous plaît nous contacter sur le forum <a "
+"target=\"_blank\" href=\"%s\">%s</a> ou par courriel <a target=\"_blank\" "
+"href=\"%s\">%s</a> . S'il vous plaît également joindre des informations ci-"
+"dessous pour nous faire savoir plus sur votre environnement serveur et le "
+"site - cela pourrait être utile pour résoudre le problème."
+
+#: ../../views/settings.php:295
+msgid "Subject"
+msgstr "Sujet"
+
+#: ../../views/settings.php:310
+msgid "Server Info"
+msgstr "Informations serveur"
+
+#: ../../views/settings.php:330
+msgid "Theme"
+msgstr "Thème"
+
+#: ../../views/settings.php:339
+msgid "from"
+msgstr "de"
+
+#: ../../views/settings.php:349
+msgid "Plugins"
+msgstr "Plugins/Extensions"
+
+#: ../../views/settings.php:377
+msgid "Today's log file"
+msgstr "Le fichier journal d'aujourd'hui"
+
+#: ../../views/settings.php:387
+msgid "Today's log file doesn't exist"
+msgstr "Il n'existe pas dans le fichier journal d'aujourd'hui"
+
+#: ../../views/settings.php:403
+msgid "Documentation"
+msgstr "Documentation"
+
+#: ../../views/settings.php:404
+msgid "open in the separate tab"
+msgstr "ouvert dans l'onglet séparé"
+
+#: ../../views/shortcode-top-panel.php:7 ../../views/shortcode-top-panel.php:16
+#: ../../views/shortcode-top-panel.php:46
+msgid "Download"
+msgstr "Télécharger"
+
+#: ../../views/shortcode-top-panel.php:27
+#, fuzzy
+#| msgid "Download"
+msgid "Download Page"
+msgstr "Télécharger"
+
+#: ../../views/shortcode-top-panel.php:38
+msgid "Download Right Page"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:54
+msgid "Fullscreen"
+msgstr "Plein-écran"
+
+#: ../../views/shortcode-top-panel.php:63
+msgid "Zoom enabled"
+msgstr "Zoom activé"
+
+#: ../../views/shortcode-top-panel.php:71
+#, fuzzy
+#| msgid "Preview"
+msgid "Previous page"
+msgstr "Apercu"
+
+#: ../../views/shortcode-top-panel.php:74
+msgid "Next page"
+msgstr ""
+
+#: ../../views/shortcode-top-panel.php:89
+#, fuzzy
+#| msgid "Current Color"
+msgid "Current page"
+msgstr "Couleur actuelle"
+
+#~ msgid ""
+#~ "Import process was successfully finished. Please check results on the PDF "
+#~ "page."
+#~ msgstr ""
+#~ "Processus d'importation a été achevé avec succès. S'il vous plaît "
+#~ "vérifier les résultats sur la page PDF."
+
+#~ msgid "Import process failed due to the unknown error."
+#~ msgstr "Le processus d'importation a échoué suie à une erreur."
+
+#~ msgid "Import process failed due to the error:"
+#~ msgstr "Le processus d'importation a échoué en raison de l'erreur:"
+
+#~ msgid "PDFs"
+#~ msgstr "PDF"
+
+#~ msgid "PDF"
+#~ msgstr "PDF"
+
+#~ msgid "Import PDF"
+#~ msgstr "Importer un PDF"
+
+#~ msgid "Edit"
+#~ msgstr "Modifier"
+
+#~ msgid "Edit PDF"
+#~ msgstr "Modifier PDF"
+
+#~ msgid "New PDF"
+#~ msgstr "Nouveau PDF"
+
+#~ msgid "View"
+#~ msgstr "Afficher"
+
+#~ msgid "View PDF"
+#~ msgstr "Voir le PDF"
+
+#~ msgid "Search PDFs"
+#~ msgstr "Rechercher"
+
+#~ msgid "No PDFs found"
+#~ msgstr "Aucun PDF trouvé"
+
+#~ msgid "For PDFs"
+#~ msgstr "Pour PDF"
+
+#~ msgid ""
+#~ "<i class=\"icons slicon-settings\"></i> <b>%s</b> PDF import is <span "
+#~ "class=\"js-pdf-light-viewer-current-status\">%s</span>. <span class=\"js-"
+#~ "pdf-light-viewer-current-progress\">%d</span>%% is complete. <i>Please do "
+#~ "not leave the admin interface until the import would not finished. %s</i>"
+#~ msgstr ""
+#~ "<i class=\"icons slicon-settings\"></i> <b>%s</b> Importation <span class="
+#~ "\"js-pdf-light-viewer-current-status\">%s</span>. <span class=\"js-pdf-"
+#~ "light-viewer-current-progress\">%d</span>%% est complete. <i>Ne quittez "
+#~ "pas cette page avant que l'importation est finie %s</i>"
+
+#~ msgid "Otherwise the import will be continued during your next visit."
+#~ msgstr ""
+#~ "Sinon, l'importation sera poursuivie au cours de votre prochaine visite."
+
+#~ msgid "Usage"
+#~ msgstr "Utilisation"
+
+#~ msgid "Pages"
+#~ msgstr "Pages"
+
+#~ msgid "Import status"
+#~ msgstr "Statut de l’importation"
+
+#~ msgid "Import scheduled"
+#~ msgstr "Importation programmée"
+
+#~ msgid "Import started"
+#~ msgstr "Importation commencée."
+
+#~ msgid "Import in progress"
+#~ msgstr "Importation en cours"
+
+#~ msgid "Import finished"
+#~ msgstr "Importation terminée"
+
+#~ msgid "Enable import"
+#~ msgstr "Activer l'importation"
+
+#~ msgid "Check this if you want to import or re-import PDF file"
+#~ msgstr ""
+#~ "Cochez cette case si vous souhaitez importer ou réimporter un fichier PDF"
+
+#~ msgid "JPEG compression quality"
+#~ msgstr "Qualité de compression JPEG"
+
+#~ msgid "JPEG resolution"
+#~ msgstr "Rrésolution JPEG"
+
+#~ msgid "PDF File"
+#~ msgstr "Fichier PDF"
+
+#~ msgid "Choose what PDF file will be imported"
+#~ msgstr "Choisissez quel fichier PDF sera importé"
+
+#~ msgid "Output Options"
+#~ msgstr "Options de sortie"
+
+#~ msgid "Allow download"
+#~ msgstr "Autoriser Téléchargement"
+
+#~ msgid "Check this if you want to show download button on the frontend"
+#~ msgstr ""
+#~ "Cochez cette case si vous souhaitez afficher le bouton de téléchargement "
+#~ "sur le frontend"
+
+#~ msgid "Alternate download link"
+#~ msgstr "Autre lien de téléchargement"
+
+#~ msgid "If not set, will be used link from PDF File"
+#~ msgstr "Si non défini, le lien sera celui de fichier PDF"
+
+#~ msgid "Hide fullscreen button"
+#~ msgstr "Masquer le bouton plein écran"
+
+#~ msgid "Disable page zoom"
+#~ msgstr "Disable zoom"
+
+#~ msgid "Anonymous / s2Member Level 0"
+#~ msgstr "Anonymous / s2Member Niveau 0"
+
+#~ msgid "Permissions"
+#~ msgstr "Permissions"
+
+#~ msgid "Pages limits for different user roles"
+#~ msgstr "Limites Pages pour différents rôles utilisateur"
+
+#~ msgid "Pages Limit"
+#~ msgstr "Limite Pages"
+
+#~ msgid "Add another limit"
+#~ msgstr "Ajouter une autre limite"
+
+#~ msgid "Remove limit"
+#~ msgstr "Supprimer la limite"
+
+#~ msgid "User Role"
+#~ msgstr "Rôle de l’utilisateur"
+
+#~ msgid "Select role which you want to pages limit"
+#~ msgstr "Sélectionnez le rôle que vous voulez pages limite"
+
+#~ msgid "Visible pages"
+#~ msgstr "Pages Visibles:"
+
+#~ msgid "PDF Preview"
+#~ msgstr "Prévisualisation PDF"
+
+#~ msgid "PDF import scheduled."
+#~ msgstr "Importation programmée"
+
+#~ msgid ""
+#~ "Imagick not found, please check other requirements on <a href=\"%s"
+#~ "\">plugin settings page</a> for more information."
+#~ msgstr ""
+#~ "Imagick n'est pas trouvé , s'il vous plaît vérifier d' autres exigences "
+#~ "dans  la <a href=\"%s\">page des paramètres</a> pour plus d' informations."
+
+#~ msgid "Currently there are no unimported files in the queue."
+#~ msgstr ""
+#~ "Actuellement, il n'y a pas de fichiers non importées  dans la file "
+#~ "d'attente."
+
+#~ msgid "scheduled"
+#~ msgstr "programmée"
+
+#~ msgid "started"
+#~ msgstr "démarré"
+
+#~ msgid "processing"
+#~ msgstr "en cours"
+
+#~ msgid "Cannot get width and height of the first page."
+#~ msgstr "Impossible d'obtenir la largeur et la hauteur de la première page."
+
+#~ msgid "Cannot detect current imported PDF page."
+#~ msgstr "Impossible de détecter la page PDF importé."
+
+#~ msgid "failed"
+#~ msgstr "échoué"
+
+#~ msgid "finished"
+#~ msgstr "terminé"
+
+#~ msgid "Docs"
+#~ msgstr "Docs"
+
+#~ msgid "Upload folder"
+#~ msgstr "Répertoire des fichiers téléchargés"
+
+#~ msgid "Logs folder"
+#~ msgstr "Dossier des journaux"
+
+#~ msgid "is %s or higher"
+#~ msgstr "est %s ou plus"
+
+#~ msgid "is lower than %s"
+#~ msgstr "est moins que %s"
+
+#~ msgid "Imagick PHP Extension"
+#~ msgstr "Extension Imagick PHP"
+
+#~ msgid "is loaded"
+#~ msgstr "est chargéé"
+
+#~ msgid "is not loaded"
+#~ msgstr "n'est pas chargé"
+
+#~ msgid ""
+#~ "Imagick PHP Extension is required for PDF -> JPEG convertation. It cannot "
+#~ "be included with the plugin unfortunately, so you or your hosting "
+#~ "provider/server administrator should install it."
+#~ msgstr ""
+#~ "Extension Imagick PHP est nécessaire pour la conversion PDF -> JPEG . Il "
+#~ "ne peut pas être inclus avec le plugin , votre fournisseur "
+#~ "d'hébergement / administrateur doit l'installer sur le serveur."
+
+#~ msgid "Imagick PHP Wrapper"
+#~ msgstr "Imagick PHP Wrapper"
+
+#~ msgid "is supported"
+#~ msgstr "est prise en charge."
+
+#~ msgid "is not supported"
+#~ msgstr "n'est pas pris en charge"
+
+#~ msgid ""
+#~ "Imagick PHP Wrapper is required to make available Imagick PHP Extension "
+#~ "functionality in the plugin. Usually it's integrated through the PECL "
+#~ "plugin. It cannot be included with the plugin unfortunately, so you or "
+#~ "your hosting provider/server administrator should install it."
+#~ msgstr ""
+#~ "Imagick PHP Wrapper est nécessaire pour rendre la fonctionnalité Imagick "
+#~ "PHP Extension disponible dans le plug-in. Habituellement, il est intégré "
+#~ "à travers le plugin PECL. Il ne peut pas être inclus avec le plugin "
+#~ "malheureusement, otre fournisseur d'hébergement / administrateur du "
+#~ "serveur doit l'installer."
+
+#~ msgid "Imagick PDF Support"
+#~ msgstr "Prise en charge Imagick PDF"
+
+#~ msgid "is enabled"
+#~ msgstr "est activé"
+
+#~ msgid "is not enabled"
+#~ msgstr "est pas activé"
+
+#~ msgid "Imagick PDF Support is required for PDF -> JPEG convertation."
+#~ msgstr "Imagick support PDF est nécessaire pour la conversion PDF -> JPEG ."
+
+#~ msgid ""
+#~ "GhostScript is required for Imagick PDF Support. For cases, when you are "
+#~ "sure that GhostScript is installed, but it was not detected by the plugin "
+#~ "correctly you can disable this requirement in options below."
+#~ msgstr ""
+#~ "GhostScript est nécessaire pour la prise en charge de PDF Imagick.Lorsque "
+#~ "vous êtes sûr que GhostScript est installé, mais il n'a pas été détecté "
+#~ "par le plugin correctement, vous pouvez désactiver cette exigence dans "
+#~ "les options ci-dessous."
+
+#~ msgid "is writable"
+#~ msgstr "est inscriptible"
+
+#~ msgid "is not writable"
+#~ msgstr "est pas inscriptible"
+
+#~ msgid "This is the folder for converted images."
+#~ msgstr "Ceci est le dossier pour les images converties."
+
+#~ msgid "We will save plugin-specific log files in this folder."
+#~ msgstr ""
+#~ "Nous allons enregistrer des fichiers journaux spécifiques plugins dans ce "
+#~ "dossier."
+
+#~ msgid ""
+#~ "[pdf-light-viewer] shortcode cannot be rendered due to the error: No "
+#~ "converted pages found"
+#~ msgstr ""
+#~ "[Pdf-light-viewer] shortcode ne peut pas être rendue en raison de "
+#~ "l'erreur: Pas de pages converties trouvés"
+
+#~ msgid ""
+#~ "PDF Light Viewer Team: We created PRO Addon with printing, search and SEO-"
+#~ "friendly mode <a class=\"button-primary js-pdf-light-viewer-hide-"
+#~ "notification\" data-notification=\"pro-ad-viewed\" target=\"_blank\" href="
+#~ "\"%s\">Check It</a> <a class=\"button-secondary js-pdf-light-viewer-hide-"
+#~ "notification\" data-notification=\"pro-ad-viewed\" href=\"#\">Not "
+#~ "interested</a>"
+#~ msgstr ""
+#~ "L'équipe PDF Light Viewer : Nous avons créé un addon PRO avec l'option de "
+#~ "l' impression, la recherche et le mode SEO <a class=\"button-primary js-"
+#~ "pdf-light-viewer-hide-notification\" data-notification=\"pro-ad-viewed\" "
+#~ "target=\"_blank\" href=\"%s\">Voir le addon !</a> <a class=\"button-"
+#~ "secondary js-pdf-light-viewer-hide-notification\" data-notification=\"pro-"
+#~ "ad-viewed\" href=\"#\">je suis pas intéressé.</a>"
+
+#~ msgid ""
+#~ "PDF Light Viewer Team: Please, take part in our 1-minute survey to make "
+#~ "PDF Light Viewer plugin better <a class=\"button-primary js-pdf-light-"
+#~ "viewer-hide-notification\" data-notification=\"survey-viewed\" target="
+#~ "\"_blank\" href=\"%s\">Take Survey</a> <a class=\"button-secondary js-pdf-"
+#~ "light-viewer-hide-notification\" data-notification=\"survey-viewed\" href="
+#~ "\"#\">Not interested</a>"
+#~ msgstr ""
+#~ "PDF TeamViewer Lumière: S'il vous plaît, prenez part à notre sondage 1 "
+#~ "minute pour rendre  PDF Light  Viewer meilleur <a class=\"button-primary "
+#~ "js-pdf-light-viewer-hide-notification\" data-notification=\"survey-viewed"
+#~ "\" target=\"_blank\" href=\"%s\">Participer au sondage</a> <a class="
+#~ "\"button-secondary js-pdf-light-viewer-hide-notification\" data-"
+#~ "notification=\"survey-viewed\" href=\"#\">Je suis pas intéressé.</a>"
+
+#~ msgid "requirements are met, happy using!"
+#~ msgstr "ces exigences sont remplies, bonne utilisation !"
+
+#~ msgid ""
+#~ "requirements not met, please check <a href=\"%s\">plugin settings page</"
+#~ "a> for more information."
+#~ msgstr ""
+#~ "les exigences ne sont pas satisfaites, s’il vous plaît vérifier <a "
+#~ "href=„%s“>la page des paramètres </a> pour plus d’informations."
+
+#~ msgid ""
+#~ "We have just created new section called PDFs in your dashboard. Use it to "
+#~ "import and publish your cool PDF files."
+#~ msgstr ""
+#~ "Nous venons de créer une entrée dans le menu Admin appelée PDF. Utilisez-"
+#~ "la pour importer et publier vos fichiers PDF."
+
+#~ msgid "Archive"
+#~ msgstr "Archive"
+
+#~ msgid "Print"
+#~ msgstr "Imprimer"
+
+#~ msgid "Clear"
+#~ msgstr "Effacer"
+
+#~ msgid "Default"
+#~ msgstr "Défaut"
+
+#~ msgid "Select Color"
+#~ msgstr "Sélectionner la couleur"
+
+#~ msgid "Select / Deselect All"
+#~ msgstr "Sélectionner/Déselectionner tout"
+
+#~ msgid "Test Metabox"
+#~ msgstr "Test Metabox"
+
+#~ msgid "Test Text"
+#~ msgstr "Test Texte"
+
+#~ msgid "field description (optional)"
+#~ msgstr "Description du champ (facultatif)"
+
+#~ msgid "Test Text Small"
+#~ msgstr "Test Text Small"
+
+#~ msgid "Test Text Medium"
+#~ msgstr "Test Text Medium"
+
+#~ msgid "Website URL"
+#~ msgstr "URL du Site :"
+
+#~ msgid "Test Text Email"
+#~ msgstr "Test Texte Email"
+
+#~ msgid "Test Time"
+#~ msgstr "Test Heure"
+
+#~ msgid "Time zone"
+#~ msgstr "Fuseau horaire"
+
+#~ msgid "Test Date Picker"
+#~ msgstr "Test Sélecteur de Date"
+
+#~ msgid "Test Date Picker (UNIX timestamp)"
+#~ msgstr "﻿Test de Date Picker (horodatée UNIX)"
+
+#~ msgid "Test Date/Time Picker Combo (UNIX timestamp)"
+#~ msgstr "Test  Date/Horaire sélectionné (horodatée UNIX)"
+
+#~ msgid "Test Money"
+#~ msgstr "Test Monnaie"
+
+#~ msgid "Test Color Picker"
+#~ msgstr "Test de Color Picker"
+
+#~ msgid "Test Text Area"
+#~ msgstr "Test zone de texte"
+
+#~ msgid "Test Text Area Small"
+#~ msgstr "Test petite zone de texte"
+
+#~ msgid "Test Text Area for Code"
+#~ msgstr "Test de Zone de texte pour le code"
+
+#~ msgid "Test Title Weeeee"
+#~ msgstr "Test Weeeee"
+
+#~ msgid "This is a title description"
+#~ msgstr "C'est un titre de description"
+
+#~ msgid "Test Select"
+#~ msgstr "Test Sélection"
+
+#~ msgid "Option One"
+#~ msgstr "Option 1"
+
+#~ msgid "Option Two"
+#~ msgstr "Option 2"
+
+#~ msgid "Option Three"
+#~ msgstr "Option 3"
+
+#~ msgid "Test Radio inline"
+#~ msgstr "Boutons radio inline"
+
+#~ msgid "Test Radio"
+#~ msgstr "Test  Radio"
+
+#~ msgid "Test Taxonomy Radio"
+#~ msgstr "Test Bouton Radio des taxonomies"
+
+#~ msgid "Test Taxonomy Select"
+#~ msgstr "Test de Sélection de la Taxonomie"
+
+#~ msgid "Test Taxonomy Multi Checkbox"
+#~ msgstr "Test de Taxonomie du Multi Checkbox"
+
+#~ msgid "Test Checkbox"
+#~ msgstr "Teste  Checkbox"
+
+#~ msgid "Test Multi Checkbox"
+#~ msgstr "Teste case à cocher multiple"
+
+#~ msgid "Check One"
+#~ msgstr "Sélectionnez en un"
+
+#~ msgid "Check Two"
+#~ msgstr "Sélectionnez en deux"
+
+#~ msgid "Check Three"
+#~ msgstr "Sélectionnez en trois"
+
+#~ msgid "Test wysiwyg"
+#~ msgstr "Test wysiwyg"
+
+#~ msgid "Test Image"
+#~ msgstr "Image de Test"
+
+#~ msgid "Upload an image or enter a URL."
+#~ msgstr "Télécharger une image ou entrer une URL."
+
+#~ msgid "Multiple Files"
+#~ msgstr "Plusieurs fichiers"
+
+#~ msgid "Upload or add multiple images/attachments."
+#~ msgstr "Télécharger ou ajouter plusieurs images / pièces jointes."
+
+#~ msgid "oEmbed"
+#~ msgstr "oEmbed"
+
+#~ msgid ""
+#~ "Enter a youtube, twitter, or instagram URL. Supports services listed at "
+#~ "<a href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
+#~ "Embeds</a>."
+#~ msgstr ""
+#~ "Entrez une URL YouTube, Twitter, ou Instagram. Liste des services pris en "
+#~ "charge sur <a href=\"http://codex.wordpress.org/Embeds\">http://codex."
+#~ "wordpress.org/Embeds</a> ."
+
+#~ msgid "About Page Metabox"
+#~ msgstr "À propos de la page Metabox"
+
+#~ msgid "Repeating Field Group"
+#~ msgstr "Groupe de champs en repetition"
+
+#~ msgid "Generates reusable form entries"
+#~ msgstr "Génère des entrées de formulaire réutilisables"
+
+#~ msgid "Entry {#}"
+#~ msgstr "Entrée {#}"
+
+#~ msgid "Add Another Entry"
+#~ msgstr "Ajouter une autre entrée"
+
+#~ msgid "Remove Entry"
+#~ msgstr "Supprimer une entrée"
+
+#~ msgid "User Profile Metabox"
+#~ msgstr "Metabox du Profil d'utilisateur"
+
+#~ msgid "Extra Info"
+#~ msgstr "Infos complémentaires"
+
+#~ msgid "Avatar"
+#~ msgstr "Logo"
+
+#~ msgid "Facebook URL"
+#~ msgstr "URL Facebook"
+
+#~ msgid "Twitter URL"
+#~ msgstr "URL Twitter"
+
+#~ msgid "Google+ URL"
+#~ msgstr "URL Google+"
+
+#~ msgid "Linkedin URL"
+#~ msgstr "URL LinkedIn"
+
+#~ msgid "User Field"
+#~ msgstr "Champs de l’utilisateur"
+
+#~ msgid "Theme Options Metabox"
+#~ msgstr "Options Theme Metabox"
+
+#~ msgid "Site Background Color"
+#~ msgstr "Couleur d'arrière-plan du site"
+
+#~ msgid "Add Row"
+#~ msgstr "Ajouter une colonne"
+
+#~ msgid "Remove"
+#~ msgstr "Supprimer"
+
+#~ msgid "No terms"
+#~ msgstr "Aucun termes"
+
+#~ msgid "Add or Upload File"
+#~ msgstr "Ajouter ou télécharger un fichier"
+
+#~ msgid "Remove Image"
+#~ msgstr "Supprimer l’image"
+
+#~ msgid "File:"
+#~ msgstr "Fichier:"
+
+#~ msgid "Please Try Again"
+#~ msgstr "Réessayez."
+
+#~ msgid "Remove Embed"
+#~ msgstr "Suppression de l’intégration"
+
+#~ msgid "No oEmbed Results Found for %s. View more info at"
+#~ msgstr "Aucun résultat trouvé pour oEmbed pour %s. Voir plus sur"
+
+#~ msgid "Add Group"
+#~ msgstr "Ajouter un groupe"
+
+#~ msgid "Remove Group"
+#~ msgstr "Supprimer un groupe"
+
+#~ msgid "Personal Support"
+#~ msgstr "Support"

@@ -33,7 +33,7 @@ class PdfLightViewer_Plugin
 		load_plugin_textdomain(
 			PDF_LIGHT_VIEWER_PLUGIN,
 			false,
-			dirname(plugin_basename(PDF_LIGHT_VIEWER_FILE)).'/resources/languages/'.get_locale().'/'
+			dirname(plugin_basename(PDF_LIGHT_VIEWER_FILE)).'/resources/lang/'.get_locale().'/'
         );
 	}
 

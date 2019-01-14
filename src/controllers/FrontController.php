@@ -204,7 +204,8 @@ class PdfLightViewer_FrontController {
 			'print_page_allowed' => false,
 			'enabled_pdf_text' => false,
 			'enabled_pdf_search' => false,
-			'enabled_archive' => false
+			'enabled_archive' => false,
+            'theme' => null
 		);
 
 		return wp_parse_args($args, $defaults);
