@@ -58,7 +58,7 @@
                                 <?php else : ?>
                                     <img
     									class="js-pdf-light-viewer-lazy-loading js-pdf-light-viewer-lazy-loading-<?php echo ($number + 1) ?> initially-hidden"
-    									src="<?php echo $imagePlaceholder"
+    									src="<?php echo $imagePlaceholder ?>"
     									data-original="<?php echo $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$page;?>"
     									width="100%"
     									height="100%"
