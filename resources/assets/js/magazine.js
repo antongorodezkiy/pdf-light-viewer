@@ -502,9 +502,12 @@ var PDFLightViewerApp;
 			},
 
       preloadImages: function(magazine) {
+        var disable_images_preloading = magazine.data('disable-images-preloading');
         $('img', magazine).each(function() {
           var img = $(this);
-          $('<img />').attr('src', img.data('original'));
+          if (!disable_images_preloading || img.is(':visible')) {
+            $('<img />').attr('src', img.data('original'));
+          }
         });
       }
 		};

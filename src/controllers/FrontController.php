@@ -196,6 +196,7 @@ class PdfLightViewer_FrontController {
             'max_book_height' => (int)PdfLightViewer_Models_Meta::get_post_meta($post->ID, 'max_book_height', true),
             'limit_fullscreen_book_height' => (bool)PdfLightViewer_Models_Meta::get_post_meta($post->ID, 'limit_fullscreen_book_height', true),
             'disable_lazy_loading' => (bool)PdfLightViewer_Models_Meta::get_post_meta($post->ID, 'disable_lazy_loading', true),
+            'disable_images_preloading' => (bool)PdfLightViewer_Models_Meta::get_post_meta($post->ID, 'disable_images_preloading', true),
 
 			'pages' => array(),
 			'thumbs' => array(),

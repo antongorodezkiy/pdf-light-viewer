@@ -36,7 +36,8 @@
 					data-pages-count="<?php echo count($pdf_light_viewer_config['pages']) ?>"
 					data-page-layout="<?php echo $pdf_light_viewer_config['page_layout'] ?>"
                     data-download-page-format="<?php echo $pdf_light_viewer_config['download_page_format'] ?>"
-                    data-theme="<?php echo $pdf_light_viewer_config['theme'] ?>">
+                    data-theme="<?php echo $pdf_light_viewer_config['theme'] ?>"
+                    data-disable-images-preloading="<?php echo $pdf_light_viewer_config['disable_images_preloading'] ?>">
 					<?php foreach($pdf_light_viewer_config['pages'] as $number => $page): ?>
 						<div style="background-image:url('<?php echo $imagePlaceholder ?>');">
 							<div class="gradient"></div>

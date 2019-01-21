@@ -188,7 +188,8 @@ class PdfLightViewer_PdfController {
 			case 'usage':
 				echo PdfLightViewer_Components_View::render('metabox.usage', array(
 					'pdf_upload_dir' => $pdf_upload_dir,
-					'pages' => directory_map($pdf_upload_dir)
+					'pages' => directory_map($pdf_upload_dir),
+					'post_id' => $post_id
 				));
 			break;
 
@@ -384,6 +385,12 @@ class PdfLightViewer_PdfController {
     					'name' => '<i class="slicons slicon-picture"></i> ' . __('Disable lazy loading', PDF_LIGHT_VIEWER_PLUGIN),
                         'desc' => __('May be useful to prevent issues when using other lazy loading systems', PDF_LIGHT_VIEWER_PLUGIN),
     					'id' => 'disable_lazy_loading',
+    					'type' => 'checkbox'
+    				),
+					array(
+    					'name' => '<i class="slicons slicon-picture"></i> ' . __('Disable images pre-loading', PDF_LIGHT_VIEWER_PLUGIN),
+                        'desc' => __('You may want to not preload images for big documents', PDF_LIGHT_VIEWER_PLUGIN),
+    					'id' => 'disable_images_preloading',
     					'type' => 'checkbox'
     				),
     			),

@@ -1,14 +1,23 @@
 <?php if (!defined('WPINC')) die();
 
-class PdfLightViewer_AdminController {
+class PdfLightViewer_AdminController
+{
 
-    public static function init() {
+    public static function init()
+    {
         self::settingsInit();
 
         if (!defined('PDF_LIGHT_VIEWER_PRO_PLUGIN') || !defined('PDF_LIGHT_VIEWER_SERVERLESS_PLUGIN')) {
             add_action(PDF_LIGHT_VIEWER_PLUGIN.':settings_view_after_settings', array(__CLASS__, 'settings_view_after_settings'), 100);
         }
+
+        // add_action('bulk_edit_custom_box', array(__CLASS__, 'bulk_edit_custom_box'), 100, 2);
     }
+
+    // public static function bulk_edit_custom_box()
+    // {
+    //     // code...
+    // }
 
     public static function settings_view_after_settings() {
         if (!defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')) {
