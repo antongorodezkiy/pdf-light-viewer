@@ -377,7 +377,7 @@ class PdfLightViewer_PdfController {
     				),
                     array(
     					'name' => '<i class="slicons slicon-frame"></i> ' . __('Limit book height by the viewport in fullscreen mode', PDF_LIGHT_VIEWER_PLUGIN),
-                        'desc' => '',
+                        'desc' => __('The book will fit the screen in fullscreen mode ', PDF_LIGHT_VIEWER_PLUGIN),
     					'id' => 'limit_fullscreen_book_height',
     					'type' => 'checkbox'
     				),
