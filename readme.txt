@@ -70,7 +70,11 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 == Changelog ==
 
-= 1.4.1 - 2019-01- ==
+= 1.4.2 - 2019-02- =
+* php code fixes
+* dymanic page size ratio improvement
+
+= 1.4.1 - 2019-01-28 ==
 * disable_images_preloading setting added
 * Fix for usage example
 

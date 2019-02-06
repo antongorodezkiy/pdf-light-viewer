@@ -50,6 +50,28 @@ class PdfLightViewer_PdfController {
         return $pages;
     }
 
+    public static function getQuickEditOptionKeys()
+    {
+        return array(
+            'download_allowed',
+            'download_page_allowed',
+            'download_page_format',
+            'hide_thumbnails_navigation',
+            'hide_fullscreen_button',
+            'disable_page_zoom',
+            'zoom_magnify',
+            'show_toolbar_next_previous',
+            'show_toolbar_goto_page',
+            'show_page_numbers',
+            'page_layout',
+            'max_book_width',
+            'max_book_height',
+            'limit_fullscreen_book_height',
+            'disable_lazy_loading',
+            'disable_images_preloading'
+        );
+    }
+
 	public static function init() {
 
 		self::register();
@@ -57,6 +79,7 @@ class PdfLightViewer_PdfController {
 		// columns
 			add_filter( 'manage_edit-'.self::$type.'_columns', array(__CLASS__, 'custom_columns_registration'), 10 );
 			add_action( 'manage_'.self::$type.'_posts_custom_column', array(__CLASS__, 'custom_columns_views'), 10, 2 );
+            add_action( 'quick_edit_custom_box', array(__CLASS__, 'quick_edit_custom_box'), 10, 2 );
 
 		// metaboxes
 			add_filter('add_meta_boxes', array(__CLASS__, 'add_meta_boxes'));
@@ -125,7 +148,6 @@ class PdfLightViewer_PdfController {
 			)
 		);
 
-
 		register_taxonomy(self::$type.'_tag', self::$type,
 			array(
 				'hierarchical' => false,
@@ -173,11 +195,18 @@ class PdfLightViewer_PdfController {
 			}
 		}
 
-	public static function custom_columns_registration( $defaults ) {
+	public static function custom_columns_registration( $defaults )
+    {
 		$defaults['preview'] = __('Preview', PDF_LIGHT_VIEWER_PLUGIN);
 		$defaults['usage'] = __('Usage', PDF_LIGHT_VIEWER_PLUGIN);
-		$defaults['pages'] = __('Pages',PDF_LIGHT_VIEWER_PLUGIN);
-		$defaults['import_status'] = __('Import status',PDF_LIGHT_VIEWER_PLUGIN);
+		$defaults['pages'] = __('Pages', PDF_LIGHT_VIEWER_PLUGIN);
+		$defaults['import_status'] = __('Import status', PDF_LIGHT_VIEWER_PLUGIN);
+
+        $editOptions = static::getQuickEditOptionKeys();
+        foreach ($editOptions as $editOption) {
+            $defaults[$editOption] = $editOption;
+        }
+
 		return $defaults;
 	}
 
@@ -256,6 +285,24 @@ class PdfLightViewer_PdfController {
 
 		}
 	}
+
+    // TODO
+    public static function quick_edit_custom_box($column_name, $post_type)
+    {
+        echo '<fieldset class="inline-edit-col-left">
+            <div class="inline-edit-col">
+                <div class="inline-edit-group wp-clearfix">';
+
+        $editOptions = static::getQuickEditOptionKeys();
+        if (in_array($column_name, $editOptions)) {
+            echo '<label class="alignleft">
+					<span class="title">'.$column_name.'</span>
+					<span class="input-text-wrap"><input type="text" name="price" value=""></span>
+				</label>';
+        }
+
+        echo '</fieldset></div></div>';
+    }
 
 	public static function cmb_metaboxes($meta_boxes)
     {
@@ -470,18 +517,21 @@ class PdfLightViewer_PdfController {
     		);
 
             // export / import
-            $exportConfig = PdfLightViewer_FrontController::parseDefaultsSettings(array(), $post);
-            $exportConfig = apply_filters(PDF_LIGHT_VIEWER_PLUGIN.':front_config', $exportConfig, $post);
-            foreach ($exportConfig as $i => $value) {
-                if (in_array($i, array(
-                    'title',
-                    'template',
-                    'download_link',
-                    'alternate_download_link',
-                    'pages',
-                    'thumbs'
-                ))) {
-                    unset($exportConfig[$i]);
+            $exportConfig = null;
+            if ($post) {
+                $exportConfig = PdfLightViewer_FrontController::parseDefaultsSettings(array(), $post);
+                $exportConfig = apply_filters(PDF_LIGHT_VIEWER_PLUGIN.':front_config', $exportConfig, $post);
+                foreach ($exportConfig as $i => $value) {
+                    if (in_array($i, array(
+                        'title',
+                        'template',
+                        'download_link',
+                        'alternate_download_link',
+                        'pages',
+                        'thumbs'
+                    ))) {
+                        unset($exportConfig[$i]);
+                    }
                 }
             }
             $meta_boxes['pdf_light_viewer_export_import_metabox'] = array(

@@ -84,7 +84,6 @@ var PDFLightViewerApp;
 					autoCenter: false,
 					when: {
 						turning: function(event, page, view) {
-
 							var book = $(this),
 							currentPage = book.turn('page'),
 							pages = book.turn('pages');
@@ -99,7 +98,6 @@ var PDFLightViewerApp;
 							$('.js-pdf-light-viewer-magazine-thumbnails .page-'+currentPage, instance).parent().removeClass('current');
 
 							$('.js-pdf-light-viewer-magazine-thumbnails .page-'+page, instance).parent().addClass('current');
-
 						},
 						turned: function(event, page) {
 
@@ -211,6 +209,17 @@ var PDFLightViewerApp;
               instance.data('current-neighborhood-page', neighborhood_page);
 
 							self.zoom.initSingle(instance, magazine, neighborhood_page);
+
+              // dynamic ratio
+                setTimeout(function() {
+                  var nextImate = $('.js-pdf-light-viewer-lazy-loading-'+page).get(0);
+                  if (typeof nextImate != 'undefined') {
+                    ratio_single = nextImate.naturalWidth / nextImate.naturalHeight;
+                    ratio_double = (nextImate.naturalWidth*2) / nextImate.naturalHeight;
+
+                    self.resize(viewport, magazine, ratio_single, ratio_double);
+                  }
+                }, 100);
 						}
 					}
 				});
