@@ -1,6 +1,8 @@
 // (c) https://rudrastyh.com/wordpress/quick-edit-tutorial.html
 jQuery(function($) {
 
+  if (typeof inlineEditPost == 'undefined') return;
+
   // it is a copy of the inline edit function
   var wp_inline_edit_function = inlineEditPost.edit;
 
