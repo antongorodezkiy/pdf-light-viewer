@@ -86,9 +86,9 @@ class PdfLightViewer_PdfController {
 		// columns
 			add_filter( 'manage_edit-'.self::$type.'_columns', array(__CLASS__, 'custom_columns_registration'), 10 );
 			add_action( 'manage_'.self::$type.'_posts_custom_column', array(__CLASS__, 'custom_columns_views'), 10, 2 );
-            add_action( 'quick_edit_custom_box', array(__CLASS__, 'quick_edit_custom_box'), 10, 2 );
             add_filter( 'default_hidden_columns', array(__CLASS__, 'default_hidden_columns'), 10, 2 );
-            add_action( 'after_setup_theme', array(__CLASS__, 'after_setup_theme'));
+            add_action( 'quick_edit_custom_box', array(__CLASS__, 'quick_edit_custom_box'), 10, 2 );
+            add_action( 'bulk_edit_custom_box', array(__CLASS__, 'quick_edit_custom_box'), 10, 2 );
 
 		// metaboxes
 			add_filter('add_meta_boxes', array(__CLASS__, 'add_meta_boxes'));
@@ -103,11 +103,6 @@ class PdfLightViewer_PdfController {
 		// delete generated images
 			add_action('deleted_post', array(__CLASS__, 'deleted_post'));
 	}
-
-    public static function after_setup_theme()
-    {
-
-    }
 
 	public static function register() {
 		global $pagenow;
@@ -656,11 +651,23 @@ class PdfLightViewer_PdfController {
         ));
 	}
 
-	public static function save_post($post_id, $post = null) {
+	public static function save_post($post_id, $post = null)
+    {
+        if ( (defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE) ) return;
 
-		if ( (defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE) || !$_POST ) {
-			return;
-		}
+        // save custom fields for quickbulk edit
+        if (
+            PdfLightViewer_Helpers_Http::get('bulk_edit')
+            && PdfLightViewer_Helpers_Http::get('screen') == 'edit-'.static::$type
+        ) {
+            foreach ( CMB2_Boxes::get_all() as $cmb ) {
+                if ( in_array($post->post_type, $cmb->prop( 'object_types' )) ) {
+                    $cmb->save_fields( $post_id, 'post', $_GET );
+                }
+            }
+        }
+
+		if ( !$_POST ) return;
 
 		if (current_user_can('edit_posts')) {
 			$form_data = $_REQUEST;
@@ -779,6 +786,15 @@ class PdfLightViewer_PdfController {
                     }
                 }
             }
+
+            // save custom fields for quick edit
+            if (PdfLightViewer_Helpers_Http::post('screen') == 'edit-'.static::$type) {
+                foreach ( CMB2_Boxes::get_all() as $cmb ) {
+            		if ( in_array($post->post_type, $cmb->prop( 'object_types' )) ) {
+                        $cmb->save_fields( $post_id, 'post', $_POST );
+            		}
+            	}
+            }
 		}
 
 		unset($_REQUEST['enable_pdf_import']);
@@ -789,15 +805,6 @@ class PdfLightViewer_PdfController {
         unset($_POST['import_config']);
         unset($_REQUEST['export_config']);
         unset($_POST['export_config']);
-
-        // save custom fields for quick edit
-        if (PdfLightViewer_Helpers_Http::post('screen') == 'edit-'.static::$type) {
-            foreach ( CMB2_Boxes::get_all() as $cmb ) {
-        		if ( in_array($post->post_type, $cmb->prop( 'object_types' )) ) {
-                    $cmb->save_fields( $post_id, 'post', $_POST );
-        		}
-        	}
-        }
 	}
 
 	public static function getPDFPagesNumber($pdf_file_path) {
