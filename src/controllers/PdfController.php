@@ -54,21 +54,21 @@ class PdfLightViewer_PdfController {
     {
         $keys = array(
             'download_allowed',
-            // 'download_page_allowed',
-            // 'download_page_format',
+            'download_page_allowed',
+            'download_page_format',
             'hide_thumbnails_navigation',
-            // 'hide_fullscreen_button',
-            // 'disable_page_zoom',
-            // 'zoom_magnify',
-            // 'show_toolbar_next_previous',
-            // 'show_toolbar_goto_page',
-            // 'show_page_numbers',
-            // 'page_layout',
-            // 'max_book_width',
-            // 'max_book_height',
-            // 'limit_fullscreen_book_height',
-            // 'disable_lazy_loading',
-            // 'disable_images_preloading'
+            'hide_fullscreen_button',
+            'disable_page_zoom',
+            'zoom_magnify',
+            'show_toolbar_next_previous',
+            'show_toolbar_goto_page',
+            'show_page_numbers',
+            'page_layout',
+            'max_book_width',
+            'max_book_height',
+            'limit_fullscreen_book_height',
+            'disable_lazy_loading',
+            'disable_images_preloading'
         );
 
         $options = array();
@@ -327,7 +327,7 @@ class PdfLightViewer_PdfController {
         // }
 
         if ($post_type == static::$type && in_array($column_name, array_keys($editOptions))) {
-            echo '<div class="inline-edit-col-left cmb2-wrap form-table">';
+            echo '<div class="cmb2-wrap form-table">';
                 (new CMB2_Field(array( 'field_args' => $editOptions[$column_name])))->render_field();
             echo '</div>';
         }
@@ -424,47 +424,12 @@ class PdfLightViewer_PdfController {
     			'show_names' => true, // Show field names on the left
     			'fields' => array(
                     PdfLightViewer_Models_MetaField::getFieldConfig('hide_thumbnails_navigation'),
-                    array(
-    					'name' => '<i class="slicons slicon-book-open"></i> ' . __('Flipbook page layout', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'page_layout',
-    					'type'    => 'select',
-                        'options' => array(
-                            'adaptive' => __('Adaptive', PDF_LIGHT_VIEWER_PLUGIN),
-                            'single' => __('Single', PDF_LIGHT_VIEWER_PLUGIN),
-                            'double' => __('Double', PDF_LIGHT_VIEWER_PLUGIN)
-                        ),
-                        'default' => 'adaptive',
-    				),
-                    array(
-    					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book width', PDF_LIGHT_VIEWER_PLUGIN),
-                        'desc' => '(px)',
-    					'id' => 'max_book_width',
-    					'type' => 'text'
-    				),
-                    array(
-    					'name' => '<i class="slicons slicon-frame"></i> ' . __('Max book height', PDF_LIGHT_VIEWER_PLUGIN),
-                        'desc' => '(px)',
-    					'id' => 'max_book_height',
-    					'type' => 'text'
-    				),
-                    array(
-    					'name' => '<i class="slicons slicon-frame"></i> ' . __('Limit book height by the viewport in fullscreen mode', PDF_LIGHT_VIEWER_PLUGIN),
-                        'desc' => __('The book will fit the screen in fullscreen mode ', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'limit_fullscreen_book_height',
-    					'type' => 'checkbox'
-    				),
-                    array(
-    					'name' => '<i class="slicons slicon-picture"></i> ' . __('Disable lazy loading', PDF_LIGHT_VIEWER_PLUGIN),
-                        'desc' => __('May be useful to prevent issues when using other lazy loading systems', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'disable_lazy_loading',
-    					'type' => 'checkbox'
-    				),
-					array(
-    					'name' => '<i class="slicons slicon-picture"></i> ' . __('Disable images pre-loading', PDF_LIGHT_VIEWER_PLUGIN),
-                        'desc' => __('You may want to not preload images for big documents', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'disable_images_preloading',
-    					'type' => 'checkbox'
-    				),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('page_layout'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('max_book_width'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('max_book_height'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('limit_fullscreen_book_height'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('disable_lazy_loading'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('disable_images_preloading'),
     			),
     		);
 
@@ -477,62 +442,15 @@ class PdfLightViewer_PdfController {
     			'show_names' => true, // Show field names on the left
     			'fields' => array(
                     PdfLightViewer_Models_MetaField::getFieldConfig('download_allowed'),
-    				array(
-    					'name' => '<i class="slicons slicon-link"></i> ' . __('Alternate download link', PDF_LIGHT_VIEWER_PLUGIN),
-    					'desc' => __('If not set, will be used link from PDF File', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id'   => 'alternate_download_link',
-    					'type' => 'text',
-    					'default' => ''
-    				),
-                    array(
-    					'name' => '<i class="slicons slicon-cloud-download"></i> ' . __('Allow per-page download', PDF_LIGHT_VIEWER_PLUGIN),
-    					'desc' => __('Check this if you want to show download button in the thumbnails to allow downloading of single page images', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'download_page_allowed',
-    					'type' => 'checkbox'
-    				),
-                    array(
-    					'name' => '' . __('Per-page download format', PDF_LIGHT_VIEWER_PLUGIN),
-    					'desc' => __('Per page download in JPG or PDF formats', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'download_page_format',
-    					'type'    => 'select',
-                        'options' => array(
-                            'jpg' => 'jpg',
-                            'pdf' => 'pdf'
-                        ),
-                        'default' => 'jpg',
-    				),
-    				array(
-    					'name' => '<i class="slicons slicon-size-fullscreen"></i> ' . __('Hide fullscreen button', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'hide_fullscreen_button',
-    					'type' => 'checkbox'
-    				),
-    				array(
-    					'name' => '<i class="slicons slicon-magnifier"></i> ' . __('Disable page zoom', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'disable_page_zoom',
-    					'type' => 'checkbox'
-    				),
-                    array(
-    					'name' => '<i class="slicons slicon-magnifier"></i> ' . __('Zoom magnify multiplier', PDF_LIGHT_VIEWER_PLUGIN),
-                        'desc' => __('This value is multiplied against the full size of the zoomed image. The default value is 1, meaning the zoomed image should be at 100% of its natural width and height.', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'zoom_magnify',
-    					'type' => 'text',
-    					'default' => 1
-    				),
-                    array(
-    					'name' => '<i class="slicons slicon-arrow-left"></i><i class="slicons slicon-arrow-right"></i> ' . __('Show toolbar next and previous page arrows', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'show_toolbar_next_previous',
-    					'type' => 'checkbox'
-    				),
-                    array(
-    					'name' => '<i class="slicons slicon-directions"></i> ' . __('Show toolbar go to page control', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'show_toolbar_goto_page',
-    					'type' => 'checkbox'
-    				),
-                    array(
-    					'name' => '<i class="slicons slicon-info"></i> ' . __('Show page numbers', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'show_page_numbers',
-    					'type' => 'checkbox'
-    				),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('alternate_download_link'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('download_page_allowed'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('download_page_format'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('hide_fullscreen_button'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('disable_page_zoom'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('zoom_magnify'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('show_toolbar_next_previous'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('show_toolbar_goto_page'),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('show_page_numbers'),
     			),
     		);
 

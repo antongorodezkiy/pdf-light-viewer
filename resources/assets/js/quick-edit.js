@@ -31,7 +31,6 @@ jQuery(function($) {
         var classList = column.prop('classList');
 
         for (var metaKey in classList) {
-          console.log('classList[metaKey]', classList[metaKey], column.text())
 
           if ($('input[name="'+classList[metaKey]+'"]:text', specific_post_edit_row).size()) {
             $('input[name="'+classList[metaKey]+'"]:text', specific_post_edit_row).val(column.text());
@@ -39,6 +38,10 @@ jQuery(function($) {
 
           else if ($('input[name="'+classList[metaKey]+'"]:checkbox', specific_post_edit_row).size()) {
             $('input[name="'+classList[metaKey]+'"]:checkbox', specific_post_edit_row).prop('checked', column.text() == 'on');
+          }
+
+          else if ($('select[name="'+classList[metaKey]+'"]', specific_post_edit_row).size()) {
+            $('select[name="'+classList[metaKey]+'"] option[value="'+column.text()+'"]', specific_post_edit_row).prop('selected', true);
           }
         }
       });
