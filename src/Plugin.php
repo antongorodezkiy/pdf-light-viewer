@@ -329,6 +329,7 @@ class PdfLightViewer_Plugin
             'PdfLightViewer_CLIController' => ( defined('WP_CLI') && WP_CLI ) ? '/controllers/CLIController.php' : null,
             'PdfLightViewer_Model' => '/models/Model.php',
             'PdfLightViewer_Models_Meta' => '/models/Meta.php',
+            'PdfLightViewer_Models_MetaField' => '/models/MetaField.php',
         ));
         foreach ($includes as $className => $includePath) {
             if (!class_exists($className)) {

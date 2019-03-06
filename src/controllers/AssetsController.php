@@ -6,6 +6,13 @@ class PdfLightViewer_AssetsController
     {
 		global $post;
 
+        if (
+            (PdfLightViewer_Helpers_Http::get('post_type') && PdfLightViewer_Helpers_Http::get('post_type') == PdfLightViewer_PdfController::$type)
+            || ($post && $post->post_type == PdfLightViewer_PdfController::$type)
+        ) {
+		    CMB2_hookup::enqueue_cmb_css();
+        }
+
 		// styles
 			PdfLightViewer_Components_Assets::enqueueStyles(array(
 				'purecss.grids.responsive' => 'assets/bower_components/pure/grids-responsive-min.css',
@@ -42,6 +49,7 @@ class PdfLightViewer_AssetsController
 
             PdfLightViewer_Components_Assets::enqueueScripts(array(
                 'jquery.qtip.js' => 'assets/bower_components/qtip2/jquery.qtip.min.js',
+                'quick-edit.'.PDF_LIGHT_VIEWER_FILE => 'assets/js/quick-edit.js',
                 'admin.'.PDF_LIGHT_VIEWER_FILE => 'assets/js/admin.js'
             ));
 

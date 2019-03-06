@@ -50,26 +50,33 @@ class PdfLightViewer_PdfController {
         return $pages;
     }
 
-    public static function getQuickEditOptionKeys()
+    public static function getQuickEditOptions()
     {
-        return array(
+        $keys = array(
             'download_allowed',
-            'download_page_allowed',
-            'download_page_format',
+            // 'download_page_allowed',
+            // 'download_page_format',
             'hide_thumbnails_navigation',
-            'hide_fullscreen_button',
-            'disable_page_zoom',
-            'zoom_magnify',
-            'show_toolbar_next_previous',
-            'show_toolbar_goto_page',
-            'show_page_numbers',
-            'page_layout',
-            'max_book_width',
-            'max_book_height',
-            'limit_fullscreen_book_height',
-            'disable_lazy_loading',
-            'disable_images_preloading'
+            // 'hide_fullscreen_button',
+            // 'disable_page_zoom',
+            // 'zoom_magnify',
+            // 'show_toolbar_next_previous',
+            // 'show_toolbar_goto_page',
+            // 'show_page_numbers',
+            // 'page_layout',
+            // 'max_book_width',
+            // 'max_book_height',
+            // 'limit_fullscreen_book_height',
+            // 'disable_lazy_loading',
+            // 'disable_images_preloading'
         );
+
+        $options = array();
+        foreach ($keys as $key) {
+            $options[$key] = PdfLightViewer_Models_MetaField::getFieldConfig($key);
+        }
+
+        return $options;
     }
 
 	public static function init() {
@@ -80,13 +87,15 @@ class PdfLightViewer_PdfController {
 			add_filter( 'manage_edit-'.self::$type.'_columns', array(__CLASS__, 'custom_columns_registration'), 10 );
 			add_action( 'manage_'.self::$type.'_posts_custom_column', array(__CLASS__, 'custom_columns_views'), 10, 2 );
             add_action( 'quick_edit_custom_box', array(__CLASS__, 'quick_edit_custom_box'), 10, 2 );
+            add_filter( 'default_hidden_columns', array(__CLASS__, 'default_hidden_columns'), 10, 2 );
+            add_action( 'after_setup_theme', array(__CLASS__, 'after_setup_theme'));
 
 		// metaboxes
 			add_filter('add_meta_boxes', array(__CLASS__, 'add_meta_boxes'));
 			add_filter('cmb2_meta_boxes', array(__CLASS__, 'cmb_metaboxes'));
 
 		// saving
-			add_action('save_post_'.self::$type, array(__CLASS__, 'save_post'), 1000);
+			add_action('save_post_'.self::$type, array(__CLASS__, 'save_post'), 1000, 2);
 
 		// show import message, which will show progress
 			add_action('admin_notices', array(__CLASS__,'showImportProgressMessages'));
@@ -94,6 +103,11 @@ class PdfLightViewer_PdfController {
 		// delete generated images
 			add_action('deleted_post', array(__CLASS__, 'deleted_post'));
 	}
+
+    public static function after_setup_theme()
+    {
+
+    }
 
 	public static function register() {
 		global $pagenow;
@@ -202,9 +216,9 @@ class PdfLightViewer_PdfController {
 		$defaults['pages'] = __('Pages', PDF_LIGHT_VIEWER_PLUGIN);
 		$defaults['import_status'] = __('Import status', PDF_LIGHT_VIEWER_PLUGIN);
 
-        $editOptions = static::getQuickEditOptionKeys();
-        foreach ($editOptions as $editOption) {
-            $defaults[$editOption] = $editOption;
+        $editOptions = static::getQuickEditOptions();
+        foreach ($editOptions as $key => $editOption) {
+            $defaults[$key] = $editOption['name'];
         }
 
 		return $defaults;
@@ -282,26 +296,41 @@ class PdfLightViewer_PdfController {
 					<div><?php echo $progress ?>%</div>
 				<?php
 			break;
+		}
 
+		if (in_array($column_name, array_keys(static::getQuickEditOptions()))) {
+			echo PdfLightViewer_Models_Meta::get_post_meta($post_id, $column_name, true);
 		}
 	}
+
+    // hide dashboard columns by default for bulk edit columns
+    public static function default_hidden_columns($hidden, $screen)
+    {
+        if ( isset( $screen->id ) && $screen->id == 'edit-'.self::$type ) {
+            $hidden = array_merge($hidden, array_keys(static::getQuickEditOptions()));
+        }
+
+        return $hidden;
+    }
 
     // TODO
     public static function quick_edit_custom_box($column_name, $post_type)
     {
-        echo '<fieldset class="inline-edit-col-left">
-            <div class="inline-edit-col">
-                <div class="inline-edit-group wp-clearfix">';
+        $editOptions = static::getQuickEditOptions();
+        //
+        // {
+        //     foreach ( CMB2_Boxes::get_all() as $cmb ) {
+        // 		if ( $cmb->prop( 'hookup' ) ) {
+        // 			$cmb->nonce();
+        // 		}
+        // 	}
+        // }
 
-        $editOptions = static::getQuickEditOptionKeys();
-        if (in_array($column_name, $editOptions)) {
-            echo '<label class="alignleft">
-					<span class="title">'.$column_name.'</span>
-					<span class="input-text-wrap"><input type="text" name="price" value=""></span>
-				</label>';
+        if ($post_type == static::$type && in_array($column_name, array_keys($editOptions))) {
+            echo '<div class="inline-edit-col-left cmb2-wrap form-table">';
+                (new CMB2_Field(array( 'field_args' => $editOptions[$column_name])))->render_field();
+            echo '</div>';
         }
-
-        echo '</fieldset></div></div>';
     }
 
 	public static function cmb_metaboxes($meta_boxes)
@@ -334,7 +363,7 @@ class PdfLightViewer_PdfController {
     					'type' => 'checkbox',
                     )
                     : array(
-                        'name' => __('Convert colors (not possible)', PDF_LIGHT_VIEWER_PLUGIN),
+                        'name' => __('Convert colors (not supported by server environment)', PDF_LIGHT_VIEWER_PLUGIN),
     					'id' => 'enable_pdf_convert',
     					'type' => '',
                     ),
@@ -394,11 +423,7 @@ class PdfLightViewer_PdfController {
     			'priority' => 'high',
     			'show_names' => true, // Show field names on the left
     			'fields' => array(
-                    array(
-    					'name' => '<i class="slicons slicon-directions"></i> ' . __('Hide thumbnail navigation', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'hide_thumbnails_navigation',
-    					'type' => 'checkbox'
-    				),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('hide_thumbnails_navigation'),
                     array(
     					'name' => '<i class="slicons slicon-book-open"></i> ' . __('Flipbook page layout', PDF_LIGHT_VIEWER_PLUGIN),
     					'id' => 'page_layout',
@@ -451,12 +476,7 @@ class PdfLightViewer_PdfController {
     			'priority' => 'high',
     			'show_names' => true, // Show field names on the left
     			'fields' => array(
-    				array(
-    					'name' => '<i class="slicons slicon-cloud-download"></i> ' . __('Allow download', PDF_LIGHT_VIEWER_PLUGIN),
-    					'desc' => __('Check this if you want to show download button on the frontend', PDF_LIGHT_VIEWER_PLUGIN),
-    					'id' => 'download_allowed',
-    					'type' => 'checkbox'
-    				),
+                    PdfLightViewer_Models_MetaField::getFieldConfig('download_allowed'),
     				array(
     					'name' => '<i class="slicons slicon-link"></i> ' . __('Alternate download link', PDF_LIGHT_VIEWER_PLUGIN),
     					'desc' => __('If not set, will be used link from PDF File', PDF_LIGHT_VIEWER_PLUGIN),
@@ -718,7 +738,7 @@ class PdfLightViewer_PdfController {
         ));
 	}
 
-	public static function save_post($post_id) {
+	public static function save_post($post_id, $post = null) {
 
 		if ( (defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE) || !$_POST ) {
 			return;
@@ -727,7 +747,9 @@ class PdfLightViewer_PdfController {
 		if (current_user_can('edit_posts')) {
 			$form_data = $_REQUEST;
 
-			$pdf_file_id = (isset($form_data['pdf_file_id']) ? $form_data['pdf_file_id'] : PdfLightViewer_Model::getPDFFileId($post_id));
+			$pdf_file_id = (isset($form_data['pdf_file_id'])
+                ? $form_data['pdf_file_id']
+                : PdfLightViewer_Model::getPDFFileId($post_id));
 
 			$pdf_file_path = get_attached_file($pdf_file_id);
 
@@ -849,6 +871,15 @@ class PdfLightViewer_PdfController {
         unset($_POST['import_config']);
         unset($_REQUEST['export_config']);
         unset($_POST['export_config']);
+
+        // save custom fields for quick edit
+        if (PdfLightViewer_Helpers_Http::post('screen') == 'edit-'.static::$type) {
+            foreach ( CMB2_Boxes::get_all() as $cmb ) {
+        		if ( in_array($post->post_type, $cmb->prop( 'object_types' )) ) {
+                    $cmb->save_fields( $post_id, 'post', $_POST );
+        		}
+        	}
+        }
 	}
 
 	public static function getPDFPagesNumber($pdf_file_path) {

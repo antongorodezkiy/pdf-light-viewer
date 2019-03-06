@@ -144,6 +144,16 @@
   padding-top: 5px;
   padding-bottom: 5px; }
 
+.wp-admin.post-type-pdf_lv .cmb-th {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.wp-admin.post-type-pdf_lv .cmb-td {
+  padding-top: 3px;
+  padding-bottom: 0px;
+}
+
 @font-face {
   font-family: "simple-line-icons";
   src: url("../bower_components/simple-line-icons/fonts/Simple-Line-Icons.eot?v=2.2.2");
