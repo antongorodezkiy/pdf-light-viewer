@@ -210,16 +210,32 @@ var PDFLightViewerApp;
 
 							self.zoom.initSingle(instance, magazine, neighborhood_page);
 
-              // dynamic ratio
-                setTimeout(function() {
-                  var nextImate = $('.js-pdf-light-viewer-lazy-loading-'+page).get(0);
-                  if (typeof nextImate != 'undefined') {
-                    ratio_single = nextImate.naturalWidth / nextImate.naturalHeight;
-                    ratio_double = (nextImate.naturalWidth*2) / nextImate.naturalHeight;
+              var pageImage = $('.js-pdf-light-viewer-lazy-loading-'+page);
+
+              // loaded
+              if (pageImage.attr('src') == pageImage.attr('data-original') && pageImage.prop('naturalWidth') != 0) {
+                var nextImate = $('.js-pdf-light-viewer-lazy-loading-'+page).get(0);
+                if (typeof nextImate != 'undefined') {
+                  ratio_single = nextImate.naturalWidth / nextImate.naturalHeight;
+                  ratio_double = (nextImate.naturalWidth*2) / nextImate.naturalHeight;
+
+                  self.resize(viewport, magazine, ratio_single, ratio_double);
+                }
+              }
+
+              // not yet loaded
+              else {
+                pageImage.on('load', function() {
+                  var nextImage = $('.js-pdf-light-viewer-lazy-loading-'+page).get(0);
+                  if (typeof nextImage != 'undefined') {
+                    ratio_single = nextImage.naturalWidth / nextImage.naturalHeight;
+                    ratio_double = (nextImage.naturalWidth*2) / nextImage.naturalHeight;
 
                     self.resize(viewport, magazine, ratio_single, ratio_double);
                   }
-                }, 100);
+                });
+              }
+
 						}
 					}
 				});
