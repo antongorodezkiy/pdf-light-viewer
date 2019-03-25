@@ -32,18 +32,20 @@ class PdfLightViewer_AdminController
 			&& !defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')
 		) {
 			PdfLightViewer_AdminController::showDirectMessage(
-				sprintf(
-					__('PDF Light Viewer Team: We created PRO Addon with printing, search, popup and SEO-friendly mode <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" target="_blank" href="%s">Check It</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" href="#">Not interested</a>',PDF_LIGHT_VIEWER_PLUGIN),
-					'http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505'
-				)
+				esc_html__('PDF Light Viewer Team: We created PRO Addon with printing, search, popup and SEO-friendly mode',PDF_LIGHT_VIEWER_PLUGIN)
+                . '
+                    <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" target="_blank" href="http://codecanyon.net/item/pdf-light-viewer-pro-addon/14089505">'.esc_html__('Check It', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+                    <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="pro-ad-viewed" href="#">'.esc_html__('Not interested', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+                '
 			);
 		}
 		elseif (!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-survey-viewed')) {
 			PdfLightViewer_AdminController::showDirectMessage(
-				sprintf(
-					__('PDF Light Viewer Team: Please, take part in our 1-minute survey to make PDF Light Viewer plugin better <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" target="_blank" href="%s">Take Survey</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" href="#">Not interested</a>',PDF_LIGHT_VIEWER_PLUGIN),
-					'https://teamlead-power.typeform.com/to/Mr7eVs'
-				)
+				esc_html__('PDF Light Viewer Team: Please, take part in our 1-minute survey to make PDF Light Viewer plugin better',PDF_LIGHT_VIEWER_PLUGIN)
+                . '
+                    <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" target="_blank" href="https://teamlead-power.typeform.com/to/Mr7eVs">'.esc_html__('Take Survey', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+                    <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" href="#">'.esc_html__('Not interested', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+                '
 			);
 		}
 
@@ -53,10 +55,11 @@ class PdfLightViewer_AdminController
             && defined('PDF_LIGHT_VIEWER_PRO_PLUGIN')
 		) {
 			PdfLightViewer_AdminController::showDirectMessage(
-				sprintf(
-					__('PDF Light Viewer Team: <b>Special offer till Feb 1, 2019 - 50%% off for the Serverless Addon</b> which allows to import PDFs without ImageMagick and GhostScript <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="serverless-ad-viewed" target="_blank" href="%s">Check It</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="serverless-ad-viewed" href="#">Not interested</a>',PDF_LIGHT_VIEWER_PLUGIN),
-					'https://pdf-light-viewer.wp.teamlead.pw/serverless/'
-				)
+				esc_html__('PDF Light Viewer Team: Special offer till Feb 1, 2019 - 50% off for the Serverless Addon which allows to import PDFs without ImageMagick and GhostScript',PDF_LIGHT_VIEWER_PLUGIN)
+                . '
+                    <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="serverless-ad-viewed" target="_blank" href="https://pdf-light-viewer.wp.teamlead.pw/serverless/">'.esc_html__('Check It', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+                    <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="serverless-ad-viewed" href="#">'.esc_html__('Not interested', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+                '
 			);
 		}
 
@@ -67,8 +70,9 @@ class PdfLightViewer_AdminController
 		) {
 			PdfLightViewer_AdminController::showDirectMessage(
 				sprintf(
-					__('Protect your site! - ImageMagick Is On Fire — CVE-2016–3714 <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" target="_blank" href="%s">Learn how to protect yourself!</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" href="#">Hide this, I know how to protect my ImageMagick</a>',PDF_LIGHT_VIEWER_PLUGIN),
-					'http://support.wp.teamlead.pw/q/warning-protect-your-site-imagemagick-is-on-fire%E2%80%8A-%E2%80%8Acve-2016-3714-multiple-vulnerabilities-in-imagemagick/'
+					esc_html__('Protect your site! - ImageMagick Is On Fire — CVE-2016–3714 %s %s',PDF_LIGHT_VIEWER_PLUGIN),
+                    '<a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" target="_blank" href="https://support.wp.teamlead.pw/q/warning-protect-your-site-imagemagick-is-on-fire%E2%80%8A-%E2%80%8Acve-2016-3714-multiple-vulnerabilities-in-imagemagick/">'.esc_html__('Learn how to protect yourself!',PDF_LIGHT_VIEWER_PLUGIN).'</a>',
+                    '<a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" href="#">'.esc_html__('Hide this, I know how to protect my ImageMagick',PDF_LIGHT_VIEWER_PLUGIN).'</a>'
 				),
                 true
 			);
@@ -214,8 +218,10 @@ class PdfLightViewer_AdminController
                 if (!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-installed-viewed')) {
                     self::showDirectMessage(
                         sprintf(
-                            $plugin_title.': '.
-                            __('requirements are met, happy using! <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" target="_blank" href="%s">Check Settings</a> <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" href="#">Hide</a>',PDF_LIGHT_VIEWER_PLUGIN),
+                            $plugin_title.': '.esc_html__('requirements are met',PDF_LIGHT_VIEWER_PLUGIN).'
+                                <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" target="_blank" href="%s">'.esc_html__('Check Settings', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+                                <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" href="#">'.esc_html__('Hide', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+                            ',
                             PdfLightViewer_Plugin::getSettingsUrl()
                         )
                     );
@@ -224,8 +230,10 @@ class PdfLightViewer_AdminController
 			else {
 				self::showDirectMessage(
 					$plugin_title.': '
-					.sprintf(__('requirements not met, please check <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),
-                             PdfLightViewer_Plugin::getSettingsUrl())
+					.sprintf(
+                        esc_html__('requirements not met, please check %s for more information.',PDF_LIGHT_VIEWER_PLUGIN),
+                        '<a href="'.esc_attr(PdfLightViewer_Plugin::getSettingsUrl()).'">'.esc_html__('plugin settings page', PDF_LIGHT_VIEWER_PLUGIN).'</a>'
+                    )
 				, true);
 			}
 		}
@@ -239,7 +247,7 @@ class PdfLightViewer_AdminController
 		public static function showPDFPointer() {
 			$plugin_title = PdfLightViewer_Helpers_Plugins::getPluginData('Title');
 			$pointer_content = '<h3>'.$plugin_title.'</h3>';
-			$pointer_content .= '<p>'.__("We have just created new section called PDFs in your dashboard. Use it to import and publish your cool PDF files.",PDF_LIGHT_VIEWER_PLUGIN).'</p>';
+			$pointer_content .= '<p>'.esc_html__("We have just created new section called PDFs in your dashboard. Use it to import and publish your cool PDF files.",PDF_LIGHT_VIEWER_PLUGIN).'</p>';
 
 			?>
 				<script type="text/javascript">

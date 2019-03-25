@@ -37,8 +37,8 @@ class PdfLightViewer_FrontController {
 
 		if (empty($pages) || empty($thumbs)) {
 			echo '
-                <div style="color: Salmon">'.__('[pdf-light-viewer] shortcode cannot be rendered due to the error: No converted pages found.',PDF_LIGHT_VIEWER_PLUGIN).'</div>
-                <div style="color: Salmon">'.sprintf(__('If PDF has been already converted, then probably there were some errors during the import. Please check <a href="%s" target="_blank">plugin error log on the settings page</a> and your site error log for errors.',PDF_LIGHT_VIEWER_PLUGIN), PdfLightViewer_Plugin::getSettingsUrl()).'</div>
+                <div style="color: Salmon">'.esc_html__('[pdf-light-viewer] shortcode cannot be rendered due to the error: No converted pages found.',PDF_LIGHT_VIEWER_PLUGIN).'</div>
+                <div style="color: Salmon">'.sprintf(esc_html__('If PDF has been already converted, then probably there were some errors during the import. Please check <a href="%s" target="_blank">plugin error log on the settings page</a> and your site error log for errors.',PDF_LIGHT_VIEWER_PLUGIN), PdfLightViewer_Plugin::getSettingsUrl()).'</div>
             ';
 			return;
 		}

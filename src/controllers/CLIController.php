@@ -67,11 +67,11 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 			$requirements_met = PdfLightViewer_Plugin::requirements(true);
 			if (!$requirements_met) {
 				$message = $plugin_title.': '
-				.__('requirements not met, please check plugin settings page for more information.',PDF_LIGHT_VIEWER_PLUGIN);
+				.esc_html__('requirements not met, please check plugin settings page for more information.',PDF_LIGHT_VIEWER_PLUGIN);
 				WP_ClI::error($message, true);
 			}
 			else {
-				WP_CLI::log($plugin_title.': '.__("requirements are met, happy using!", PDF_LIGHT_VIEWER_PLUGIN));
+				WP_CLI::log($plugin_title.': '.esc_html__("requirements are met, happy using!", PDF_LIGHT_VIEWER_PLUGIN));
 			}
 
 		// check dir
@@ -79,25 +79,25 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 				!is_readable($source_dir)
 				|| !is_dir($source_dir)
 			) {
-				WP_CLI::error(__("Source dir doesn't exist or it's not readable", PDF_LIGHT_VIEWER_PLUGIN), true);
+				WP_CLI::error(esc_html__("Source dir doesn't exist or it's not readable", PDF_LIGHT_VIEWER_PLUGIN), true);
 			}
 			else {
-				WP_CLI::log(sprintf(__("Searching PDF files in %s", PDF_LIGHT_VIEWER_PLUGIN), $source_dir));
+				WP_CLI::log(sprintf(esc_html__("Searching PDF files in %s", PDF_LIGHT_VIEWER_PLUGIN), $source_dir));
 			}
 
 		// check PDF files
 			$pdf_files = glob($source_dir.'/*.pdf', GLOB_NOSORT);
 			if (empty($pdf_files)) {
-				WP_CLI::error(__("Source dir doesn't contain PDF files", PDF_LIGHT_VIEWER_PLUGIN), true);
+				WP_CLI::error(esc_html__("Source dir doesn't contain PDF files", PDF_LIGHT_VIEWER_PLUGIN), true);
 			}
 			else {
-				WP_CLI::log(sprintf(__("%d PDF files found", PDF_LIGHT_VIEWER_PLUGIN), count($pdf_files)));
+				WP_CLI::log(sprintf(esc_html__("%d PDF files found", PDF_LIGHT_VIEWER_PLUGIN), count($pdf_files)));
 			}
 
 		// start import
 		$pdf_files_count = count($pdf_files);
 		$all_pdfs_progress = new \cli\progress\Bar(
-			__("Processing PDF files", PDF_LIGHT_VIEWER_PLUGIN),
+			esc_html__("Processing PDF files", PDF_LIGHT_VIEWER_PLUGIN),
 			$pdf_files_count
 		);
 
@@ -127,7 +127,7 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 				unset($im);
 
 			$current_pdf_progress = new \cli\progress\Bar(
-				sprintf(__("Processing PDF file %s", PDF_LIGHT_VIEWER_PLUGIN), $pdf_file_path),
+				sprintf(esc_html__("Processing PDF file %s", PDF_LIGHT_VIEWER_PLUGIN), $pdf_file_path),
 				$pdf_pages_number
 			);
 
@@ -140,7 +140,7 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 				));
 
 			if (is_wp_error($post_id)) {
-				WP_CLI::error(sprintf(__("Could not create PDF post: %s", PDF_LIGHT_VIEWER_PLUGIN), $post_id->get_error_message()), false);
+				WP_CLI::error(sprintf(esc_html__("Could not create PDF post: %s", PDF_LIGHT_VIEWER_PLUGIN), $post_id->get_error_message()), false);
 			}
 			else {
 
@@ -191,7 +191,7 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 							PdfLightViewer_Components_Logger::log('Import exception: '.$e->getMessage(), print_r($e, true));
 							$error = $e->getMessage();
 							update_post_meta($post_id,'_pdf-light-viewer-import-status', PdfLightViewer_PdfController::STATUS_FAILED);
-							WP_CLI::warning(sprintf(__('Import of PDF %s failed: %s', PDF_LIGHT_VIEWER_PLUGIN), $pdf_file_path, $error), false);
+							WP_CLI::warning(sprintf(esc_html__('Import of PDF %s failed: %s', PDF_LIGHT_VIEWER_PLUGIN), $pdf_file_path, $error), false);
 						}
 					}
 
@@ -201,13 +201,13 @@ class PdfLightViewer_CLIController extends WP_CLI_Command {
 				do_action(PDF_LIGHT_VIEWER_PLUGIN.':after_import', $post_id, $pdf_file_path);
 				do_action(PDF_LIGHT_VIEWER_PLUGIN.':finished_import', $post_id, $pdf_file_path);
 				update_post_meta($post_id,'_pdf-light-viewer-import-status', PdfLightViewer_PdfController::STATUS_FINISHED);
-				WP_CLI::success(sprintf(__('Import of PDF %s finished', PDF_LIGHT_VIEWER_PLUGIN), $pdf_file_path));
+				WP_CLI::success(sprintf(esc_html__('Import of PDF %s finished', PDF_LIGHT_VIEWER_PLUGIN), $pdf_file_path));
 			}
 
 			$all_pdfs_progress->tick();
 		}
 
-        WP_CLI::success(__('Import finished', PDF_LIGHT_VIEWER_PLUGIN));
+        WP_CLI::success(esc_html__('Import finished', PDF_LIGHT_VIEWER_PLUGIN));
     }
 
 }

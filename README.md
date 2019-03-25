@@ -7,9 +7,9 @@
 
 **Requires at least:** 3.5
 
-**Tested up to:** 5.1
+**Tested up to:** 5.1.1
 
-**Stable tag:** 1.4.4
+**Stable tag:** 1.4.5
 
 **License:** GPLv2
 
@@ -84,6 +84,9 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 ## Other Notes ##
 
 ## Changelog ##
+
+# 1.4.5 - 2019-03-25
+* added translations escaping
 
 # 1.4.4 - 2019-03-07
 * dynamic page height fix

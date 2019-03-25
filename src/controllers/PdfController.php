@@ -110,19 +110,19 @@ class PdfLightViewer_PdfController {
 		register_post_type(self::$type,
 			array(
 				'labels' => array(
-					'name' => __('PDFs', PDF_LIGHT_VIEWER_PLUGIN),
-					'singular_name' => __('PDF', PDF_LIGHT_VIEWER_PLUGIN),
-					'add_new_item' => __('Import PDF', PDF_LIGHT_VIEWER_PLUGIN),
-					'add_new' => __('Import PDF', PDF_LIGHT_VIEWER_PLUGIN),
-					'edit' => __('Edit', PDF_LIGHT_VIEWER_PLUGIN),
-					'edit_item' => __('Edit PDF', PDF_LIGHT_VIEWER_PLUGIN),
-					'new_item' => __('New PDF', PDF_LIGHT_VIEWER_PLUGIN),
-					'view' => __('View', PDF_LIGHT_VIEWER_PLUGIN),
-					'view_item' => __('View PDF', PDF_LIGHT_VIEWER_PLUGIN),
-					'search_items' => __('Search PDFs', PDF_LIGHT_VIEWER_PLUGIN),
-					'not_found' => __('No PDFs found', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => esc_html__('PDFs', PDF_LIGHT_VIEWER_PLUGIN),
+					'singular_name' => esc_html__('PDF', PDF_LIGHT_VIEWER_PLUGIN),
+					'add_new_item' => esc_html__('Import PDF', PDF_LIGHT_VIEWER_PLUGIN),
+					'add_new' => esc_html__('Import PDF', PDF_LIGHT_VIEWER_PLUGIN),
+					'edit' => esc_html__('Edit', PDF_LIGHT_VIEWER_PLUGIN),
+					'edit_item' => esc_html__('Edit PDF', PDF_LIGHT_VIEWER_PLUGIN),
+					'new_item' => esc_html__('New PDF', PDF_LIGHT_VIEWER_PLUGIN),
+					'view' => esc_html__('View', PDF_LIGHT_VIEWER_PLUGIN),
+					'view_item' => esc_html__('View PDF', PDF_LIGHT_VIEWER_PLUGIN),
+					'search_items' => esc_html__('Search PDFs', PDF_LIGHT_VIEWER_PLUGIN),
+					'not_found' => esc_html__('No PDFs found', PDF_LIGHT_VIEWER_PLUGIN),
 				),
-				'description' => __('For PDFs', PDF_LIGHT_VIEWER_PLUGIN),
+				'description' => esc_html__('For PDFs', PDF_LIGHT_VIEWER_PLUGIN),
 				'public' => false,
 				'show_ui' => (bool)PdfLightViewer_AdminController::getSetting('show-post-type'),
 				'_builtin' => false,
@@ -138,17 +138,17 @@ class PdfLightViewer_PdfController {
 			array(
 				'hierarchical' => true,
 				'labels' => array(
-					'name' => __('Categories', PDF_LIGHT_VIEWER_PLUGIN),
-					'singular_name' => __('Category', PDF_LIGHT_VIEWER_PLUGIN),
-					'search_items' =>  __('Search in Category', PDF_LIGHT_VIEWER_PLUGIN),
-					'popular_items' => __('Popular Categories', PDF_LIGHT_VIEWER_PLUGIN),
-					'all_items' => __('All Categories', PDF_LIGHT_VIEWER_PLUGIN),
-					'parent_item' => __('Parent Category', PDF_LIGHT_VIEWER_PLUGIN),
-					'parent_item_colon' => __('Parent Category:', PDF_LIGHT_VIEWER_PLUGIN),
-					'edit_item' => __('Edit Category', PDF_LIGHT_VIEWER_PLUGIN),
-					'update_item' => __('Update Category', PDF_LIGHT_VIEWER_PLUGIN),
-					'add_new_item' => __('Add New Category', PDF_LIGHT_VIEWER_PLUGIN),
-					'new_item_name' => __('New Category Name', PDF_LIGHT_VIEWER_PLUGIN)
+					'name' => esc_html__('Categories', PDF_LIGHT_VIEWER_PLUGIN),
+					'singular_name' => esc_html__('Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'search_items' =>  esc_html__('Search in Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'popular_items' => esc_html__('Popular Categories', PDF_LIGHT_VIEWER_PLUGIN),
+					'all_items' => esc_html__('All Categories', PDF_LIGHT_VIEWER_PLUGIN),
+					'parent_item' => esc_html__('Parent Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'parent_item_colon' => esc_html__('Parent Category:', PDF_LIGHT_VIEWER_PLUGIN),
+					'edit_item' => esc_html__('Edit Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'update_item' => esc_html__('Update Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'add_new_item' => esc_html__('Add New Category', PDF_LIGHT_VIEWER_PLUGIN),
+					'new_item_name' => esc_html__('New Category Name', PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				'public' => false,
 				'show_ui' => (bool)PdfLightViewer_AdminController::getSetting('show-post-type'),
@@ -161,17 +161,17 @@ class PdfLightViewer_PdfController {
 			array(
 				'hierarchical' => false,
 				'labels' => array(
-					'name' => __('Tags', PDF_LIGHT_VIEWER_PLUGIN),
-					'singular_name' => __('Tag', PDF_LIGHT_VIEWER_PLUGIN),
-					'search_items' =>  __('Search in Tags', PDF_LIGHT_VIEWER_PLUGIN),
-					'popular_items' => __('Popular Tags', PDF_LIGHT_VIEWER_PLUGIN),
-					'all_items' => __('All Tags', PDF_LIGHT_VIEWER_PLUGIN),
-					'parent_item' => __('Parent Tag', PDF_LIGHT_VIEWER_PLUGIN),
-					'parent_item_colon' => __('Parent Tag:', PDF_LIGHT_VIEWER_PLUGIN),
-					'edit_item' => __('Edit Tag', PDF_LIGHT_VIEWER_PLUGIN),
-					'update_item' => __('Update Tag', PDF_LIGHT_VIEWER_PLUGIN),
-					'add_new_item' => __('Add New Tag', PDF_LIGHT_VIEWER_PLUGIN),
-					'new_item_name' => __('New Tag Name', PDF_LIGHT_VIEWER_PLUGIN)
+					'name' => esc_html__('Tags', PDF_LIGHT_VIEWER_PLUGIN),
+					'singular_name' => esc_html__('Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'search_items' =>  esc_html__('Search in Tags', PDF_LIGHT_VIEWER_PLUGIN),
+					'popular_items' => esc_html__('Popular Tags', PDF_LIGHT_VIEWER_PLUGIN),
+					'all_items' => esc_html__('All Tags', PDF_LIGHT_VIEWER_PLUGIN),
+					'parent_item' => esc_html__('Parent Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'parent_item_colon' => esc_html__('Parent Tag:', PDF_LIGHT_VIEWER_PLUGIN),
+					'edit_item' => esc_html__('Edit Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'update_item' => esc_html__('Update Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'add_new_item' => esc_html__('Add New Tag', PDF_LIGHT_VIEWER_PLUGIN),
+					'new_item_name' => esc_html__('New Tag Name', PDF_LIGHT_VIEWER_PLUGIN)
 				),
 				'public' => false,
 				'show_ui' => (bool)PdfLightViewer_AdminController::getSetting('show-post-type'),
@@ -194,22 +194,22 @@ class PdfLightViewer_PdfController {
 				$progress = PdfLightViewer_Models_Meta::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-progress', true);
 
 				PdfLightViewer_AdminController::showDirectMessage(sprintf(
-					__('<i class="icons slicon-settings"></i> <b>%s</b> PDF import is <span class="js-pdf-light-viewer-current-status">%s</span>. <span class="js-pdf-light-viewer-current-progress">%d</span>%% is complete. <i>Please do not leave the admin interface until the import would not finished. %s</i>',PDF_LIGHT_VIEWER_PLUGIN)
-                    . '<a class="button-secondary js-pdf-light-viewer-cancel-import" href="#">'.__('Cancel', PDF_LIGHT_VIEWER_PLUGIN).'</a>',
-					PdfLightViewer_Model::$unimported->post_title,
-					$status,
-					$progress,
-					'<a href="#!" class="js-tip tip" title="'.__('Otherwise the import will be continued during your next visit.', PDF_LIGHT_VIEWER_PLUGIN).'"><span class="icons slicon-question"></span></a>'
+					esc_html__('%s PDF import is %s. %d%% is complete. Please do not leave the admin interface until the import would not finished. %s',PDF_LIGHT_VIEWER_PLUGIN)
+                    . '<a class="button-secondary js-pdf-light-viewer-cancel-import" href="#">'.esc_html__('Cancel', PDF_LIGHT_VIEWER_PLUGIN).'</a>',
+					'<i class="icons slicon-settings"></i> <b>'.PdfLightViewer_Model::$unimported->post_title.'</b>',
+					'<span class="js-pdf-light-viewer-current-status">'.$status.'</span>',
+					'<span class="js-pdf-light-viewer-current-progress">'.$progress.'</span>',
+					'<i><a href="#!" class="js-tip tip" title="'.esc_html__('Otherwise the import will be continued during your next visit.', PDF_LIGHT_VIEWER_PLUGIN).'"><span class="icons slicon-question"></span></a></i>'
 				), false);
 			}
 		}
 
 	public static function custom_columns_registration( $defaults )
     {
-		$defaults['preview'] = __('Preview', PDF_LIGHT_VIEWER_PLUGIN);
-		$defaults['usage'] = __('Usage', PDF_LIGHT_VIEWER_PLUGIN);
-		$defaults['pages'] = __('Pages', PDF_LIGHT_VIEWER_PLUGIN);
-		$defaults['import_status'] = __('Import status', PDF_LIGHT_VIEWER_PLUGIN);
+		$defaults['preview'] = esc_html__('Preview', PDF_LIGHT_VIEWER_PLUGIN);
+		$defaults['usage'] = esc_html__('Usage', PDF_LIGHT_VIEWER_PLUGIN);
+		$defaults['pages'] = esc_html__('Pages', PDF_LIGHT_VIEWER_PLUGIN);
+		$defaults['import_status'] = esc_html__('Import status', PDF_LIGHT_VIEWER_PLUGIN);
 
         $editOptions = static::getQuickEditOptions();
         foreach ($editOptions as $key => $editOption) {
@@ -236,7 +236,7 @@ class PdfLightViewer_PdfController {
 					$image_array = wp_get_attachment_image_src(get_post_thumbnail_id( $post_id ), 'full');
 					$full_img_url = $image_array[0];
 					?>
-						<img class="pdf-light-viewer-dashboard-page-preview" src="<?php echo $full_img_url;?>" alt="<?php echo __('Preview', PDF_LIGHT_VIEWER_PLUGIN);?>" />
+						<img class="pdf-light-viewer-dashboard-page-preview" src="<?php echo $full_img_url;?>" alt="<?php echo esc_html__('Preview', PDF_LIGHT_VIEWER_PLUGIN);?>" />
 					<?php
 				}
 			break;
@@ -263,27 +263,27 @@ class PdfLightViewer_PdfController {
 
 				switch($status) {
 					case self::STATUS_SCHEDULED:
-						$status_label = __('Import scheduled',PDF_LIGHT_VIEWER_PLUGIN);
+						$status_label = esc_html__('Import scheduled',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
 					case self::STATUS_STARTED:
-						$status_label = __('Import started',PDF_LIGHT_VIEWER_PLUGIN);
+						$status_label = esc_html__('Import started',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
 					case self::STATUS_PROCESSING:
-						$status_label = __('Import in progress',PDF_LIGHT_VIEWER_PLUGIN);
+						$status_label = esc_html__('Import in progress',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
 					case self::STATUS_FINISHED:
-						$status_label = __('Import finished',PDF_LIGHT_VIEWER_PLUGIN);
+						$status_label = esc_html__('Import finished',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
 					case self::STATUS_FAILED:
-						$status_label = __('Import failed',PDF_LIGHT_VIEWER_PLUGIN);
+						$status_label = esc_html__('Import failed',PDF_LIGHT_VIEWER_PLUGIN);
 					break;
 
                     default:
-                        $status_label = __('Import status unknown',PDF_LIGHT_VIEWER_PLUGIN);
+                        $status_label = esc_html__('Import status unknown',PDF_LIGHT_VIEWER_PLUGIN);
 				}
 
 				?>
@@ -338,61 +338,61 @@ class PdfLightViewer_PdfController {
 
 		$meta_boxes['pdf_light_viewer_file_metabox'] = array(
 			'id' => 'pdf_light_viewer_file_metabox',
-			'title' => __('PDF', PDF_LIGHT_VIEWER_PLUGIN),
+			'title' => esc_html__('PDF', PDF_LIGHT_VIEWER_PLUGIN),
 			'object_types' => array(self::$type), // post type
 			'context' => 'normal',
 			'priority' => 'high',
 			'show_names' => true, // Show field names on the left
 			'fields' => array_filter(array(
 				array(
-					'name' => __('Enable import', PDF_LIGHT_VIEWER_PLUGIN),
-					'desc' => '<b>'.__('Check to import or re-import PDF file', PDF_LIGHT_VIEWER_PLUGIN).'</b>',
+					'name' => esc_html__('Enable import', PDF_LIGHT_VIEWER_PLUGIN),
+					'desc' => '<b>'.esc_html__('Check to import or re-import PDF file', PDF_LIGHT_VIEWER_PLUGIN).'</b>',
 					'id' => 'enable_pdf_import',
 					'type' => 'checkbox'
 				),
                 PdfLightViewer_Plugin::isGhostscriptAvailableViaCli()
                     ? array(
-                        'desc' => __('Check to convert colors from CMYK to RGB (use only if you are not satisfied with PDF color results)', PDF_LIGHT_VIEWER_PLUGIN),
-                        'name' => __('Convert colors', PDF_LIGHT_VIEWER_PLUGIN),
+                        'desc' => esc_html__('Check to convert colors from CMYK to RGB (use only if you are not satisfied with PDF color results)', PDF_LIGHT_VIEWER_PLUGIN),
+                        'name' => esc_html__('Convert colors', PDF_LIGHT_VIEWER_PLUGIN),
     					'id' => 'enable_pdf_convert',
     					'type' => 'checkbox',
                     )
                     : array(
-                        'name' => __('Convert colors (not supported by server environment)', PDF_LIGHT_VIEWER_PLUGIN),
+                        'name' => esc_html__('Convert colors (not supported by server environment)', PDF_LIGHT_VIEWER_PLUGIN),
     					'id' => 'enable_pdf_convert',
     					'type' => '',
                     ),
                 array(
-					'name' => __('Import pages', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => __('Leave empty to import all. Use numbers for single pages or (e.g. 1-3) for ranges. Few numbers or ranges could be separated by commas (e.g. 2-5,7,9-15).', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => esc_html__('Import pages', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => esc_html__('Leave empty to import all. Use numbers for single pages or (e.g. 1-3) for ranges. Few numbers or ranges could be separated by commas (e.g. 2-5,7,9-15).', PDF_LIGHT_VIEWER_PLUGIN),
 					'id'   => 'import_pages',
 					'type' => 'text',
 					'default' => ''
 				),
 				array(
-					'name' => __('JPEG compression quality', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => __('Affects quality and size of resulting page images. Bigger value means better quality and bigger size; also will take more server resources during the import process.', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => esc_html__('JPEG compression quality', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => esc_html__('Affects quality and size of resulting page images. Bigger value means better quality and bigger size; also will take more server resources during the import process.', PDF_LIGHT_VIEWER_PLUGIN),
 					'id'   => 'jpeg_compression_quality',
 					'type' => 'text',
 					'default' => 60
 				),
 				array(
-					'name' => __('JPEG resolution', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => __('Affects quality and size of resulting page images. Bigger value means better quality and bigger size; also will take more server resources during the import process.', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => esc_html__('JPEG resolution', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => esc_html__('Affects quality and size of resulting page images. Bigger value means better quality and bigger size; also will take more server resources during the import process.', PDF_LIGHT_VIEWER_PLUGIN),
 					'id'   => 'jpeg_resolution',
 					'type' => 'text',
 					'default' => 300
 				),
                 array(
-					'name' => __('Output biggest side', PDF_LIGHT_VIEWER_PLUGIN),
-                    'desc' => __('Also affects quality and size of resulting page images. Bigger value means better quality and bigger size; also will take more server resources during the import process.', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => esc_html__('Output biggest side', PDF_LIGHT_VIEWER_PLUGIN),
+                    'desc' => esc_html__('Also affects quality and size of resulting page images. Bigger value means better quality and bigger size; also will take more server resources during the import process.', PDF_LIGHT_VIEWER_PLUGIN),
 					'id'   => 'output_biggest_side',
 					'type' => 'text',
 					'default' => 1024
 				),
 				array(
-					'name' => __('PDF File', PDF_LIGHT_VIEWER_PLUGIN),
-					'desc' => __('Choose what PDF file will be imported. Also will be used as default link for downloading if download option is enabled.', PDF_LIGHT_VIEWER_PLUGIN),
+					'name' => esc_html__('PDF File', PDF_LIGHT_VIEWER_PLUGIN),
+					'desc' => esc_html__('Choose what PDF file will be imported. Also will be used as default link for downloading if download option is enabled.', PDF_LIGHT_VIEWER_PLUGIN),
 					'id' => 'pdf_file',
 					'type' => 'file',
                     'readonly' => 'readonly',
@@ -412,7 +412,7 @@ class PdfLightViewer_PdfController {
         if (!empty($pageFiles) || $pagenow != 'post-new.php') {
     		$meta_boxes['pdf_light_viewer_options_metabox'] = array(
     			'id' => 'pdf_light_viewer_options_metabox',
-    			'title' => __('Output Options', PDF_LIGHT_VIEWER_PLUGIN),
+    			'title' => esc_html__('Output Options', PDF_LIGHT_VIEWER_PLUGIN),
     			'object_types' => array(self::$type), // post type
     			'context' => 'normal',
     			'priority' => 'high',
@@ -430,7 +430,7 @@ class PdfLightViewer_PdfController {
 
             $meta_boxes['pdf_light_viewer_toolbar_options_metabox'] = array(
     			'id' => 'pdf_light_viewer_toolbar_options_metabox',
-    			'title' => __('Toolbar Options', PDF_LIGHT_VIEWER_PLUGIN),
+    			'title' => esc_html__('Toolbar Options', PDF_LIGHT_VIEWER_PLUGIN),
     			'object_types' => array(self::$type), // post type
     			'context' => 'normal',
     			'priority' => 'high',
@@ -469,14 +469,14 @@ class PdfLightViewer_PdfController {
             }
             $meta_boxes['pdf_light_viewer_export_import_metabox'] = array(
     			'id' => 'pdf_light_viewer_export_import_metabox',
-    			'title' => __('Export/Import Options', PDF_LIGHT_VIEWER_PLUGIN),
+    			'title' => esc_html__('Export/Import Options', PDF_LIGHT_VIEWER_PLUGIN),
     			'object_types' => array(self::$type), // post type
     			'context' => 'normal',
     			'priority' => 'low',
     			'show_names' => true, // Show field names on the left
     			'fields' => array(
     				array(
-    					'name' => '' . __('Export configuration', PDF_LIGHT_VIEWER_PLUGIN),
+    					'name' => '' . esc_html__('Export configuration', PDF_LIGHT_VIEWER_PLUGIN),
     					'id'   => 'export_config',
     					'type' => 'textarea',
     					'default' => json_encode($exportConfig),
@@ -486,11 +486,11 @@ class PdfLightViewer_PdfController {
                     	),
     				),
     				array(
-    					'name' => '' . __('Import configuration', PDF_LIGHT_VIEWER_PLUGIN),
+    					'name' => '' . esc_html__('Import configuration', PDF_LIGHT_VIEWER_PLUGIN),
     					'id'   => 'import_config',
     					'type' => 'textarea',
                         'attributes'  => array(
-                    		'placeholder' => __('Paste configuration here to import...', PDF_LIGHT_VIEWER_PLUGIN),
+                    		'placeholder' => esc_html__('Paste configuration here to import...', PDF_LIGHT_VIEWER_PLUGIN),
                     		'rows'        => 3,
                             'class' => 'pure-input-1-1'
                     	),
@@ -505,7 +505,7 @@ class PdfLightViewer_PdfController {
 
     		$editable_roles = get_editable_roles();
     		$roles = array(
-    			'anonymous' => __('Anonymous / s2Member Level 0', PDF_LIGHT_VIEWER_PLUGIN)
+    			'anonymous' => esc_html__('Anonymous / s2Member Level 0', PDF_LIGHT_VIEWER_PLUGIN)
     		);
 
     		foreach($editable_roles as $role_id => $editable_role) {
@@ -514,7 +514,7 @@ class PdfLightViewer_PdfController {
 
     		$meta_boxes['pdf_light_viewer_permissions_metabox'] = array(
     			'id' => 'pdf_light_viewer_permissions_metabox',
-    			'title' => __('Permissions', PDF_LIGHT_VIEWER_PLUGIN),
+    			'title' => esc_html__('Permissions', PDF_LIGHT_VIEWER_PLUGIN),
     			'object_types' => array(self::$type), // post type
     			'context' => 'advanced',
     			'priority' => 'high',
@@ -523,32 +523,32 @@ class PdfLightViewer_PdfController {
     				array(
     					'id'          => 'pdf_light_viewer_permissions_metabox_repeat_group',
     					'type'        => 'group',
-    					'description' => __('Pages limits for different user roles', PDF_LIGHT_VIEWER_PLUGIN),
+    					'description' => esc_html__('Pages limits for different user roles', PDF_LIGHT_VIEWER_PLUGIN),
     					'options'     => array(
-    						'group_title'   => __('Pages Limit', PDF_LIGHT_VIEWER_PLUGIN), // since version 1.1.4, {#} gets replaced by row number
-    						'add_button'    => __('Add another limit', PDF_LIGHT_VIEWER_PLUGIN),
-    						'remove_button' => __('Remove limit', PDF_LIGHT_VIEWER_PLUGIN),
+    						'group_title'   => esc_html__('Pages Limit', PDF_LIGHT_VIEWER_PLUGIN), // since version 1.1.4, {#} gets replaced by row number
+    						'add_button'    => esc_html__('Add another limit', PDF_LIGHT_VIEWER_PLUGIN),
+    						'remove_button' => esc_html__('Remove limit', PDF_LIGHT_VIEWER_PLUGIN),
     						'sortable'      => false, // beta
     					),
     					// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
     					'fields'      => array(
     						array(
-    							'name'    => __('User Role', PDF_LIGHT_VIEWER_PLUGIN),
-    							'desc'    => __('Select role which you want to pages limit', PDF_LIGHT_VIEWER_PLUGIN),
+    							'name'    => esc_html__('User Role', PDF_LIGHT_VIEWER_PLUGIN),
+    							'desc'    => esc_html__('Select role which you want to pages limit', PDF_LIGHT_VIEWER_PLUGIN),
     							'id'      => 'pages_limit_user_role',
     							'type'    => 'select',
     							'options' => $roles,
     							'default' => '',
     						),
     						array(
-    							'name' => __('Visible pages limit', PDF_LIGHT_VIEWER_PLUGIN),
-                                'desc' => __('Use for the higher limit. Has lower priority than "Visible pages"', PDF_LIGHT_VIEWER_PLUGIN),
+    							'name' => esc_html__('Visible pages limit', PDF_LIGHT_VIEWER_PLUGIN),
+                                'desc' => esc_html__('Use for the higher limit. Has lower priority than "Visible pages"', PDF_LIGHT_VIEWER_PLUGIN),
     							'id'   => 'pages_limit_visible_pages',
     							'type' => 'text'
     						),
     //                        array(
-    //							'name' => __('Visible pages', PDF_LIGHT_VIEWER_PLUGIN),
-    //                            'desc' => __('Leave empty to show all. Use numbers for single pages or (e.g. 1-3) for ranges. Few numbers or ranges could be separated by commas (e.g. 2-5,7,9-15).', PDF_LIGHT_VIEWER_PLUGIN),
+    //							'name' => esc_html__('Visible pages', PDF_LIGHT_VIEWER_PLUGIN),
+    //                            'desc' => esc_html__('Leave empty to show all. Use numbers for single pages or (e.g. 1-3) for ranges. Few numbers or ranges could be separated by commas (e.g. 2-5,7,9-15).', PDF_LIGHT_VIEWER_PLUGIN),
     //							'id'   => 'pages_limit_visible_pages_ranges',
     //							'type' => 'text'
     //						)
@@ -616,7 +616,7 @@ class PdfLightViewer_PdfController {
 			// preview
 				add_meta_box(
 					'pdf_light_viewer_dashboard_preview',
-					__('PDF Preview', PDF_LIGHT_VIEWER_PLUGIN),
+					esc_html__('PDF Preview', PDF_LIGHT_VIEWER_PLUGIN),
 					array(__CLASS__, 'metabox_dashboard_preview'),
 					self::$type,
 					'advanced',
@@ -627,7 +627,7 @@ class PdfLightViewer_PdfController {
 			// usage
 				add_meta_box(
 					'pdf_light_viewer_dashboard_usage',
-					__('Usage', PDF_LIGHT_VIEWER_PLUGIN),
+					esc_html__('Usage', PDF_LIGHT_VIEWER_PLUGIN),
 					array(__CLASS__, 'metabox_dashboard_usage'),
 					self::$type,
 					'advanced',
@@ -738,12 +738,12 @@ class PdfLightViewer_PdfController {
                     }
 
 					PdfLightViewer_AdminController::showMessage(
-						sprintf(__('PDF import scheduled.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
+						sprintf(esc_html__('PDF import scheduled.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
 					, false);
 				}
 				else {
 					PdfLightViewer_AdminController::showMessage(
-						sprintf(__('Imagick/Gmagick not found, please check other requirements on <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
+						sprintf(esc_html__('Imagick/Gmagick not found, please check other requirements on <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
 					, true);
 				}
 			}
@@ -895,21 +895,21 @@ class PdfLightViewer_PdfController {
 			return wp_send_json(array(
 				'status' => 'error',
 				'progress' => 0,
-				'error' => __('Currently there are no unimported files in the queue.', PDF_LIGHT_VIEWER_PLUGIN)
+				'error' => esc_html__('Currently there are no unimported files in the queue.', PDF_LIGHT_VIEWER_PLUGIN)
 			));
 		}
 
 		$status = PdfLightViewer_Models_Meta::get_post_meta($post_id,'_pdf-light-viewer-import-status',true);
 		if ($status == self::STATUS_SCHEDULED) {
-			$status_label = __('scheduled', PDF_LIGHT_VIEWER_PLUGIN);
+			$status_label = esc_html__('scheduled', PDF_LIGHT_VIEWER_PLUGIN);
 			update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_STARTED);
 		}
 		else if ($status == self::STATUS_STARTED) {
-			$status_label = __('started', PDF_LIGHT_VIEWER_PLUGIN);
+			$status_label = esc_html__('started', PDF_LIGHT_VIEWER_PLUGIN);
 			update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_PROCESSING);
 		}
 		else {
-			$status_label = __('processing', PDF_LIGHT_VIEWER_PLUGIN);
+			$status_label = esc_html__('processing', PDF_LIGHT_VIEWER_PLUGIN);
 		}
 
 		ignore_user_abort(true);
@@ -947,7 +947,7 @@ class PdfLightViewer_PdfController {
             return wp_send_json(array(
 				'status' => 'error',
 				'progress' => 0,
-				'error' => __('Cannot get width and height of the first page.', PDF_LIGHT_VIEWER_PLUGIN)
+				'error' => esc_html__('Cannot get width and height of the first page.', PDF_LIGHT_VIEWER_PLUGIN)
 			));
 		}
 
@@ -957,7 +957,7 @@ class PdfLightViewer_PdfController {
 			return wp_send_json(array(
 				'status' => 'error',
 				'progress' => 0,
-				'error' => __('Cannot detect current imported PDF page.', PDF_LIGHT_VIEWER_PLUGIN)
+				'error' => esc_html__('Cannot detect current imported PDF page.', PDF_LIGHT_VIEWER_PLUGIN)
 			));
 		}
 
@@ -991,7 +991,7 @@ class PdfLightViewer_PdfController {
                     }
                     catch(Exception $e) {
                         PdfLightViewer_Components_Logger::log('Import exception: '.$e->getMessage(), print_r($e, true));
-                        $status_label = __('failed', PDF_LIGHT_VIEWER_PLUGIN);
+                        $status_label = esc_html__('failed', PDF_LIGHT_VIEWER_PLUGIN);
                         $error = $e->getMessage();
                         update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_FAILED);
                     }
@@ -1023,7 +1023,7 @@ class PdfLightViewer_PdfController {
                     }
                     catch(Exception $e) {
                         PdfLightViewer_Components_Logger::log('Import exception: '.$e->getMessage(), print_r($e, true));
-                        $status_label = __('failed', PDF_LIGHT_VIEWER_PLUGIN);
+                        $status_label = esc_html__('failed', PDF_LIGHT_VIEWER_PLUGIN);
                         $error = $e->getMessage();
                         update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_FAILED);
                     }
@@ -1039,7 +1039,7 @@ class PdfLightViewer_PdfController {
 
 		if ($percent >= 100) {
 			do_action(PDF_LIGHT_VIEWER_PLUGIN.':finished_import', $post_id, $pdf_file_path);
-			$status_label = __('finished', PDF_LIGHT_VIEWER_PLUGIN);
+			$status_label = esc_html__('finished', PDF_LIGHT_VIEWER_PLUGIN);
 			update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_FINISHED);
 		}
 
@@ -1057,7 +1057,7 @@ class PdfLightViewer_PdfController {
 		if (!$post_id) {
 			return wp_send_json(array(
 				'status' => 'error',
-				'error' => __('Currently there are no unimported files in the queue.', PDF_LIGHT_VIEWER_PLUGIN)
+				'error' => esc_html__('Currently there are no unimported files in the queue.', PDF_LIGHT_VIEWER_PLUGIN)
 			));
 		}
 
@@ -1065,7 +1065,7 @@ class PdfLightViewer_PdfController {
 
 		return wp_send_json(array(
 			'status' => 'error',
-            'error' => __('Import cancelled', PDF_LIGHT_VIEWER_PLUGIN),
+            'error' => esc_html__('Import cancelled', PDF_LIGHT_VIEWER_PLUGIN),
 		));
 	}
 

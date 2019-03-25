@@ -9,14 +9,14 @@
             	<div class="row hdr">
             		<h3>
             			<span class="icons slicon-trophy"></span>
-            			<?php _e('Vote for PDF Light Viewer plugin!', PDF_LIGHT_VIEWER_PLUGIN)?>
+            			<?php echo esc_html__('Vote for PDF Light Viewer plugin!', PDF_LIGHT_VIEWER_PLUGIN)?>
             		</h3>
             	</div>
             	<div class="row in">
 
-                    <?php _e('Support PDF Light Viewer team spirit!', PDF_LIGHT_VIEWER_PLUGIN)?>
+                    <?php echo esc_html__('Support PDF Light Viewer team spirit!', PDF_LIGHT_VIEWER_PLUGIN)?>
                     <a class="button-primary" href="https://wordpress.org/support/view/plugin-reviews/pdf-light-viewer?rate=5#postform" target="_blank">
-                        <?php _e('Give 5 stars', PDF_LIGHT_VIEWER_PLUGIN)?>
+                        <?php echo esc_html__('Give 5 stars', PDF_LIGHT_VIEWER_PLUGIN)?>
                         <span class="icons slicon-star"></span>
                         <span class="icons slicon-star"></span>
                         <span class="icons slicon-star"></span>
@@ -31,7 +31,7 @@
                 <div class="row hdr">
                     <h3>
                         <span class="icons slicon-info"></span>
-                        <?php _e('About', PDF_LIGHT_VIEWER_PLUGIN)?>
+                        <?php echo esc_html__('About', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
                 <div class="row container">
@@ -118,7 +118,7 @@
                 <div class="row hdr">
                     <h3>
                         <span class="icons slicon-list"></span>
-                        <?php _e('Plugin Requirements', PDF_LIGHT_VIEWER_PLUGIN)?>
+                        <?php echo esc_html__('Plugin Requirements', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
                 <div class="row in container">
@@ -138,21 +138,21 @@
                 <div class="row hdr">
                     <h3>
                         <span class="icons slicon-equalizer"></span>
-                        <?php _e('Settings', PDF_LIGHT_VIEWER_PLUGIN)?>
+                        <?php echo esc_html__('Settings', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
 
                 <div class="row in">
                     <legend><span class="icons slicon-settings"></span>
-                        <?php _e('Main settings', PDF_LIGHT_VIEWER_PLUGIN)?>
-                        / <?php _e('CLI settings', PDF_LIGHT_VIEWER_PLUGIN)?>
+                        <?php echo esc_html__('Main settings', PDF_LIGHT_VIEWER_PLUGIN)?>
+                        / <?php echo esc_html__('CLI settings', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </legend>
 
                     <p class="pure-control-group">
                         <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[show-post-type]">
                             <i class="icons slicon-menu"></i>
-                            <?php _e('Show PDFs in Menu', PDF_LIGHT_VIEWER_PLUGIN)?>
-                            <a href="#!" class="js-tip tip" title="<?php _e('Show PDFs menu item in the left admin sidebar', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
+                            <?php echo esc_html__('Show PDFs in Menu', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <a href="#!" class="js-tip tip" title="<?php echo esc_html__('Show PDFs menu item in the left admin sidebar', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
                         </label>
                         <input
                             type="hidden"
@@ -170,8 +170,8 @@
                     <p class="pure-control-group">
                         <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[do-not-check-gs]">
                             <i class="icons slicon-wrench"></i>
-                            <?php _e('Do not check GhostScript installation', PDF_LIGHT_VIEWER_PLUGIN)?>
-                            <a href="#!" class="js-tip tip" title="<?php _e('For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
+                            <?php echo esc_html__('Do not check GhostScript installation', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <a href="#!" class="js-tip tip" title="<?php echo esc_html__('For cases, when you are sure that GhostScript is installed, but it was not detected by the plugin correctly.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
                         </label>
                         <input
                             type="hidden"
@@ -189,8 +189,8 @@
                     <p class="pure-control-group">
                         <label>
                             <i class="icons slicon-magic-wand"></i>
-                            <?php _e('Prefer Imagick or Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
-                            <a href="#!" class="js-tip tip" title="<?php _e('For cases, when you have both. Otherwise only existing will be used.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
+                            <?php echo esc_html__('Prefer Imagick or Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <a href="#!" class="js-tip tip" title="<?php echo esc_html__('For cases, when you have both. Otherwise only existing will be used.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
                         </label>
                         <input
                             type="radio"
@@ -200,10 +200,10 @@
                             <?php echo ( PdfLightViewer_AdminController::getSetting('prefer-xmagick') == 'Imagick' ? 'checked="checked"' : '' )?>
                             />
                             <label for="prefer-xmagick-imagick" class="inline">
-                                <?php _e('Imagick', PDF_LIGHT_VIEWER_PLUGIN)?>
+                                <?php echo esc_html__('Imagick', PDF_LIGHT_VIEWER_PLUGIN)?>
                                 <?php if (!class_exists('Imagick')) { ?>
                                     <span class="pdf-light-viewer-requirement-fail">
-                                        (<?php _e('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
+                                        (<?php echo esc_html__('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
                                     </span>
                                 <?php } ?>
                             </label>
@@ -215,10 +215,10 @@
                             <?php echo ( PdfLightViewer_AdminController::getSetting('prefer-xmagick') == 'Gmagick' ? 'checked="checked"' : '' )?>
                             />
                             <label for="prefer-xmagick-gmagick" class="inline">
-                                <?php _e('Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
+                                <?php echo esc_html__('Gmagick', PDF_LIGHT_VIEWER_PLUGIN)?>
                                 <?php if (!class_exists('Gmagick')) { ?>
                                     <span class="pdf-light-viewer-requirement-fail">
-                                        (<?php _e('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
+                                        (<?php echo esc_html__('seems to be not installed', PDF_LIGHT_VIEWER_PLUGIN)?>)
                                     </span>
                                 <?php } ?>
                             </label>
@@ -228,8 +228,8 @@
                     <p class="pure-control-group">
                         <label for="<?php echo PDF_LIGHT_VIEWER_PLUGIN?>[enable-hash-nav]">
                             <i class="icons slicon-wrench"></i>
-                            <?php _e('Enable hash navigation', PDF_LIGHT_VIEWER_PLUGIN)?>
-                            <a href="#!" class="js-tip tip" title="<?php _e('In some cases turning this off can solve compatibility issues.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
+                            <?php echo esc_html__('Enable hash navigation', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <a href="#!" class="js-tip tip" title="<?php echo esc_html__('In some cases turning this off can solve compatibility issues.', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-question"></span></a>
                         </label>
                         <input
                             type="hidden"
@@ -248,7 +248,7 @@
 
                     <div class="row">
                         <button class="button-primary" type="submit">
-                            <?php _e('Save', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <?php echo esc_html__('Save', PDF_LIGHT_VIEWER_PLUGIN)?>
                         </button>
                     </div>
                 </div>
@@ -270,7 +270,7 @@
                 <div class="row hdr">
                     <h3>
                         <span class="icons slicon-support"></span>
-                        <?php _e('Support', PDF_LIGHT_VIEWER_PLUGIN)?>
+                        <?php echo esc_html__('Support', PDF_LIGHT_VIEWER_PLUGIN)?>
                     </h3>
                 </div>
                 <div class="row in container">
@@ -280,25 +280,26 @@
                             <p>
                                 <?php
 
-                                $subject = sprintf(__('Support request, plugin: %s (time: %s)', PDF_LIGHT_VIEWER_PLUGIN),
+                                $subject = sprintf(esc_html__('Support request, plugin: %s (time: %s)', PDF_LIGHT_VIEWER_PLUGIN),
                                     PDF_LIGHT_VIEWER_PLUGIN,
                                     date('d.m.Y H:i:s')
                                 );
 
-                                echo sprintf(__('To get support please contact us on forum <a target="_blank" href="%s">%s</a>. Please also attach server information and log information below to let us know more about your server and site environment - this could be helpful to solve the issue.', PDF_LIGHT_VIEWER_PLUGIN),
-                                    PdfLightViewer_Helpers_Url::getSupportUrl(),
-                                    PdfLightViewer_Helpers_Url::getSupportUrl().'&nbsp;<span class="icons slicon-link"></span>'
+                                echo sprintf(esc_html__('To get support please contact us on forum %s. Please also attach server information and log information below to let us know more about your server and site environment - this could be helpful to solve the issue.', PDF_LIGHT_VIEWER_PLUGIN),
+                                    '<a target="_blank" href="'.PdfLightViewer_Helpers_Url::getSupportUrl().'">
+                                        '.PdfLightViewer_Helpers_Url::getSupportUrl().'&nbsp;<span class="icons slicon-link"></span>
+                                    </a>'
                                 );?>
                             </p>
                         </blockquote>
                         <p>
-                            <?php _e('Subject', PDF_LIGHT_VIEWER_PLUGIN)?>: <?php echo $subject;?>
+                            <?php echo esc_html__('Subject', PDF_LIGHT_VIEWER_PLUGIN)?>: <?php echo $subject;?>
                         </p>
                     </div>
 
                     <div class="row">
                         <h5 class="row">
-                            <?php _e('Plugin Requirements', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <?php echo esc_html__('Plugin Requirements', PDF_LIGHT_VIEWER_PLUGIN)?>
                         </h5>
                         <?php include(dirname(__FILE__).'/requirements.php') ?>
                     </div>
@@ -307,7 +308,7 @@
 
                     <div class="row">
                         <h5 class="row">
-                            <?php _e('Server Info', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <?php echo esc_html__('Server Info', PDF_LIGHT_VIEWER_PLUGIN)?>
                         </h5>
                         <ul>
                             <?php
@@ -327,7 +328,7 @@
 
                     <div class="row">
                         <h5 class="row">
-                            <?php _e('Theme', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <?php echo esc_html__('Theme', PDF_LIGHT_VIEWER_PLUGIN)?>
                         </h5>
                         <?php $current_theme = wp_get_theme(); ?>
                         <p>
@@ -336,7 +337,7 @@
                             <?php echo $current_theme->get('ThemeURI');?>
                         </p>
                         <p>
-                            <?php _e('from', PDF_LIGHT_VIEWER_PLUGIN)?> <?php echo $current_theme->get('Author');?>,
+                            <?php echo esc_html__('from', PDF_LIGHT_VIEWER_PLUGIN)?> <?php echo $current_theme->get('Author');?>,
                             <?php echo $current_theme->get('AuthorURI');?>
                         </p>
 
@@ -346,7 +347,7 @@
 
                     <div class="row">
                         <h5 class="row">
-                            <?php _e('Plugins', PDF_LIGHT_VIEWER_PLUGIN)?>
+                            <?php echo esc_html__('Plugins', PDF_LIGHT_VIEWER_PLUGIN)?>
                         </h5>
                         <ul>
                             <?php
@@ -374,7 +375,7 @@
 			<div class="row hdr">
 				<h3>
 					<span class="icons slicon-note"></span>
-					<?php _e("Today's log file", PDF_LIGHT_VIEWER_PLUGIN)?>
+					<?php echo esc_html__("Today's log file", PDF_LIGHT_VIEWER_PLUGIN)?>
 				</h3>
 			</div>
 
@@ -384,7 +385,7 @@
 						include_once(PdfLightViewer_Components_Logger::getLogsPath().date('Y-m-d').'.php');
 					}
 					else {
-						_e("Today's log file doesn't exist", PDF_LIGHT_VIEWER_PLUGIN);
+						echo esc_html__("Today's log file doesn't exist", PDF_LIGHT_VIEWER_PLUGIN);
 					}
 					?></pre></code>
 			</div>
@@ -400,8 +401,8 @@
 			<div class="row hdr">
 				<h3>
 					<span class="icons slicon-doc"></span>
-					<?php _e('Documentation', PDF_LIGHT_VIEWER_PLUGIN)?>
-					<a class="right" target="_blank" href="<?php echo $documentation_url?>" title="<?php _e('open in the separate tab', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-link"></span></a>
+					<?php echo esc_html__('Documentation', PDF_LIGHT_VIEWER_PLUGIN)?>
+					<a class="right" target="_blank" href="<?php echo $documentation_url?>" title="<?php echo esc_html__('open in the separate tab', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-link"></span></a>
 				</h3>
 			</div>
 			<div class="row in container">
