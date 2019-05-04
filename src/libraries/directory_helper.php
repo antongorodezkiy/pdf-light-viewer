@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * CodeIgniter
  *
@@ -43,8 +43,14 @@ if ( ! function_exists('directory_map'))
 {
 	function directory_map($source_dir, $directory_depth = 0, $hidden = FALSE)
 	{
-		if ($fp = @opendir($source_dir))
-		{
+        $fp = null;
+        try {
+            $fp = opendir($source_dir);
+        } catch (Exception $e) {
+            error_log($e);
+        }
+
+		if ($fp) {
 			$filedata	= array();
 			$new_depth	= $directory_depth - 1;
 			$source_dir	= rtrim($source_dir, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
@@ -57,7 +63,7 @@ if ( ! function_exists('directory_map'))
 					continue;
 				}
 
-				if (($directory_depth < 1 OR $new_depth > 0) && @is_dir($source_dir.$file))
+				if (($directory_depth < 1 OR $new_depth > 0) && is_dir($source_dir.$file))
 				{
 					$filedata[$file] = directory_map($source_dir.$file.DIRECTORY_SEPARATOR, $new_depth, $hidden);
 				}

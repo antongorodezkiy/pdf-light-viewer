@@ -758,7 +758,14 @@ class PdfLightViewer_PdfController {
         			'enabled_archive'
                 );
                 $metaToImport = str_replace('\"', '"', $form_data['import_config']);
-                $metaToImport = @json_decode($metaToImport, true);
+
+                try {
+                	$metaToImport = json_decode($metaToImport, true);
+        		} catch (Exception $e) {
+        			error_log($e);
+					$metaToImport = [];
+        		}
+
                 foreach ($metaToImport as $name => $value) {
                     if (in_array($name, $allowedMeta)) {
 
@@ -803,7 +810,12 @@ class PdfLightViewer_PdfController {
                 .'-dQUIET '
                 .'-c "('.escapeshellcmd($pdf_file_path).') (r) file runpdfbegin pdfpagecount = quit" ';
 
-            return @shell_exec($commnad);
+            try {
+                return shell_exec($commnad);
+            } catch (Exception $e) {
+                error_log($e);
+                return null;
+            }
         }
         else if ($Imagick) {
             $Imagick->readImage($pdf_file_path);
@@ -842,7 +854,11 @@ class PdfLightViewer_PdfController {
                 .'-sOutputFile='.escapeshellcmd($pdf_upload_dir.'/page-'.$page_number.'.jpg').' '
                 .escapeshellcmd($pdf_file_path);
 
-            @shell_exec($commnad);
+            try {
+                shell_exec($commnad);
+            } catch (Exception $e) {
+                error_log($e);
+            }
 
             $first_page_path = $first_page_image_path = $pdf_upload_dir.'/page-'.$page_number.'.jpg';
         }
@@ -1070,10 +1086,10 @@ class PdfLightViewer_PdfController {
             .'-sOutputFile='.escapeshellcmd($path.'.new').' '
             .escapeshellcmd($path);
 
-        $result = @shell_exec($commnad);
-
-        if ($result) {
-            //rename($path.'.new', $path);
+        try {
+            shell_exec($commnad);
+        } catch (Exception $e) {
+            error_log($e);
         }
     }
 
@@ -1113,7 +1129,11 @@ class PdfLightViewer_PdfController {
                 .'-sOutputFile='.escapeshellcmd($pdf_upload_dir.'-pdfs/page-'.$page_number.'.pdf').' '
                 .escapeshellcmd($pdf_file_path);
 
-            @shell_exec($commnad);
+            try {
+            	shell_exec($commnad);
+    		} catch (Exception $e) {
+    			error_log($e);
+    		}
 
             // main page image
             // if possible, use ghostscript directly
@@ -1129,7 +1149,11 @@ class PdfLightViewer_PdfController {
                 .'-sOutputFile='.escapeshellcmd($pdf_upload_dir.'/page-'.$page_number.'.jpg').' '
                 .escapeshellcmd($pdf_file_path);
 
-            @shell_exec($commnad);
+            try {
+            	shell_exec($commnad);
+    		} catch (Exception $e) {
+    			error_log($e);
+    		}
 
             $_img->readImage($pdf_upload_dir.'/page-'.$page_number.'.jpg');
         }

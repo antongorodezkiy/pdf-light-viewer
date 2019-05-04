@@ -203,24 +203,48 @@ class PdfLightViewer_Plugin
                 && PDF_LIGHT_VIEWER_GHOSTSCRIPT_PATH
             ) {
                 $gsPath = PDF_LIGHT_VIEWER_GHOSTSCRIPT_PATH;
-                $ghostscript_version = @shell_exec($gsPath.' --version');
+
+                try {
+                    $ghostscript_version = shell_exec($gsPath.' --version');
+                } catch (Exception $e) {
+                    error_log($e);
+                }
             }
             else if (stristr(php_uname('s'), 'win')) {
                 $gsPath = 'gs';
-                $ghostscript_version = @shell_exec($gsPath.' --version');
+
+                try {
+                    $ghostscript_version = shell_exec($gsPath.' --version');
+                } catch (Exception $e) {
+                    error_log($e);
+                }
             }
             else {
                 $gsPath = '$(command -v gs)';
-                $ghostscript_version = @shell_exec($gsPath.' --version');
+                try {
+                    $ghostscript_version = shell_exec($gsPath.' --version');
+                } catch (Exception $e) {
+                    error_log($e);
+                }
 
                 if (!$ghostscript_version) {
                     $gsPath = '$(which gs)';
-                    $ghostscript_version = @shell_exec($gsPath.' --version');
+
+                    try {
+                        $ghostscript_version = shell_exec($gsPath.' --version');
+                    } catch (Exception $e) {
+                        error_log($e);
+                    }
                 }
 
                 if (!$ghostscript_version) {
                     $gsPath = 'gs';
-                    $ghostscript_version = @shell_exec($gsPath.' --version');
+
+                    try {
+                        $ghostscript_version = shell_exec($gsPath.' --version');
+                    } catch (Exception $e) {
+                        error_log($e);
+                    }
                 }
             }
         }

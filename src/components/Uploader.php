@@ -13,23 +13,39 @@ class PdfLightViewer_Components_Uploader
 			$created = true;
 		}
 		else {
-			$created = @mkdir($main_upload_dir);
+            try {
+            	mkdir($main_upload_dir);
+    		} catch (Exception $e) {
+    			error_log($e);
+    		}
 		}
 
 		if ($id) {
 			$pdf_upload_dir = $main_upload_dir.'/'.$id;
 			if (!file_exists($pdf_upload_dir)) {
-				@mkdir($pdf_upload_dir);
+                try {
+                	mkdir($pdf_upload_dir);
+        		} catch (Exception $e) {
+        			error_log($e);
+        		}
 			}
 
 			$pdf_thumbs_upload_dir = $main_upload_dir.'/'.$id.'-thumbs';
 			if (!file_exists($pdf_thumbs_upload_dir)) {
-				@mkdir($pdf_thumbs_upload_dir);
+                try {
+                	mkdir($pdf_thumbs_upload_dir);
+        		} catch (Exception $e) {
+        			error_log($e);
+        		}
 			}
 
             $pdf_pdfs_upload_dir = $main_upload_dir.'/'.$id.'-pdfs';
 			if (!file_exists($pdf_pdfs_upload_dir)) {
-				@mkdir($pdf_pdfs_upload_dir);
+                try {
+                	mkdir($pdf_pdfs_upload_dir);
+        		} catch (Exception $e) {
+        			error_log($e);
+        		}
 			}
 
 			if (file_exists($pdf_upload_dir)) {

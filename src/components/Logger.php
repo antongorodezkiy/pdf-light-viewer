@@ -49,7 +49,12 @@ class PdfLightViewer_Components_Logger
 		flock($fp, LOCK_UN);
 		fclose($fp);
 
-		@chmod($filepath, 0666);
+        try {
+        	chmod($filepath, 0666);
+		} catch (Exception $e) {
+			error_log($e);
+		}
+
 		return TRUE;
 	}
 }
