@@ -130,7 +130,7 @@ class PdfLightViewer_PdfController {
 				'menu_icon' => plugins_url('resources/assets/img/pdf.png', PDF_LIGHT_VIEWER_FILE),
 				'hierarchical' => false,
 				'map_meta_cap' => true,
-				'supports' => array('title', 'thumbnail'/*, 'custom-fields'*/),
+				'supports' => array('title', 'thumbnail'),
 			)
 		);
 
@@ -308,18 +308,9 @@ class PdfLightViewer_PdfController {
         return $hidden;
     }
 
-    // TODO
     public static function quick_edit_custom_box($column_name, $post_type)
     {
         $editOptions = static::getQuickEditOptions();
-        //
-        // {
-        //     foreach ( CMB2_Boxes::get_all() as $cmb ) {
-        // 		if ( $cmb->prop( 'hookup' ) ) {
-        // 			$cmb->nonce();
-        // 		}
-        // 	}
-        // }
 
         if ($post_type == static::$type && in_array($column_name, array_keys($editOptions))) {
             echo '<div class="cmb2-wrap form-table">';
@@ -546,12 +537,6 @@ class PdfLightViewer_PdfController {
     							'id'   => 'pages_limit_visible_pages',
     							'type' => 'text'
     						),
-    //                        array(
-    //							'name' => esc_html__('Visible pages', PDF_LIGHT_VIEWER_PLUGIN),
-    //                            'desc' => esc_html__('Leave empty to show all. Use numbers for single pages or (e.g. 1-3) for ranges. Few numbers or ranges could be separated by commas (e.g. 2-5,7,9-15).', PDF_LIGHT_VIEWER_PLUGIN),
-    //							'id'   => 'pages_limit_visible_pages_ranges',
-    //							'type' => 'text'
-    //						)
     					)
     				)
     			)

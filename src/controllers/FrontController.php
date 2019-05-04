@@ -60,34 +60,19 @@ class PdfLightViewer_FrontController {
 						$limit = isset($pages_limit['pages_limit_visible_pages'])
                             ? $pages_limit['pages_limit_visible_pages']
                             : 0;
-
-                        // TODO: not implemented yet
-                        //$visiblePages = isset($pages_limit['pages_limit_visible_pages_ranges'])
-                        //    ? PdfLightViewer_PdfController::parsePages($pages_limit['pages_limit_visible_pages_ranges'])
-                        //    : array();
 					}
 					else if(in_array($pages_limit['pages_limit_user_role'], $current_user_roles)) {
 						$limit = isset($pages_limit['pages_limit_visible_pages'])
                             ? $pages_limit['pages_limit_visible_pages']
                             : 0;
-
-                        // TODO: not implemented yet
-                        //$visiblePages = isset($pages_limit['pages_limit_visible_pages_ranges'])
-                        //    ? PdfLightViewer_PdfController::parsePages($pages_limit['pages_limit_visible_pages_ranges'])
-                        //    : array();
 					}
 				}
 			}
 
 		// limit allowed pages for user role
-			if (!$limit /*&& empty($visiblePages)*/) {
+			if (!$limit) {
 				$pdf_light_viewer_config['pages'] = $pages;
 				$pdf_light_viewer_config['thumbs'] = $thumbs;
-
-                // TODO: not implemented yet
-                //for($page = 0; $page < count($pdf_light_viewer_config['pages']); $page++) {
-                //    $pdf_light_viewer_config['pagesIndexes'][$page] = $page;
-                //}
 			}
 			else {
 
@@ -96,18 +81,12 @@ class PdfLightViewer_FrontController {
                         $i = $page - 1;
                         $pdf_light_viewer_config['pages'][$i] = $pages[$i];
                         $pdf_light_viewer_config['thumbs'][$i] = $thumbs[$i];
-
-                        // TODO: not implemented yet
-                        //$pdf_light_viewer_config['pagesIndexes'][$i] = $i;
                     }
                 }
 				else {
                     for($page = 0; $page < $limit; $page++) {
                         $pdf_light_viewer_config['pages'][$page] = $pages[$page];
                         $pdf_light_viewer_config['thumbs'][$page] = $thumbs[$page];
-
-                        // TODO: not implemented yet
-                        //$pdf_light_viewer_config['pagesIndexes'][$page] = $page;
                     }
                 }
 			}
