@@ -1,0 +1,63 @@
+{
+  "_args": [
+    [
+      "bxslider@4.2.14",
+      "/home/edmin/programming/my_projects/pdf-light-viewer-dev/public_html/wp-content/plugins/pdf-light-viewer/resources/assets"
+    ]
+  ],
+  "_from": "bxslider@4.2.14",
+  "_id": "bxslider@4.2.14",
+  "_inBundle": false,
+  "_integrity": "sha512-7/OV7Jxe8yBS/7tOcxg2hYTPmACFMU1rRs3xqoljjFX/rSgMFVX0dzFqxZHWvUgl0+9TryNy5vhufB/499heFQ==",
+  "_location": "/bxslider",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "bxslider@4.2.14",
+    "name": "bxslider",
+    "escapedName": "bxslider",
+    "rawSpec": "4.2.14",
+    "saveSpec": null,
+    "fetchSpec": "4.2.14"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/bxslider/-/bxslider-4.2.14.tgz",
+  "_spec": "4.2.14",
+  "_where": "/home/edmin/programming/my_projects/pdf-light-viewer-dev/public_html/wp-content/plugins/pdf-light-viewer/resources/assets",
+  "author": {
+    "name": "Steven Wanderski",
+    "email": "steven@bxcreative.com",
+    "url": "http://stevenwanderski.com"
+  },
+  "bugs": {
+    "url": "https://github.com/stevenwanderski/bxslider-4/issues"
+  },
+  "description": "Touch enabled jQuery plugin for creating responsive carousels and sliders.",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.1"
+  },
+  "engines": {
+    "node": ">=0.10.28"
+  },
+  "homepage": "http://bxslider.com",
+  "keywords": [
+    "responsive",
+    "carousel",
+    "bxslider",
+    "jQuery",
+    "plugin"
+  ],
+  "license": "MIT",
+  "name": "bxslider",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stevenwanderski/bxslider-4/bxslider-4.git"
+  },
+  "version": "4.2.14"
+}

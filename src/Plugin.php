@@ -20,9 +20,9 @@ class PdfLightViewer_Plugin
     {
 		if (stristr($file, PDF_LIGHT_VIEWER_PLUGIN.'/')) {
 			$links = array_merge(array(
-                '<a href="'.PdfLightViewer_Helpers_Url::getSettingsUrl().'">' . esc_html__('Settings', PDF_LIGHT_VIEWER_PLUGIN) . '</a>',
-    			'<a href="'.PdfLightViewer_Helpers_Url::getDocsUrl().'">' . esc_html__('Docs', PDF_LIGHT_VIEWER_PLUGIN) . '</a>',
-    			'<a target="_blank" href="'.PdfLightViewer_Helpers_Url::getSupportUrl().'">' . esc_html__('Support', PDF_LIGHT_VIEWER_PLUGIN) . '</a>'
+                '<a href="'.esc_attr(PdfLightViewer_Helpers_Url::getSettingsUrl()).'">' . esc_html__('Settings', PDF_LIGHT_VIEWER_PLUGIN) . '</a>',
+    			'<a href="'.esc_attr(PdfLightViewer_Helpers_Url::getDocsUrl()).'">' . esc_html__('Docs', PDF_LIGHT_VIEWER_PLUGIN) . '</a>',
+    			'<a target="_blank" href="'.esc_attr(PdfLightViewer_Helpers_Url::getSupportUrl()).'">' . esc_html__('Support', PDF_LIGHT_VIEWER_PLUGIN) . '</a>'
             ), $links);
 		}
 		return $links;
@@ -78,7 +78,7 @@ class PdfLightViewer_Plugin
                 list($gsPath, $ghostscript_version) = PdfLightViewer_Plugin::getGhostscript();
 			}
 
-			$logs_dir_message = esc_html__('Logs folder',PDF_LIGHT_VIEWER_PLUGIN).': <code>'.PdfLightViewer_Components_Logger::getLogsPath().'</code>';
+			$logs_dir_message = esc_html__('Logs folder',PDF_LIGHT_VIEWER_PLUGIN).': <code>'.esc_html(PdfLightViewer_Components_Logger::getLogsPath()).'</code>';
 
 			$requirements = array_filter(array(
 				array(

@@ -1,24 +1,24 @@
-$simple-line-font-path: "../bower_components/simple-line-icons/fonts/" !default;
+$simple-line-font-path: "~simple-line-icons/fonts/" !default;
 $simple-line-font-family: "simple-line-icons" !default;
 $simple-line-icon-prefix: "slicon-" !default;
 
-@import '../bower_components/simple-line-icons/scss/simple-line-icons';
+@import '~simple-line-icons/scss/simple-line-icons';
 
 .pdf-light-viewer {
 	padding: 40px 0 20px;
 	position: relative;
 	margin-top: 20px;
 	text-align: center;
-    
+
 	[class^="slicon-"]:before,
 	[class*=" slicon-"]:before {
 		font-family: 'simple-line-icons';
 	}
-	
+
 	.initially-hidden {
 		display: none;
 	}
-	
+
 	.animated {
 		-webkit-transition:margin-left 0.5s;
 		-moz-transition:margin-left 0.5s;
@@ -26,31 +26,31 @@ $simple-line-icon-prefix: "slicon-" !default;
 		-o-transition:margin-left 0.5s;
 		transition:margin-left 0.5s;
 	}
-	
+
 	.pdf-light-viewer-magazine-viewport {
 		display: block;
 		z-index: 101;
 		margin-bottom: 0px;
-		
+
 		.shadow {
 			-webkit-transition: -webkit-box-shadow 0.3s;
 			-moz-transition: -moz-box-shadow 0.3s;
 			-o-transition: -webkit-box-shadow 0.3s;
 			-ms-transition: -ms-box-shadow 0.3s;
-		
+
 			box-shadow:
 				0px 2px 2px 0px rgba(0, 0, 0, 0.14),
 				0px 3px 1px -2px rgba(0, 0, 0, 0.2),
 				0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 		}
-		
+
 		.next-button,
 		.previous-button {
 			width:22px;
 			position:absolute;
 			bottom:20px;
 		}
-		
+
 		.next-button {
 			right:-22px;
 			-webkit-border-radius:0 15px 15px 0;
@@ -59,7 +59,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 			-o-border-radius:0 15px 15px 0;
 			border-radius:0 15px 15px 0;
 		}
-		
+
 		.previous-button {
 			left:-22px;
 			-webkit-border-radius:15px 0 0 15px;
@@ -68,79 +68,79 @@ $simple-line-icon-prefix: "slicon-" !default;
 			-o-border-radius:15px 0 0 15px;
 			border-radius:15px 0 0 15px;
 		}
-		
+
 		.previous-button-hover,
 		.next-button-hover {
 			background-color:rgba(0,0,0, 0.2);
 		}
-		
+
 		.previous-button-hover,
 		.previous-button-down {
 			background-image:url(../img/arrows.png);
 			background-position:-4px 284px;
 			background-repeat:no-repeat;
 		}
-		
+
 		.previous-button-down,
 		.next-button-down {
 			background-color:rgba(0,0,0, 0.4);
 		}
-		
+
 		.next-button-hover,
 		.next-button-down {
 			background-image:url(../img/arrows.png);
 			background-position:-38px 284px;
 			background-repeat:no-repeat;
 		}
-		
+
 		.zoom-in .next-button,
 		.zoom-in .previous-button {
 			display:none;
 		}
-		
+
 		.pdf-light-viewer-magazine-viewport-container {
 			position:relative;
 			width: 100%;
 			margin:auto;
 		}
-		
+
 		.pdf-light-viewer-magazine {
 			margin-left: auto !important;
 			margin-right: auto !important;
-			
+
 			.even .gradient {
 				position:absolute;
 				top:0;
 				left:0;
 				width:100%;
 				height:100%;
-				
+
 				background-image:linear-gradient(to right, rgba(0,0,0,0) 95%, rgba(0,0,0,0.2) 100%);
-				
+
 				box-shadow:0 0 20px rgba(0,0,0,0.2);
 			}
-			
+
 			.odd .gradient {
 				position:absolute;
 				top:0;
 				left:0;
 				width:100%;
 				height:100%;
-				
+
 				background-image: linear-gradient(to left, rgba(0,0,0,0) 95%, rgba(0,0,0,0.15) 100%);
 			}
-			
+
 			.page {
 				background-color:white;
 				background-repeat:no-repeat;
 				background-size:100% 100%;
 				padding: 0 !important;
-				
+
 				box-shadow:
 					0px 2px 2px 0px rgba(0, 0, 0, 0.14),
 					0px 3px 1px -2px rgba(0, 0, 0, 0.2),
 					0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-					
+
 				img {
 					-webkit-touch-callout: none;
 					-webkit-user-select: none;
@@ -152,7 +152,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 				}
 			}
 		}
-		
+
 		.loader {
 			background-image:url(../img/loader.gif);
 			width:22px;
@@ -162,7 +162,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 			left:219px;
 		}
 	}
-    
+
     &.pdf-light-viewer-fullscreen {
         padding: 0;
         background: #fff;
@@ -172,30 +172,30 @@ $simple-line-icon-prefix: "slicon-" !default;
         width: 100vw;
         height: 100vh;
         margin-top: 0px;
-		
+
 		.slicon-size-fullscreen {
 			display: none;
 		}
-		
+
 		.slicon-size-actual {
 			display: inline;
 		}
-        
+
         .pdf-light-viewer-magazine-viewport.with-nav-top {
             margin-bottom: 80px;
             position: relative;
-            
+
             .pdf-light-viewer-features-bottom-toolbar-panel {
                 bottom: -52px;
             }
         }
-        
+
         .pdf-light-viewer-magazine-viewport.with-nav-bottom {
             margin-top: 45px;
         }
     }
 
-	
+
 	.pdf-light-viewer-features-top-panel {
 		list-style: none;
 		position: static;
@@ -223,14 +223,14 @@ $simple-line-icon-prefix: "slicon-" !default;
 				height: 25px;
 				margin-left: 6px;
 			}
-			
+
 			&:last-child {
 				&:after {
 					display: none;
 					margin-left: 0px;
 				}
 			}
-			
+
 			a,
 			button,
 			span {
@@ -246,28 +246,28 @@ $simple-line-icon-prefix: "slicon-" !default;
 				margin: 0;
 				padding: 0;
 			}
-			
+
 			button:hover {
 				border: none;
 				outline: none;
 				box-shadow: none;
 			}
-			
+
 			a {
 				&:hover {
 					text-decoration: none;
 					border: none;
 				}
-				
+
 				&:focus {
 					outline: none;
 				}
 			}
-			
+
 			span {
 				color: #777;
 			}
-            
+
             .pdf-light-viewer-goto-page-input {
                 font-size: 17px !important;
                 display: inline-block;
@@ -285,7 +285,7 @@ $simple-line-icon-prefix: "slicon-" !default;
                 background-repeat: no-repeat;
                 color: #777;
                 box-shadow: none;
-                
+
                 &:focus {
                     box-shadow: none;
                     outline: none;
@@ -294,7 +294,7 @@ $simple-line-icon-prefix: "slicon-" !default;
             }
 		}
 	}
-    
+
     .pdf-light-viewer-features-bottom-toolbar-panel {
         @extend .pdf-light-viewer-features-top-panel;
         top: auto;
@@ -302,10 +302,10 @@ $simple-line-icon-prefix: "slicon-" !default;
 		right: 80px;
 		border-radius: 6px;
     }
-	
+
 	.pdf-light-viewer-magazine-thumbnails {
 		text-align: center;
-		
+
 		.pdf-light-viewer-features-bottom-panel {
 			display: inline-block;
 			text-align: center;
@@ -318,57 +318,57 @@ $simple-line-icon-prefix: "slicon-" !default;
 				0px 3px 2px -1px rgba(0, 0, 0, 0.2),
 				0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 		}
-	
+
 		.bx-wrapper {
 			margin: 0px auto 20px;
 			box-shadow: none;
 			background: transparent;
 			border-color: transparent;
 			padding: 0 30px;
-			
+
 			.bx-pager {
 				padding-top: 0px;
 				bottom: 0px;
 				position: static;
-				
+
 				a {
 					background: #777;
-					
+
 					&.active {
 						background: RoyalBlue;
 					}
 				}
 			}
-			
+
 			.bx-controls-direction a {
 				z-index: 10;
 				text-indent: 1px;
 				font-size: 26px;
 				color: RoyalBlue;
 			}
-			
+
 			.bx-controls-direction a,
 			.bx-controls-direction a:hover {
 				text-decoration: none;
 				border: none;
 			}
-			
+
 			.bx-prev {
 				left: -5px;
 				background: transparent;
 			}
-			
+
 			.bx-next {
 				right: -5px;
 				background: transparent;
 			}
-			
+
 			.bx-viewport {
 				box-shadow: none;
 				border: none;
 			}
 		}
-		
+
 		ul {
 			margin:0;
 			padding:0;
@@ -385,13 +385,13 @@ $simple-line-icon-prefix: "slicon-" !default;
 			-o-transition:-o-transform ease-in-out 100ms;
 			transition:transform ease-in-out 100ms;
 		}
-	
+
 		li {
 			padding:15px 0px;
 			margin: 0;
 			list-style:none;
 		}
-	
+
 		.pdf-light-viewer-slide {
 			display: block;
 			box-shadow:
@@ -402,22 +402,22 @@ $simple-line-icon-prefix: "slicon-" !default;
 			text-align: center;
 			cursor: pointer;
 			border: 1px solid rgba(0, 0, 0, 0.08);
-			
+
 			a {
 				display: inline-block;
 			}
-			
+
 			img {
 				max-width: 73px;
 				max-height: 100px;
 				display: inline-block;
 			}
-			
+
 			span {
 				clear: both;
 				display: block;
 			}
-			
+
 			&.current {
 				box-shadow:
 					0px 2px 2px 0px rgba(65, 105, 225, 0.14),
@@ -425,7 +425,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 					0px 1px 5px 0px rgba(65, 105, 225, 0.12);
 				border: 1px solid rgba(65, 105, 225,0.23);
 			}
-			
+
 			&.thumb-hover {
 				box-shadow:
 					0 3px 6px rgba(65, 105, 225,0.16),
@@ -434,15 +434,15 @@ $simple-line-icon-prefix: "slicon-" !default;
 			}
 		}
 	}
-    
+
     .pdf-light-viewer-magazine-thumbnails {
         .pdf-light-viewer-features-top-nav-panel {
             @extend .pdf-light-viewer-features-bottom-panel;
 			border-radius: 6px;
         }
     }
-	
-	
+
+
 	.thumbanils-touch ul {
 		-webkit-transform:none;
 		-moz-transform:none;
@@ -450,7 +450,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 		-ms-transform:none;
 		transform:none;
 	}
-	
+
 	.exit-message {
 		position: absolute;
 		top:10px;
@@ -458,7 +458,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 		width:100%;
 		height:40px;
 		z-index:10000;
-		
+
 		> div {
 			width:140px;
 			height:30px;
@@ -471,7 +471,7 @@ $simple-line-icon-prefix: "slicon-" !default;
 			border-radius:10px;
 		}
 	}
-    
+
     .pdf-light-viewer-print-options-contaner {
 		display: none;
 	}
@@ -482,11 +482,11 @@ body .pdf-light-viewer-tips {
 	margin-left: -12px;
 	background: transparent;
 	border-color: transparent;
-	
+
 	.qtip-tip {
 		background: #fff;
 	}
-	
+
 	.qtip-content {
 		background-image: linear-gradient(to bottom, #ffffff 0%, #fefefe 57%, #F6F6F6 100%);
 		border-radius: 6px;
@@ -495,18 +495,18 @@ body .pdf-light-viewer-tips {
 			1px 2px 2px 0px rgba(0, 0, 0, 0.14),
 			0px 3px 2px -1px rgba(0, 0, 0, 0.2),
 			0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-			
+
 		ul {
 			padding: 0;
 			margin: 0;
 		}
-			
+
 		li {
 			list-style: none;
 			padding: 0;
 			margin: 0;
 		}
-			
+
 		a {
 			color: RoyalBlue;
 			text-decoration: none;

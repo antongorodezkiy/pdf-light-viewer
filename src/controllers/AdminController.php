@@ -64,8 +64,12 @@ class PdfLightViewer_AdminController
 			PdfLightViewer_AdminController::showDirectMessage(
 				sprintf(
 					esc_html__('Protect your site! - ImageMagick Is On Fire — CVE-2016–3714 %s %s',PDF_LIGHT_VIEWER_PLUGIN),
-                    '<a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" target="_blank" href="https://support.wp.teamlead.pw/q/warning-protect-your-site-imagemagick-is-on-fire%E2%80%8A-%E2%80%8Acve-2016-3714-multiple-vulnerabilities-in-imagemagick/">'.esc_html__('Learn how to protect yourself!',PDF_LIGHT_VIEWER_PLUGIN).'</a>',
-                    '<a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" href="#">'.esc_html__('Hide this, I know how to protect my ImageMagick',PDF_LIGHT_VIEWER_PLUGIN).'</a>'
+                    '<a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" target="_blank" href="https://support.wp.teamlead.pw/q/warning-protect-your-site-imagemagick-is-on-fire%E2%80%8A-%E2%80%8Acve-2016-3714-multiple-vulnerabilities-in-imagemagick/">
+                        '.esc_html__('Learn how to protect yourself!',PDF_LIGHT_VIEWER_PLUGIN).'
+                    </a>',
+                    '<a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="imagetragick-viewed" href="#">
+                        '.esc_html__('Hide this, I know how to protect my ImageMagick',PDF_LIGHT_VIEWER_PLUGIN).'
+                    </a>'
 				),
                 true
 			);
@@ -98,7 +102,8 @@ class PdfLightViewer_AdminController
 				$css_class = 'updated';
 			}
 
-			echo '<div class="'.$css_class.'"><p>'.$message.'</p></div>';
+            // NOTE: $message is already escaped in function parameters
+			echo '<div class="'.esc_html($css_class).'"><p>'.$message.'</p></div>';
 		}
 
 		public static function showAdminNotifications() {
@@ -116,7 +121,8 @@ class PdfLightViewer_AdminController
 						$css_class = 'updated';
 					}
 
-					echo '<div class="'.$css_class.'"><p>'.$notice['text'].'</p></div>';
+                    // NOTE: $notice['text'] is already escaped in function parameters
+					echo '<div class="'.esc_attr($css_class).'"><p>'.$notice['text'].'</p></div>';
 				}
 				$_SESSION[PDF_LIGHT_VIEWER_PLUGIN.'admin_notice'] = array();
 			}
@@ -212,8 +218,12 @@ class PdfLightViewer_AdminController
                     self::showDirectMessage(
                         sprintf(
                             $plugin_title.': '.esc_html__('requirements are met',PDF_LIGHT_VIEWER_PLUGIN).'
-                                <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" target="_blank" href="%s">'.esc_html__('Check Settings', PDF_LIGHT_VIEWER_PLUGIN).'</a>
-                                <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" href="#">'.esc_html__('Hide', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+                                <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" target="_blank" href="%s">
+                                    '.esc_html__('Check Settings', PDF_LIGHT_VIEWER_PLUGIN).'
+                                </a>
+                                <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="installed-viewed" href="#">
+                                    '.esc_html__('Hide', PDF_LIGHT_VIEWER_PLUGIN).'
+                                </a>
                             ',
                             PdfLightViewer_Plugin::getSettingsUrl()
                         )
@@ -225,7 +235,9 @@ class PdfLightViewer_AdminController
 					$plugin_title.': '
 					.sprintf(
                         esc_html__('requirements not met, please check %s for more information.',PDF_LIGHT_VIEWER_PLUGIN),
-                        '<a href="'.esc_attr(PdfLightViewer_Plugin::getSettingsUrl()).'">'.esc_html__('plugin settings page', PDF_LIGHT_VIEWER_PLUGIN).'</a>'
+                        '<a href="'.esc_attr(PdfLightViewer_Plugin::getSettingsUrl()).'">
+                            '.esc_html__('plugin settings page', PDF_LIGHT_VIEWER_PLUGIN).'
+                        </a>'
                     )
 				, true);
 			}
@@ -239,14 +251,14 @@ class PdfLightViewer_AdminController
 
 		public static function showPDFPointer() {
 			$plugin_title = PdfLightViewer_Helpers_Plugins::getPluginData('Title');
-			$pointer_content = '<h3>'.$plugin_title.'</h3>';
+			$pointer_content = '<h3>'.esc_html($plugin_title).'</h3>';
 			$pointer_content .= '<p>'.esc_html__("We have just created new section called PDFs in your dashboard. Use it to import and publish your cool PDF files.",PDF_LIGHT_VIEWER_PLUGIN).'</p>';
 
 			?>
 				<script type="text/javascript">
 				(function($){
 					$(document).ready( function($) {
-						$('#menu-posts-<?php echo PdfLightViewer_PdfController::$type;?>').pointer({
+						$('#menu-posts-<?php echo PdfLightViewer_PdfController::$type ?>').pointer({
 							content: '<?php echo $pointer_content; ?>',
 							position: {
 								edge: 'left',

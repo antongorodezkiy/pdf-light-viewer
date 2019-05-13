@@ -15,12 +15,12 @@ class PdfLightViewer_AssetsController
 
 		// styles
 			PdfLightViewer_Components_Assets::enqueueStyles(array(
-				'purecss.grids.responsive' => 'assets/bower_components/pure/grids-responsive-min.css',
-				'purecss.grids.core' => 'assets/bower_components/pure/grids-core-min.css',
-				'purecss.forms' => 'assets/bower_components/pure/forms-min.css',
-				'jquery.bxslider.css' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.css',
+				'purecss.grids.responsive' => 'assets/node_modules/purecss/build/grids-responsive-min.css',
+				'purecss.grids.core' => 'assets/node_modules/purecss/build/grids-core-min.css',
+				'purecss.forms' => 'assets/node_modules/purecss/build/forms-min.css',
+				'jquery.bxslider.css' => 'assets/node_modules/bxslider/dist/jquery.bxslider.min.css',
                 'jquery.qtip.css' => 'assets/bower_components/qtip2/jquery.qtip.min.css',
-				'backend.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/css/backend.css'
+				'backend.'.PDF_LIGHT_VIEWER_PLUGIN => 'assets/dist/pdf-light-viewer-backend.css'
 			));
 
 		// scripts
@@ -29,14 +29,14 @@ class PdfLightViewer_AssetsController
                 || ($post && $post->post_type == PdfLightViewer_PdfController::$type)
             ) {
                 PdfLightViewer_Components_Assets::enqueueScripts(array(
-                    'jquery.scrollstop.js' => 'assets/bower_components/jquery.lazyload/jquery.scrollstop.js',
-                    'jquery.lazyload.js' => 'assets/bower_components/jquery.lazyload/jquery.lazyload.js',
+                    'jquery.scrollstop.js' => 'assets/node_modules/jquery-lazyload/jquery.scrollstop.js',
+                    'jquery.lazyload.js' => 'assets/node_modules/jquery-lazyload/jquery.lazyload.js',
                     'hash.turn.js' => 'assets/js/turn.js/hash.js',
-                    'screenfull.js' => 'assets/bower_components/screenfull/dist/screenfull.min.js',
+                    'screenfull.js' => 'assets/node_modules/screenfull/dist/screenfull.js',
                     'html4.turn.js' => 'assets/js/turn.js/turn.html4.min.js',
                     'turn.js' => 'assets/js/turn.js/turn.min.js',
-                    'jquery.bxslider.js' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.min.js',
-                    'jquery.zoom.js' => 'assets/bower_components/jquery-zoom/jquery.zoom.min.js',
+                    'jquery.bxslider.js' => 'assets/node_modules/bxslider/dist/jquery.bxslider.min.js',
+                    'jquery.zoom.js' => 'assets/node_modules/jquery-zoom/jquery.zoom.min.js',
                 ));
 
                 wp_enqueue_script(
@@ -90,30 +90,30 @@ class PdfLightViewer_AssetsController
 
 		// styles
 			PdfLightViewer_Components_Assets::registerStyles(array(
-				'jquery.bxslider.css' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.css',
+				'jquery.bxslider.css' => 'assets/node_modules/bxslider/dist/jquery.bxslider.min.css',
                 'jquery.qtip.css' => 'assets/bower_components/qtip2/jquery.qtip.min.css'
 			));
 
             wp_register_style(
 				'frontend.'.PDF_LIGHT_VIEWER_PLUGIN,
-				plugins_url('resources/assets/css/frontend.css', PDF_LIGHT_VIEWER_FILE),
+				plugins_url('resources/assets/dist/pdf-light-viewer-frontend.css', PDF_LIGHT_VIEWER_FILE),
 				array(
                     'jquery.bxslider.css',
                     'jquery.qtip.css'
                 ),
-				filemtime(PDF_LIGHT_VIEWER_APPPATH.'/resources/assets/css/frontend.css')
+				filemtime(PDF_LIGHT_VIEWER_APPPATH.'/resources/assets/dist/pdf-light-viewer-frontend.css')
 			);
 
 		// scripts
 			PdfLightViewer_Components_Assets::registerScripts(array(
-				'jquery.scrollstop.js' => 'assets/bower_components/jquery.lazyload/jquery.scrollstop.js',
-				'jquery.lazyload.js' => 'assets/bower_components/jquery.lazyload/jquery.lazyload.js',
-				'hash.turn.js' => 'assets/js/turn.js/hash.js',
-				'screenfull.js' => 'assets/bower_components/screenfull/dist/screenfull.min.js',
-				'html4.turn.js' => 'assets/js/turn.js/turn.html4.min.js',
-				'turn.js' => 'assets/js/turn.js/turn.min.js',
-				'jquery.bxslider.js' => 'assets/bower_components/bxslider-4/dist/jquery.bxslider.min.js',
-				'jquery.zoom.js' => 'assets/bower_components/jquery-zoom/jquery.zoom.min.js',
+                'jquery.scrollstop.js' => 'assets/node_modules/jquery-lazyload/jquery.scrollstop.js',
+                'jquery.lazyload.js' => 'assets/node_modules/jquery-lazyload/jquery.lazyload.js',
+                'hash.turn.js' => 'assets/js/turn.js/hash.js',
+                'screenfull.js' => 'assets/node_modules/screenfull/dist/screenfull.js',
+                'html4.turn.js' => 'assets/js/turn.js/turn.html4.min.js',
+                'turn.js' => 'assets/js/turn.js/turn.min.js',
+                'jquery.bxslider.js' => 'assets/node_modules/bxslider/dist/jquery.bxslider.min.js',
+                'jquery.zoom.js' => 'assets/node_modules/jquery-zoom/jquery.zoom.min.js',
                 'jquery.qtip.js' => 'assets/bower_components/qtip2/jquery.qtip.min.js'
 			));
 

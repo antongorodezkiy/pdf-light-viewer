@@ -1,17 +1,8 @@
 {
   "name": "pdf-light-viewer",
-  "author": "E.Kozachek",
+  "author": "Teamlead Power",
   "version": "1.2.4",
   "dependencies": {
-    "jquery.lazyload": "1.9.4",
-    "simple-line-icons": "2.2.3",
-    "pure": "0.6.0",
-    "bxslider-4": "4.2.5",
-    "jquery-zoom": "1.7.14",
-    "screenfull": "^3.0.0",
     "qtip2": "^2.2.1"
-  },
-  "resolutions": {
-    "tipsy": "v1.0.0a"
   }
 }

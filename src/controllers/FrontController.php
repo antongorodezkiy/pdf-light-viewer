@@ -139,8 +139,10 @@ class PdfLightViewer_FrontController {
 				get_template_part($pdf_light_viewer_config['template']);
 			}
 			else {
-				if (file_exists(PDF_LIGHT_VIEWER_APPPATH.'/resources/templates/'.$pdf_light_viewer_config['template'].'.php')) {
-					include(PDF_LIGHT_VIEWER_APPPATH.'/resources/templates/'.$pdf_light_viewer_config['template'].'.php');
+                $template = str_replace(['/', DIRECTORY_SEPARATOR], '', $pdf_light_viewer_config['template']);
+
+				if (file_exists(PDF_LIGHT_VIEWER_APPPATH.'/resources/templates/'.$template.'.php')) {
+					include(PDF_LIGHT_VIEWER_APPPATH.'/resources/templates/'.$template.'.php');
 				}
 				else {
 					include(PDF_LIGHT_VIEWER_APPPATH.'/resources/templates/shortcode-pdf-light-viewer.php');

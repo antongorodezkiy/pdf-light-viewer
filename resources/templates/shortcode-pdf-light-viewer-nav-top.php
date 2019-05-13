@@ -13,9 +13,9 @@
 
 	<?php if (!empty($pdf_light_viewer_config['pages'])) {
 	?>
-		<div class="pdf-light-viewer js-pdf-light-viewer <?php echo $themeClass ?>"
-			data-enable-zoom="<?php echo !$pdf_light_viewer_config['disable_page_zoom'];?>"
-			data-zoom-magnify="<?php echo $pdf_light_viewer_config['zoom_magnify']?>">
+		<div class="pdf-light-viewer js-pdf-light-viewer <?php echo esc_attr($themeClass) ?>"
+			data-enable-zoom="<?php echo (bool)(!$pdf_light_viewer_config['disable_page_zoom']) ?>"
+			data-zoom-magnify="<?php echo (float)$pdf_light_viewer_config['zoom_magnify'] ?>">
 
 			<?php do_action(PDF_LIGHT_VIEWER_PLUGIN.':shortcode_template_start', $pdf_light_viewer_config['id']) ?>
 
@@ -25,7 +25,6 @@
 
 					<div class="pdf-light-viewer-features-top-nav-panel">
 						<?php include(PDF_LIGHT_VIEWER_APPPATH.'/resources/views/shortcode-thumbnails.php') ?>
-
 					</div>
 
 				</div>
@@ -34,33 +33,33 @@
 			<div class="pdf-light-viewer-magazine-viewport js-pdf-light-viewer-magazine-viewport with-nav-top">
 				<div class="pdf-light-viewer-magazine-viewport-container">
 					<div class="js-pdf-light-viewer-magazine pdf-light-viewer-magazine"
-                        data-max-book-width="<?php echo $pdf_light_viewer_config['max_book_width'] ?>"
-                        data-max-book-height="<?php echo $pdf_light_viewer_config['max_book_height'] ?>"
-                        data-limit-fullscreen-book-height="<?php echo $pdf_light_viewer_config['limit_fullscreen_book_height'] ?>"
-						data-width="<?php echo $pdf_light_viewer_config['page_width'] ?>"
-						data-height="<?php echo $pdf_light_viewer_config['page_height'] ?>"
-						data-pages-count="<?php echo count($pdf_light_viewer_config['pages']) ?>"
-						data-page-layout="<?php echo $pdf_light_viewer_config['page_layout'] ?>"
-                        data-download-page-format="<?php echo $pdf_light_viewer_config['download_page_format'] ?>"
-                        data-theme="<?php echo $pdf_light_viewer_config['theme'] ?>"
-                        data-disable-images-preloading="<?php echo $pdf_light_viewer_config['disable_images_preloading'] ?>">
+                        data-max-book-width="<?php echo (int)$pdf_light_viewer_config['max_book_width'] ?>"
+                        data-max-book-height="<?php echo (int)$pdf_light_viewer_config['max_book_height'] ?>"
+                        data-limit-fullscreen-book-height="<?php echo (int)$pdf_light_viewer_config['limit_fullscreen_book_height'] ?>"
+						data-width="<?php echo (int)$pdf_light_viewer_config['page_width'] ?>"
+						data-height="<?php echo (int)$pdf_light_viewer_config['page_height'] ?>"
+						data-pages-count="<?php echo (int)count($pdf_light_viewer_config['pages']) ?>"
+						data-page-layout="<?php echo esc_attr($pdf_light_viewer_config['page_layout']) ?>"
+                        data-download-page-format="<?php echo esc_attr($pdf_light_viewer_config['download_page_format']) ?>"
+                        data-theme="<?php echo esc_attr($pdf_light_viewer_config['theme']) ?>"
+                        data-disable-images-preloading="<?php echo (int)$pdf_light_viewer_config['disable_images_preloading'] ?>">
 						<?php foreach($pdf_light_viewer_config['pages'] as $number => $page) {
 							?>
-							<div style="background-image:url('<?php echo $imagePlaceholder ?>');">
+							<div style="background-image:url('<?php echo esc_attr($imagePlaceholder) ?>');">
 								<div class="gradient"></div>
                                 <?php if ((bool)$pdf_light_viewer_config['lazy_loading_disabled']): ?>
     								<img
-                                        class="js-pdf-light-viewer-lazy-loading js-pdf-light-viewer-lazy-loading-<?php echo ($number + 1) ?>"
-    									src="<?php echo $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$page;?>"
-                                        data-original="<?php echo $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$page;?>"
+                                        class="js-pdf-light-viewer-lazy-loading js-pdf-light-viewer-lazy-loading-<?php echo (int)($number + 1) ?>"
+    									src="<?php echo esc_attr($pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$page) ?>"
+                                        data-original="<?php echo esc_attr($pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$page) ?>"
     									width="100%"
     									height="100%"
     									/>
                                 <?php else : ?>
                                     <img
-    									class="js-pdf-light-viewer-lazy-loading js-pdf-light-viewer-lazy-loading-<?php echo ($number + 1) ?> initially-hidden"
-    									src="<?php echo $imagePlaceholder ?>"
-    									data-original="<?php echo $pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$page;?>"
+    									class="js-pdf-light-viewer-lazy-loading js-pdf-light-viewer-lazy-loading-<?php echo (int)($number + 1) ?> initially-hidden"
+    									src="<?php echo esc_attr($imagePlaceholder) ?>"
+    									data-original="<?php echo esc_attr($pdf_light_viewer_config['pdf_upload_dir_url'].'/'.$page) ?>"
     									width="100%"
     									height="100%"
     									/>

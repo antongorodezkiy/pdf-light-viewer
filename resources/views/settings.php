@@ -286,14 +286,14 @@
                                 );
 
                                 echo sprintf(esc_html__('To get support please contact us on forum %s. Please also attach server information and log information below to let us know more about your server and site environment - this could be helpful to solve the issue.', PDF_LIGHT_VIEWER_PLUGIN),
-                                    '<a target="_blank" href="'.PdfLightViewer_Helpers_Url::getSupportUrl().'">
-                                        '.PdfLightViewer_Helpers_Url::getSupportUrl().'&nbsp;<span class="icons slicon-link"></span>
+                                    '<a target="_blank" href="'.esc_attr(PdfLightViewer_Helpers_Url::getSupportUrl()).'">
+                                        '.esc_html(PdfLightViewer_Helpers_Url::getSupportUrl()).'&nbsp;<span class="icons slicon-link"></span>
                                     </a>'
                                 );?>
                             </p>
                         </blockquote>
                         <p>
-                            <?php echo esc_html__('Subject', PDF_LIGHT_VIEWER_PLUGIN)?>: <?php echo $subject;?>
+                            <?php echo esc_html__('Subject', PDF_LIGHT_VIEWER_PLUGIN)?>: <?php echo esc_html($subject);?>
                         </p>
                     </div>
 
@@ -316,7 +316,7 @@
                                     $info = $option.' -> '.$val;
                                     ?>
                                         <li>
-                                            <?php echo $info; ?>
+                                            <?php echo esc_html($info) ?>
                                         </li>
                                     <?php
                                 }
@@ -332,13 +332,13 @@
                         </h5>
                         <?php $current_theme = wp_get_theme(); ?>
                         <p>
-                            <?php echo $current_theme->get('Name');?>,
-                            <?php echo $current_theme->get('Version');?>,
-                            <?php echo $current_theme->get('ThemeURI');?>
+                            <?php echo esc_html($current_theme->get('Name')) ?>,
+                            <?php echo esc_html($current_theme->get('Version')) ?>,
+                            <?php echo esc_html($current_theme->get('ThemeURI')) ?>
                         </p>
                         <p>
-                            <?php echo esc_html__('from', PDF_LIGHT_VIEWER_PLUGIN)?> <?php echo $current_theme->get('Author');?>,
-                            <?php echo $current_theme->get('AuthorURI');?>
+                            <?php echo esc_html__('from', PDF_LIGHT_VIEWER_PLUGIN) ?> <?php echo esc_html($current_theme->get('Author')) ?>,
+                            <?php echo esc_html($current_theme->get('AuthorURI')) ?>
                         </p>
 
                     </div>
@@ -355,7 +355,7 @@
                                     $plugin = $pl['Name'].', '.$pl['Version'].', '.$pl['PluginURI'];
                                     ?>
                                         <li>
-                                            <?php echo $plugin; ?>
+                                            <?php echo esc_html($plugin) ?>
                                         </li>
                                     <?php
                                 }
@@ -402,11 +402,11 @@
 				<h3>
 					<span class="icons slicon-doc"></span>
 					<?php echo esc_html__('Documentation', PDF_LIGHT_VIEWER_PLUGIN)?>
-					<a class="right" target="_blank" href="<?php echo $documentation_url?>" title="<?php echo esc_html__('open in the separate tab', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-link"></span></a>
+					<a class="right" target="_blank" href="<?php echo esc_attr($documentation_url) ?>" title="<?php echo esc_html__('open in the separate tab', PDF_LIGHT_VIEWER_PLUGIN)?>"><span class="icons slicon-link"></span></a>
 				</h3>
 			</div>
 			<div class="row in container">
-				<iframe class="pdf-light-viewer-iframe" src="<?php echo $documentation_url?>" frameborder="0"></iframe>
+				<iframe class="pdf-light-viewer-iframe" src="<?php echo esc_attr($documentation_url) ?>" frameborder="0"></iframe>
 			</div>
 		</div>
 	</div>

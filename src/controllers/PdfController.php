@@ -195,10 +195,12 @@ class PdfLightViewer_PdfController {
 
 				PdfLightViewer_AdminController::showDirectMessage(sprintf(
 					esc_html__('%s PDF import is %s. %d%% is complete. Please do not leave the admin interface until the import would not finished. %s',PDF_LIGHT_VIEWER_PLUGIN)
-                    . '<a class="button-secondary js-pdf-light-viewer-cancel-import" href="#">'.esc_html__('Cancel', PDF_LIGHT_VIEWER_PLUGIN).'</a>',
-					'<i class="icons slicon-settings"></i> <b>'.PdfLightViewer_Model::$unimported->post_title.'</b>',
-					'<span class="js-pdf-light-viewer-current-status">'.$status.'</span>',
-					'<span class="js-pdf-light-viewer-current-progress">'.$progress.'</span>',
+                    . '<a class="button-secondary js-pdf-light-viewer-cancel-import" href="#">
+                        '.esc_html__('Cancel', PDF_LIGHT_VIEWER_PLUGIN).'
+                    </a>',
+					'<i class="icons slicon-settings"></i> <b>'.esc_html(PdfLightViewer_Model::$unimported->post_title).'</b>',
+					'<span class="js-pdf-light-viewer-current-status">'.esc_html($status).'</span>',
+					'<span class="js-pdf-light-viewer-current-progress">'.esc_html($progress).'</span>',
 					'<i><a href="#!" class="js-tip tip" title="'.esc_html__('Otherwise the import will be continued during your next visit.', PDF_LIGHT_VIEWER_PLUGIN).'"><span class="icons slicon-question"></span></a></i>'
 				), false);
 			}
@@ -236,7 +238,7 @@ class PdfLightViewer_PdfController {
 					$image_array = wp_get_attachment_image_src(get_post_thumbnail_id( $post_id ), 'full');
 					$full_img_url = $image_array[0];
 					?>
-						<img class="pdf-light-viewer-dashboard-page-preview" src="<?php echo $full_img_url;?>" alt="<?php echo esc_html__('Preview', PDF_LIGHT_VIEWER_PLUGIN);?>" />
+						<img class="pdf-light-viewer-dashboard-page-preview" src="<?php echo esc_attr($full_img_url);?>" alt="<?php echo esc_html__('Preview', PDF_LIGHT_VIEWER_PLUGIN);?>" />
 					<?php
 				}
 			break;
@@ -253,7 +255,7 @@ class PdfLightViewer_PdfController {
 					$count = 0;
 				}
 				?>
-					<?php echo $count; ?> / <?php echo $pdf_pages_number;?>
+					<?php echo (int)$count; ?> / <?php echo (int)$pdf_pages_number ?>
 				<?php
 			break;
 
@@ -287,8 +289,8 @@ class PdfLightViewer_PdfController {
 				}
 
 				?>
-					<div><?php echo $status_label ?></div>
-					<div><?php echo $progress ?>%</div>
+					<div><?php echo esc_html($status_label) ?></div>
+					<div><?php echo esc_html($progress) ?>%</div>
 				<?php
 			break;
 		}
