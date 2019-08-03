@@ -4,7 +4,7 @@ Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link:
 Requires at least: 3.5
 Tested up to: 5.1.1
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,30 +70,33 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 == Changelog ==
 
-= 1.4.6 - 2019-05-13 =
+== 1.4.7 - 2019-07-03 ==
+* php fix for directory helper
+
+== 1.4.6 - 2019-05-13 ==
 * more translations escaping
 * updated asset dependencies
 
-= 1.4.5 - 2019-03-25 =
+== 1.4.5 - 2019-03-25 ==
 * added translations escaping
 
-= 1.4.4 - 2019-03-07 =
+== 1.4.4 - 2019-03-07 ==
 * dynamic page height fix
 
-= 1.4.3 - 2019-03-06 =
+== 1.4.3 - 2019-03-06 ==
 * javascript code fixes
 
-= 1.4.2 - 2019-03-06 =
+== 1.4.2 - 2019-03-06 ==
 * php code fixes
 * dymanic page size ratio improvement
 * quick edit added
 * bulk edit added
 
-= 1.4.1 - 2019-01-28 ==
+== 1.4.1 - 2019-01-28 ==
 * disable_images_preloading setting added
 * Fix for usage example
 
-= 1.4.0 - 2019-01-12 ==
+== 1.4.0 - 2019-01-12 ==
 * Code structure cleaning up
 * PDF Light Viewer Serverless plugin compatibility
 * Export/Import PDF config

@@ -43,6 +43,8 @@ if ( ! function_exists('directory_map'))
 {
 	function directory_map($source_dir, $directory_depth = 0, $hidden = FALSE)
 	{
+        if (!is_readable($source_dir)) return false;
+
         $fp = null;
         try {
             $fp = opendir($source_dir);
