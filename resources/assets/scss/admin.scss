@@ -115,6 +115,12 @@
         text-decoration: none;
         border-bottom: 1px dotted #FE876D;
     }
+
+    .pdf-light-viewer-logfile-preview {
+        overflow: scroll;
+        max-width: 100%;
+        max-height: 80vh;
+    }
 }
 
 

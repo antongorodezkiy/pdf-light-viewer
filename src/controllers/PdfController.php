@@ -194,13 +194,13 @@ class PdfLightViewer_PdfController {
 				$progress = PdfLightViewer_Models_Meta::get_post_meta(PdfLightViewer_Model::$unimported->ID,'_pdf-light-viewer-import-progress', true);
 
 				PdfLightViewer_AdminController::showDirectMessage(sprintf(
-					esc_html__('%s PDF import is %s. %d%% is complete. Please do not leave the admin interface until the import would not finished. %s',PDF_LIGHT_VIEWER_PLUGIN)
+					esc_html__('%s PDF import is %s. %s%% is complete. Please do not leave the admin interface until the import would not finished. %s',PDF_LIGHT_VIEWER_PLUGIN)
                     . '<a class="button-secondary js-pdf-light-viewer-cancel-import" href="#">
                         '.esc_html__('Cancel', PDF_LIGHT_VIEWER_PLUGIN).'
                     </a>',
 					'<i class="icons slicon-settings"></i> <b>'.esc_html(PdfLightViewer_Model::$unimported->post_title).'</b>',
 					'<span class="js-pdf-light-viewer-current-status">'.esc_html($status).'</span>',
-					'<span class="js-pdf-light-viewer-current-progress">'.esc_html($progress).'</span>',
+					'<span class="js-pdf-light-viewer-current-progress">'.intval($progress).'</span>',
 					'<i><a href="#!" class="js-tip tip" title="'.esc_html__('Otherwise the import will be continued during your next visit.', PDF_LIGHT_VIEWER_PLUGIN).'"><span class="icons slicon-question"></span></a></i>'
 				), false);
 			}
@@ -351,6 +351,7 @@ class PdfLightViewer_PdfController {
     					'type' => 'checkbox',
                     )
                     : array(
+						'desc' => '',
                         'name' => esc_html__('Convert colors (not supported by server environment)', PDF_LIGHT_VIEWER_PLUGIN),
     					'id' => 'enable_pdf_convert',
     					'type' => '',
@@ -700,7 +701,7 @@ class PdfLightViewer_PdfController {
                 $geometry = self::getFirstPageGeometry($jpeg_resolution, $jpeg_compression_quality, $pdf_upload_dir, $pdf_file_path);
                 extract($geometry);
 
-				if ($width) {
+				if ($width && !empty($pages_number)) {
 
 					update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_SCHEDULED);
 					update_post_meta($post_id,'_pdf-light-viewer-import-progress', 0);
@@ -729,9 +730,15 @@ class PdfLightViewer_PdfController {
 					, false);
 				}
 				else {
-					PdfLightViewer_AdminController::showMessage(
-						sprintf(esc_html__('Imagick/Gmagick not found, please check other requirements on <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
-					, true);
+                    if (empty($pages_number)) {
+                        PdfLightViewer_AdminController::showMessage(
+                            sprintf(esc_html__('There was en error reading the source PDF file, please check the <a href="%s">plugin log</a> and server log for more details.', PDF_LIGHT_VIEWER_PLUGIN), PdfLightViewer_Plugin::getSettingsUrl())
+                        , true);
+                    } else {
+                        PdfLightViewer_AdminController::showMessage(
+                            sprintf(esc_html__('Imagick/Gmagick not found, please check other requirements on <a href="%s">plugin settings page</a> for more information.',PDF_LIGHT_VIEWER_PLUGIN),PdfLightViewer_Plugin::getSettingsUrl())
+                        , true);
+                    }
 				}
 			}
 
@@ -764,6 +771,7 @@ class PdfLightViewer_PdfController {
                 try {
                 	$metaToImport = json_decode($metaToImport, true);
         		} catch (Exception $e) {
+                    PdfLightViewer_Components_Logger::log('Parse PDF post config exception: '.$e->getMessage(), print_r($e, true));
         			error_log($e);
 					$metaToImport = [];
         		}
@@ -801,31 +809,43 @@ class PdfLightViewer_PdfController {
         unset($_POST['export_config']);
 	}
 
-	public static function getPDFPagesNumber($pdf_file_path) {
+	public static function getPDFPagesNumber($pdf_file_path)
+    {
         $Imagick = PdfLightViewer_Plugin::getXMagick();
         list($gsPath, $ghostscript_version) = PdfLightViewer_Plugin::getGhostscript();
 
+        $pagesNumber = 0;
         if ($gsPath && $ghostscript_version) {
             $commnad = $gsPath.' '
                 .'-q '
                 .'-dNODISPLAY '
                 .'-dQUIET '
+
+                // NOTE: needed for GS 9.50^ to avoid "Error: /invalidfileaccess in --file--"
+                // Adds the designated list of directories at the head of the search path for library files.
+                .'-I"'.escapeshellcmd(dirname($pdf_file_path)).'" '
+
                 .'-c "('.escapeshellcmd($pdf_file_path).') (r) file runpdfbegin pdfpagecount = quit" ';
 
             try {
-                return shell_exec($commnad);
+                $pagesNumber = (int)shell_exec($commnad);
             } catch (Exception $e) {
+                PdfLightViewer_Components_Logger::log('Import exception with getting pages number: '.$e->getMessage(), print_r($e, true));
                 error_log($e);
-                return null;
             }
         }
-        else if ($Imagick) {
-            $Imagick->readImage($pdf_file_path);
-            return $Imagick->getNumberImages();
+
+        // fallback to imagemagick
+        if (empty($pagesNumber) && $Imagick) {
+            try {
+                $Imagick->readImage($pdf_file_path);
+                $pagesNumber = $Imagick->getNumberImages();
+            } catch (Exception $e) {
+                PdfLightViewer_Components_Logger::log('Import exception with getting pages number: '.$e->getMessage(), print_r($e, true));
+            }
         }
-        else {
-            return 0;
-        }
+
+        return $pagesNumber;
     }
 
     public static function getFirstPageGeometry(
@@ -859,6 +879,7 @@ class PdfLightViewer_PdfController {
             try {
                 shell_exec($commnad);
             } catch (Exception $e) {
+                PdfLightViewer_Components_Logger::log('Get first page geometry exception: '.$e->getMessage(), print_r($e, true));
                 error_log($e);
             }
 
@@ -1091,6 +1112,7 @@ class PdfLightViewer_PdfController {
         try {
             shell_exec($commnad);
         } catch (Exception $e) {
+            PdfLightViewer_Components_Logger::log('Convert colors exception: '.$e->getMessage(), print_r($e, true));
             error_log($e);
         }
     }
@@ -1134,6 +1156,7 @@ class PdfLightViewer_PdfController {
             try {
             	shell_exec($commnad);
     		} catch (Exception $e) {
+                PdfLightViewer_Components_Logger::log('Process PDF page exception: '.$e->getMessage(), print_r($e, true));
     			error_log($e);
     		}
 
@@ -1154,6 +1177,7 @@ class PdfLightViewer_PdfController {
             try {
             	shell_exec($commnad);
     		} catch (Exception $e) {
+                PdfLightViewer_Components_Logger::log('Process PDF page exception: '.$e->getMessage(), print_r($e, true));
     			error_log($e);
     		}
 

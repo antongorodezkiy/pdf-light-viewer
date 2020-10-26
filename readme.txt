@@ -3,8 +3,8 @@ Contributors: antongorodezkiy, teamleadpower
 Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link:
 Requires at least: 3.5
-Tested up to: 5.1.1
-Stable tag: 1.4.7
+Tested up to: 5.5.1
+Stable tag: 1.4.8
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * SEO friendly mode.
 * All PDFs search (beta)
 * PDF in popup (beta)
+* Dark theme
 
 == Installation ==
 1. Get the package
@@ -69,6 +70,13 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 == Other Notes ==
 
 == Changelog ==
+
+== 1.4.8 - 2020-10-26 ==
+* jquery compatibility fix
+* ghostscript 9.50 compatibility fixes
+* better error logging for imagemagick errors
+* better error log preview
+* fixed import progress error
 
 == 1.4.7 - 2019-07-03 ==
 * php fix for directory helper

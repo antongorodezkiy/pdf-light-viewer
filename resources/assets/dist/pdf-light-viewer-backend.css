@@ -88,6 +88,11 @@
   text-decoration: none;
   border-bottom: 1px dotted #FE876D; }
 
+.pdf-light-viewer-admin-settings .pdf-light-viewer-logfile-preview {
+  overflow: scroll;
+  max-width: 100%;
+  max-height: 80vh; }
+
 .ui-widget-overlay {
   position: fixed;
   background: rgba(0, 0, 0, 0.3); }

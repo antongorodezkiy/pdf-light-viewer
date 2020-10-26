@@ -356,7 +356,7 @@ class PdfLightViewer_Plugin
             'PdfLightViewer_Models_MetaField' => '/models/MetaField.php',
         ));
         foreach ($includes as $className => $includePath) {
-            if (!class_exists($className)) {
+            if (!class_exists($className, false)) {
     			include_once(PDF_LIGHT_VIEWER_APPPATH.'/src'.$includePath);
     		}
         }

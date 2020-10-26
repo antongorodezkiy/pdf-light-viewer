@@ -92,10 +92,10 @@
 				<h1>
                     Documentation
                     <small>
-                        <div>WordPress PDF Light Viewer Plugin v1.4.6</div>
+                        <div>WordPress PDF Light Viewer Plugin v1.4.8</div>
                         <div>
-                            <span class="pure-button pure-button-primary">PRO</span> Addon v0.3.0
-                            & <span class="pure-button pure-button-primary">Serverless</span> Addon v0.0.4
+                            <span class="pure-button pure-button-primary">PRO</span> Addon v0.3.1
+                            & <span class="pure-button pure-button-primary">Serverless</span> Addon v0.0.7
                         </div>
                     </small>
                 </h1>
@@ -107,7 +107,7 @@
 				<p>
 					Thank you for usign the <a target="_blank" href="http://pdf-light-viewer.wp.teamlead.pw/">WordPress PDF Light Viewer Plugin</a>.
 				</p>
-				<p>This plugin gives you an ability to embed PDF files to your Wordpress sites.</p>
+				<p>This plugin gives you an ability to embed PDF files to your WordPress sites.</p>
 				<p>You could add unlimited amount of PDF of any size without performance issues.</p>
 				<p>Added PDF could be embedded as flipbooks on frontend.</p>
 				<p><span class="pure-button pure-button-primary">PRO</span> Addon is not required but it adds some useful features (marked with <span class="pure-button pure-button-primary">PRO</span> here) which you can check in this documentation or on the <a target="_blank" href="http://pdf-light-viewer.wp.teamlead.pw/pro/">Addon's page</a>.</p>
@@ -130,7 +130,7 @@
 					<li>Developer-friendly.</li>
 					<li>Well-documented.</li>
 					<li>Fully translatable to any language using .po files.</li>
-					<li>Supports wordpress multisites</li>
+					<li>Supports WordPress multisites</li>
 					<li>Responsive design</li>
 					<li>Clear default look</li>
 					<li>CLI integration</li>
@@ -141,7 +141,7 @@
 				<h4 class="content-subhead"><span class="pure-button pure-button-primary">PRO</span> Features</h4>
 				<ul>
 					<li>Single separate PDF page.</li>
-					<li>Regular Wordpress PDF Archive page with 2 templates.</li>
+					<li>Regular WordPress PDF Archive page with 2 templates.</li>
 					<li>One-page PDF Archive page with 2 templates.</li>
 					<li>PDF Archive page by shortcode on custom page or frontpage.</li>
 					<li>PDF Categories.</li>
@@ -374,7 +374,7 @@
                         <li>
 							<span class="pure-button pure-button-primary">Serverless</span> Serverless Addon is slightly changing the import process functions, but it will look almost the same in common.
 						</li>
-						<li>User adds the wordpress shortcode, produced by the plugin, to the page or post</li>
+						<li>User adds the WordPress shortcode, produced by the plugin, to the page or post</li>
 						<li>
 							<span class="pure-button pure-button-primary">PRO</span> User can open Single PDF page to have PDF flipbook there.
 						</li>
@@ -560,7 +560,7 @@
 
 				<p>
 					You will have full control on the plugin right from other plugin,
-					or theme, or whatever you use in your wordpress.
+					or theme, or whatever you use in your WordPress.
 				</p>
 
 				<div class="content-subhead">Code control</div>
@@ -738,7 +738,7 @@
 								<code>post-status</code> optional, PDF post status, default "draft"
 							</li>
 							<li>
-								<code>import-pdf-file</code> flag, if set then import PDF file to Wordpress media library
+								<code>import-pdf-file</code> flag, if set then import PDF file to WordPress media library
 							</li>
 						</ul>
 						<hr />
@@ -748,7 +748,7 @@
 $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --import-pdf-file
 </code></pre>
 						</p>
-						<p>or you can specify wordpress' path via option:</p>
+						<p>or you can specify WordPress' path via option:</p>
 						<p>
 							<pre><code class="language-sh">$ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --import-pdf-file --path="/path/to/your/wordpress"</code></pre>
 						</p>
@@ -838,6 +838,20 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 			<div class="content">
 
 				<h3>PDF Light Viewer</h3>
+
+                <h4 class="content-subhead">1.4.8 - 2020-10-26</h4>
+                <ul>
+                    <li>jquery compatibility fix</li>
+                    <li>ghostscript 9.50 compatibility fixes</li>
+                    <li>better error logging for imagemagick errors</li>
+                    <li>better error log preview</li>
+                    <li>fixed import progress error</li>
+                </ul>
+
+                <h4 class="content-subhead">1.4.7 - 2019-05-13</h4>
+                <ul>
+                    <li>php fix for directory helper</li>
+                </ul>
 
                 <h4 class="content-subhead">1.4.6 - 2019-05-13</h4>
                 <ul>
@@ -1302,6 +1316,26 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 
 
                 <h3>PDF Light Viewer Serverless Addon</h3>
+
+                <h4 class="content-subhead">0.0.7 - 2020-10-26</h4>
+                <ul>
+                    <li>jquery compatibility changes</li>
+                </ul>
+
+                <h4 class="content-subhead">0.0.6 - 2020-01-27</h4>
+                <ul>
+                    <li>fix for jQuery compatibility</li>
+                </ul>
+
+                <h4 class="content-subhead">0.0.5 - 2019-06-19</h4>
+                <ul>
+                    <li>fix for backend import compatibility</li>
+                </ul>
+
+                <h4 class="content-subhead">0.0.4 - 2019-05-13</h4>
+                <ul>
+                    <li>more translations escaping</li>
+                </ul>
 
                 <h4 class="content-subhead">0.0.4 - 2019-05-13</h4>
                 <ul>

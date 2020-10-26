@@ -12,7 +12,7 @@ var PDFLightViewerApp;
 				var self = this;
 				PDFLightViewerApp.self = self;
 
-				if (!$('.js-pdf-light-viewer').size()) {
+				if (!$('.js-pdf-light-viewer').length) {
 					return;
 				}
 
@@ -168,7 +168,7 @@ var PDFLightViewerApp;
 
                 if (
                   typeof(loaded_pdf_pages[preloadPage]) == 'undefined'
-                  && $('.js-pdf-light-viewer-lazy-loading-'+preloadPage, instance).size()
+                  && $('.js-pdf-light-viewer-lazy-loading-'+preloadPage, instance).length
                 ) {
                   $('.js-pdf-light-viewer-lazy-loading-'+preloadPage, instance).lazyload({
                     effect : 'fadeIn',
@@ -191,7 +191,7 @@ var PDFLightViewerApp;
                 neighborhood_page: neighborhood_page
               });
 
-              if ($('.js-pdf-light-viewer-current-page-indicator', instance).size()) {
+              if ($('.js-pdf-light-viewer-current-page-indicator', instance).length) {
                 if (magazine.turn('display') == 'single' || !neighborhood_page) {
                   $('.js-pdf-light-viewer-current-page-indicator', instance).text(page + ' / ' + magazine.data('pages-count'));
                 }
@@ -341,7 +341,7 @@ var PDFLightViewerApp;
           });
 
         // per page download
-          if ($('.js-pdf-light-viewer-download-options', instance).size()) {
+          if ($('.js-pdf-light-viewer-download-options', instance).length) {
             $('.js-pdf-light-viewer-download-options', instance).each(function() {
               var self = $(this),
                   instance = self.parents('.js-pdf-light-viewer');
@@ -539,7 +539,7 @@ var PDFLightViewerApp;
 		PDFLightViewerApp.init();
 
 		// hash and keyboard controls only when we have one PDF on the page
-		if ($('.js-pdf-light-viewer').size() == 1 && PdfLightViewer.settings.enable_hash_nav) {
+		if ($('.js-pdf-light-viewer').length == 1 && PdfLightViewer.settings.enable_hash_nav) {
 
 			$(window).bind('keydown', function(e){
 

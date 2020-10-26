@@ -34,15 +34,15 @@ jQuery(function($) {
 
         for (var metaKey in classList) {
 
-          if ($('input[name="'+classList[metaKey]+'"]:text', specific_post_edit_row).size()) {
+          if ($('input[name="'+classList[metaKey]+'"]:text', specific_post_edit_row).length) {
             $('input[name="'+classList[metaKey]+'"]:text', specific_post_edit_row).val(column.text());
           }
 
-          else if ($('input[name="'+classList[metaKey]+'"]:checkbox', specific_post_edit_row).size()) {
+          else if ($('input[name="'+classList[metaKey]+'"]:checkbox', specific_post_edit_row).length) {
             $('input[name="'+classList[metaKey]+'"]:checkbox', specific_post_edit_row).prop('checked', column.text() == 'on');
           }
 
-          else if ($('select[name="'+classList[metaKey]+'"]', specific_post_edit_row).size()) {
+          else if ($('select[name="'+classList[metaKey]+'"]', specific_post_edit_row).length) {
             $('select[name="'+classList[metaKey]+'"] option[value="'+column.text()+'"]', specific_post_edit_row).prop('selected', true);
           }
         }

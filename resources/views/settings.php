@@ -375,16 +375,15 @@
 			<div class="row hdr">
 				<h3>
 					<span class="icons slicon-note"></span>
-					<?php echo esc_html__("Today's log file", PDF_LIGHT_VIEWER_PLUGIN)?>
+					<?php echo esc_html__("Plugin log file", PDF_LIGHT_VIEWER_PLUGIN)?>
 				</h3>
 			</div>
 
 			<div class="row in pdf-light-viewer-logfile-preview">
 				<code><pre><?php
-					if (file_exists(PdfLightViewer_Components_Logger::getLogsPath().date('Y-m-d').'.php')) {
-						include_once(PdfLightViewer_Components_Logger::getLogsPath().date('Y-m-d').'.php');
-					}
-					else {
+					if (file_exists(PdfLightViewer_Components_Logger::getMostRecentFile())) {
+						echo file_get_contents(PdfLightViewer_Components_Logger::getMostRecentFile());
+					} else {
 						echo esc_html__("Today's log file doesn't exist", PDF_LIGHT_VIEWER_PLUGIN);
 					}
 					?></pre></code>

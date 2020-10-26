@@ -7,9 +7,9 @@
 
 **Requires at least:** 3.5
 
-**Tested up to:** 5.1.1
+**Tested up to:** 5.5.1
 
-**Stable tag:** 1.4.7
+**Stable tag:** 1.4.8
 
 **License:** GPLv2
 
@@ -59,6 +59,7 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 * SEO friendly mode.
 * All PDFs search (beta)
 * PDF in popup (beta)
+* Dark theme
 
 ## Installation ##
 1. Get the package
@@ -85,20 +86,27 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 
 ## Changelog ##
 
-# 1.4.7 - 2019-07-03
+## 1.4.8 - 2020-10-26
+* jquery compatibility fix
+* ghostscript 9.50 compatibility fixes
+* better error logging for imagemagick errors
+* better error log preview
+* fixed import progress error
+
+## 1.4.7 - 2019-07-03
 * php fix for directory helper
 
-# 1.4.6 - 2019-05-13
+## 1.4.6 - 2019-05-13
 * more translations escaping
 * updated asset dependencies
 
-# 1.4.5 - 2019-03-25
+## 1.4.5 - 2019-03-25
 * added translations escaping
 
-# 1.4.4 - 2019-03-07
+## 1.4.4 - 2019-03-07
 * dynamic page height fix
 
-# 1.4.3 - 2019-03-06
+## 1.4.3 - 2019-03-06
 * javascript code fixes
 
 ## 1.4.2 - 2019-03-06

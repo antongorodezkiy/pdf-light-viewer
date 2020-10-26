@@ -33,13 +33,14 @@ class PdfLightViewer_AdminController
 			);
 		}
 		elseif (!get_option(PDF_LIGHT_VIEWER_PLUGIN.'-notification-survey-viewed')) {
-			PdfLightViewer_AdminController::showDirectMessage(
-				esc_html__('PDF Light Viewer Team: Please, take part in our 1-minute survey to make PDF Light Viewer plugin better',PDF_LIGHT_VIEWER_PLUGIN)
-                . '
-                    <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" target="_blank" href="https://teamlead-power.typeform.com/to/Mr7eVs">'.esc_html__('Take Survey', PDF_LIGHT_VIEWER_PLUGIN).'</a>
-                    <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" href="#">'.esc_html__('Not interested', PDF_LIGHT_VIEWER_PLUGIN).'</a>
-                '
-			);
+            // TODO: not used so far
+			// PdfLightViewer_AdminController::showDirectMessage(
+			// 	esc_html__('PDF Light Viewer Team: Please, take part in our 1-minute survey to make PDF Light Viewer plugin better',PDF_LIGHT_VIEWER_PLUGIN)
+            //     . '
+            //         <a class="button-primary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" target="_blank" href="https://teamlead-power.typeform.com/to/Mr7eVs">'.esc_html__('Take Survey', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+            //         <a class="button-secondary js-pdf-light-viewer-hide-notification" data-notification="survey-viewed" href="#">'.esc_html__('Not interested', PDF_LIGHT_VIEWER_PLUGIN).'</a>
+            //     '
+			// );
 		}
 
         if (

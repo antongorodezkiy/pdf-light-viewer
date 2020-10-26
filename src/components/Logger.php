@@ -57,4 +57,15 @@ class PdfLightViewer_Components_Logger
 
 		return TRUE;
 	}
+
+    public static function getMostRecentFile()
+    {
+        $logs = directory_map(static::getLogsPath());
+        arsort($logs);
+        $logs = array_values($logs);
+
+        return (!empty($logs[0]))
+            ? static::getLogsPath().$logs[0]
+            : null;
+    }
 }
