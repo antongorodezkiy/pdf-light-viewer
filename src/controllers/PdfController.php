@@ -705,7 +705,8 @@ class PdfLightViewer_PdfController {
 
 					update_post_meta($post_id,'_pdf-light-viewer-import-status', self::STATUS_SCHEDULED);
 					update_post_meta($post_id,'_pdf-light-viewer-import-progress', 0);
-					update_post_meta($post_id,'_pdf-light-viewer-import-current-page', 1);
+                    update_post_meta($post_id,'_pdf-light-viewer-import-current-page', 1);
+                    update_post_meta($post_id, '_pdf-light-viewer-import-path', $pdf_file_path);
 
                     $importPages = array();
                     if (!empty($form_data['import_pages'])) {
@@ -840,6 +841,7 @@ class PdfLightViewer_PdfController {
             try {
                 $Imagick->readImage($pdf_file_path);
                 $pagesNumber = $Imagick->getNumberImages();
+                $Imagick->destroy();
             } catch (Exception $e) {
                 PdfLightViewer_Components_Logger::log('Import exception with getting pages number: '.$e->getMessage(), print_r($e, true));
             }
@@ -1057,8 +1059,6 @@ class PdfLightViewer_PdfController {
             }
         }
 
-
-
 		do_action(PDF_LIGHT_VIEWER_PLUGIN.':after_import', $post_id, $pdf_file_path);
 
 		if ($percent >= 100) {
@@ -1156,7 +1156,7 @@ class PdfLightViewer_PdfController {
             try {
             	shell_exec($commnad);
     		} catch (Exception $e) {
-                PdfLightViewer_Components_Logger::log('Process PDF page exception: '.$e->getMessage(), print_r($e, true));
+                PdfLightViewer_Components_Logger::log('Process PDF page exception (pdf): '.$e->getMessage(), print_r($e, true));
     			error_log($e);
     		}
 
@@ -1177,7 +1177,7 @@ class PdfLightViewer_PdfController {
             try {
             	shell_exec($commnad);
     		} catch (Exception $e) {
-                PdfLightViewer_Components_Logger::log('Process PDF page exception: '.$e->getMessage(), print_r($e, true));
+                PdfLightViewer_Components_Logger::log('Process PDF page exception (jpg): '.$e->getMessage(), print_r($e, true));
     			error_log($e);
     		}
 

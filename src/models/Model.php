@@ -2,10 +2,9 @@
 
 class PdfLightViewer_Model
 {
-
 	public static $unimported = null;
-	public static function getOneUnimported() {
-
+	public static function getOneUnimported()
+    {
 		$query = new WP_Query(array(
 			'post_type' => PdfLightViewer_PdfController::$type,
 			'meta_query' => array(
@@ -37,18 +36,34 @@ class PdfLightViewer_Model
 		if ($query->have_posts()) {
 			$unimported = $query->post;
 			return $query->post;
-		}
-		else {
+		} else {
 			return array();
 		}
 	}
 
-	public static function getPDFFileId($post_id) {
+    public static function getPdfByImportPath($path)
+    {
+        $query = new WP_Query(array(
+            'post_type' => PdfLightViewer_PdfController::$type,
+            'meta_query' => array(
+                array(
+                    'key'     => '_pdf-light-viewer-import-path',
+                    'value'   => $path,
+                    'compare' => '='
+                )
+            ),
+            'nopaging' => true
+        ));
 
+        $posts = $query->get_posts();
+        return !empty($posts) ? $posts[0] : null;
+    }
+
+	public static function getPDFFileId($post_id)
+    {
 		if ((int)get_post_meta($post_id, 'pdf_file_id', true)) {
 			$pdf_file_id = get_post_meta($post_id, 'pdf_file_id', true);
-		}
-		else {
+		} else {
 			$pdf_file_id = get_post_meta($post_id, 'pdf_file', true);
 		}
 

@@ -209,8 +209,7 @@ class PdfLightViewer_Plugin
                 } catch (Exception $e) {
                     error_log($e);
                 }
-            }
-            else if (stristr(php_uname('s'), 'win')) {
+            } else if (stristr(php_uname('s'), 'win')) {
                 $gsPath = 'gs';
 
                 try {
@@ -218,8 +217,7 @@ class PdfLightViewer_Plugin
                 } catch (Exception $e) {
                     error_log($e);
                 }
-            }
-            else {
+            } else {
                 $gsPath = '$(command -v gs)';
                 try {
                     $ghostscript_version = shell_exec($gsPath.' --version');

@@ -9,7 +9,7 @@
 
 **Tested up to:** 5.5.1
 
-**Stable tag:** 1.4.8
+**Stable tag:** 1.4.9
 
 **License:** GPLv2
 
@@ -85,6 +85,10 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 ## Other Notes ##
 
 ## Changelog ##
+
+## 1.4.9 - 2020-11-19
+* PDF Light Viewer PRO Addon 0.4.0 compatibility
+* added PDF existance check for the CLI import command
 
 ## 1.4.8 - 2020-10-26
 * jquery compatibility fix
