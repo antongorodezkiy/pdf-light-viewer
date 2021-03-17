@@ -92,7 +92,7 @@
 				<h1>
                     Documentation
                     <small>
-                        <div>WordPress PDF Light Viewer Plugin v1.4.9</div>
+                        <div>WordPress PDF Light Viewer Plugin v1.4.10</div>
                         <div>
                             <span class="pure-button pure-button-primary">PRO</span> Addon v0.4.0
                             & <span class="pure-button pure-button-primary">Serverless</span> Addon v0.0.7
@@ -722,7 +722,7 @@
 				</p>
 				<ul>
 					<li>
-						<p><code>bulk-import</code> - Bulk PDF import</p>
+						<p><code>bulk-import</code> - Bulk PDF import from the server directory</p>
 						<p>Options:</p>
 						<ul>
 							<li>
@@ -735,10 +735,16 @@
 								<code>jpeg-resolution</code> optional, jpeg resolution, default 300
 							</li>
 							<li>
+								<code>output-biggest-side</code> output biggest side, default 1024
+							</li>
+							<li>
 								<code>post-status</code> optional, PDF post status, default "draft"
 							</li>
 							<li>
 								<code>import-pdf-file</code> flag, if set then import PDF file to WordPress media library
+							</li>
+							<li>
+								<code>force</code> flag, if set then the file will be imported even if it was already imported
 							</li>
 						</ul>
 						<hr />
@@ -751,6 +757,45 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 						<p>or you can specify WordPress' path via option:</p>
 						<p>
 							<pre><code class="language-sh">$ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --import-pdf-file --path="/path/to/your/wordpress"</code></pre>
+						</p>
+					</li>
+
+                    <li>
+						<p><code>library-import</code> - Bulk PDF import from WordPress Media Library</p>
+						<p>Options:</p>
+						<ul>
+							<li>
+								<code>search</code> optional, search pattern for the attachment name
+							</li>
+                            <li>
+								<code>attachment-id</code> optional, specific attachment ID to import
+							</li>
+							<li>
+								<code>jpeg-compression-quality</code> optional, jpeg compression quality, default 60
+							</li>
+							<li>
+								<code>jpeg-resolution</code> optional, jpeg resolution, default 300
+							</li>
+                            <li>
+								<code>output-biggest-side</code> output biggest side, default 1024
+							</li>
+							<li>
+								<code>post-status</code> optional, PDF post status, default "draft"
+							</li>
+                            <li>
+								<code>force</code> flag, if set then the file will be imported even if it was already imported
+							</li>
+						</ul>
+						<hr />
+						<p>Example:</p>
+						<p>
+<pre><code class="language-sh">$ cd /path/to/your/wordpress
+$ wp pdf-light-viewer library-import --search="Ukraine" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --force
+</code></pre>
+						</p>
+						<p>or you can specify WordPress' path via option:</p>
+						<p>
+							<pre><code class="language-sh">$ wp pdf-light-viewer library-import --search="Ukraine" --jpeg-compression-quality=60 --jpeg-resolution=300 --post-status=publish --force --path="/path/to/your/wordpress"</code></pre>
 						</p>
 					</li>
 				</ul>
@@ -838,6 +883,13 @@ $ wp pdf-light-viewer bulk-import --source-dir="/path/to/pdfs" --jpeg-compressio
 			<div class="content">
 
 				<h3>PDF Light Viewer</h3>
+
+                <h4 class="content-subhead">1.4.10 - 2021-03-17</h4>
+                <ul>
+                    <li>mobile touch navigation fix</li>
+                    <li>magazine viewport resize fix</li>
+                    <li>fullscreen resize fix for magazines limited by height</li>
+                </ul>
 
                 <h4 class="content-subhead">1.4.9 - 2020-11-19</h4>
                 <ul>

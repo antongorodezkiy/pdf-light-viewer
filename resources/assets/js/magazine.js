@@ -83,6 +83,16 @@ var PDFLightViewerApp;
 					elevation: 50,
 					autoCenter: false,
 					when: {
+            start: function(e, pageObject, corner) {
+              // disable corner hover for single page documents
+              if (
+                magazine.data('pages-count') == 1
+                && (
+                  corner == 'tl' || corner == 'tr' || corner == 'bl' || corner == 'br'
+                )) {
+                e.preventDefault();
+              }
+            },
 						turning: function(event, page, view) {
 							var book = $(this),
 							currentPage = book.turn('page'),
@@ -365,9 +375,19 @@ var PDFLightViewerApp;
           }
 
 				// window resize
-					window.addEventListener('resize', function (e) {
+					$(window).on('resize', function (e) {
 						self.resize(viewport, magazine, ratio_single, ratio_double);
 					});
+
+        // viewport resize
+          if (typeof ResizeObserver != 'undefined') {
+            var resizeObserver = new ResizeObserver(function (entries) {
+  						self.resize(viewport, magazine, ratio_single, ratio_double);
+            });
+
+            resizeObserver.observe(viewport.get(0));
+          }
+
 					self.resize(viewport, magazine, ratio_single, ratio_double);
 			},
 
@@ -423,8 +443,20 @@ var PDFLightViewerApp;
           };
         }
 
-        if (magazine.data('limit-fullscreen-book-height')) {
-          var fullScreenHeight = $('.js-pdf-light-viewer.pdf-light-viewer-fullscreen .js-pdf-light-viewer-magazine-viewport').height();
+        if (screenfull.isFullscreen && magazine.data('limit-fullscreen-book-height')) {
+          var fullScreenMagazineViewport = $('.js-pdf-light-viewer.pdf-light-viewer-fullscreen .js-pdf-light-viewer-magazine-viewport');
+          var fullScreenHeight = fullScreenMagazineViewport.outerHeight(true);
+
+          // we will reduce height by height of margin and thumbnails bar
+            var viewportMagazineHeightDifference = fullScreenHeight - magazine.height() + 20;
+            var instance = magazine.parents('.js-pdf-light-viewer');
+
+            if ($('.js-pdf-light-viewer-magazine-thumbnails', instance).length > 0) {
+              viewportMagazineHeightDifference += $('.js-pdf-light-viewer-magazine-thumbnails', instance).height();
+            }
+
+          fullScreenHeight = $(window).height() - viewportMagazineHeightDifference;
+
           if (fullScreenHeight && size.height > fullScreenHeight) {
             size = {
               width: fullScreenHeight * ratio,

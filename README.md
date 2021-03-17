@@ -7,9 +7,9 @@
 
 **Requires at least:** 3.5
 
-**Tested up to:** 5.5.1
+**Tested up to:** 5.7
 
-**Stable tag:** 1.4.9
+**Stable tag:** 1.4.10
 
 **License:** GPLv2
 
@@ -85,6 +85,11 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 ## Other Notes ##
 
 ## Changelog ##
+
+## 1.4.10 - 2021-03-17
+* mobile touch navigation fix
+* magazine viewport resize fix
+* fullscreen resize fix for magazines limited by height
 
 ## 1.4.9 - 2020-11-19
 * PDF Light Viewer PRO Addon 0.4.0 compatibility

@@ -55,7 +55,7 @@
 				})
 				.fail(function() {
 					$(".js-pdf-light-viewer-current-status").parents(".updated").slideUp(300);
-					PdfLightViewer.app.error(PdfLightViewer.__['Import process failed due to the unknown error.']);
+					PdfLightViewer.app.error(PdfLightViewer.__['Import process failed due to an unknown error.']);
 				});
 			};
 			PdfLightViewer.ping_import();

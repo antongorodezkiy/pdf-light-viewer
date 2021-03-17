@@ -3,8 +3,8 @@ Contributors: antongorodezkiy, teamleadpower
 Tags: pdf, pdfs, embed, pdf embed, publish pdf, import pdf, flipbook
 Donate link:
 Requires at least: 3.5
-Tested up to: 5.5.1
-Stable tag: 1.4.9
+Tested up to: 5.7
+Stable tag: 1.4.10
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,11 @@ Plugin allows you to embed normal, big and very big pdf documents to the wordpre
 == Other Notes ==
 
 == Changelog ==
+
+== 1.4.10 - 2021-03-17 ==
+* mobile touch navigation fix
+* magazine viewport resize fix
+* fullscreen resize fix for magazines limited by height
 
 == 1.4.9 - 2020-11-19 ==
 * PDF Light Viewer PRO Addon 0.4.0 compatibility
