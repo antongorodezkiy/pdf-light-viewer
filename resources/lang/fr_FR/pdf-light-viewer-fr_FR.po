@@ -302,7 +302,7 @@ msgstr "Couleur actuelle"
 #~ "Processus d'importation a été achevé avec succès. S'il vous plaît "
 #~ "vérifier les résultats sur la page PDF."
 
-#~ msgid "Import process failed due to the unknown error."
+#~ msgid "Import process failed due to an unknown error."
 #~ msgstr "Le processus d'importation a échoué suie à une erreur."
 
 #~ msgid "Import process failed due to the error:"

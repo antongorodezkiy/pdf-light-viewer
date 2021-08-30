@@ -292,7 +292,7 @@ msgstr "Текущая страница"
 #~ "page."
 #~ msgstr "Импорт прошел успешно. Проверье результаты на странице PDF."
 
-#~ msgid "Import process failed due to the unknown error."
+#~ msgid "Import process failed due to an unknown error."
 #~ msgstr "Импорт не удался из-за неизвестной ошибки."
 
 #~ msgid "Import process failed due to the error:"

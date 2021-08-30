@@ -72,7 +72,7 @@ class PdfLightViewer_AssetsController
 				),
 				'__' => array(
 					'Import process was successfully finished. Please check results on the PDF page.' => esc_html__('Import process was successfully finished. Please check results on the PDF page.', PDF_LIGHT_VIEWER_PLUGIN),
-					'Import process failed due to the unknown error.' => esc_html__('Import process failed due to the unknown error.', PDF_LIGHT_VIEWER_PLUGIN),
+					'Import process failed due to an unknown error.' => esc_html__('Import process failed due to the unknown error.', PDF_LIGHT_VIEWER_PLUGIN),
 					'Import process failed due to the error:' => esc_html__('Import process failed due to the error:', PDF_LIGHT_VIEWER_PLUGIN)
 				),
                 'settings' => array(

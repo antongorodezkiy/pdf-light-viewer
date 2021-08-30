@@ -551,10 +551,10 @@ class PdfLightViewer_PdfController {
 
     public static function isToolbarVisible($pdf_light_viewer_config) {
         return (
-            $pdf_light_viewer_config['download_allowed']
-            || $pdf_light_viewer_config['download_page_allowed']
-            || !$pdf_light_viewer_config['hide_fullscreen_button']
-            || !$pdf_light_viewer_config['disable_page_zoom']
+            !empty($pdf_light_viewer_config['download_allowed'])
+            || !empty($pdf_light_viewer_config['download_page_allowed'])
+            || empty($pdf_light_viewer_config['hide_fullscreen_button'])
+            || empty($pdf_light_viewer_config['disable_page_zoom'])
             || !empty($pdf_light_viewer_config['print_allowed'])
             || !empty($pdf_light_viewer_config['print_page_allowed'])
             || !empty($pdf_light_viewer_config['enabled_archive'])
@@ -871,10 +871,10 @@ class PdfLightViewer_PdfController {
                 .'-dNOPAUSE '
                 .'-dQUIET '
                 .'-sDEVICE=jpeg '
-                .'-r'.((int)$jpeg_resolution).' '
-                .'-dJPEGQ='.$jpeg_compression_quality.' '
-                .'-dFirstPage='.($current_page).' '
-                .'-dLastPage='.($current_page).' '
+                .'-r'.((int) $jpeg_resolution).' '
+                .'-dJPEGQ='.((int) $jpeg_compression_quality).' '
+                .'-dFirstPage='.((int) $current_page).' '
+                .'-dLastPage='.((int) $current_page).' '
                 .'-sOutputFile='.escapeshellcmd($pdf_upload_dir.'/page-'.$page_number.'.jpg').' '
                 .escapeshellcmd($pdf_file_path);
 
@@ -1148,8 +1148,8 @@ class PdfLightViewer_PdfController {
                 .'-dNOPAUSE '
                 .'-dQUIET '
                 .'-sDEVICE=pdfwrite '
-                .'-dFirstPage='.($current_page_doc).' '
-                .'-dLastPage='.($current_page_doc).' '
+                .'-dFirstPage='.((int) $current_page_doc).' '
+                .'-dLastPage='.((int) $current_page_doc).' '
                 .'-sOutputFile='.escapeshellcmd($pdf_upload_dir.'-pdfs/page-'.$page_number.'.pdf').' '
                 .escapeshellcmd($pdf_file_path);
 
