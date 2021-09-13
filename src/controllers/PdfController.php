@@ -688,11 +688,11 @@ class PdfLightViewer_PdfController {
 				do_action(PDF_LIGHT_VIEWER_PLUGIN.':before_import_scheduled', $pdf_file_path);
 
 				$jpeg_compression_quality = (isset($form_data['jpeg_compression_quality'])
-                    ? $form_data['jpeg_compression_quality']
-                    : get_post_meta($post_id, 'jpeg_compression_quality', true));
+                    ? (int) $form_data['jpeg_compression_quality']
+                    : (int) get_post_meta($post_id, 'jpeg_compression_quality', true));
 				$jpeg_resolution = (isset($form_data['jpeg_resolution'])
-                    ? $form_data['jpeg_resolution']
-                    : get_post_meta($post_id, 'jpeg_resolution', true));
+                    ? (int) $form_data['jpeg_resolution']
+                    : (int) get_post_meta($post_id, 'jpeg_resolution', true));
 
 				// delete all files
 				self::delete_pages_by_pdf_id($post_id, $pdf_upload_dir);
@@ -955,12 +955,12 @@ class PdfLightViewer_PdfController {
             && PdfLightViewer_Plugin::isGhostscriptAvailableViaCli()
         );
 
-		$jpeg_resolution = PdfLightViewer_Models_Meta::get_post_meta($post_id,'jpeg_resolution',true);
-		$jpeg_compression_quality = PdfLightViewer_Models_Meta::get_post_meta($post_id,'jpeg_compression_quality',true);
+		$jpeg_resolution = (int) PdfLightViewer_Models_Meta::get_post_meta($post_id, 'jpeg_resolution', true);
+		$jpeg_compression_quality = (int) PdfLightViewer_Models_Meta::get_post_meta($post_id, 'jpeg_compression_quality', true);
 
-        $pdf_import_pages = (array)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-import-pages',true);
-		$pdf_pages_number = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-pages-number',true);
-		$current_page = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'_pdf-light-viewer-import-current-page',true);
+        $pdf_import_pages = (array) PdfLightViewer_Models_Meta::get_post_meta($post_id, 'pdf-import-pages' ,true);
+		$pdf_pages_number = (int) PdfLightViewer_Models_Meta::get_post_meta($post_id, 'pdf-pages-number', true);
+		$current_page = (int) PdfLightViewer_Models_Meta::get_post_meta($post_id, '_pdf-light-viewer-import-current-page', true);
 
 		$width = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-page-width',true);
 		$height = (int)PdfLightViewer_Models_Meta::get_post_meta($post_id,'pdf-page-height',true);
@@ -1168,9 +1168,9 @@ class PdfLightViewer_PdfController {
                 .'-dQUIET '
                 .'-sDEVICE=jpeg '
                 .'-r'.((int)$jpeg_resolution).' '
-                .'-dJPEGQ='.$jpeg_compression_quality.' '
-                .'-dFirstPage='.($current_page_doc).' '
-                .'-dLastPage='.($current_page_doc).' '
+                .'-dJPEGQ='.((int) $jpeg_compression_quality).' '
+                .'-dFirstPage='.((int) $current_page_doc).' '
+                .'-dLastPage='.((int) $current_page_doc).' '
                 .'-sOutputFile='.escapeshellcmd($pdf_upload_dir.'/page-'.$page_number.'.jpg').' '
                 .escapeshellcmd($pdf_file_path);
 
